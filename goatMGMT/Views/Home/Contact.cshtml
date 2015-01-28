@@ -1,22 +1,33 @@
 ﻿@{
     ViewBag.Title = "Contact Us";
 }
-<hgroup>
-    <h2>@ViewBag.Title</h2>
-    <h3>@ViewBag.Message</h3>
-</hgroup>
-<div>
-    <address>
-        Nada K. Nadarajah, Ph.D<br />
-        Research Fellow IV<br />
-        Department of Animal Sciences<br />
-        214 Ann Upchurch Hall<br />
-        Auburn University, AL 36849-5415<br />
-        Tel: (334) 844-1502<br />
-        Fax: (334)-844-1519<br />
-    </address>
-
-    <address>
-        <i class="icon-envelope"></i><strong>Email:</strong>   <a href="mailto:nadarka@auburn.edu">nadarka@auburn.edu</a><br />
-    </address>
+<div class="well" style="font-size:xx-large; background-color:indianred">
+    @ViewBag.Title
+</div>
+<div class="row-fluid">
+    <div class="col-xs-3">
+        <img src="http://www.ag.auburn.edu/ansc/directory/staff/Nadarajah/images/2011faculty0015.jpg" class="img-responsive img-thumbnail" alt="Image Not Found" style="height:280px; width:230px">
+    </div>
+    <div class="col-xs-3">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Nada K. Nadarajah, Ph.D<br />
+            </div>
+            <div class="panel-body">
+                <address>
+                    Research Fellow IV<br />
+                    Department of Animal Sciences<br />
+                    214 Ann Upchurch Hall<br />
+                    Auburn University, AL 36849-5415<br />
+                    Tel: (334) 844-1502<br />
+                    Fax: (334)-844-1519<br />
+                </address>
+            </div>
+            <div class="panel-footer" style="color:indianred">
+                <address>
+                    <i class="icon-envelope"></i><strong>Email:</strong>   <a href="mailto:nadarka@auburn.edu">nadarka@auburn.edu</a><br />
+                </address>
+            </div>
+        </div>
+    </div>
 </div>

@@ -164,8 +164,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\imgs\Farm1.jpg" />
-    <Content Include="Content\imgs\farm2.jpg" />
+    <Content Include="Content\imgs\k_goat3.JPG" />
+    <Content Include="Content\imgs\k_goat2.JPG" />
+    <Content Include="Content\imgs\k_goat1.JPG" />
+    <Content Include="Content\imgs\k_herd.jpg" />
+    <Content Include="Content\imgs\k_barn1.JPG" />
+    <Content Include="Content\imgs\k_barn2.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

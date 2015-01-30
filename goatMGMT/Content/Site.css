@@ -74,3 +74,8 @@ body {
     margin: 0 auto;
 }
 
+.carousel-inner > .item > img {
+    width: 1140px;
+    margin: auto;
+}
+

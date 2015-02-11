@@ -3,6 +3,14 @@
     padding-bottom: 40px;
 }
 
+/* Navbar affix*/
+.navbar.affix {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+}
+
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
@@ -66,7 +74,6 @@ body {
 }
 .carousel img {
   position: absolute;
-  bottom: 0;
   left: 0;
   min-height: 400px;
 }

@@ -2,7 +2,7 @@
     ViewBag.Title = "Goat Herd Management";  
 }
 
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide" style="margin-top:0px">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -10,7 +10,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="/Content/imgs/k_barn1.jpg" style="width:100%" class="img-responsive">
+            <img src="/Content/imgs/k_barn1.jpg" style="width:100%; bottom:0" class="img-responsive">
             <div class="container">
                 <div class="carousel-caption">
                     <h2>FARMSdatabase</h2>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="item">
-            <img src="~/Content/imgs/k_herd.jpg" class="img-responsive">
+            <img src="~/Content/imgs/k_barn2.jpg" style="width:100%; top:0" class="img-responsive">
             <div class="container">
                 <div class="carousel-caption">
                     <h2>FARMSdatabase</h2>
@@ -42,7 +42,7 @@
 </div>
 <!-- /.carousel -->
 
-<div class="container2">
+<div class="container">
     <div class="row" style="padding-bottom:50px">
         <div class="col-md-6 info-block">
             <div class="panel-default">
@@ -84,5 +84,9 @@
     $(document).ready(function () {
         $("#active-home").addClass("active");
     });
+    //$(document).ready(function () {
+    //    $("#nav").css({"top":"75px"});
+    //});
+    
     
 </script>

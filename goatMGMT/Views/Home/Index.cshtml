@@ -2,7 +2,7 @@
     ViewBag.Title = "Goat Herd Management";  
 }
 
-<div id="myCarousel" class="carousel slide" style="margin-top:0px">
+<div id="myCarousel" class="carousel slide">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -10,10 +10,10 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="/Content/imgs/k_barn1.jpg" style="width:100%; bottom:0" class="img-responsive">
+            <img src="/Content/imgs/k_barn1.jpg" style="width:100%" class="img-responsive">
             <div class="container">
                 <div class="carousel-caption">
-                    <h2>FARMSdatabase</h2>
+                    <h2>FARMSconnect</h2>
                     <p>An easy, affordable, and efficient way to manage your herd</p>
                     <p>
                         <a class="btn btn-large btn-primary" href="~/Home/About">Learn More</a>
@@ -22,10 +22,10 @@
             </div>
         </div>
         <div class="item">
-            <img src="~/Content/imgs/k_barn2.jpg" style="width:100%; top:0" class="img-responsive">
+            <img src="~/Content/imgs/k_herd.jpg" class="img-responsive">
             <div class="container">
                 <div class="carousel-caption">
-                    <h2>FARMSdatabase</h2>
+                    <h2>FARMSconnect</h2>
                     <p>Record information about your herd and compare to others</p>
                     <p><a class="btn btn-large btn-primary" href="~/Home/About">Learn more</a></p>
                 </div>
@@ -42,40 +42,38 @@
 </div>
 <!-- /.carousel -->
 
-<div class="container">
-    <div class="row" style="padding-bottom:50px">
-        <div class="col-md-6 info-block">
-            <div class="panel-default">
-                <div class="panel-heading">
-                    <h3 style="text-align:center">Why Record Data?</h3>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item" style="background-color:#F5F5F5">Easy to measure herd productivity</li>
-                    <li class="list-group-item" style="background-color:#F5F5F5">No more guessing</li>
-                    <li class="list-group-item" style="background-color:#F5F5F5">Quickly visualize or summarize your records</li>
-                    <a href="~/Home/About" class="list-group-item list-group-item-info">Learn more about why record keeping is important&nbsp;›</a>
-                </ul>
+<div class="row" style="padding-bottom:50px">
+    <div class="col-md-6 info-block">
+        <div class="panel-default">
+            <div class="panel-heading">
+                <h3 style="text-align:center">Why Record Data?</h3>
             </div>
-            <div class="text-center align-base">
-                <img src="~/Content/imgs/k_goat1.jpg" alt="goat1" width="250" height="200">
-            </div>
+            <ul class="list-group">
+                <li class="list-group-item" style="background-color:#F5F5F5">Easy to measure herd productivity</li>
+                <li class="list-group-item" style="background-color:#F5F5F5">No more guessing</li>
+                <li class="list-group-item" style="background-color:#F5F5F5">Quickly visualize or summarize your records</li>
+                <a href="~/Home/About" class="list-group-item list-group-item-info">Learn more about why record keeping is important&nbsp;›</a>
+            </ul>
         </div>
+        <div class="text-center align-base">
+            <img src="~/Content/imgs/k_goat1.jpg" alt="goat1" width="250" height="200">
+        </div>
+    </div>
 
-        <div class="col-md-6 info-block">
-            <div class="panel-default">
-                <div class="panel-heading">
-                    <h3 style="text-align:center">Join the Herd</h3>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item" style="background-color:#f5f5f5">Anyone who wants to manage thier herd efficiently</li>
-                    <li class="list-group-item" style="background-color:#F5F5F5">Easy and affordable to use</li>
-                    <li class="list-group-item" style="background-color:#F5F5F5">Maximize efficiency of your herd</li>
-                    <a href="~/Account/Register" class="list-group-item list-group-item-success">Join the herd today&nbsp;›</a>
-                </ul>
+    <div class="col-md-6 info-block">
+        <div class="panel-default">
+            <div class="panel-heading">
+                <h3 style="text-align:center">Join the Herd</h3>
             </div>
-            <div class="text-center">
-                <img src="~/Content/imgs/k_goat3.jpg" alt="goat3" width="250" height="200">
-            </div>
+            <ul class="list-group">
+                <li class="list-group-item" style="background-color:#f5f5f5">Anyone who wants to manage thier herd efficiently</li>
+                <li class="list-group-item" style="background-color:#F5F5F5">Easy and affordable to use</li>
+                <li class="list-group-item" style="background-color:#F5F5F5">Maximize efficiency of your herd</li>
+                <a href="~/Account/Register" class="list-group-item list-group-item-success">Join the herd today&nbsp;›</a>
+            </ul>
+        </div>
+        <div class="text-center">
+            <img src="~/Content/imgs/k_goat3.jpg" alt="goat3" width="250" height="200">
         </div>
     </div>
 </div>
@@ -84,9 +82,4 @@
     $(document).ready(function () {
         $("#active-home").addClass("active");
     });
-    //$(document).ready(function () {
-    //    $("#nav").css({"top":"75px"});
-    //});
-    
-    
 </script>

@@ -26,5 +26,10 @@ namespace goatMGMT.Controllers
 
             return View();
         }
+
+        public ActionResult Pricing()
+        {
+            return View();
+        }
     }
 }

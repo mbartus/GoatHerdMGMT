@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e65c073a3cf41d093804af215ed6511" Name="Diagram1" ZoomLevel="94" >
+        <EntityTypeShape EntityType="goatDBModel.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="0.5" />
+        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="goatDBModel.AnimalTreatment" Width="1.5" PointX="4.875" PointY="3.875" />
+        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="4.875" PointY="0.5" />
+        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="2.75" PointY="4.25" />
+        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="2.75" PointY="0.5" />
+        <EntityTypeShape EntityType="goatDBModel.Child" Width="1.5" PointX="6.875" PointY="0.5" />
+        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="8.875" PointY="2.625" />
+        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="6.875" PointY="5.5" />
+        <AssociationConnector Association="goatDBModel.FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name" />
+        <AssociationConnector Association="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" />
+        <AssociationConnector Association="goatDBModel.FK_dbo_Births_dbo_Animals_mother_id1_mother_dob_mother_farm_name" />
+        <AssociationConnector Association="goatDBModel.FK_dbo_Breedings_dbo_Animals_father_id1_father_dob_father_farm_name" />
+        <AssociationConnector Association="goatDBModel.FK_dbo_Breedings_dbo_Animals_mother_id1_mother_dob_mother_farm_name" />
+        <AssociationConnector Association="goatDBModel.FK_dbo_AnimalTreatments_dbo_Treatments_Treatments_id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

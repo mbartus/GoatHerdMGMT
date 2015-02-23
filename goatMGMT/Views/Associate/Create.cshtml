@@ -1,0 +1,103 @@
+@model goatMGMT.Models.Associate
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Create</h2>
+
+
+    @using (Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Associate</legend>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.name, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.name, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.street, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.street, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.street, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.city, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.city, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.city, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.state, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.state, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.state, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.zip, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.zip, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.zip, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.telephone, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.telephone, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.telephone, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.fax, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.fax, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.fax, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.email, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.email, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.email, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.notes, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.notes, new { @class="form-control" , @style="max-width:100%; min-width:100%;"})
+                @Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color" style="padding-bottom:15px">
+            <input type="submit" value="Submit" class="btn btn-success" style="margin-top:15px;"/>
+            @Html.ActionLink("Cancel", "Index", "Associate", new { @class="btn btn-danger" , @style="margin-top:15px;"})
+        </div>
+    </fieldset>
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

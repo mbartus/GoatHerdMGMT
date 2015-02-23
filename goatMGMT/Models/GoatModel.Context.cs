@@ -25,13 +25,11 @@ namespace goatMGMT.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<AnimalTreatment> AnimalTreatments { get; set; }
         public virtual DbSet<Associate> Associates { get; set; }
         public virtual DbSet<Birth> Births { get; set; }
         public virtual DbSet<Breeding> Breedings { get; set; }
-        public virtual DbSet<Child> Children { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Treatment> Treatments { get; set; }
     }

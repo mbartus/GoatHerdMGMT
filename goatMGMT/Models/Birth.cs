@@ -15,12 +15,16 @@ namespace goatMGMT.Models
     public partial class Birth
     {
         public int id { get; set; }
+        public int child_id { get; set; }
         public int mother_id { get; set; }
         public int father_id { get; set; }
         public System.DateTime date { get; set; }
         public Nullable<int> birth_type { get; set; }
         public Nullable<int> birth_parity { get; set; }
         public string remarks { get; set; }
+        public Nullable<int> child_id1 { get; set; }
+        public Nullable<System.DateTime> child_dob { get; set; }
+        public string child_farm_name { get; set; }
         public Nullable<int> father_id1 { get; set; }
         public Nullable<System.DateTime> father_dob { get; set; }
         public string father_farm_name { get; set; }
@@ -30,5 +34,6 @@ namespace goatMGMT.Models
     
         public virtual Animal Animal { get; set; }
         public virtual Animal Animal1 { get; set; }
+        public virtual Animal Animal2 { get; set; }
     }
 }

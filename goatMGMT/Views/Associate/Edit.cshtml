@@ -1,0 +1,105 @@
+@model goatMGMT.Models.Associate
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Associate</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.name)
+				@Html.ValidationMessageFor(model => model.name, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.street, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.street)
+				@Html.ValidationMessageFor(model => model.street, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.city, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.city)
+				@Html.ValidationMessageFor(model => model.city, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.state, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.state)
+				@Html.ValidationMessageFor(model => model.state, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.zip, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.zip)
+				@Html.ValidationMessageFor(model => model.zip, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.telephone, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.telephone)
+				@Html.ValidationMessageFor(model => model.telephone, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.fax, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.fax)
+				@Html.ValidationMessageFor(model => model.fax, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.email, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.email)
+				@Html.ValidationMessageFor(model => model.email, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.notes, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.notes)
+				@Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

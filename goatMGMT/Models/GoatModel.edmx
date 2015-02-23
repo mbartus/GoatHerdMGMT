@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="goatDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Animals">
           <Key>
             <PropertyRef Name="id" />
@@ -24,6 +14,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dob" Type="datetime" Nullable="false" />
           <Property Name="farm_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="isChild" Type="bit" Nullable="false" />
+          <Property Name="sex" Type="bit" Nullable="false" />
           <Property Name="tag" Type="nvarchar(max)" />
           <Property Name="species" Type="nvarchar(max)" />
           <Property Name="name" Type="nvarchar(max)" />
@@ -34,10 +26,12 @@
           <Property Name="herd_id_code" Type="nvarchar(max)" />
           <Property Name="breed_registry" Type="nvarchar(max)" />
           <Property Name="status_code" Type="nvarchar(max)" />
-          <Property Name="disposal_date" Type="datetime" />
           <Property Name="current_weight" Type="float" />
+          <Property Name="weaning_weight" Type="float" />
+          <Property Name="weaning_date" Type="datetime" />
           <Property Name="market_weight" Type="float" />
           <Property Name="market_date" Type="datetime" />
+          <Property Name="disposal_date" Type="datetime" />
           <Property Name="remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="AnimalTreatments">
@@ -76,16 +70,21 @@
         <EntityType Name="Births">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="child_id" />
             <PropertyRef Name="mother_id" />
             <PropertyRef Name="father_id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="child_id" Type="int" Nullable="false" />
           <Property Name="mother_id" Type="int" Nullable="false" />
           <Property Name="father_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
           <Property Name="birth_type" Type="int" />
           <Property Name="birth_parity" Type="int" />
           <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="child_id1" Type="int" />
+          <Property Name="child_dob" Type="datetime" />
+          <Property Name="child_farm_name" Type="nvarchar" MaxLength="128" />
           <Property Name="father_id1" Type="int" />
           <Property Name="father_dob" Type="datetime" />
           <Property Name="father_farm_name" Type="nvarchar" MaxLength="128" />
@@ -110,33 +109,6 @@
           <Property Name="mother_id1" Type="int" />
           <Property Name="mother_dob" Type="datetime" />
           <Property Name="mother_farm_name" Type="nvarchar" MaxLength="128" />
-        </EntityType>
-        <EntityType Name="Children">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="dob" />
-            <PropertyRef Name="farm_name" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dob" Type="datetime" Nullable="false" />
-          <Property Name="farm_name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="tag" Type="nvarchar(max)" />
-          <Property Name="species" Type="nvarchar(max)" />
-          <Property Name="name" Type="nvarchar(max)" />
-          <Property Name="regulation_no" Type="nvarchar(max)" />
-          <Property Name="breed_code" Type="nvarchar(max)" />
-          <Property Name="microchip_id" Type="nvarchar(max)" />
-          <Property Name="premise_id" Type="nvarchar(max)" />
-          <Property Name="herd_id_code" Type="nvarchar(max)" />
-          <Property Name="breed_registry" Type="nvarchar(max)" />
-          <Property Name="status_code" Type="nvarchar(max)" />
-          <Property Name="disposal_date" Type="datetime" />
-          <Property Name="current_weight" Type="float" />
-          <Property Name="weaning_weight" Type="float" />
-          <Property Name="birth_weight" Type="float" />
-          <Property Name="market_weight" Type="float" />
-          <Property Name="market_date" Type="datetime" />
-          <Property Name="remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -184,6 +156,22 @@
             </Principal>
             <Dependent Role="AnimalTreatments">
               <PropertyRef Name="Treatments_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="0..1" />
+          <End Role="Births" Type="Self.Births" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="dob" />
+              <PropertyRef Name="farm_name" />
+            </Principal>
+            <Dependent Role="Births">
+              <PropertyRef Name="child_id1" />
+              <PropertyRef Name="child_dob" />
+              <PropertyRef Name="child_farm_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -252,13 +240,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="goatDBModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Animals" EntityType="Self.Animals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnimalTreatments" EntityType="Self.AnimalTreatments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Associates" EntityType="Self.Associates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Births" EntityType="Self.Births" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Breedings" EntityType="Self.Breedings" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatments" EntityType="Self.Treatments" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name" Association="Self.FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name">
@@ -268,6 +254,10 @@
           <AssociationSet Name="FK_dbo_AnimalTreatments_dbo_Treatments_Treatments_id" Association="Self.FK_dbo_AnimalTreatments_dbo_Treatments_Treatments_id">
             <End Role="Treatments" EntitySet="Treatments" />
             <End Role="AnimalTreatments" EntitySet="AnimalTreatments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name" Association="Self.FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="Births" EntitySet="Births" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" Association="Self.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name">
             <End Role="Animals" EntitySet="Animals" />
@@ -291,18 +281,20 @@
     <edmx:ConceptualModels>
       <Schema Namespace="goatDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="goatDBEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="C__MigrationHistory" EntityType="goatDBModel.C__MigrationHistory" />
           <EntitySet Name="Animals" EntityType="goatDBModel.Animal" />
           <EntitySet Name="AnimalTreatments" EntityType="goatDBModel.AnimalTreatment" />
           <EntitySet Name="Associates" EntityType="goatDBModel.Associate" />
           <EntitySet Name="Births" EntityType="goatDBModel.Birth" />
           <EntitySet Name="Breedings" EntityType="goatDBModel.Breeding" />
-          <EntitySet Name="Children" EntityType="goatDBModel.Child" />
           <EntitySet Name="Transactions" EntityType="goatDBModel.Transaction" />
           <EntitySet Name="Treatments" EntityType="goatDBModel.Treatment" />
           <AssociationSet Name="FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name" Association="goatDBModel.FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name">
             <End Role="Animal" EntitySet="Animals" />
             <End Role="AnimalTreatment" EntitySet="AnimalTreatments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name" Association="goatDBModel.FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Birth" EntitySet="Births" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" Association="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name">
             <End Role="Animal" EntitySet="Animals" />
@@ -325,16 +317,6 @@
             <End Role="AnimalTreatment" EntitySet="AnimalTreatments" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Animal">
           <Key>
             <PropertyRef Name="id" />
@@ -344,6 +326,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dob" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="farm_name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="isChild" Type="Boolean" Nullable="false" />
+          <Property Name="sex" Type="Boolean" Nullable="false" />
           <Property Name="tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="species" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -354,14 +338,17 @@
           <Property Name="herd_id_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="breed_registry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="status_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="disposal_date" Type="DateTime" Precision="3" />
           <Property Name="current_weight" Type="Double" />
+          <Property Name="weaning_weight" Type="Double" />
+          <Property Name="weaning_date" Type="DateTime" Precision="3" />
           <Property Name="market_weight" Type="Double" />
           <Property Name="market_date" Type="DateTime" Precision="3" />
+          <Property Name="disposal_date" Type="DateTime" Precision="3" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AnimalTreatments" Relationship="goatDBModel.FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name" FromRole="Animal" ToRole="AnimalTreatment" />
-          <NavigationProperty Name="Births" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" FromRole="Animal" ToRole="Birth" />
-          <NavigationProperty Name="Births1" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_mother_id1_mother_dob_mother_farm_name" FromRole="Animal" ToRole="Birth" />
+          <NavigationProperty Name="Births" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name" FromRole="Animal" ToRole="Birth" />
+          <NavigationProperty Name="Births1" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" FromRole="Animal" ToRole="Birth" />
+          <NavigationProperty Name="Births2" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_mother_id1_mother_dob_mother_farm_name" FromRole="Animal" ToRole="Birth" />
           <NavigationProperty Name="Breedings" Relationship="goatDBModel.FK_dbo_Breedings_dbo_Animals_father_id1_father_dob_father_farm_name" FromRole="Animal" ToRole="Breeding" />
           <NavigationProperty Name="Breedings1" Relationship="goatDBModel.FK_dbo_Breedings_dbo_Animals_mother_id1_mother_dob_mother_farm_name" FromRole="Animal" ToRole="Breeding" />
         </EntityType>
@@ -403,24 +390,30 @@
         <EntityType Name="Birth">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="child_id" />
             <PropertyRef Name="mother_id" />
             <PropertyRef Name="father_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="child_id" Type="Int32" Nullable="false" />
           <Property Name="mother_id" Type="Int32" Nullable="false" />
           <Property Name="father_id" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="birth_type" Type="Int32" />
           <Property Name="birth_parity" Type="Int32" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="child_id1" Type="Int32" />
+          <Property Name="child_dob" Type="DateTime" Precision="3" />
+          <Property Name="child_farm_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="father_id1" Type="Int32" />
           <Property Name="father_dob" Type="DateTime" Precision="3" />
           <Property Name="father_farm_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="mother_id1" Type="Int32" />
           <Property Name="mother_dob" Type="DateTime" Precision="3" />
           <Property Name="mother_farm_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" FromRole="Birth" ToRole="Animal" />
-          <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_mother_id1_mother_dob_mother_farm_name" FromRole="Birth" ToRole="Animal" />
+          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name" FromRole="Birth" ToRole="Animal" />
+          <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" FromRole="Birth" ToRole="Animal" />
+          <NavigationProperty Name="Animal2" Relationship="goatDBModel.FK_dbo_Births_dbo_Animals_mother_id1_mother_dob_mother_farm_name" FromRole="Birth" ToRole="Animal" />
         </EntityType>
         <EntityType Name="Breeding">
           <Key>
@@ -441,33 +434,6 @@
           <Property Name="mother_farm_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Animal" Relationship="goatDBModel.FK_dbo_Breedings_dbo_Animals_father_id1_father_dob_father_farm_name" FromRole="Breeding" ToRole="Animal" />
           <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK_dbo_Breedings_dbo_Animals_mother_id1_mother_dob_mother_farm_name" FromRole="Breeding" ToRole="Animal" />
-        </EntityType>
-        <EntityType Name="Child">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="dob" />
-            <PropertyRef Name="farm_name" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dob" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="farm_name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="species" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="regulation_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="breed_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="microchip_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="premise_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="herd_id_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="breed_registry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="status_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="disposal_date" Type="DateTime" Precision="3" />
-          <Property Name="current_weight" Type="Double" />
-          <Property Name="weaning_weight" Type="Double" />
-          <Property Name="birth_weight" Type="Double" />
-          <Property Name="market_weight" Type="Double" />
-          <Property Name="market_date" Type="DateTime" Precision="3" />
-          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -504,6 +470,22 @@
               <PropertyRef Name="Animals_id" />
               <PropertyRef Name="Animals_dob" />
               <PropertyRef Name="Animals_farm_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name">
+          <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="0..1" />
+          <End Type="goatDBModel.Birth" Role="Birth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="dob" />
+              <PropertyRef Name="farm_name" />
+            </Principal>
+            <Dependent Role="Birth">
+              <PropertyRef Name="child_id1" />
+              <PropertyRef Name="child_dob" />
+              <PropertyRef Name="child_farm_name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -583,30 +565,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="goatDBModelStoreContainer" CdmEntityContainer="goatDBEntities" >
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="goatDBModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="goatDBModel.Animal">
               <MappingFragment StoreEntitySet="Animals">
                 <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="disposal_date" ColumnName="disposal_date" />
                 <ScalarProperty Name="market_date" ColumnName="market_date" />
                 <ScalarProperty Name="market_weight" ColumnName="market_weight" />
+                <ScalarProperty Name="weaning_date" ColumnName="weaning_date" />
+                <ScalarProperty Name="weaning_weight" ColumnName="weaning_weight" />
                 <ScalarProperty Name="current_weight" ColumnName="current_weight" />
-                <ScalarProperty Name="disposal_date" ColumnName="disposal_date" />
                 <ScalarProperty Name="status_code" ColumnName="status_code" />
                 <ScalarProperty Name="breed_registry" ColumnName="breed_registry" />
                 <ScalarProperty Name="herd_id_code" ColumnName="herd_id_code" />
@@ -617,6 +591,8 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="species" ColumnName="species" />
                 <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="isChild" ColumnName="isChild" />
                 <ScalarProperty Name="farm_name" ColumnName="farm_name" />
                 <ScalarProperty Name="dob" ColumnName="dob" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -665,12 +641,16 @@
                 <ScalarProperty Name="father_farm_name" ColumnName="father_farm_name" />
                 <ScalarProperty Name="father_dob" ColumnName="father_dob" />
                 <ScalarProperty Name="father_id1" ColumnName="father_id1" />
+                <ScalarProperty Name="child_farm_name" ColumnName="child_farm_name" />
+                <ScalarProperty Name="child_dob" ColumnName="child_dob" />
+                <ScalarProperty Name="child_id1" ColumnName="child_id1" />
                 <ScalarProperty Name="remarks" ColumnName="remarks" />
                 <ScalarProperty Name="birth_parity" ColumnName="birth_parity" />
                 <ScalarProperty Name="birth_type" ColumnName="birth_type" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="father_id" ColumnName="father_id" />
                 <ScalarProperty Name="mother_id" ColumnName="mother_id" />
+                <ScalarProperty Name="child_id" ColumnName="child_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -688,32 +668,6 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="father_id" ColumnName="father_id" />
                 <ScalarProperty Name="mother_id" ColumnName="mother_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Children">
-            <EntityTypeMapping TypeName="goatDBModel.Child">
-              <MappingFragment StoreEntitySet="Children">
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
-                <ScalarProperty Name="market_date" ColumnName="market_date" />
-                <ScalarProperty Name="market_weight" ColumnName="market_weight" />
-                <ScalarProperty Name="birth_weight" ColumnName="birth_weight" />
-                <ScalarProperty Name="weaning_weight" ColumnName="weaning_weight" />
-                <ScalarProperty Name="current_weight" ColumnName="current_weight" />
-                <ScalarProperty Name="disposal_date" ColumnName="disposal_date" />
-                <ScalarProperty Name="status_code" ColumnName="status_code" />
-                <ScalarProperty Name="breed_registry" ColumnName="breed_registry" />
-                <ScalarProperty Name="herd_id_code" ColumnName="herd_id_code" />
-                <ScalarProperty Name="premise_id" ColumnName="premise_id" />
-                <ScalarProperty Name="microchip_id" ColumnName="microchip_id" />
-                <ScalarProperty Name="breed_code" ColumnName="breed_code" />
-                <ScalarProperty Name="regulation_no" ColumnName="regulation_no" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="species" ColumnName="species" />
-                <ScalarProperty Name="tag" ColumnName="tag" />
-                <ScalarProperty Name="farm_name" ColumnName="farm_name" />
-                <ScalarProperty Name="dob" ColumnName="dob" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

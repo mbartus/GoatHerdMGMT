@@ -20,6 +20,7 @@ namespace goatMGMT.Models
             this.AnimalTreatments = new HashSet<AnimalTreatment>();
             this.Births = new HashSet<Birth>();
             this.Births1 = new HashSet<Birth>();
+            this.Births2 = new HashSet<Birth>();
             this.Breedings = new HashSet<Breeding>();
             this.Breedings1 = new HashSet<Breeding>();
         }
@@ -27,6 +28,8 @@ namespace goatMGMT.Models
         public int id { get; set; }
         public System.DateTime dob { get; set; }
         public string farm_name { get; set; }
+        public bool isChild { get; set; }
+        public bool sex { get; set; }
         public string tag { get; set; }
         public string species { get; set; }
         public string name { get; set; }
@@ -37,10 +40,12 @@ namespace goatMGMT.Models
         public string herd_id_code { get; set; }
         public string breed_registry { get; set; }
         public string status_code { get; set; }
-        public Nullable<System.DateTime> disposal_date { get; set; }
         public Nullable<double> current_weight { get; set; }
+        public Nullable<double> weaning_weight { get; set; }
+        public Nullable<System.DateTime> weaning_date { get; set; }
         public Nullable<double> market_weight { get; set; }
         public Nullable<System.DateTime> market_date { get; set; }
+        public Nullable<System.DateTime> disposal_date { get; set; }
         public string remarks { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -49,6 +54,8 @@ namespace goatMGMT.Models
         public virtual ICollection<Birth> Births { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Birth> Births1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Birth> Births2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Breeding> Breedings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

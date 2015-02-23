@@ -1,0 +1,90 @@
+@model goatMGMT.Models.Associate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+	<legend>Associate</legend>
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.street)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.street)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.city)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.city)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.state)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.state)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.zip)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.zip)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.telephone)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.telephone)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.fax)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.fax)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.email)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.email)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.notes)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.notes)
+		</dd>
+
+	</dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

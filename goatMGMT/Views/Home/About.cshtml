@@ -1,7 +1,11 @@
 ﻿@{
     ViewBag.Title = "About Goat Herd Management";
 }
-<div class="container">
+<div>
+    <img src="~/Content/imgs/k_barn2.jpg" class="img-responsive" style="height: 250px; width: 100%; margin-top: -60px" />
+</div>
+
+<div class="container" style="padding-top: 65px;">
     <div class="jumbotron">
         <h1>FARMSdatabase</h1>
         <p>FARMS (Farm Animal Record Management System) was created by Dr. Nadarajah to help farmers with record keeping.</p>
@@ -48,6 +52,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#active-about").addClass("active");
+            $("#nav").css({ "margin-top": "250px" });
         });
     </script>
 </div>

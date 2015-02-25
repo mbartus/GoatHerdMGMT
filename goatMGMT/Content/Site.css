@@ -4,11 +4,7 @@
 }
 
 /* Navbar affix*/
-.navbar.affix {
-    position: fixed;
-    top: 30px;
-    width: 100%;
-}
+
 
 
 /* styles for validation helpers */

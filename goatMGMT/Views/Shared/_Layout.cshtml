@@ -13,31 +13,29 @@
 <body>
     <!-- Wrap all page content here -->
     <div id="">
-
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top" id="nav">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="~/Home/Index">FARMSdatabase</a>
+            <div class="navbar navbar-default" style="width:100%; position:absolute;" id="nav">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="~/Home/Index">FARMSdatabase</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li id="active-home"><a href="~/Home/Index">Home</a></li>
+                            <li id="active-about"><a href="~/Home/About">About</a></li>
+                            <li id="active-pricing"><a href="~/Home/Pricing">Pricing</a></li>
+                            <li id="active-contact"><a href="~/Home/Contact">Contact</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><form action="~/Account/Register"><button style="margin-left:10px;" class="btn btn-success navbar-btn">Register</button></form></li>
+                            <li><form action="~/Account/Login"><button style="margin-left:10px;" class="btn btn-info navbar-btn">Log In</button></form></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="active-home"><a href="~/Home/Index">Home</a></li>
-                        <li id="active-about"><a href="~/Home/About">About</a></li>
-                        <li id="active-pricing"><a href="~/Home/Pricing">Pricing</a></li>
-                        <li id="active-contact"><a href="~/Home/Contact">Contact</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><form action="~/Account/Register"><button style="margin-left:10px;" class="btn btn-success navbar-btn">Register</button></form></li>
-                        <li><form action="~/Account/Login"><button style="margin-left:10px;" class="btn btn-info navbar-btn">Log In</button></form></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
         </div>
 
         <!-- Begin page content -->

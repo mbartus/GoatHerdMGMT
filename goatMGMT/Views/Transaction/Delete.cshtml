@@ -88,8 +88,27 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color" style="padding-bottom: 15px;">
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        @Html.ActionLink("Cancel", "Index", "Associate", new { @class="btn btn-default"})
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+        @Html.ActionLink("Cancel", "Index", "Associate", new { @class = "btn btn-default" })
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Are you sure?" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+                </div>
+                <div class="modal-body">
+                    This data will be permenately deleted and you will not be able to recover it.
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
     }
 </div>

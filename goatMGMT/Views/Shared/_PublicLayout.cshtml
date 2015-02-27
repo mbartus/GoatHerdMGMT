@@ -10,10 +10,20 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </head>
-<body>
+<body style="padding-top:0px; padding-bottom:40px; background-color:lightgray;">
     <!-- Wrap all page content here -->
     <div id="">
-        <div class="navbar navbar-default" style="width:100%; margin-top:250px; position:absolute;" id="nav">
+        <div id="header" style="background-image: url(/Content/imgs/header1.png); color: black;">
+            <div class="container">
+                <div class="col-lg-12" id="header">
+                    <h2>
+                        <img src="~/Content/imgs/logotrans.png" style="width:100px; height:100px" />
+                        <b>FARMS</b>database
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-default" style="width:100%; position:absolute;" id="nav">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

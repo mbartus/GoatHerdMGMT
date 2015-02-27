@@ -206,8 +206,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\imgs\barnWallDONOTOWN.jpg" />
-    <Content Include="Content\imgs\goat_BLUR.jpg" />
     <Content Include="Content\imgs\header.png" />
     <Content Include="Content\imgs\header1.png" />
     <Content Include="Content\imgs\header2.png" />

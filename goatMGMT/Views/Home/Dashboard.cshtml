@@ -1,0 +1,50 @@
+﻿@{
+    Layout = @Url.Content("~/Views/Shared/_Layout.cshtml");
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="container" style="padding-top: 15px; padding-bottom: 15px;">
+        <div class="dash-section">
+            <h4><a>Manage My Animals</a></h4>
+            <ul>
+                <li>
+                    View all animals in your herd.
+                </li>
+                <li>
+                    Add an animal to your herd.
+                </li>
+            </ul>
+        </div>
+        <div class="dash-section">
+            <h4><a href="~/Transaction/Index">Manage My Transactions</a></h4>
+            <ul>
+                <li>
+                    View past transactions.
+                </li>
+                <li>
+                    Add a new transaction.
+                </li>
+            </ul>
+        </div>
+        <div class="dash-section">
+            <h4><a href="~/Associate/Index">Manage My Associates</a></h4>
+            <ul>
+                <li>
+                    View associates that you have worked with.
+                </li>
+                <li>
+                    Add an associate.
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#active-dashboard").addClass("active");
+    });
+</script>

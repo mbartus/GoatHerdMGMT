@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Log in";
+    Layout = @Url.Content("~/Views/Shared/_Layout.cshtml");
 }
 
 <div class="container">
@@ -16,7 +17,7 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
                 <fieldset class="form-horizontal">
-                    <legend>Use a local account to log in.</legend>
+                    <legend>Log in to a registered account.</legend>
                     <div class="control-group">
                         @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
                         <div class="controls">
@@ -44,15 +45,9 @@
                     </div>
                 </fieldset>
                 <p>
-                    @Html.ActionLink("Register", "Register") if you don't have a local account.
+                    @Html.ActionLink("Register here", "Register") if you don't already have an account account.
                 </p>
             }
-        </section>
-    </div>
-    <div class="span6">
-        <section id="socialLoginForm">
-
-            @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

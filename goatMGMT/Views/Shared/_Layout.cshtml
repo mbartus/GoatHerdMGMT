@@ -13,7 +13,7 @@
 <body>
     <!-- Wrap all page content here -->
     <div id="">
-            <div class="navbar navbar-default" style="width:100%; position:absolute;" id="nav">
+            <div class="navbar navbar-default navbar-fixed-top" style="width:100%; position:absolute;" id="nav">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,6 +29,14 @@
                             <li id="active-about"><a href="~/Home/About">About</a></li>
                             <li id="active-pricing"><a href="~/Home/Pricing">Pricing</a></li>
                             <li id="active-contact"><a href="~/Home/Contact">Contact</a></li>
+                            <li class="dropdown" id="active-dashboard">
+                                <a href="~/Home/Dashboard" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dashboard <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Manage Animals</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="~/Home/Dashboard">View Dashboard</a></li>
+                                </ul>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><form action="~/Account/Register"><button style="margin-left:10px;" class="btn btn-success navbar-btn">Register</button></form></li>

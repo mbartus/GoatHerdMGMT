@@ -4,87 +4,121 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
-
-<fieldset>
-	<legend>Associate</legend>
-	<dl>
-		<dt>
-			@Html.DisplayNameFor(model => model.name)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.name)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.street)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.street)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.city)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.city)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.state)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.state)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.zip)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.zip)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.telephone)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.telephone)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.fax)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.fax)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.email)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.email)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.notes)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.notes)
-		</dd>
-
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <fieldset>
+        <legend>Associate</legend>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.name)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.name)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.street)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.street)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.city)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.city)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.state)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.state)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.zip)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.zip)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.telephone)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.telephone)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.fax)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.fax)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.email)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.telephone)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.notes)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.telephone)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Back to List", "Index", null, new{@class="btn btn-default"})
+    </p>
+</div>

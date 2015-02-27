@@ -1,0 +1,95 @@
+@model goatMGMT.Models.Transaction
+
+@{
+    ViewBag.Title = "Delete Transaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this Transaction?</h3>
+    <fieldset>
+        <legend></legend>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.item_detail)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.item_detail)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.item_type)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.item_type)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.quantity)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.quantity)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.unit_Price)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.unit_Price)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.total_Payment)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.total_Payment)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.notes)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.notes)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color" style="padding-bottom: 15px;">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        @Html.ActionLink("Cancel", "Index", "Associate", new { @class="btn btn-default"})
+    </div>
+    }
+</div>

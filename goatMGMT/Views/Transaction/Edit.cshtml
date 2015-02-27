@@ -1,0 +1,78 @@
+@model goatMGMT.Models.Transaction
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Edit</h2>
+
+
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Transaction</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.item_detail, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.item_detail, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.item_detail, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.item_type, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.item_type, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.item_type, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.quantity, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.quantity, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.quantity, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.unit_Price, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.unit_Price, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.unit_Price, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.total_Payment, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.total_Payment, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.total_Payment, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.notes, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.notes, new { @class="form-control" , @style="max-width:100%; min-width:100%;" })
+                @Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color" style="padding-bottom: 15px;">
+            <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
+            @Html.ActionLink("Cancel", "Index", "Associate", new { @class="btn btn-default" , @style="margin-top:15px;"})
+        </div>
+    </fieldset>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

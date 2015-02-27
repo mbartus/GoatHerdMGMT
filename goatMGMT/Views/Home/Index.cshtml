@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Goat Herd Management";  
+    ViewBag.Title = "Goat Herd Management";
+    Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml"); 
 }
 
 <div>
@@ -47,7 +48,5 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#active-home").addClass("active");
-        $("#nav").css({ "margin-top": "250px" });
-       
     });
 </script>

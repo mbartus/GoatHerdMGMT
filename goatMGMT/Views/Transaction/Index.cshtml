@@ -1,0 +1,66 @@
+@model IEnumerable<goatMGMT.Models.Transaction>
+
+    @{
+    ViewBag.Title = "Transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <div class="container">
+        <h2>Transactions</h2>
+            <p>
+                @Html.ActionLink("Create New", "Create", "Transaction", new{ @class="btn btn-success"})
+                @Html.ActionLink("Compare", "Compare", "Transaction", new{ @class="btn btn-warning"})
+            </p>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.item_detail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.item_type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.quantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.unit_Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.total_Payment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.notes)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.item_detail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.item_type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.unit_Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.total_Payment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.notes)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                    </td>
+                </tr>
+                }
+
+            </table>
+        </div>
+    </div>

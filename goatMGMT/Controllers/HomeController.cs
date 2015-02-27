@@ -31,5 +31,10 @@ namespace goatMGMT.Controllers
         {
             return View();
         }
+
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

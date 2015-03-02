@@ -218,6 +218,8 @@
     <Content Include="Content\imgs\k_barn1.JPG" />
     <Content Include="Content\imgs\k_barn2.jpg" />
     <Content Include="Content\imgs\logotrans.png" />
+    <Content Include="Content\imgs\pale_bull.jpg" />
+    <Content Include="Content\imgs\pale_bull2.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

@@ -3,48 +3,50 @@
     Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml"); 
 }
 
-<div class="container" style="padding-top: 70px;">
-    <div class="jumbotron">
-        <h1>FARMSdatabase</h1>
-        <p>FARMS (Farm Animal Record Management System) was created by Dr. Nadarajah to help farmers with record keeping.</p>
-        <p><a class="btn btn-primary btn-lg" href="http://www.auburn.edu/~nadarka/" role="button">Learn more about Dr. Nadarajah</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">What do we do?</h3>
-                </div>
-                <div class="panel-body">
-                    The goal of FARMSdatabase is to provide a reliable cloud
-                    database for farmers to store information about their livestock and compare with others.
-                </div>
+<div class="container" style="padding-top: 35px;">
+    <h1 style="color:darkgreen; font-size:35px; padding-top:55px;">About <b>FARMS</b>database</h1>
+    <hr style="border-color:darkgray;"/>
+    <div class="row" style="padding-bottom: 33px;">
+        <div class="col-md-8">
+            <div class="well" style="padding-bottom: 20px; max-width: 700px; background-image:url(/Content/imgs/pale_bull.jpg); background-position:center; background-size: cover;">
+                <p style="font-size:20px; line-height: 25px;">
+                    FARMS (Farm Animal Record Management System) database is the product of a passion for herding with the growing demand of record management.
+                    With simple yet effective tools for both recording herd data and comparing to other users, upcoming farmers and veterans alike can easily keep
+                    track of herd data and become more productive than ever before.
+                </p>
+            </div>
+            <div class="col-md-6" style="font-size: 18px; padding-bottom: 7px;">
+                <h3 style="color:darkgreen;">How can we help you?</h3>
+                Our website allows livestock farmers to create an account, record their
+                herd data and easily interpret trends and profits. Our tools range
+                from comparing the young of multiple births to comparing various herd expenses.
+                With that kind of information at the click of a button, farmers can see their
+                strengths and weaknesses and know where to improve. Certain data can even be
+                anonymously compared with other users to measure how good your herd is overall. 
+            </div>
+            <div class="col-md-6" style="font-size: 18px; padding-bottom: 7px;">
+                <h3 style="color:darkgreen;">Who can use our service?</h3>
+                Anybody who wants to be a more efficient livestock farmer can use
+                our service, regardless of herd size. Whether you are new to recording your data or already have
+                offline records, our service is made for all kinds of farmers.
+                <a href="~/Views/Account/Register.cshtml">Sign up today!</a> 
+                <h3 style="color:darkgreen;">What's the risk?</h3>
+                With such a low monthly fee, using <b>FARMS</b>database is no risk and can be cancelled at any time.
+                In fact, we're so sure you'll love our service that we will give you one month
+                <a href="~/Views/Account/Register.cshtml">for free!</a> 
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Why are we here?</h3>
-                </div>
-                <div class="panel-body">
-                    With a rising demand for goat meat, farmers need to be more productive and efficient than ever.
-                    Record keeping is essential for farmers to keep track of everything in their herd - and that's why
-                    we're here.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Who can use our service?</h3>
-                </div>
-                <div class="panel-body">
-                    Anybody that has a herd to manage and wants to be a more percise and efficient farmer can use
-                    our service. If that description fits you, the power of herd management can be in your hands with
-                    quick registration and a small fee.
-                </div>
-            </div>
+        <div class="col-md-4" style="padding-top:0px;">
+            <h3 style="text-align:center; color:darkgreen;"><b>What we provide:</b></h3>
+            <ul style="margin-left:0px; line-height:30px; font-size: 20px;">
+                <li>Effortlessly store and manage your herd data</li>
+                <li>Graph your profits versus expenses</li>
+                <li>Compare your herd's efficiency with others</li>
+                <li>View reports and graphs of your herd</li>
+                <li>Record your herd's births and strength of children</li>
+                <li>See which animals birth the strongest young</li>
+                <li>Much more!</li>
+            </ul>
         </div>
     </div>
     <script type="text/javascript">

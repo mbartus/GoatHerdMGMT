@@ -39,10 +39,34 @@
                         <li id="active-about"><a href="~/Home/About">About</a></li>
                         <li id="active-pricing"><a href="~/Home/Pricing">Pricing</a></li>
                         <li id="active-contact"><a href="~/Home/Contact">Contact</a></li>
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <li id="active-dashboard"><a href="~/Home/Dashboard">Dashboard</a></li>
+                            }
+                         }
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><form action="~/Account/Register"><button style="margin-left:10px;" class="btn btn-success navbar-btn">Register</button></form></li>
-                        <li><form action="~/Account/Login"><button style="margin-left:10px;" class="btn btn-info navbar-btn">Log In</button></form></li>
+                        @{
+                           if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <div class="btn-group navbar-btn" role="group">
+                                        <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><strong>@User.Identity.Name </strong><span class="caret"></span></button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Manage My Account</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="~/Account/Logout">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><form action="~/Account/Register"><button style="margin-left:10px;" class="btn btn-success navbar-btn">Register</button></form></li>
+                                <li><form action="~/Account/Login"><button style="margin-left:10px;" class="btn btn-info navbar-btn">Log In</button></form></li>
+                            }
+                        }
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

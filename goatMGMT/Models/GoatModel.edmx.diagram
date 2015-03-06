@@ -4,14 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8e65c073a3cf41d093804af215ed6511" Name="Diagram1" ZoomLevel="94" >
-        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="goatDBModel.AnimalTreatment" Width="1.5" PointX="7" PointY="3.75" />
-        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="9.125" PointY="0.625" />
-        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="4.5" PointY="2.625" />
-        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="2.625" PointY="0.5" />
-        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="9.125" PointY="4.625" />
-        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="6.375" PointY="0.5" />
+      <Diagram DiagramId="8e65c073a3cf41d093804af215ed6511" Name="Diagram1" ZoomLevel="93" >
+        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="goatDBModel.AnimalTreatment" Width="1.5" PointX="3" PointY="3.375" />
+        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="3" PointY="12.125" />
+        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="goatDBModel.UserProfile" Width="1.5" PointX="5" PointY="0.875" />
+        <EntityTypeShape EntityType="goatDBModel.webpages_Membership" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="goatDBModel.webpages_OAuthMembership" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="goatDBModel.webpages_Roles" Width="1.5" PointX="2.75" PointY="0.875" />
         <AssociationConnector Association="goatDBModel.FK_dbo_AnimalTreatments_dbo_Animals_Animals_id_Animals_dob_Animals_farm_name" />
         <AssociationConnector Association="goatDBModel.FK_dbo_Births_dbo_Animals_child_id1_child_dob_child_farm_name" />
         <AssociationConnector Association="goatDBModel.FK_dbo_Births_dbo_Animals_father_id1_father_dob_father_farm_name" />
@@ -19,6 +23,7 @@
         <AssociationConnector Association="goatDBModel.FK_dbo_Breedings_dbo_Animals_father_id1_father_dob_father_farm_name" />
         <AssociationConnector Association="goatDBModel.FK_dbo_Breedings_dbo_Animals_mother_id1_mother_dob_mother_farm_name" />
         <AssociationConnector Association="goatDBModel.FK_dbo_AnimalTreatments_dbo_Treatments_Treatments_id" />
+        <AssociationConnector Association="goatDBModel.webpages_UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

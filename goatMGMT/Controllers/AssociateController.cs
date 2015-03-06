@@ -9,6 +9,7 @@ using goatMGMT.Models;
 
 namespace goatMGMT.Controllers
 {
+    [Authorize]
     public class AssociateController : Controller
     {
         private goatDBEntities db = new goatDBEntities();

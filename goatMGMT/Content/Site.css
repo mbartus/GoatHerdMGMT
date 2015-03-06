@@ -13,6 +13,8 @@
 	font-size	: 11px;
 }	
 
+.form-control {
+    width: 100%;
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

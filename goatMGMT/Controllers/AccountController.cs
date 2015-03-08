@@ -44,7 +44,7 @@ namespace goatMGMT.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(registerData.Username, registerData.Password);
-                    Roles.AddUserToRole(registerData.Username, "trial");
+                    //Roles.AddUserToRole(registerData.Username, "trial");
                     return RedirectToAction("Dashboard", "Home");
                 }
                 catch (MembershipCreateUserException e)

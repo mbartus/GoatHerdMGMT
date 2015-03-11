@@ -23,7 +23,7 @@ namespace goatMGMT.Models
         public string remarks { get; set; }
         public Nullable<int> Animals_id { get; set; }
         public Nullable<System.DateTime> Animals_dob { get; set; }
-        public string Animals_farm_name { get; set; }
+        public Nullable<int> Animals_farm_name { get; set; }
         public Nullable<int> Treatments_id { get; set; }
     
         public virtual Animal Animal { get; set; }

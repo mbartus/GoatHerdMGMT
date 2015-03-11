@@ -24,13 +24,13 @@ namespace goatMGMT.Models
         public string remarks { get; set; }
         public Nullable<int> child_id1 { get; set; }
         public Nullable<System.DateTime> child_dob { get; set; }
-        public string child_farm_name { get; set; }
+        public Nullable<int> child_farm_name { get; set; }
         public Nullable<int> father_id1 { get; set; }
         public Nullable<System.DateTime> father_dob { get; set; }
-        public string father_farm_name { get; set; }
+        public Nullable<int> father_farm_name { get; set; }
         public Nullable<int> mother_id1 { get; set; }
         public Nullable<System.DateTime> mother_dob { get; set; }
-        public string mother_farm_name { get; set; }
+        public Nullable<int> mother_farm_name { get; set; }
     
         public virtual Animal Animal { get; set; }
         public virtual Animal Animal1 { get; set; }

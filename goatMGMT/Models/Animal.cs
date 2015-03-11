@@ -26,20 +26,20 @@ namespace goatMGMT.Models
         }
     
         public int id { get; set; }
-        public System.DateTime dob { get; set; }
-        public string farm_name { get; set; }
-        public bool isChild { get; set; }
-        public bool sex { get; set; }
+        public int owner { get; set; }
         public string tag { get; set; }
-        public string species { get; set; }
+        public System.DateTime dob { get; set; }
+        public bool sex { get; set; }
+        public string status_code { get; set; }
+        public bool isChild { get; set; }
+        public string breed_code { get; set; }
         public string name { get; set; }
         public string regulation_no { get; set; }
-        public string breed_code { get; set; }
         public string microchip_id { get; set; }
         public string premise_id { get; set; }
         public string herd_id_code { get; set; }
         public string breed_registry { get; set; }
-        public string status_code { get; set; }
+        public string species { get; set; }
         public Nullable<double> current_weight { get; set; }
         public Nullable<double> weaning_weight { get; set; }
         public Nullable<System.DateTime> weaning_date { get; set; }
@@ -47,7 +47,9 @@ namespace goatMGMT.Models
         public Nullable<System.DateTime> market_date { get; set; }
         public Nullable<System.DateTime> disposal_date { get; set; }
         public string remarks { get; set; }
+        public Nullable<int> owner1 { get; set; }
     
+        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalTreatment> AnimalTreatments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

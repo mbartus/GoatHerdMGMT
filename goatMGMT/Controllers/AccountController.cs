@@ -126,6 +126,37 @@ namespace goatMGMT.Controllers
             
             return View(cpIn);
         }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ChangeSecurityQuestion()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangeSecurityQuestion(ChangeSecurityQuestionViewModel vmIn)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = Membership.GetUser();
+                try
+                {
+                    user.ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
+                    return RedirectToAction("Manage", "Account");
+                }
+                catch (MembershipCreateUserException e)
+                {
+                    ModelState.AddModelError("", "Sorry, password is invalid");
+                    return View(vmIn);
+                }
+            }
+            // should never get here
+            ModelState.AddModelError("", "Sorry, a user with that email already exists");
+
+            return View(vmIn);
+        }
         
         [Authorize]
         public ActionResult Manage()

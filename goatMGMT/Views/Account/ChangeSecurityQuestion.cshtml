@@ -1,7 +1,7 @@
-﻿@model goatMGMT.Models.ChangePasswordViewModel
+﻿@model goatMGMT.Models.ChangeSecurityQuestionViewModel
 @using System.Web.Mvc;
 @{
-    ViewBag.Title = "Change Password";
+    ViewBag.Title = "Change Security Question";
     Layout = @Url.Content("~/Views/Shared/_Layout.cshtml");
 }
 
@@ -12,23 +12,23 @@
     @Html.ValidationSummary()
 
     <fieldset class="form-horizontal">
-        <legend>Change your password.</legend>
+        <legend>Change your security question.</legend>
         <div class="control-group">
-            @Html.LabelFor(m => m.oldPassword, new { @class = "control-label" })
+            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
             <div class="controls">
-                @Html.PasswordFor(m => m.oldPassword, new { @class = "form-control"})
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
             </div>
         </div>
         <div class="control-group">
-            @Html.LabelFor(m => m.newPassword, new { @class = "control-label" })
+            @Html.LabelFor(m => m.SecurityQuestion, new { @class = "control-label" })
             <div class="controls">
-                @Html.PasswordFor(m => m.newPassword, new { @class = "form-control"})
+                @Html.TextBoxFor(m => m.SecurityQuestion, new { @class = "form-control"})
             </div>
         </div>
         <div class="control-group">
-            @Html.LabelFor(m => m.newPasswordConfirm, new { @class = "control-label" })
+            @Html.LabelFor(m => m.SecurityQuestionAnswer, new { @class = "control-label" })
             <div class="controls">
-                @Html.PasswordFor(m => m.newPasswordConfirm, new { @class = "form-control"})
+                @Html.TextBoxFor(m => m.SecurityQuestionAnswer, new { @class = "form-control"})
             </div>
         </div>
         <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">
@@ -41,3 +41,4 @@
     @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     }
+

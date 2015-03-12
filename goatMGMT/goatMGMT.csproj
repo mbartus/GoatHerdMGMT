@@ -198,6 +198,7 @@
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AnimalMetadata.cs" />
+    <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Comment.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
@@ -398,6 +399,8 @@
     <Content Include="Views\Animal\Edit.cshtml" />
     <Content Include="Views\Animal\Index.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\RegistrationConfirmation.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

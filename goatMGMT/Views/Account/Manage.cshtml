@@ -2,4 +2,38 @@
     ViewBag.Title = "Manage Account";
     Layout = @Url.Content("~/Views/Shared/_Layout.cshtml");
 }
-
+<div class="container">
+    <h2 style="margin-bottom:35px;">Account Information for @Model.UserName</h2>
+    <div class="dash-section">
+        <h4><a href="~/Account/ChangeUserName">Change Primary Email</a></h4>
+        <ul>
+            <li>
+                Update primary email (login) for this account.
+            </li>
+        </ul>
+    </div>
+    <div class="dash-section">
+        <h4><a href="~/Account/ChangePassword">Change Password</a></h4>
+        <ul>
+            <li>
+                Update password for this account.
+            </li>
+        </ul>
+    </div>
+    <div class="dash-section">
+        <h4><a href="#">Change Security Question</a></h4>
+        <ul>
+            <li>
+                Update security question for this account.
+            </li>
+        </ul>
+    </div>
+    <div class="dash-section">
+        <h4><a href="#">Change Secondary Email</a></h4>
+        <ul>
+            <li>
+                Update secondary email for this account.
+            </li>
+        </ul>
+    </div>
+</div>

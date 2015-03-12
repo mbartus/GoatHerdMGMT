@@ -11,109 +11,104 @@ using System.Web.Security;
 namespace goatMGMT.Controllers
 {
     [Authorize]
-    public class TransactionController : Controller
+    public class AnimalController : Controller
     {
         private goatDBEntities db = new goatDBEntities();
 
         //
-        // GET: /Transaction/
+        // GET: /Animal/
         public ActionResult Index()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            List<Transaction> myTransactions = db.Transactions.Where(m => m.user_id == userID).ToList();
-            
-            return View(myTransactions);
+            var animals = db.Animals.Include(a => a.UserProfile).Where(m => m.owner1 == userID);
+            return View(animals.ToList());
         }
 
         //
-        // GET: /Transaction/Compare
-        public ActionResult Compare()
-        {
-            return View(db.Transactions.ToList());
-        }
-
-        //
-        // GET: /Transaction/Details/5
+        // GET: /Animal/Details/5
         public ActionResult Details(Int32 id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            if (transaction == null)
+            Animal animal = db.Animals.Find(id);
+            if (animal == null)
             {
                 return HttpNotFound();
             }
-            return View(transaction);
+            return View(animal);
         }
 
         //
-        // GET: /Transaction/Create
+        // GET: /Animal/Create
         public ActionResult Create()
         {
+            ViewBag.owner1 = new SelectList(db.UserProfiles, "UserId", "Username");
             return View();
         }
 
         //
-        // POST: /Transaction/Create
+        // POST: /Animal/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Transaction transaction)
+        public ActionResult Create(Animal animal)
         {
             if (ModelState.IsValid)
             {
-                db.Transactions.Add(transaction);
+                animal.owner1 = (int)Membership.GetUser().ProviderUserKey;
+                db.Animals.Add(animal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(transaction);
+            return View(animal);
         }
 
         //
-        // GET: /Transaction/Edit/5
+        // GET: /Animal/Edit/5
         public ActionResult Edit(Int32 id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            if (transaction == null)
+            Animal animal = db.Animals.Find(id);
+            if (animal == null)
             {
                 return HttpNotFound();
             }
-            return View(transaction);
+            return View(animal);
         }
 
         //
-        // POST: /Transaction/Edit/5
+        // POST: /Animal/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Transaction transaction)
+        public ActionResult Edit(Animal animal)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(transaction).State = EntityState.Modified;
+                animal.owner1 = (int)Membership.GetUser().ProviderUserKey;
+                db.Entry(animal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(transaction);
+            ViewBag.owner1 = new SelectList(db.UserProfiles, "UserId", "Username", animal.owner1);
+            return View(animal);
         }
 
         //
-        // GET: /Transaction/Delete/5
+        // GET: /Animal/Delete/5
         public ActionResult Delete(Int32 id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            if (transaction == null)
+            Animal animal = db.Animals.Find(id);
+            if (animal == null)
             {
                 return HttpNotFound();
             }
-            return View(transaction);
+            return View(animal);
         }
 
         //
-        // POST: /Transaction/Delete/5
+        // POST: /Animal/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Int32 id)
         {
-            Transaction transaction = db.Transactions.Find(id);
-            db.Transactions.Remove(transaction);
+            Animal animal = db.Animals.Find(id);
+            db.Animals.Remove(animal);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

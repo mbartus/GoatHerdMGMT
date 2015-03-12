@@ -26,7 +26,6 @@ namespace goatMGMT.Models
         public Nullable<int> Animals_farm_name { get; set; }
         public Nullable<int> Treatments_id { get; set; }
     
-        public virtual Animal Animal { get; set; }
         public virtual Treatment Treatment { get; set; }
     }
 }

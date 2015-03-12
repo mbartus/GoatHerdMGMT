@@ -1,0 +1,249 @@
+@model goatMGMT.Models.Animal
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Details</h2>
+
+    <fieldset>
+        <legend>Animal</legend>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.name)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.name)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.species)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.species)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.tag)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.tag)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.dob)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.dob)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.sex)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.sex)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.isChild)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.isChild)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed_code)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.breed_code)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.status_code)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.status_code)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.regulation_no)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.regulation_no)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.microchip_id)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.microchip_id)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.premise_id)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.premise_id)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.herd_id_code)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.herd_id_code)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed_registry)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.breed_registry)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.birth_weight)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.birth_weight)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.weaning_weight)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.weaning_weight)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.weaning_date)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.weaning_date)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.post_weaning_weight)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.post_weaning_weight)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.post_weaning_date)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.post_weaning_date)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.market_weight)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.market_weight)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.market_date)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.market_date)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.disposal_date)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.disposal_date)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.remarks)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.remarks)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.id }, new { @class="btn btn-info"})
+        @Html.ActionLink("Back to List", "Index", "Animal", new{}, new{ @class="btn btn-default"})
+    </div>
+</div>

@@ -1,0 +1,199 @@
+@model goatMGMT.Models.Animal
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Animal</legend>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.name, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.name, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.name, null, new { @class = "help-inline" })
+            </div>
+        </div>        
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.tag, new { @class = "control-label" })
+			<div class="controls">
+				@Html.TextBoxFor(model => model.tag, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.tag, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.dob, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.dob, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.sex) Male
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBox("sex2") Female
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.isChild) Child
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.status_code, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.status_code, new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.status_code, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.breed_code, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.breed_code, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.breed_code, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.regulation_no, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.regulation_no, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.regulation_no, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.microchip_id, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.microchip_id, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.microchip_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.premise_id, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.premise_id, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.premise_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.herd_id_code, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.herd_id_code, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.herd_id_code, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.breed_registry, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.breed_registry, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.breed_registry, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.species, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.species, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.species, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.weaning_weight, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.weaning_weight, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.weaning_weight, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.weaning_date, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.market_weight, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.market_weight, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.market_weight, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.market_date, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.market_date, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.market_date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextBoxFor(model => model.disposal_date, new { @class="form-control"})
+				@Html.ValidationMessageFor(model => model.disposal_date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
+			<div class="controls">
+                @Html.TextAreaFor(model => model.remarks, new { @class="form-control" , @style="max-width:100%; min-width:100%;"})
+				@Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color" style="padding-bottom:15px">
+            <input type="submit" value="Create" class="btn btn-success" style="margin-top:15px;" />
+            @Html.ActionLink("Cancel", "Index", "Animal", new { @class="btn btn-danger" , @style="margin-top:15px;"})
+        </div>
+    </fieldset>
+}
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $('#sex2').click(function () {
+        if ($('#sex').prop('checked')) {
+            $('#sex').prop('checked', false);
+        }
+    });
+    $('#sex').click(function () {
+        if ($('#sex2').prop('checked')) {
+            $('#sex2').prop('checked', false);
+        }
+    });
+</script>

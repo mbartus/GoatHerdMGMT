@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using goatMGMT.Models;
+using System.Web.Security;
 
 namespace goatMGMT.Controllers
 {
@@ -18,6 +19,9 @@ namespace goatMGMT.Controllers
         // GET: /Associate/
         public ActionResult Index()
         {
+            //int userID = (int)Membership.GetUser().ProviderUserKey;
+            //List<Associate> myAssocaites = db.Associates.Where(m => m. == userID).ToList();
+            
             return View(db.Associates.ToList());
         }
 

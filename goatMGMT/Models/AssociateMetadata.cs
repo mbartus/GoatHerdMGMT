@@ -35,7 +35,6 @@ namespace goatMGMT.Models
         [DisplayName("Phone")]
         public string telephone { get; set; }
 
-        [Required]
         [DisplayName("Fax")]
         public string fax { get; set; }
 

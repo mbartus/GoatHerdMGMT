@@ -173,6 +173,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\AssociateController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Models\Breeding.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnimalMetadata.cs" />
     <Compile Include="Models\Comment.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
@@ -390,6 +392,12 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Animal\Create.cshtml" />
+    <Content Include="Views\Animal\Delete.cshtml" />
+    <Content Include="Views\Animal\Details.cshtml" />
+    <Content Include="Views\Animal\Edit.cshtml" />
+    <Content Include="Views\Animal\Index.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

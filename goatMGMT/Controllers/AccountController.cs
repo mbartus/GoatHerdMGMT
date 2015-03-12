@@ -58,6 +58,12 @@ namespace goatMGMT.Controllers
         }
 
         [Authorize]
+        public ActionResult Manage()
+        {
+            return View();
+        }
+
+        [Authorize]
         public ActionResult Logout()
         {
             if (User.Identity.IsAuthenticated)

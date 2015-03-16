@@ -20,7 +20,7 @@ namespace goatMGMT.Controllers
         public ActionResult Index()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            var animals = db.Animals.Include(a => a.UserProfile).Where(m => m.owner1 == userID);
+            var animals = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID);
             return View(animals.ToList());
         }
 
@@ -52,7 +52,7 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid)
             {
-                animal.owner1 = (int)Membership.GetUser().ProviderUserKey;
+                animal.owner = (int)Membership.GetUser().ProviderUserKey;
                 db.Animals.Add(animal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,16 +76,21 @@ namespace goatMGMT.Controllers
         // POST: /Animal/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Animal animal)
+        public ActionResult Edit(Animal animal, bool sex2)
         {
             if (ModelState.IsValid)
             {
-                animal.owner1 = (int)Membership.GetUser().ProviderUserKey;
+                if (!sex2 && !animal.sex)
+                {
+                    ModelState.AddModelError("", "Please select sex.");
+                    return View(animal);
+                }
+                animal.owner = (int)Membership.GetUser().ProviderUserKey;
                 db.Entry(animal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.owner1 = new SelectList(db.UserProfiles, "UserId", "Username", animal.owner1);
+            ViewBag.owner = new SelectList(db.UserProfiles, "UserId", "Username", animal.owner);
             return View(animal);
         }
 

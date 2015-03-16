@@ -14,7 +14,19 @@ namespace goatMGMT.Models
     
     public partial class Animal
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Animal()
+        {
+            this.Births = new HashSet<Birth>();
+            this.Births1 = new HashSet<Birth>();
+            this.Births2 = new HashSet<Birth>();
+            this.Breedings = new HashSet<Breeding>();
+            this.Breedings1 = new HashSet<Breeding>();
+            this.Treatments = new HashSet<Treatment>();
+        }
+    
         public int id { get; set; }
+        public Nullable<int> owner { get; set; }
         public string tag { get; set; }
         public System.DateTime dob { get; set; }
         public bool sex { get; set; }
@@ -38,8 +50,19 @@ namespace goatMGMT.Models
         public Nullable<System.DateTime> market_date { get; set; }
         public Nullable<System.DateTime> disposal_date { get; set; }
         public string remarks { get; set; }
-        public Nullable<int> owner1 { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Birth> Births { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Birth> Births1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Birth> Births2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Breeding> Breedings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Breeding> Breedings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Treatment> Treatments { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

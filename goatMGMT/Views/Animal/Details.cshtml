@@ -58,7 +58,14 @@
                         <h3 class="panel-title">@Html.DisplayNameFor(model => model.sex)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.sex)
+                        @if (Model.sex)
+                        {
+                            @Html.Raw("Male")
+                        }
+                        else
+                        {
+                            @Html.Raw("Female")
+                        }
                     </div>
                 </div>
             </div>
@@ -68,7 +75,14 @@
                         <h3 class="panel-title">@Html.DisplayNameFor(model => model.isChild)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.isChild)
+                        @if (Model.isChild)
+                        {
+                            @Html.Raw("Yes")
+                        }
+                        else
+                        {
+                            @Html.Raw("No")
+                        }
                     </div>
                 </div>
             </div>

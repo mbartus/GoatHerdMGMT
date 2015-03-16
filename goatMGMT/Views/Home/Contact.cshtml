@@ -1,8 +1,52 @@
-﻿@{
+﻿@model goatMGMT.Models.CommentViewModel
+
+@{
     ViewBag.Title = "Contact Us";
     Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml"); 
 }
 <div class="container" style="padding-top: 70px;">
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+
+            <fieldset class="form-horizontal">
+                <legend>We would like to hear your thoughts!</legend>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.name, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.email, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.subject, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(m => m.subject, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.comment, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(m => m.comment, new { @class = "form-control" , @style = "max-width:100%; min-width:100%; min-height:71px" })
+                    </div>
+                </div>
+                <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">
+                    <input value="Send Feedback" type="submit" class="btn btn-success" />
+                </div>
+            </fieldset>
+        }
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    </div>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#active-contact").addClass("active");

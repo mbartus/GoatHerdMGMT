@@ -169,7 +169,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextAreaFor(model => model.remarks, new { @class="form-control" , @style="max-width:100%; min-width:100%;"})
+                @Html.TextAreaFor(model => model.remarks, new { @class="form-control" , @style="max-width:100%; min-width:100%; min-height:71px"})
 				@Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
 			</div>
 		</div>

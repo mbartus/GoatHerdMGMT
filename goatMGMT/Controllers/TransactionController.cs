@@ -20,7 +20,7 @@ namespace goatMGMT.Controllers
         public ActionResult Index()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            List<Transaction> myTransactions = db.Transactions.Where(m => m.user_id == userID).ToList();
+            List<Transaction> myTransactions = db.Transactions.Where(m => m.userid == userID).ToList();
             
             return View(myTransactions);
         }

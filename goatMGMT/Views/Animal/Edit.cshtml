@@ -35,7 +35,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.dob, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.dob, new { @class="form-control"})
+                @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -137,7 +137,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.weaning_date, new { @class="form-control"})
+                @Html.EditorFor(model => model.weaning_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -153,7 +153,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.market_date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.market_date, new { @class="form-control"})
+                @Html.EditorFor(model => model.market_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.market_date, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -161,7 +161,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.disposal_date, new { @class="form-control"})
+                @Html.EditorFor(model => model.disposal_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.disposal_date, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -169,7 +169,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextAreaFor(model => model.remarks, new { @class="form-control" , @style="max-width:100%; min-width:100%;"})
+                @Html.TextAreaFor(model => model.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px" })
                 @Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -185,6 +185,11 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 <script type="text/javascript">
+    $(document).ready(function () {
+        if (!$('#sex').is(':checked')) {
+            $('#sex2').prop('checked', true);
+        }
+    })
     $('#sex2').click(function () {
         if ($('#sex').prop('checked')) {
             $('#sex').prop('checked', false);

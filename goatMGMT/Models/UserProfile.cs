@@ -18,6 +18,7 @@ namespace goatMGMT.Models
         public UserProfile()
         {
             this.Animals = new HashSet<Animal>();
+            this.Associates = new HashSet<Associate>();
             this.Transactions = new HashSet<Transaction>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
         }
@@ -31,6 +32,8 @@ namespace goatMGMT.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Animal> Animals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Associate> Associates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

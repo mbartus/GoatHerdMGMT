@@ -14,18 +14,13 @@ namespace goatMGMT.Models
     
     public partial class Treatment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Treatment()
-        {
-            this.AnimalTreatments = new HashSet<AnimalTreatment>();
-        }
-    
         public int id { get; set; }
+        public int animal_id { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
         public string product { get; set; }
         public string dosage { get; set; }
         public string remarks { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AnimalTreatment> AnimalTreatments { get; set; }
+        public virtual Animal Animal { get; set; }
     }
 }

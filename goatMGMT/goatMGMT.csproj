@@ -184,9 +184,6 @@
     <Compile Include="Models\Animal.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AnimalTreatment.cs">
-      <DependentUpon>GoatModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Associate.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
@@ -203,6 +200,7 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\GoatModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -17,6 +17,7 @@ namespace goatMGMT.Models
 
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayName("Date of Birth")]
         public DateTime dob { get; set; }
 
@@ -71,6 +72,8 @@ namespace goatMGMT.Models
         public double weaning_weight { get; set; }
 
         [DisplayName("Weaning Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode=true, DataFormatString= "{0:MM/dd/yyyy}")]
         public DateTime weaning_date { get; set; }
 
         [DisplayName("Weaning Group")]
@@ -80,15 +83,21 @@ namespace goatMGMT.Models
         public double post_weaning_weight { get; set; }
 
         [DisplayName("Post-Weaning Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime post_weaning_date { get; set; }
 
         [DisplayName("Market Weight")]
         public float market_weight { get; set; }
 
         [DisplayName("Market Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime market_date { get; set; }
 
         [DisplayName("Disposal Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime disposal_date { get; set; }
 
         [DisplayName("Comments")]

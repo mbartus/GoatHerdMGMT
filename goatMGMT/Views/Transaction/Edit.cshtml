@@ -18,10 +18,10 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="control-group">
-            @Html.LabelFor(model => model.item_detail, new { @class = "control-label" })
+            @Html.LabelFor(model => model.type, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.item_detail, new { @class="form-control" })
-                @Html.ValidationMessageFor(model => model.item_detail, null, new { @class = "help-inline" })
+                @Html.TextBoxFor(model => model.type, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.type, null, new { @class = "help-inline" })
             </div>
         </div>
 
@@ -42,25 +42,25 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.unit_Price, new { @class = "control-label" })
+            @Html.LabelFor(model => model.unit_price, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.unit_Price, new { @class="form-control" })
-                @Html.ValidationMessageFor(model => model.unit_Price, null, new { @class = "help-inline" })
+                @Html.TextBoxFor(model => model.unit_price, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.unit_price, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.total_Payment, new { @class = "control-label" })
+            @Html.LabelFor(model => model.total_payment, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.total_Payment, new { @class="form-control" })
-                @Html.ValidationMessageFor(model => model.total_Payment, null, new { @class = "help-inline" })
+                @Html.TextBoxFor(model => model.total_payment, new { @class="form-control" })
+                @Html.ValidationMessageFor(model => model.total_payment, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
             @Html.LabelFor(model => model.notes, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextAreaFor(model => model.notes, new { @class="form-control" , @style="max-width:100%; min-width:100%;" })
+                @Html.TextAreaFor(model => model.notes, new { @class="form-control" , @style="max-width:100%; min-width:100%; min-height:71px;" })
                 @Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
             </div>
         </div>

@@ -14,15 +14,24 @@ namespace goatMGMT.Models
     
     public partial class Associate
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Associate()
+        {
+            this.Transactions = new HashSet<Transaction>();
+        }
+    
         public int id { get; set; }
+        public int userid { get; set; }
         public string name { get; set; }
         public string street { get; set; }
         public string city { get; set; }
-        public string state { get; set; }
         public string zip { get; set; }
         public string telephone { get; set; }
         public string fax { get; set; }
-        public string email { get; set; }
         public string notes { get; set; }
+    
+        public virtual UserProfile UserProfile { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

@@ -14,7 +14,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.item_detail)
+                        @Html.DisplayNameFor(model => model.type)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.item_type)
@@ -23,10 +23,10 @@
                         @Html.DisplayNameFor(model => model.quantity)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.unit_Price)
+                        @Html.DisplayNameFor(model => model.unit_price)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.total_Payment)
+                        @Html.DisplayNameFor(model => model.total_payment)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.notes)
@@ -37,7 +37,7 @@
                 @foreach (var item in Model) {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.item_detail)
+                        @Html.DisplayFor(modelItem => item.type)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.item_type)
@@ -46,10 +46,10 @@
                         @Html.DisplayFor(modelItem => item.quantity)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.unit_Price)
+                        @Html.DisplayFor(modelItem => item.unit_price)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.total_Payment)
+                        @Html.DisplayFor(modelItem => item.total_payment)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.notes)

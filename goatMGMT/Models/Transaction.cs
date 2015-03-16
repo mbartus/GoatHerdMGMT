@@ -15,14 +15,17 @@ namespace goatMGMT.Models
     public partial class Transaction
     {
         public int id { get; set; }
-        public string item_detail { get; set; }
+        public int userid { get; set; }
+        public Nullable<int> associate_id { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
+        public Nullable<bool> type { get; set; }
         public string item_type { get; set; }
         public Nullable<decimal> quantity { get; set; }
-        public Nullable<decimal> unit_Price { get; set; }
-        public Nullable<decimal> total_Payment { get; set; }
+        public Nullable<decimal> unit_price { get; set; }
+        public Nullable<decimal> total_payment { get; set; }
         public string notes { get; set; }
-        public Nullable<int> user_id { get; set; }
     
+        public virtual Associate Associate { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

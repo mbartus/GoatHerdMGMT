@@ -26,7 +26,6 @@ namespace goatMGMT.Models
         }
     
         public virtual DbSet<Animal> Animals { get; set; }
-        public virtual DbSet<AnimalTreatment> AnimalTreatments { get; set; }
         public virtual DbSet<Associate> Associates { get; set; }
         public virtual DbSet<Birth> Births { get; set; }
         public virtual DbSet<Breeding> Breedings { get; set; }

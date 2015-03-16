@@ -4,14 +4,50 @@
     Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml"); 
 }
 
-<div class="container" style="padding-top: 70px; padding-bottom: 10px;">
-    <div class="row">
+
+
+<div class="container" style="padding-top: 35px;">
+    <h1 style="color:darkgreen; font-size:35px; padding-top:55px;">Pricing</h1>
+    <hr style="border-color:darkgray;" />
+    <div class="row" style="padding-bottom: 33px;">
+        <div class="col-md-8">
+           
+            <div class="col-md-6" style="font-size: 18px; padding-bottom: 7px;">
+                <h3 style="color:darkgreen;">So what does is cost?</h3>
+                We all want to know, what's the bottom line? <b>FARMS</b>database is a monthly subscription service. For only <b>$1.99</b> per month, you will have 24/7 access to this effective decision making tool. This tool will help you maximize your production and profits by helping you clearly understand the trends emerging in your production.
+            </div>
+
+            <div class="col-md-6" style="font-size: 18px; padding-bottom: 7px;">
+                <h3 style="color:darkgreen;">What if I need help?</h3>
+                There are many different ways to contact our staff to get help anytime! Submit a comment form on the contact page, email the website adminstrator directly, or call us during buisness hours!
+                <a href="~/Views/Home/Contact.cshtml">Contact Us!</a>
+                
+                <h3 style="color:darkgreen;">What's the risk?</h3>
+                With such a low monthly fee, using <b>FARMS</b>database is very low risk. However, we're going to through in a 1 month free trial anyway! If you are not 100% satisified with our service, you can cancel anytime online.
+                <a href="~/Views/Account/Register.cshtml">Sign up here!</a>
+            </div>
+        </div>
+        <div class="col-md-4" style="padding-top:0px;">
+            <div class="well" style="background-image: url(/Content/imgs/herd_pale.jpg); background-position:center; background-size: cover;">
+                <h3 style="text-align:center; color:darkgreen;"><b>What you get:</b></h3>
+                <ul style="margin-left:0px; line-height:30px; font-size: 20px;">
+                    <li>24 hour access to your farm animal records</li>
+                    <li>A dynamic decision making tool tailored to you</li>
+                    <li>Maximize production and profits by being more informed</li>
+                    <li>Know your competetion by comparing your herd with the average user</li>
+                    <li>100% satisfaction guaranteed</li>
+                    <li>and much, much more!</li>
+]
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#active-pricing").addClass("active");
         $("#layout-header").css({ "background-image": "url(/Content/imgs/header2.png)"});
     });
 </script>
-
+    </div>

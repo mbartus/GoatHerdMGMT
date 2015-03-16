@@ -1,0 +1,72 @@
+@model goatMGMT.Models.Breeding
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Breeding</legend>
+
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.mother_id)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.mother_id)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.father_id)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.father_id)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.pregnacy_check)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.pregnacy_check)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.expected_kidding_date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.expected_kidding_date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.remarks)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.remarks)
+		</dd>
+
+	</dl>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

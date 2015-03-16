@@ -1,0 +1,81 @@
+@model goatMGMT.Models.Breeding
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Breeding</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.mother_id, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.mother_id)
+				@Html.ValidationMessageFor(model => model.mother_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.father_id, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.father_id)
+				@Html.ValidationMessageFor(model => model.father_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.date, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.date)
+				@Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.pregnacy_check, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.pregnacy_check)
+				@Html.ValidationMessageFor(model => model.pregnacy_check, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.expected_kidding_date, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.expected_kidding_date)
+				@Html.ValidationMessageFor(model => model.expected_kidding_date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.remarks)
+				@Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

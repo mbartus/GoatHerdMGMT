@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\AssociateController.cs" />
+    <Compile Include="Controllers\BreedingController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Models\Transaction.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BreedingMetadata.cs" />
     <Compile Include="Models\TransactionMetadata.cs" />
     <Compile Include="Models\Treatment.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
@@ -240,6 +242,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\goatMGMT.dll" />
+    <Content Include="bin\goatMGMT.pdb" />
+    <Content Include="bin\System.Net.Http.Extensions.dll" />
+    <Content Include="bin\System.Net.Http.Primitives.dll" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -401,6 +407,11 @@
     <Content Include="Views\Account\RegistrationConfirmation.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangeSecurityQuestion.cshtml" />
+    <Content Include="Views\Breeding\Create.cshtml" />
+    <Content Include="Views\Breeding\Delete.cshtml" />
+    <Content Include="Views\Breeding\Details.cshtml" />
+    <Content Include="Views\Breeding\Edit.cshtml" />
+    <Content Include="Views\Breeding\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

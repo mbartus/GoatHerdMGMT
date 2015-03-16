@@ -22,9 +22,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Breeding/Details/5
-        public ActionResult Details(Int32 id)
+        public ActionResult Details(Int32 id, Int32 id2, Int32 id3)
         {
-            Breeding breeding = db.Breedings.Find(id);
+            Breeding breeding = db.Breedings.Find(id, id2, id3);
             if (breeding == null)
             {
                 return HttpNotFound();
@@ -57,9 +57,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Breeding/Edit/5
-        public ActionResult Edit(Int32 id)
+        public ActionResult Edit(Int32 id, Int32 id2, Int32 id3)
         {
-            Breeding breeding = db.Breedings.Find(id);
+            Breeding breeding = db.Breedings.Find(id, id2, id3);
             if (breeding == null)
             {
                 return HttpNotFound();
@@ -84,9 +84,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Breeding/Delete/5
-        public ActionResult Delete(Int32 id)
+        public ActionResult Delete(Int32 id, Int32 id2, Int32 id3)
         {
-            Breeding breeding = db.Breedings.Find(id);
+            Breeding breeding = db.Breedings.Find(id, id2, id3);
             if (breeding == null)
             {
                 return HttpNotFound();
@@ -98,9 +98,9 @@ namespace goatMGMT.Controllers
         // POST: /Breeding/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Int32 id)
+        public ActionResult DeleteConfirmed(Int32 id, Int32 id2, Int32 id3)
         {
-            Breeding breeding = db.Breedings.Find(id);
+            Breeding breeding = db.Breedings.Find(id, id2, id3);
             db.Breedings.Remove(breeding);
             db.SaveChanges();
             return RedirectToAction("Index");

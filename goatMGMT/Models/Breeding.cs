@@ -18,7 +18,7 @@ namespace goatMGMT.Models
         public int mother_id { get; set; }
         public int father_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public Nullable<System.DateTime> pregnacy_check { get; set; }
+        public Nullable<System.DateTime> pregnancy_check { get; set; }
         public Nullable<System.DateTime> expected_kidding_date { get; set; }
         public string remarks { get; set; }
     

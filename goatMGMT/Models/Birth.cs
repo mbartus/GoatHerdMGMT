@@ -19,7 +19,7 @@ namespace goatMGMT.Models
         public int mother_id { get; set; }
         public int father_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public Nullable<int> type { get; set; }
+        public Nullable<bool> type { get; set; }
         public Nullable<int> parity { get; set; }
         public Nullable<int> score { get; set; }
         public Nullable<int> alive { get; set; }

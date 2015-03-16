@@ -25,9 +25,11 @@ namespace goatMGMT.Models
         public string name { get; set; }
         public string street { get; set; }
         public string city { get; set; }
+        public string state { get; set; }
         public string zip { get; set; }
         public string telephone { get; set; }
         public string fax { get; set; }
+        public string email { get; set; }
         public string notes { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }

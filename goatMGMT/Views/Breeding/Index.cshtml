@@ -1,64 +1,69 @@
 @model IEnumerable<goatMGMT.Models.Breeding>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Breeding";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+<h2>Breeding</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Breeding", new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.mother_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.father_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pregnacy_check)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.expected_kidding_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.remarks)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.mother_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.father_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pregnancy_check)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.expected_kidding_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.remarks)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.mother_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.father_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pregnacy_check)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.expected_kidding_date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.remarks)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mother_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.father_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pregnancy_check)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.expected_kidding_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.remarks)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id = item.id, id2 = item.mother_id, id3 = item.father_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id, id2 = item.mother_id, id3 = item.father_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id, id2 = item.mother_id, id3 = item.father_id })
+                </td>
+            </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

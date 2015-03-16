@@ -5,27 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8e65c073a3cf41d093804af215ed6511" Name="Diagram1" ZoomLevel="75" >
-        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="5.25" PointY="3.25" />
-        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="5.25" PointY="12.75" />
-        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="7.5" PointY="8.25" />
-        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="7.5" PointY="1.625" />
-        <EntityTypeShape EntityType="goatDBModel.Comment" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="7.5" PointY="12.875" />
-        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="7.5" PointY="5.125" />
-        <EntityTypeShape EntityType="goatDBModel.UserProfile" Width="1.5" PointX="3" PointY="7.25" />
-        <EntityTypeShape EntityType="goatDBModel.webpages_Membership" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="7.5" PointY="1.625" />
+        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="7.5" PointY="6" />
+        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="7.5" PointY="13.375" />
+        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="7.5" PointY="9.5" />
+        <EntityTypeShape EntityType="goatDBModel.UserProfile" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="goatDBModel.webpages_Membership" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="goatDBModel.webpages_OAuthMembership" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="goatDBModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="8" />
-        <AssociationConnector Association="goatDBModel.FK__Births__child_id__76EBA2E9" />
-        <AssociationConnector Association="goatDBModel.FK__Births__father_i__78D3EB5B" />
-        <AssociationConnector Association="goatDBModel.FK__Births__mother_i__77DFC722" />
-        <AssociationConnector Association="goatDBModel.FK__Breeding__father__7CA47C3F" />
-        <AssociationConnector Association="goatDBModel.FK__Breeding__mother__7BB05806" />
-        <AssociationConnector Association="goatDBModel.FK__Treatment__anima__46486B8E" />
+        <EntityTypeShape EntityType="goatDBModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="goatDBModel.Comment" Width="1.5" PointX="9.75" PointY="0.75" />
+        <AssociationConnector Association="goatDBModel.FK__Births__child_id__1293BD5E" />
+        <AssociationConnector Association="goatDBModel.FK__Births__father_i__147C05D0" />
+        <AssociationConnector Association="goatDBModel.FK__Births__mother_i__1387E197" />
+        <AssociationConnector Association="goatDBModel.FK__Breeding__father__184C96B4" />
+        <AssociationConnector Association="goatDBModel.FK__Breeding__mother__1758727B" />
+        <AssociationConnector Association="goatDBModel.FK__Treatment__anima__1B29035F" />
         <AssociationConnector Association="goatDBModel.FK_Animals_UserProfile" />
-        <AssociationConnector Association="goatDBModel.FK__Associate__useri__63D8CE75" />
-        <AssociationConnector Association="goatDBModel.FK__Transacti__assoc__6F4A8121" />
-        <AssociationConnector Association="goatDBModel.FK__Transacti__useri__6E565CE8" />
+        <AssociationConnector Association="goatDBModel.FK__Associate__useri__025D5595" />
+        <AssociationConnector Association="goatDBModel.FK__Transacti__useri__062DE679" />
+        <AssociationConnector Association="goatDBModel.FK__Transacti__useri__0539C240" />
         <AssociationConnector Association="goatDBModel.webpages_UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>

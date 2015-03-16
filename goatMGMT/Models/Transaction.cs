@@ -16,7 +16,7 @@ namespace goatMGMT.Models
     {
         public int id { get; set; }
         public int userid { get; set; }
-        public Nullable<int> associate_id { get; set; }
+        public int associate_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<bool> type { get; set; }
         public string item_type { get; set; }

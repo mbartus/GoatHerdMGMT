@@ -4,63 +4,85 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
-
-<fieldset>
-	<legend>Breeding</legend>
-	<dl>
-		<dt>
-			@Html.DisplayNameFor(model => model.mother_id)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.mother_id)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.father_id)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.father_id)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.date)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.date)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.pregnacy_check)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.pregnacy_check)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.expected_kidding_date)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.expected_kidding_date)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.remarks)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.remarks)
-		</dd>
-
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <fieldset>
+        <legend>Breeding</legend>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.mother_id)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.mother_id)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.father_id)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.father_id)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.date)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.date)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.pregnancy_check)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.pregnancy_check)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.expected_kidding_date)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.expected_kidding_date)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.remarks)</h3>
+                    </div>
+                    <div class="panel-body">
+                        @Html.DisplayFor(model => model.remarks)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </p>
+</div>

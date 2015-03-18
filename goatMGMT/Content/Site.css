@@ -70,3 +70,7 @@ body {
     padding-bottom: 15px;
 }
 
+.table {
+    word-wrap: break-word;
+    table-layout: fixed;
+}

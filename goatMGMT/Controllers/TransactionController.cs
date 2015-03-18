@@ -59,6 +59,7 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid)
             {
+                transaction.userid = (int)Membership.GetUser().ProviderUserKey;
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");

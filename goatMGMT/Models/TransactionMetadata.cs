@@ -13,11 +13,11 @@ namespace goatMGMT.Models
     {
         [Required]
         [DisplayName("Name")]
-        public string type { get; set; }
+        public string item_type { get; set; }
 
         [Required]
         [DisplayName("Type")]
-        public string item_type {get; set;}
+        public string type {get; set;}
 
         [Required]
         [DisplayName("Quantity")]

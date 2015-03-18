@@ -18,7 +18,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.mother_id, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownList("mother_id", (IEnumerable<SelectListItem>)ViewData["flist"])
+                    @Html.DropDownList("mother_id", (IEnumerable<SelectListItem>)ViewData["flist"], new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.mother_id, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.father_id, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownList("father_id", (IEnumerable<SelectListItem>)ViewData["mlist"])
+                    @Html.DropDownList("father_id", (IEnumerable<SelectListItem>)ViewData["mlist"], new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.father_id, null, new { @class = "help-inline" })
                 </div>
             </div>

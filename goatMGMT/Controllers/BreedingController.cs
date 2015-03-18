@@ -19,10 +19,20 @@ namespace goatMGMT.Controllers
         // GET: /Breeding/
         public ActionResult Index()
         {
-            BreedingViewModel bvm = new BreedingViewModel();
+            List<BreedingExtended> beList = new List<BreedingExtended>();
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var breedings = db.Breedings.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID);
-            return View(breedings.ToList());
+            foreach (Breeding bre in breedings)
+            {
+                BreedingExtended be = new BreedingExtended();
+                be.breed = bre;
+                be.father_name = db.Animals.Find(bre.father_id).name;
+                be.mother_name = db.Animals.Find(bre.mother_id).name;
+                be.father_tag = db.Animals.Find(bre.father_id).tag;
+                be.mother_tag = db.Animals.Find(bre.mother_id).tag;
+                beList.Add(be);
+            }
+            return View(beList);
         }
 
         //
@@ -47,8 +57,8 @@ namespace goatMGMT.Controllers
             bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
             List<SelectListItem> mlist = new List<SelectListItem>();
             List<SelectListItem> flist = new List<SelectListItem>();
-            mlist.Add(new SelectListItem { Text = "", Value = "0" });
-            flist.Add(new SelectListItem { Text = "", Value = "0" });
+            mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
+            flist.Add(new SelectListItem { Text = "Select Mother", Value = "0" });
             for (int i = 1; i <= bvm.maleList.Count(); i++)
             {
                 mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).name, Value = "" + i });
@@ -73,7 +83,7 @@ namespace goatMGMT.Controllers
             bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
             bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
             
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && breeding.father_id != 0 && breeding.mother_id != 0)
             {
 
                 breeding.Animal = db.Animals.Find(bvm.maleList.ElementAt(breeding.father_id - 1).id);
@@ -84,8 +94,7 @@ namespace goatMGMT.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(breeding);
+            return View();
         }
 
         //

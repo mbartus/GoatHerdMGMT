@@ -44,11 +44,15 @@ namespace goatMGMT.Models
         [DisplayName("Remarks")]
         public string remarks { get; set; }
 
+        [DisplayName("Mother Tag")]
+        public string mother_tag { get; set; }
+
+        [DisplayName("Father Tag")]
+        public string father_tag { get; set; }
+
         // Animal
         public IEnumerable<Animal> maleList;
         public IEnumerable<Animal> femaleList;
-        public IEnumerable<Breeding> breedList;
-
 
     }
 }

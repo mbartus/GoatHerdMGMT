@@ -7,29 +7,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace goatMGMT.Models
 {
-    [MetadataType(typeof(BreedingMetadata))]
-    public partial class Breeding { }
-    public class BreedingMetadata
+    public class BreedingViewModel
     {
+        public Int32 id { get; set; }
+
         [Required]
         [DisplayName("Mother's Name")]
         public Int32 mother_id { get; set; }
 
+        public string mother_name;
+        public string father_name;
+
         [Required]
         [DisplayName("Father's Name")]
-        public Int32 father_id { get; set; }
+        public Int32 father_id {get; set;}
 
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayName("Date of Breeding")]
-        public DateTime date { get; set; }
+        public DateTime date {get; set;}
 
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayName("Date of Pregnancy Check")]
-        public DateTime pregnancy_check { get; set; }
+        public DateTime pregnancy_check {get; set;}
 
         [Required]
         [DataType(DataType.Date)]
@@ -40,5 +43,12 @@ namespace goatMGMT.Models
         [Required]
         [DisplayName("Remarks")]
         public string remarks { get; set; }
+
+        // Animal
+        public IEnumerable<Animal> maleList;
+        public IEnumerable<Animal> femaleList;
+        public IEnumerable<Breeding> breedList;
+
+
     }
 }

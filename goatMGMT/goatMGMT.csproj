@@ -196,6 +196,7 @@
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AnimalMetadata.cs" />
+    <Compile Include="Models\BreedingMetadata.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ChangeSecurityQuestionViewModel.cs" />
     <Compile Include="Models\Comment.cs">
@@ -222,7 +223,7 @@
     <Compile Include="Models\Transaction.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BreedingMetadata.cs" />
+    <Compile Include="Models\BreedingViewModel.cs" />
     <Compile Include="Models\TransactionMetadata.cs" />
     <Compile Include="Models\Treatment.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>

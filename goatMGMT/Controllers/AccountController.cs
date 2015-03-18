@@ -28,6 +28,7 @@ namespace goatMGMT.Controllers
             }
             ModelState.AddModelError("", "Sorry, the email or password entered is invalid.");
             return View(loginData);
+            
         }
         
         [HttpGet]

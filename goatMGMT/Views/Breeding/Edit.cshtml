@@ -1,4 +1,4 @@
-@model goatMGMT.Models.Breeding
+@model IEnumerable<goatMGMT.Models.Breeding>
 
 @{
     ViewBag.Title = "Edit";
@@ -15,8 +15,6 @@
 
         <fieldset class="form-horizontal">
             <legend>Breeding</legend>
-
-            @Html.HiddenFor(model => model.id)
 
             <div class="control-group">
                 @Html.LabelFor(model => model.mother_id, new { @class = "control-label" })

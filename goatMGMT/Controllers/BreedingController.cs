@@ -94,7 +94,24 @@ namespace goatMGMT.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View();
+            bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
+            bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
+            List<SelectListItem> mlist = new List<SelectListItem>();
+            List<SelectListItem> flist = new List<SelectListItem>();
+            mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
+            flist.Add(new SelectListItem { Text = "Select Mother", Value = "0" });
+            for (int i = 1; i <= bvm.maleList.Count(); i++)
+            {
+                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).name, Value = "" + i });
+            }
+            for (int i = 1; i <= bvm.femaleList.Count(); i++)
+            {
+                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).name, Value = "" + i });
+            }
+            @ViewBag.flist = flist;
+            @ViewBag.mlist = mlist;
+            ModelState.AddModelError("", "Both a male and female must be selected.");
+            return View(bvm);
         }
 
         //

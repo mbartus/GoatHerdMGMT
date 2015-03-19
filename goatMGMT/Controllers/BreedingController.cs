@@ -44,7 +44,13 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
-            return View(breeding);
+            BreedingExtended be = new BreedingExtended();
+            be.breed = breeding;
+            be.father_name = db.Animals.Find(breeding.father_id).name;
+            be.mother_name = db.Animals.Find(breeding.mother_id).name;
+            be.father_tag = db.Animals.Find(breeding.father_id).tag;
+            be.mother_tag = db.Animals.Find(breeding.mother_id).tag;
+            return View(be);
         }
 
         //
@@ -116,10 +122,6 @@ namespace goatMGMT.Controllers
         // GET: /Breeding/Edit/5
         public ActionResult Edit(Int32 id, Int32 id2, Int32 id3)
         {
-            if (id == null || id2 == null || id3 == null)
-            {
-                return HttpNotFound();
-            }
             Breeding breeding = db.Breedings.Find(id, id2, id3);
             if (breeding == null)
             {
@@ -205,7 +207,13 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
-            return View(breeding);
+            BreedingExtended be = new BreedingExtended();
+            be.breed = breeding;
+            be.father_name = db.Animals.Find(breeding.father_id).name;
+            be.mother_name = db.Animals.Find(breeding.mother_id).name;
+            be.father_tag = db.Animals.Find(breeding.father_id).tag;
+            be.mother_tag = db.Animals.Find(breeding.mother_id).tag;
+            return View(be);
         }
 
         //

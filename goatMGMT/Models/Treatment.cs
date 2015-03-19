@@ -17,7 +17,6 @@ namespace goatMGMT.Models
         public int id { get; set; }
         public int animal_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public Nullable<bool> type { get; set; }
         public string item_type { get; set; }
         public string product { get; set; }
         public string dosage { get; set; }

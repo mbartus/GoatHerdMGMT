@@ -13,54 +13,67 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
+        @Html.HiddenFor(model => model.breeding.id)
+        @Html.HiddenFor(model => model.breeding.father_id)
+        @Html.HiddenFor(model => model.breeding.mother_id)
         <fieldset class="form-horizontal">
             <legend>Breeding</legend>
 
-            <div class="control-group">
-                @Html.LabelFor(model => model.mother_id, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.DropDownList("mother_id", (IEnumerable<SelectListItem>)ViewData["flist"], new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.mother_id, null, new { @class = "help-inline" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.mother_id)</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.mother_name)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.father_id)</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.father_name)
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.father_id, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.date, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownList("father_id", (IEnumerable<SelectListItem>)ViewData["mlist"], new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.father_id, null, new { @class = "help-inline" })
+                    @Html.EditorFor(model => model.breeding.date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.breeding.date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
+                    @Html.EditorFor(model => model.breeding.pregnancy_check, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.breeding.pregnancy_check, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.pregnancy_check, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.EditorFor(model => model.pregnancy_check, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.pregnancy_check, null, new { @class = "help-inline" })
+                    @Html.EditorFor(model => model.breeding.expected_kidding_date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.breeding.expected_kidding_date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.expected_kidding_date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.remarks, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.EditorFor(model => model.expected_kidding_date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.expected_kidding_date, null, new { @class = "help-inline" })
-                </div>
-            </div>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.TextAreaFor(model => model.remarks, new { @class = "form-control" , @style = "max-width:100%; min-width:100%;  min-height:71px"})
-                    @Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
+                    @Html.TextAreaFor(model => model.breeding.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px" })
+                    @Html.ValidationMessageFor(model => model.breeding.remarks, null, new { @class = "help-inline" })
                 </div>
             </div>
 

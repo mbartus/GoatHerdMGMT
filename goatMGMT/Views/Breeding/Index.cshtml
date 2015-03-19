@@ -1,4 +1,4 @@
-@model IEnumerable<goatMGMT.Models.BreedingExtended>
+@model IEnumerable<goatMGMT.Models.BreedingViewModel>
 
 @{
     ViewBag.Title = "Breeding";
@@ -15,25 +15,25 @@
     <table class="table table-striped">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.mother_tag)
+                Mother's Tag
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.breed.mother_id)
+                @Html.DisplayNameFor(model => model.breeding.mother_id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.father_tag)
+                Father's Tag
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.breed.father_id)
+                @Html.DisplayNameFor(model => model.breeding.father_id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.breed.date)
+                @Html.DisplayNameFor(model => model.breeding.date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.breed.expected_kidding_date)
+                @Html.DisplayNameFor(model => model.breeding.expected_kidding_date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.breed.remarks)
+                @Html.DisplayNameFor(model => model.breeding.remarks)
             </th>
             <th></th>
         </tr>
@@ -54,18 +54,18 @@
                     @Html.DisplayFor(modelItem => item.father_name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.breed.date)
+                    @Html.DisplayFor(modelItem => item.breeding.date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.breed.expected_kidding_date)
+                    @Html.DisplayFor(modelItem => item.breeding.expected_kidding_date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.breed.remarks)
+                    @Html.DisplayFor(modelItem => item.breeding.remarks)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id = item.breed.id, id2 = item.breed.mother_id, id3 = item.breed.father_id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.breed.id, id2 = item.breed.mother_id, id3 = item.breed.father_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.breed.id, id2 = item.breed.mother_id, id3 = item.breed.father_id })
+                    @Html.ActionLink("Edit", "Edit", new {  id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id })
                 </td>
             </tr>
             }

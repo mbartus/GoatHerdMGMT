@@ -16,50 +16,50 @@
         <fieldset class="form-horizontal">
             <legend>Breeding</legend>
             <div class="control-group">
-                @Html.LabelFor(model => model.mother_id, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.mother_id, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownList("mother_id", (IEnumerable<SelectListItem>)ViewData["flist"], new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.mother_id, null, new { @class = "help-inline" })
+                    @Html.DropDownList("breeding.mother_id", (IEnumerable<SelectListItem>)ViewData["flist"], new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.breeding.mother_id, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.father_id, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.father_id, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DropDownList("father_id", (IEnumerable<SelectListItem>)ViewData["mlist"], new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.father_id, null, new { @class = "help-inline" })
+                    @Html.DropDownList("breeding.father_id", (IEnumerable<SelectListItem>)ViewData["mlist"], new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.breeding.father_id, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.date, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.date, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
+                    @Html.TextBoxFor(model => model.breeding.date, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.breeding.date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.pregnancy_check, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.pregnancy_check, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.pregnancy_check, null, new { @class = "help-inline" })
+                    @Html.TextBoxFor(model => model.breeding.pregnancy_check, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.breeding.pregnancy_check, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.expected_kidding_date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.expected_kidding_date, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.expected_kidding_date, null, new { @class = "help-inline" })
+                    @Html.TextBoxFor(model => model.breeding.expected_kidding_date, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.breeding.expected_kidding_date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.remarks, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
-                    @Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
+                    @Html.TextAreaFor(model => model.breeding.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
+                    @Html.ValidationMessageFor(model => model.breeding.remarks, null, new { @class = "help-inline" })
                 </div>
             </div>
 

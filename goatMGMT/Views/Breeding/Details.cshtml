@@ -1,4 +1,4 @@
-@model goatMGMT.Models.BreedingExtended
+@model goatMGMT.Models.BreedingViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed.mother_id)</h3>
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.mother_id)</h3>
                     </div>
                     <div class="panel-body">
                         @Html.DisplayFor(model => model.mother_name)
@@ -49,7 +49,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.father_name)</h3>
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.father_id)</h3>
                     </div>
                     <div class="panel-body">
                         @Html.DisplayFor(model => model.father_name)
@@ -61,10 +61,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed.date)</h3>
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.date)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.breed.date)
+                        @Html.DisplayFor(model => model.breeding.date)
                     </div>
                 </div>
             </div>
@@ -73,10 +73,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed.pregnancy_check)</h3>
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.pregnancy_check)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.breed.pregnancy_check)
+                        @Html.DisplayFor(model => model.breeding.pregnancy_check)
                     </div>
                 </div>
             </div>
@@ -85,10 +85,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed.expected_kidding_date)</h3>
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.expected_kidding_date)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.breed.expected_kidding_date)
+                        @Html.DisplayFor(model => model.breeding.expected_kidding_date)
                     </div>
                 </div>
             </div>
@@ -97,10 +97,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breed.remarks)</h3>
+                        <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.remarks)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.breed.remarks)
+                        @Html.DisplayFor(model => model.breeding.remarks)
                     </div>
                 </div>
             </div>

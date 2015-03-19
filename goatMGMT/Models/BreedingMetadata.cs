@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace goatMGMT.Models
 {
@@ -11,6 +12,10 @@ namespace goatMGMT.Models
     public partial class Breeding { }
     public class BreedingMetadata
     {
+        [HiddenInput(DisplayValue = false)]
+        [Key]
+        public int id { get; set; }
+
         [Required]
         [DisplayName("Mother's Name")]
         public Int32 mother_id { get; set; }

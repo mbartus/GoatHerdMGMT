@@ -1,74 +1,100 @@
-@model goatMGMT.Models.Treatment
+@model goatMGMT.Models.TreatmentViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div class="container">
 <h2>Details</h2>
 
 <fieldset>
 	<legend>Treatment</legend>
-	<dl>
-		<dt>
-			@Html.DisplayNameFor(model => model.Animal.tag)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Animal.tag)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.date)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.date)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.type)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.type)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.item_type)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.item_type)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.product)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.product)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.dosage)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.dosage)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.remarks)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.remarks)
-		</dd>
-
-	</dl>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Animals's Tag</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.animal_tag)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Animal's Name</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.animal_name)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.treatment.date)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.treatment.date)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.treatment.item_type)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.treatment.item_type)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.treatment.dosage)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.treatment.dosage)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.treatment.product)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.treatment.product)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.treatment.remarks)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.treatment.remarks)
+                </div>
+            </div>
+        </div>
+    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+</div>

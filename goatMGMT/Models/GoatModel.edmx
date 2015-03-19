@@ -84,8 +84,6 @@
           <Property Name="expected_kidding_date" Type="datetime" />
           <Property Name="remarks" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="id" />
@@ -120,7 +118,6 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="animal_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" />
-          <Property Name="type" Type="bit" />
           <Property Name="item_type" Type="nvarchar(max)" />
           <Property Name="product" Type="nvarchar(max)" />
           <Property Name="dosage" Type="nvarchar(max)" />
@@ -249,7 +246,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__useri__0539C240">
+        <Association Name="FK__Transacti__useri__1FEDB87C">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -261,19 +258,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__useri__062DE679">
-          <End Role="Associates" Type="Self.Associates" Multiplicity="1" />
-          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Associates">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Transactions">
-              <PropertyRef Name="userid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Treatment__anima__1B29035F">
+        <Association Name="FK__Treatment__anima__22CA2527">
           <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
           <End Role="Treatments" Type="Self.Treatments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -326,6 +311,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <EntitySet Name="Associates" EntityType="Self.Associates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Births" EntityType="Self.Births" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Breeding" EntityType="Self.Breeding" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatments" EntityType="Self.Treatments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
@@ -333,16 +319,6 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comments" EntityType="Self.Comments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Comments].[id] AS [id], 
-    [Comments].[date_sent] AS [date_sent], 
-    [Comments].[name] AS [name], 
-    [Comments].[subject] AS [subject], 
-    [Comments].[email] AS [email], 
-    [Comments].[comment] AS [comment]
-    FROM [dbo].[Comments] AS [Comments]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Associate__useri__025D5595" Association="Self.FK__Associate__useri__025D5595">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Associates" EntitySet="Associates" />
@@ -367,15 +343,11 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breeding" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__useri__0539C240" Association="Self.FK__Transacti__useri__0539C240">
+          <AssociationSet Name="FK__Transacti__useri__1FEDB87C" Association="Self.FK__Transacti__useri__1FEDB87C">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__useri__062DE679" Association="Self.FK__Transacti__useri__062DE679">
-            <End Role="Associates" EntitySet="Associates" />
-            <End Role="Transactions" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Treatment__anima__1B29035F" Association="Self.FK__Treatment__anima__1B29035F">
+          <AssociationSet Name="FK__Treatment__anima__22CA2527" Association="Self.FK__Treatment__anima__22CA2527">
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Treatments" EntitySet="Treatments" />
           </AssociationSet>
@@ -401,13 +373,13 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <EntitySet Name="Associates" EntityType="goatDBModel.Associate" />
           <EntitySet Name="Births" EntityType="goatDBModel.Birth" />
           <EntitySet Name="Breedings" EntityType="goatDBModel.Breeding" />
+          <EntitySet Name="Comments" EntityType="goatDBModel.Comment" />
           <EntitySet Name="Transactions" EntityType="goatDBModel.Transaction" />
           <EntitySet Name="Treatments" EntityType="goatDBModel.Treatment" />
           <EntitySet Name="UserProfiles" EntityType="goatDBModel.UserProfile" />
           <EntitySet Name="webpages_Membership" EntityType="goatDBModel.webpages_Membership" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="goatDBModel.webpages_OAuthMembership" />
           <EntitySet Name="webpages_Roles" EntityType="goatDBModel.webpages_Roles" />
-          <EntitySet Name="Comments" EntityType="goatDBModel.Comment" />
           <AssociationSet Name="FK__Births__child_id__1293BD5E" Association="goatDBModel.FK__Births__child_id__1293BD5E">
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Birth" EntitySet="Births" />
@@ -428,7 +400,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breedings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Treatment__anima__1B29035F" Association="goatDBModel.FK__Treatment__anima__1B29035F">
+          <AssociationSet Name="FK__Treatment__anima__22CA2527" Association="goatDBModel.FK__Treatment__anima__22CA2527">
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Treatment" EntitySet="Treatments" />
           </AssociationSet>
@@ -440,11 +412,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Associate" EntitySet="Associates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__useri__062DE679" Association="goatDBModel.FK__Transacti__useri__062DE679">
-            <End Role="Associate" EntitySet="Associates" />
-            <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Transacti__useri__0539C240" Association="goatDBModel.FK__Transacti__useri__0539C240">
+          <AssociationSet Name="FK__Transacti__useri__1FEDB87C" Association="goatDBModel.FK__Transacti__useri__1FEDB87C">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
@@ -487,7 +455,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <NavigationProperty Name="Births2" Relationship="goatDBModel.FK__Births__mother_i__1387E197" FromRole="Animal" ToRole="Birth" />
           <NavigationProperty Name="Breedings" Relationship="goatDBModel.FK__Breeding__father__184C96B4" FromRole="Animal" ToRole="Breeding" />
           <NavigationProperty Name="Breedings1" Relationship="goatDBModel.FK__Breeding__mother__1758727B" FromRole="Animal" ToRole="Breeding" />
-          <NavigationProperty Name="Treatments" Relationship="goatDBModel.FK__Treatment__anima__1B29035F" FromRole="Animal" ToRole="Treatment" />
+          <NavigationProperty Name="Treatments" Relationship="goatDBModel.FK__Treatment__anima__22CA2527" FromRole="Animal" ToRole="Treatment" />
           <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK_Animals_UserProfile" FromRole="Animal" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Associate">
@@ -506,7 +474,6 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK__Associate__useri__025D5595" FromRole="Associate" ToRole="UserProfile" />
-          <NavigationProperty Name="Transactions" Relationship="goatDBModel.FK__Transacti__useri__062DE679" FromRole="Associate" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="Birth">
           <Key>
@@ -546,6 +513,17 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Breeding__father__184C96B4" FromRole="Breeding" ToRole="Animal" />
           <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK__Breeding__mother__1758727B" FromRole="Breeding" ToRole="Animal" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_sent" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="id" />
@@ -560,8 +538,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <Property Name="unit_price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="total_payment" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Associate" Relationship="goatDBModel.FK__Transacti__useri__062DE679" FromRole="Transaction" ToRole="Associate" />
-          <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK__Transacti__useri__0539C240" FromRole="Transaction" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK__Transacti__useri__1FEDB87C" FromRole="Transaction" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Treatment">
           <Key>
@@ -571,12 +548,11 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="animal_id" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="type" Type="Boolean" />
           <Property Name="item_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="dosage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Treatment__anima__1B29035F" FromRole="Treatment" ToRole="Animal" />
+          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Treatment__anima__22CA2527" FromRole="Treatment" ToRole="Animal" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -590,7 +566,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <Property Name="Farm_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Animals" Relationship="goatDBModel.FK_Animals_UserProfile" FromRole="UserProfile" ToRole="Animal" />
           <NavigationProperty Name="Associates" Relationship="goatDBModel.FK__Associate__useri__025D5595" FromRole="UserProfile" ToRole="Associate" />
-          <NavigationProperty Name="Transactions" Relationship="goatDBModel.FK__Transacti__useri__0539C240" FromRole="UserProfile" ToRole="Transaction" />
+          <NavigationProperty Name="Transactions" Relationship="goatDBModel.FK__Transacti__useri__1FEDB87C" FromRole="UserProfile" ToRole="Transaction" />
           <NavigationProperty Name="webpages_Roles" Relationship="goatDBModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
         </EntityType>
         <EntityType Name="webpages_Membership">
@@ -625,17 +601,6 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserProfiles" Relationship="goatDBModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="date_sent" Type="DateTime" Precision="3" />
-          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Births__child_id__1293BD5E">
           <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
@@ -697,7 +662,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Treatment__anima__1B29035F">
+        <Association Name="FK__Treatment__anima__22CA2527">
           <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
           <End Type="goatDBModel.Treatment" Role="Treatment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -733,19 +698,7 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__useri__062DE679">
-          <End Type="goatDBModel.Associate" Role="Associate" Multiplicity="1" />
-          <End Type="goatDBModel.Transaction" Role="Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Associate">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="userid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Transacti__useri__0539C240">
+        <Association Name="FK__Transacti__useri__1FEDB87C">
           <End Type="goatDBModel.UserProfile" Role="UserProfile" Multiplicity="1" />
           <End Type="goatDBModel.Transaction" Role="Transaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -845,6 +798,18 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="goatDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_sent" ColumnName="date_sent" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="goatDBModel.Transaction">
               <MappingFragment StoreEntitySet="Transactions">
@@ -868,7 +833,6 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
                 <ScalarProperty Name="dosage" ColumnName="dosage" />
                 <ScalarProperty Name="product" ColumnName="product" />
                 <ScalarProperty Name="item_type" ColumnName="item_type" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="animal_id" ColumnName="animal_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -918,18 +882,6 @@ warning 6002: The table/view 'goatDB.dbo.Comments' does not have a primary key d
               <MappingFragment StoreEntitySet="webpages_Roles">
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="goatDBModel.Comment">
-              <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="comment1" ColumnName="comment" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="subject" ColumnName="subject" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="date_sent" ColumnName="date_sent" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

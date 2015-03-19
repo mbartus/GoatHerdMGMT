@@ -1,87 +1,77 @@
-@model goatMGMT.Models.Treatment
+@model goatMGMT.Models.TreatmentViewModel
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h2>Create</h2>
 
-<h2>Create</h2>
 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        <fieldset class="form-horizontal">
+            <legend>Treatment</legend>
 
-    <fieldset class="form-horizontal">
-        <legend>Treatment</legend>
+            <div class="control-group">
+                @Html.LabelFor(model => model.treatment.animal_id, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("treatment.animal_id", (IEnumerable<SelectListItem>)ViewData["alist"], new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.treatment.animal_id, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.animal_id, "Animal", new { @class = "control-label" })
-			<div class="controls">
-				@Html.DropDownList("animal_id", String.Empty)
-				@Html.ValidationMessageFor(model => model.animal_id, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.treatment.date, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.treatment.date, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.treatment.date, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.date, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.date)
-				@Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.treatment.item_type, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.treatment.item_type, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.treatment.item_type, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.type, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.type)
-				@Html.ValidationMessageFor(model => model.type, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.treatment.dosage, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.treatment.dosage, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.treatment.dosage, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.item_type, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.item_type)
-				@Html.ValidationMessageFor(model => model.item_type, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.treatment.product, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.treatment.product, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.treatment.product, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.product, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.product)
-				@Html.ValidationMessageFor(model => model.product, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.treatment.remarks, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.treatment.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
+                    @Html.ValidationMessageFor(model => model.treatment.remarks, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.dosage, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.dosage)
-				@Html.ValidationMessageFor(model => model.dosage, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="form-actions no-color" style="padding-bottom:15px">
+                <input type="submit" value="Create" class="btn btn-success" style="margin-top:15px;" />
+                @Html.ActionLink("Cancel", "Index", "Treatment", new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+            </div>
+        </fieldset>
+    }
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.remarks)
-				@Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Create" class="btn" />
-        </div>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

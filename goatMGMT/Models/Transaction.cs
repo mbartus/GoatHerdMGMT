@@ -25,7 +25,6 @@ namespace goatMGMT.Models
         public Nullable<decimal> total_payment { get; set; }
         public string notes { get; set; }
     
-        public virtual Associate Associate { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

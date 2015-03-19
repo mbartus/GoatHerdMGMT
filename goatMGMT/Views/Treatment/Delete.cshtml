@@ -1,0 +1,80 @@
+@model goatMGMT.Models.Treatment
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Treatment</legend>
+
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Animal.tag)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Animal.tag)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.type)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.type)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.item_type)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.item_type)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.product)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.product)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.dosage)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.dosage)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.remarks)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.remarks)
+		</dd>
+
+	</dl>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

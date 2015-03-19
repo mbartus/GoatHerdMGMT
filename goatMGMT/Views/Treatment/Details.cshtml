@@ -1,0 +1,74 @@
+@model goatMGMT.Models.Treatment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+	<legend>Treatment</legend>
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Animal.tag)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Animal.tag)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.type)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.type)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.item_type)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.item_type)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.product)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.product)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.dosage)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.dosage)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.remarks)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.remarks)
+		</dd>
+
+	</dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

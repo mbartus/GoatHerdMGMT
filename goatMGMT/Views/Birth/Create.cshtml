@@ -1,0 +1,112 @@
+@model goatMGMT.Models.Birth
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Birth</legend>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.child_id, "Animal", new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("child_id", String.Empty)
+				@Html.ValidationMessageFor(model => model.child_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.mother_id, "Animal2", new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("mother_id", String.Empty)
+				@Html.ValidationMessageFor(model => model.mother_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.father_id, "Animal1", new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("father_id", String.Empty)
+				@Html.ValidationMessageFor(model => model.father_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.date, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.date)
+				@Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.type, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.type)
+				@Html.ValidationMessageFor(model => model.type, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.parity, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.parity)
+				@Html.ValidationMessageFor(model => model.parity, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.score, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.score)
+				@Html.ValidationMessageFor(model => model.score, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.alive, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.alive)
+				@Html.ValidationMessageFor(model => model.alive, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.born, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.born)
+				@Html.ValidationMessageFor(model => model.born, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.notes, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.notes)
+				@Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Create" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

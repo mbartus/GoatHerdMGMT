@@ -1,0 +1,98 @@
+@model goatMGMT.Models.Birth
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+	<legend>Birth</legend>
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Animal.tag)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Animal.tag)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Animal2.tag)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Animal2.tag)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Animal1.tag)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Animal1.tag)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.type)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.type)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.parity)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.parity)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.score)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.score)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.alive)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.alive)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.born)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.born)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.notes)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.notes)
+		</dd>
+
+	</dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

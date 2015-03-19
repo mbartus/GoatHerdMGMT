@@ -1,0 +1,89 @@
+@model goatMGMT.Models.Treatment
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Treatment</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.animal_id, "Animal", new { @class = "control-label" })
+			<div class="controls">
+				@Html.DropDownList("animal_id", String.Empty)
+				@Html.ValidationMessageFor(model => model.animal_id, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.date, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.date)
+				@Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.type, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.type)
+				@Html.ValidationMessageFor(model => model.type, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.item_type, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.item_type)
+				@Html.ValidationMessageFor(model => model.item_type, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.product, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.product)
+				@Html.ValidationMessageFor(model => model.product, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.dosage, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.dosage)
+				@Html.ValidationMessageFor(model => model.dosage, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.remarks)
+				@Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

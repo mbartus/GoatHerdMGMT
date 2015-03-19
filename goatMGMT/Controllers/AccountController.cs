@@ -76,7 +76,7 @@ namespace goatMGMT.Controllers
                     //smtpClient.Send(mail);
                     return RedirectToAction("RegistrationConfirmation", "Account");
                 }
-                catch (MembershipCreateUserException e)
+                catch
                 {
                     ModelState.AddModelError("", "Sorry, a user with that email already exists");
                     return View(registerData);
@@ -116,7 +116,7 @@ namespace goatMGMT.Controllers
                     WebSecurity.ChangePassword(username, cpIn.oldPassword, cpIn.newPassword);
                     return RedirectToAction("Manage", "Account");
                 }
-                catch (MembershipCreateUserException e)
+                catch
                 {
                     ModelState.AddModelError("", "Sorry, old password is invalid");
                     return View(cpIn);
@@ -147,7 +147,7 @@ namespace goatMGMT.Controllers
                     user.ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
                     return RedirectToAction("Manage", "Account");
                 }
-                catch (MembershipCreateUserException e)
+                catch
                 {
                     ModelState.AddModelError("", "Sorry, password is invalid");
                     return View(vmIn);

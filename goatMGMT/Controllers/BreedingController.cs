@@ -94,8 +94,6 @@ namespace goatMGMT.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
-            bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
             List<SelectListItem> mlist = new List<SelectListItem>();
             List<SelectListItem> flist = new List<SelectListItem>();
             mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
@@ -118,12 +116,46 @@ namespace goatMGMT.Controllers
         // GET: /Breeding/Edit/5
         public ActionResult Edit(Int32 id, Int32 id2, Int32 id3)
         {
+            if (id == null || id2 == null || id3 == null)
+            {
+                return HttpNotFound();
+            }
             Breeding breeding = db.Breedings.Find(id, id2, id3);
             if (breeding == null)
             {
                 return HttpNotFound();
             }
-            return View(breeding);
+            BreedingViewModel bvm = new BreedingViewModel();
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
+            bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
+            bvm.date = (DateTime)breeding.date;
+            bvm.father_id = breeding.father_id;
+            bvm.mother_id = breeding.mother_id;
+            bvm.pregnancy_check = (DateTime)breeding.pregnancy_check;
+            bvm.remarks = breeding.remarks;
+            List<SelectListItem> mlist = new List<SelectListItem>();
+            List<SelectListItem> flist = new List<SelectListItem>();
+            mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
+            flist.Add(new SelectListItem { Text = "Select Mother", Value = "0" });
+            int selectedItem = 0;
+            for (int i = 1; i <= bvm.maleList.Count(); i++)
+            {
+                if (bvm.maleList.ElementAt(i - 1).name == db.Animals.Find(bvm.father_id).name)
+                {
+                    selectedItem = i;
+                }
+                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).name, Value = "" + i });
+            }
+            SelectList mlistReal = new SelectList(mlist, "Value", "Text", db.Animals.Find(bvm.father_id).name);
+            for (int i = 1; i <= bvm.femaleList.Count(); i++)
+            {
+                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).name, Value = "" + i });
+            }
+            SelectList flistReal = new SelectList(flist, "Value", "Text", db.Animals.Find(bvm.mother_id).name);
+            @ViewBag.flist = flistReal;
+            @ViewBag.mlist = mlistReal;
+            return View(bvm);
         }
 
         //
@@ -132,13 +164,36 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Breeding breeding)
         {
-            if (ModelState.IsValid)
+            BreedingViewModel bvm = new BreedingViewModel();
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
+            bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
+            if (ModelState.IsValid && breeding.father_id != 0 && breeding.mother_id != 0)
             {
+                breeding.Animal = db.Animals.Find(bvm.maleList.ElementAt(breeding.father_id - 1).id);
+                breeding.Animal1 = db.Animals.Find(bvm.femaleList.ElementAt(breeding.mother_id - 1).id);
+                breeding.father_id = breeding.Animal.id;
+                breeding.mother_id = breeding.Animal1.id;
                 db.Entry(breeding).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(breeding);
+            List<SelectListItem> mlist = new List<SelectListItem>();
+            List<SelectListItem> flist = new List<SelectListItem>();
+            mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
+            flist.Add(new SelectListItem { Text = "Select Mother", Value = "0" });
+            for (int i = 1; i <= bvm.maleList.Count(); i++)
+            {
+                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).name, Value = "" + i });
+            }
+            for (int i = 1; i <= bvm.femaleList.Count(); i++)
+            {
+                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).name, Value = "" + i });
+            }
+            @ViewBag.flist = flist;
+            @ViewBag.mlist = mlist;
+            ModelState.AddModelError("", "Both a male and female must be selected.");
+            return View(bvm);
         }
 
         //

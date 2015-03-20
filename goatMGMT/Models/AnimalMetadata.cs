@@ -29,11 +29,9 @@ namespace goatMGMT.Models
         [DisplayName("Child")]
         public bool isChild { get; set; }
 
-        [Required]
         [DisplayName("Breed Code")]
         public string breed_code { get; set; }
 
-        [Required]
         [DisplayName("Status")]
         public string status_code { get; set; }
 
@@ -41,23 +39,18 @@ namespace goatMGMT.Models
         [DisplayName("Name")]
         public string name { get; set; }
 
-        [Required]
         [DisplayName("Regulation Number")]
         public string regulation_no { get; set; }
 
-        [Required]
         [DisplayName("Microchip ID")]
         public string microchip_id { get; set; }
 
-        [Required]
         [DisplayName("Premise ID")]
         public string premise_id { get; set; }
 
-        [Required]
         [DisplayName("Herd ID")]
         public string herd_id_code { get; set; }
 
-        [Required]
         [DisplayName("Breed Registry")]
         public string breed_registry { get; set; }
 

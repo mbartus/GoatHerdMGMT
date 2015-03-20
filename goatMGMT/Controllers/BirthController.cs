@@ -80,18 +80,20 @@ namespace goatMGMT.Controllers
         // POST: /Birth/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BirthViewModel birth)
+        public ActionResult Create(BirthViewModel birthViewModel)
         {
-            if (ModelState.IsValid && birth.offspringChoice != -1)
+            if (ModelState.IsValid && birthViewModel.offspringChoice != -1)
             {
-                birth.birth.Animal = db.Animals.Find(birth.offspringChoice);
-                db.Births.Add(birth.birth);
+                birthViewModel.birth.Animal = db.Animals.Find(birthViewModel.offspringChoice);
+                birthViewModel.birth.Animal1 = db.Animals.Find(birthViewModel.birth.father_id);
+                birthViewModel.birth.Animal2 = db.Animals.Find(birthViewModel.birth.mother_id);
+                db.Births.Add(birthViewModel.birth);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id2 = birthViewModel.birth.father_id, id3 = birthViewModel.birth.mother_id});
             }
 
             BirthViewModel bvm = new BirthViewModel();
-            bvm.birth = birth.birth;
+            bvm.birth = birthViewModel.birth;
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var births = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == true);
             bvm.offspring = new List<System.Web.Mvc.SelectListItem>();
@@ -101,7 +103,7 @@ namespace goatMGMT.Controllers
                 bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = eachBirth.tag, Value = "" + eachBirth.id });
             }
             @ViewBag.offspringDrop = bvm.offspring;
-            if (birth.offspringChoice == 0)
+            if (birthViewModel.offspringChoice == 0)
             {
                 ModelState.AddModelError("", "Please choose an offspring (must be an animal in your herd");
             }
@@ -110,9 +112,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Birth/Edit/5
-        public ActionResult Edit(Int32 id)
+        public ActionResult Edit(Int32 id, Int32 id2, Int32 id3)
         {
-            Birth birth = db.Births.Find(id);
+            Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             if (birth == null)
             {
                 return HttpNotFound();
@@ -129,18 +131,18 @@ namespace goatMGMT.Controllers
         // POST: /Birth/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BirthViewModel bvm)
+        public ActionResult Edit(Birth birth)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bvm.birth).State = EntityState.Modified;
+                db.Entry(birth).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            bvm.offspring_tag = bvm.birth.Animal.tag;
-            bvm.father_tag = bvm.birth.Animal1.tag;
-            bvm.mother_tag = bvm.birth.Animal2.tag;
-            return View(bvm);
+            //bvm.offspring_tag = bvm.birth.Animal.tag;
+            //bvm.father_tag = bvm.birth.Animal1.tag;
+            //bvm.mother_tag = bvm.birth.Animal2.tag;
+            return View(birth);
         }
 
         //

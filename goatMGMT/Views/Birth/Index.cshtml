@@ -69,7 +69,7 @@
                         @Html.DisplayFor(modelItem => item.birth.notes)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.birth.id }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.birth.id, id2 = item.birth.father_id ,id3 = item.birth.mother_id }) |
                         @Html.ActionLink("Details", "Details", new { id = item.birth.id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.birth.id })
                     </td>

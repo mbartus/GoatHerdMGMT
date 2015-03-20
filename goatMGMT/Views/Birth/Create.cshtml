@@ -17,6 +17,8 @@
         <fieldset class="form-horizontal">
             <legend>Birth</legend>
             
+            @Html.HiddenFor(m => m.birth.father_id)
+            @Html.HiddenFor(m => m.birth.mother_id)
             <div class="control-group">
                 @Html.LabelFor(m => m.offspringChoice, new { @class = "control-label" })
                 <div class="controls">

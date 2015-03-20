@@ -8,12 +8,12 @@ namespace goatMGMT.Models
 {
     public class BirthViewModel
     {
-        public Birth birth;
-        public string mother_tag;
-        public string father_tag;
-        public string offspring_tag;
-        public List<SelectListItem> offspring;
-        public int offspringChoice;
+        public Birth birth {get; set;}
+        public string mother_tag { get; set; }
+        public string father_tag { get; set; }
+        public string offspring_tag { get; set; }
+        public List<SelectListItem> offspring { get; set; }
+        public int offspringChoice { get; set; }
         public IEnumerable<goatMGMT.Models.BirthViewModel> ien;
     }
 }

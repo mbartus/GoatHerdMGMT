@@ -14,12 +14,9 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
-        @Html.HiddenFor(model => model.birth.id)
-        @Html.HiddenFor(model => model.birth.father_id)
-        @Html.HiddenFor(model => model.birth.mother_id)
-        @Html.HiddenFor(model => model.birth.Animal.tag)
-        @Html.HiddenFor(model => model.birth.Animal1.tag)
-        @Html.HiddenFor(model => model.birth.Animal2.tag)
+        @Html.HiddenFor(m => m.birth.Animal)
+        @Html.HiddenFor(m => m.birth.Animal1)
+        @Html.HiddenFor(m => m.birth.Animal2)
         <fieldset class="form-horizontal">
             <legend>Breeding</legend>
 

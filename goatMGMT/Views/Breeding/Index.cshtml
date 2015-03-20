@@ -63,7 +63,7 @@
                     @Html.DisplayFor(modelItem => item.breeding.remarks)
                 </td>
                 <td>
-                    @Html.ActionLink("View Births", "Index", "Birth", new { id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
+                    @Html.ActionLink("View Births", "Index", "Birth", new { id2 = item.breeding.mother_id, id3 = item.breeding.father_id }, null) |
                     @Html.ActionLink("Edit", "Edit", new {  id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id })

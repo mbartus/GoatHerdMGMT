@@ -17,7 +17,7 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Birth/
-        public ActionResult Index(Int32? id2, Int32 id3)
+        public ActionResult Index(Int32 id2, Int32 id3)
         {
             List<BirthViewModel> bvmList = new List<BirthViewModel>();
             int userID = (int)Membership.GetUser().ProviderUserKey;
@@ -31,7 +31,12 @@ namespace goatMGMT.Controllers
                 bvm.mother_tag = birth.Animal2.tag;
                 bvmList.Add(bvm);
             }
-            return View(bvmList);
+            BirthViewModel bvmFinal = new BirthViewModel();
+            bvmFinal.ien = bvmList;
+            bvmFinal.birth = new Birth();
+            bvmFinal.birth.father_id = id2;
+            bvmFinal.birth.mother_id = id3;
+            return View(bvmFinal);
         }
 
         //
@@ -53,18 +58,22 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Birth/Create
-        public ActionResult Create()
+        public ActionResult Create(Int32 id2, Int32 id3)
         {
             BirthViewModel bvm = new BirthViewModel();
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            var births = db.Births.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID && m.Animal.isChild == true);
-            bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
-            foreach (Birth birth in births)
+            var births = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == true);
+            bvm.birth = new Birth();
+            bvm.birth.father_id = id2;
+            bvm.birth.mother_id = id3;
+            bvm.offspring = new List<System.Web.Mvc.SelectListItem>();
+            bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
+            foreach (Animal birth in births)
             {
-                bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = birth.Animal.tag, Value = "" + birth.Animal.id });
+                bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = birth.tag, Value = "" + birth.id });
             }
             @ViewBag.offspringDrop = bvm.offspring;
-            return View(bvm);
+            return View("Create", bvm);
         }
 
         //
@@ -84,17 +93,18 @@ namespace goatMGMT.Controllers
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth.birth;
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            var births = db.Births.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID && m.Animal.isChild == true);
-            bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = "Select Offspring", Value = "" + 0 });
-            foreach (Birth eachBirth in births)
+            var births = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == true);
+            bvm.offspring = new List<System.Web.Mvc.SelectListItem>();
+            bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
+            foreach (Animal eachBirth in births)
             {
-                bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = eachBirth.Animal.tag, Value = "" + eachBirth.Animal.id });
+                bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = eachBirth.tag, Value = "" + eachBirth.id });
             }
+            @ViewBag.offspringDrop = bvm.offspring;
             if (birth.offspringChoice == 0)
             {
                 ModelState.AddModelError("", "Please choose an offspring (must be an animal in your herd");
             }
-            @ViewBag.offspringDrop = bvm.offspring;
             return View(bvm);
         }
 

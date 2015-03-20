@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.WebPages.Html;
+using System.Web.Mvc;
 
 namespace goatMGMT.Models
 {
@@ -12,7 +12,8 @@ namespace goatMGMT.Models
         public string mother_tag;
         public string father_tag;
         public string offspring_tag;
-        public List<SelectListItem> offspring = new List<SelectListItem>();
+        public List<SelectListItem> offspring;
         public int offspringChoice;
+        public IEnumerable<goatMGMT.Models.BirthViewModel> ien;
     }
 }

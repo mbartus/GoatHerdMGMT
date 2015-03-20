@@ -1,4 +1,4 @@
-@model IEnumerable<goatMGMT.Models.BirthViewModel>
+@model goatMGMT.Models.BirthViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
     <h2>Births</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Birth", new { @class = "btn btn-success" })
+        @Html.ActionLink("Create New", "Create", "Birth", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id }, new { @class = "btn btn-success" })
     </p>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -41,7 +41,7 @@
                 <th></th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.ien)
             {
                 <tr>
                     <td>

@@ -22,7 +22,7 @@
         <div class="control-group">
             @Html.LabelFor(m => m.SecurityQuestion, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(m => m.SecurityQuestion, new { @class = "form-control"})
+                @Html.DropDownListFor(m => m.SecurityQuestion, Model.questions, "Select a Question", new { @class = "form-control"})
             </div>
         </div>
         <div class="control-group">
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">
-            <input value="Submit" type="submit" class="btn btn-success" />
+            <input value="Save" type="submit" class="btn btn-success" />
             @Html.ActionLink("Cancel", "Manage", "Account", new { @class="btn btn-danger"})
         </div>
     </fieldset>

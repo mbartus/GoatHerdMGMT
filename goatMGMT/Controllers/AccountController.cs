@@ -132,7 +132,8 @@ namespace goatMGMT.Controllers
         [HttpGet]
         public ActionResult ChangeSecurityQuestion()
         {
-            return View();
+            ChangeSecurityQuestionViewModel csvm = new ChangeSecurityQuestionViewModel();
+            return View(csvm);
         }
 
         [Authorize]
@@ -141,11 +142,10 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = Membership.GetUser();
                 try
                 {
-                    user.ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
-                    return RedirectToAction("Manage", "Account");
+                    bool done = Membership.GetUser().ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
+                    if (done) return RedirectToAction("Manage", "Account");
                 }
                 catch
                 {
@@ -154,8 +154,6 @@ namespace goatMGMT.Controllers
                 }
             }
             // should never get here
-            ModelState.AddModelError("", "Sorry, a user with that email already exists");
-
             return View(vmIn);
         }
         

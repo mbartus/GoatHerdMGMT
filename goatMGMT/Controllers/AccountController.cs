@@ -144,8 +144,9 @@ namespace goatMGMT.Controllers
             {
                 try
                 {
-                    bool done = Membership.GetUser().ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
-                    if (done) return RedirectToAction("Manage", "Account");
+                    // no say microsoft
+                    //bool done = Membership.GetUser().ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
+                    //if (done) return RedirectToAction("Manage", "Account");
                 }
                 catch
                 {

@@ -196,6 +196,7 @@
     <Compile Include="Models\Birth.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BirthViewModel.cs" />
     <Compile Include="Models\Breeding.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>

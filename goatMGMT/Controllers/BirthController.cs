@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using goatMGMT.Models;
+using System.Web.Security;
+using System.Web.WebPages.Html;
 
 namespace goatMGMT.Controllers
 {
@@ -15,10 +17,21 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Birth/
-        public ActionResult Index()
+        public ActionResult Index(Int32 id2, Int32 id3)
         {
-            var births = db.Births.Include(b => b.Animal).Include(b => b.Animal1).Include(b => b.Animal2);
-            return View(births.ToList());
+            List<BirthViewModel> bvmList = new List<BirthViewModel>();
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            var births = db.Births.Include(b => b.Animal1.id == id2 && b.Animal2.id == id3).Where(m => m.Animal.owner == userID);
+            foreach (Birth birth in births)
+            {
+                BirthViewModel bvm = new BirthViewModel();
+                bvm.birth = birth;
+                bvm.offspring_tag = birth.Animal.tag;
+                bvm.father_tag = birth.Animal1.tag;
+                bvm.mother_tag = birth.Animal2.tag;
+                bvmList.Add(bvm);
+            }
+            return View(bvmList);
         }
 
         //
@@ -30,36 +43,57 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
-            return View(birth);
+            BirthViewModel bvm = new BirthViewModel();
+            bvm.birth = birth;
+            bvm.offspring_tag = birth.Animal.tag;
+            bvm.father_tag = birth.Animal1.tag;
+            bvm.mother_tag = birth.Animal2.tag;
+            return View(bvm);
         }
 
         //
         // GET: /Birth/Create
-        public ActionResult Create()
+        public ActionResult Create(Int32 id, Int32 id2, Int32 id3)
         {
-            ViewBag.child_id = new SelectList(db.Animals, "id", "tag");
-            ViewBag.father_id = new SelectList(db.Animals, "id", "tag");
-            ViewBag.mother_id = new SelectList(db.Animals, "id", "tag");
-            return View();
+            BirthViewModel bvm = new BirthViewModel();
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            var births = db.Births.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID && m.Animal.isChild == true);
+            bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
+            foreach (Birth birth in births)
+            {
+                bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = birth.Animal.tag, Value = "" + birth.Animal.id });
+            }
+            return View(bvm);
         }
 
         //
         // POST: /Birth/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Birth birth)
+        public ActionResult Create(BirthViewModel birth)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && birth.offspringChoice != -1)
             {
-                db.Births.Add(birth);
+                birth.birth.Animal = db.Animals.Find(birth.offspringChoice);
+                db.Births.Add(birth.birth);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.child_id = new SelectList(db.Animals, "id", "tag", birth.child_id);
-            ViewBag.father_id = new SelectList(db.Animals, "id", "tag", birth.father_id);
-            ViewBag.mother_id = new SelectList(db.Animals, "id", "tag", birth.mother_id);
-            return View(birth);
+            BirthViewModel bvm = new BirthViewModel();
+            bvm.birth = birth.birth;
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            var births = db.Births.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID && m.Animal.isChild == true);
+            bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = "Select Offspring", Value = "" + 0 });
+            foreach (Birth eachBirth in births)
+            {
+                bvm.offspring.Add(new System.Web.WebPages.Html.SelectListItem { Text = eachBirth.Animal.tag, Value = "" + eachBirth.Animal.id });
+            }
+            if (birth.offspringChoice == 0)
+            {
+                ModelState.AddModelError("", "Please choose an offspring (must be an animal in your herd");
+            }
+            return View(bvm);
         }
 
         //
@@ -71,28 +105,30 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.child_id = new SelectList(db.Animals, "id", "tag", birth.child_id);
-            ViewBag.father_id = new SelectList(db.Animals, "id", "tag", birth.father_id);
-            ViewBag.mother_id = new SelectList(db.Animals, "id", "tag", birth.mother_id);
-            return View(birth);
+            BirthViewModel bvm = new BirthViewModel();
+            bvm.birth = birth;
+            bvm.offspring_tag = birth.Animal.tag;
+            bvm.father_tag = birth.Animal1.tag;
+            bvm.mother_tag = birth.Animal2.tag;
+            return View(bvm);
         }
 
         //
         // POST: /Birth/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Birth birth)
+        public ActionResult Edit(BirthViewModel bvm)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(birth).State = EntityState.Modified;
+                db.Entry(bvm.birth).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.child_id = new SelectList(db.Animals, "id", "tag", birth.child_id);
-            ViewBag.father_id = new SelectList(db.Animals, "id", "tag", birth.father_id);
-            ViewBag.mother_id = new SelectList(db.Animals, "id", "tag", birth.mother_id);
-            return View(birth);
+            bvm.offspring_tag = bvm.birth.Animal.tag;
+            bvm.father_tag = bvm.birth.Animal1.tag;
+            bvm.mother_tag = bvm.birth.Animal2.tag;
+            return View(bvm);
         }
 
         //
@@ -104,7 +140,12 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
-            return View(birth);
+            BirthViewModel bvm = new BirthViewModel();
+            bvm.birth = birth;
+            bvm.offspring_tag = birth.Animal.tag;
+            bvm.father_tag = birth.Animal1.tag;
+            bvm.mother_tag = birth.Animal2.tag;
+            return View(bvm);
         }
 
         //

@@ -1,112 +1,128 @@
-@model goatMGMT.Models.Birth
+@model goatMGMT.Models.BirthViewModel
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="container">
+    <h2>Edit</h2>
 
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset class="form-horizontal">
-        <legend>Birth</legend>
+        @Html.HiddenFor(model => model.birth.id)
+        @Html.HiddenFor(model => model.birth.father_id)
+        @Html.HiddenFor(model => model.birth.mother_id)
+        @Html.HiddenFor(model => model.birth.Animal.tag)
+        @Html.HiddenFor(model => model.birth.Animal1.tag)
+        @Html.HiddenFor(model => model.birth.Animal2.tag)
+        <fieldset class="form-horizontal">
+            <legend>Breeding</legend>
 
-        @Html.HiddenFor(model => model.id)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Offspring's Tag</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.offspring_tag)
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.child_id, "Animal", new { @class = "control-label" })
-			<div class="controls">
-				@Html.DropDownList("child_id", String.Empty)
-				@Html.ValidationMessageFor(model => model.child_id, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Mother's Tag</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.mother_tag)
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.mother_id, "Animal2", new { @class = "control-label" })
-			<div class="controls">
-				@Html.DropDownList("mother_id", String.Empty)
-				@Html.ValidationMessageFor(model => model.mother_id, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Father's Tag</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.father_tag)
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.father_id, "Animal1", new { @class = "control-label" })
-			<div class="controls">
-				@Html.DropDownList("father_id", String.Empty)
-				@Html.ValidationMessageFor(model => model.father_id, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@Html.LabelFor(model => model.birth.Animal.dob)</h3>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => model.birth.Animal.dob)
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.date, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.date)
-				@Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.birth.score, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.birth.score, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.birth.score, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.type, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.type)
-				@Html.ValidationMessageFor(model => model.type, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.birth.alive, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.birth.alive, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.birth.alive, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.parity, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.parity)
-				@Html.ValidationMessageFor(model => model.parity, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.birth.alive, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.birth.alive, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.birth.alive, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.score, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.score)
-				@Html.ValidationMessageFor(model => model.score, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.birth.born, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.birth.born, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.birth.born, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.alive, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.alive)
-				@Html.ValidationMessageFor(model => model.alive, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.birth.notes, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.birth.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px" })
+                    @Html.ValidationMessageFor(model => model.birth.notes, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.born, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.born)
-				@Html.ValidationMessageFor(model => model.born, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="form-actions no-color" style="padding-bottom:15px">
+                <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
+                @Html.ActionLink("Cancel", "Index", "Birth", new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+            </div>
+        </fieldset>
+    }
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.notes, new { @class = "control-label" })
-			<div class="controls">
-				@Html.EditorFor(model => model.notes)
-				@Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Save" class="btn" />
-        </div>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -108,6 +108,6 @@
         </div>
     </fieldset>
     <p>
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back to List", "Index", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id }, new { @class = "btn btn-default" })
     </p>
 </div>

@@ -115,7 +115,7 @@
         @Html.AntiForgeryToken()
         <div class="form-actions no-color" style="padding-bottom: 15px;">
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
-            @Html.ActionLink("Cancel", "Index", "Birth", new { @class = "btn btn-default" })
+            @Html.ActionLink("Cancel", "Index", "Birth", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id },  new { @class = "btn btn-default" })
         </div>
 
     <!-- Modal -->

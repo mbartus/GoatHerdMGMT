@@ -43,7 +43,7 @@ namespace goatMGMT.Controllers
         // GET: /Birth/Details/5
         public ActionResult Details(Int32 id)
         {
-            Birth birth = db.Births.Find(id);
+            Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             if (birth == null)
             {
                 return HttpNotFound();
@@ -112,7 +112,7 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Birth/Edit/5
-        public ActionResult Edit(Int32 id, Int32 id2, Int32 id3)
+        public ActionResult Edit(Int32 id)
         {
             Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             if (birth == null)
@@ -139,9 +139,11 @@ namespace goatMGMT.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //bvm.offspring_tag = bvm.birth.Animal.tag;
-            //bvm.father_tag = bvm.birth.Animal1.tag;
-            //bvm.mother_tag = bvm.birth.Animal2.tag;
+            BirthViewModel bvm = new BirthViewModel();
+            bvm.birth = birth;
+            bvm.offspring_tag = birth.Animal.tag;
+            bvm.father_tag = birth.Animal1.tag;
+            bvm.mother_tag = birth.Animal2.tag;
             return View(birth);
         }
 
@@ -149,7 +151,7 @@ namespace goatMGMT.Controllers
         // GET: /Birth/Delete/5
         public ActionResult Delete(Int32 id)
         {
-            Birth birth = db.Births.Find(id);
+            Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             if (birth == null)
             {
                 return HttpNotFound();

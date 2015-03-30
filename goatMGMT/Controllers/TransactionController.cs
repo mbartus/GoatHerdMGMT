@@ -21,7 +21,10 @@ namespace goatMGMT.Controllers
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
             List<Transaction> myTransactions = db.Transactions.Where(m => m.userid == userID).ToList();
-            
+            if (User.IsInRole("admin"))
+            {
+                myTransactions = db.Transactions.ToList();
+            }
             return View(myTransactions);
         }
 

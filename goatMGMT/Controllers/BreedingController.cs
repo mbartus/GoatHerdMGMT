@@ -22,6 +22,10 @@ namespace goatMGMT.Controllers
             List<BreedingViewModel> beList = new List<BreedingViewModel>();
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var breedings = db.Breedings.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID);
+            if (User.IsInRole("admin"))
+            {
+                breedings = db.Breedings.Include(a => a.Animal.UserProfile);
+            }
             foreach (Breeding bre in breedings)
             {
                 BreedingViewModel be = new BreedingViewModel();

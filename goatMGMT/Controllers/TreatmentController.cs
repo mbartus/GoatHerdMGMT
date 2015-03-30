@@ -22,6 +22,10 @@ namespace goatMGMT.Controllers
             List<TreatmentViewModel> tvalist = new List<TreatmentViewModel>();
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var transactions = db.Treatments.Include(a => a.Animal.UserProfile).Where(m => m.Animal.owner == userID);
+            if (User.IsInRole("admin"))
+            {
+                transactions = db.Treatments.Include(a => a.Animal.UserProfile);
+            }
             foreach (Treatment tra in transactions)
             {
                 TreatmentViewModel tvm = new TreatmentViewModel();

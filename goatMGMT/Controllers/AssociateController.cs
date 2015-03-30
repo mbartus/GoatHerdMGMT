@@ -19,10 +19,13 @@ namespace goatMGMT.Controllers
         // GET: /Associate/
         public ActionResult Index()
         {
-            //int userID = (int)Membership.GetUser().ProviderUserKey;
-            //List<Associate> myAssocaites = db.Associates.Where(m => m. == userID).ToList();
-            
-            return View(db.Associates.ToList());
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            var myAssocaites = db.Associates.Where(m => m.userid == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                myAssocaites = db.Associates.ToList();
+            }
+            return View(myAssocaites);
         }
 
         //

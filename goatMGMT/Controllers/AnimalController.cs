@@ -20,8 +20,12 @@ namespace goatMGMT.Controllers
         public ActionResult Index()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            var animals = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID);
-            return View(animals.ToList());
+            var animals = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                animals = db.Animals.ToList();
+            }
+            return View(animals);
         }
 
         //

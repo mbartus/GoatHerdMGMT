@@ -61,6 +61,14 @@ namespace goatMGMT.Controllers
         [Authorize]
         public ActionResult Dashboard()
         {
+            if (User.IsInRole("admin"))
+            {
+                ViewBag.Title = "Admin Dashboard";
+            }
+            else
+            {
+                ViewBag.Title = "Dashboard";
+            }
             return View();
         }
 

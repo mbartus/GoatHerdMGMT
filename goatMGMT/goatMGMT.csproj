@@ -430,6 +430,7 @@
     <Content Include="Views\Birth\Edit.cshtml" />
     <Content Include="Views\Birth\Index.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Account\CreateAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

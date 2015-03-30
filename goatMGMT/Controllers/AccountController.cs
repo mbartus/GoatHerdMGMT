@@ -174,6 +174,63 @@ namespace goatMGMT.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        public ActionResult CreateAdmin()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public ActionResult CreateAdmin(RegisterViewModel registerData)
+        {
+            if (ModelState.IsValid)
+            {
+                if (registerData.Password != registerData.ConfirmPassword) // check if passwords are the same
+                {
+                    ModelState.AddModelError("", "Sorry, passwords do not match");
+                    return View(registerData);
+                }
+                if (registerData.Password.Length <= 6) // check if password length id greater than 5
+                {
+                    ModelState.AddModelError("", "Sorry, passwords must be at least 6 characters");
+                    return View(registerData);
+                }
+                try
+                {
+                    WebSecurity.CreateUserAndAccount(registerData.Username, registerData.Password);
+                    Roles.AddUserToRole(registerData.Username, "admin");
+
+
+                    // send email to verify and other things
+                    //SmtpClient smtpClient = new SmtpClient("mail.MyWebsiteDomainName.com", 25);
+
+                    //smtpClient.Credentials = new System.Net.NetworkCredential("info@MyWebsiteDomainName.com", "myIDPassword");
+                    //smtpClient.UseDefaultCredentials = true;
+                    //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    //smtpClient.EnableSsl = true;
+                    //MailMessage mail = new MailMessage();
+
+                    ////Setting From , To and CC
+                    //mail.From = new MailAddress("info@MyWebsiteDomainName", "MyWeb Site");
+                    //mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
+                    //mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
+
+                    //smtpClient.Send(mail);
+                    return RedirectToAction("Dashboard", "Home");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Sorry, a user with that email already exists");
+                    return View(registerData);
+                }
+            }
+            // should never get here
+            ModelState.AddModelError("", "Sorry, a user with that email already exists");
+            return View(registerData);
+        }
+        
         [Authorize]
         public ActionResult Logout()
         {

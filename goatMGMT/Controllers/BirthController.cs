@@ -170,7 +170,7 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Int32 id)
         {
-            Birth birth = db.Births.Find(id);
+            Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             db.Births.Remove(birth);
             db.SaveChanges();
             return RedirectToAction("Index");

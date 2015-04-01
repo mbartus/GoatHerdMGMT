@@ -44,7 +44,24 @@ namespace goatMGMT.Controllers
         // GET: /Animal/Create
         public ActionResult Create()
         {
-            ViewBag.owner1 = new SelectList(db.UserProfiles, "UserId", "Username");
+            List<SelectListItem> speciesList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Goat (Meat)", Value = "Goat (Meat)"},
+                new SelectListItem() { Text= "Goat (Milk)", Value = "Goat (Milk)"},
+                new SelectListItem() { Text = "Sheep", Value = "Sheep"},
+                new SelectListItem() { Text = "Other", Value = "Other"}
+            };
+            @ViewBag.speciesList = speciesList;
+            List<SelectListItem> statusList = new List<SelectListItem>() {
+                new SelectListItem() { Text = "Active", Value = "Active"},
+                new SelectListItem() { Text = "Sold for meat", Value = "Sold for meat"},
+                new SelectListItem() { Text = "Sold for breeding", Value = "Sold for breeding"},
+                new SelectListItem() { Text = "Died", Value = "Died"},
+                new SelectListItem() { Text = "Culled", Value = "Culled"},
+                new SelectListItem() { Text = "Unclassed", Value = "Unclassed"},
+                new SelectListItem() { Text = "Herd Replacement", Value = "Herd Replacement"}
+            };
+            
+            @ViewBag.statusList = statusList;
             return View();
         }
 
@@ -54,6 +71,7 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Animal animal)
         {
+
             if (ModelState.IsValid)
             {
                 animal.owner = (int)Membership.GetUser().ProviderUserKey;
@@ -73,6 +91,16 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
+            List<SelectListItem> statusList = new List<SelectListItem>() {
+                new SelectListItem() { Text = "Active", Value = "Active"},
+                new SelectListItem() { Text = "Sold for meat", Value = "Sold for meat"},
+                new SelectListItem() { Text = "Sold for breeding", Value = "Sold for breeding"},
+                new SelectListItem() { Text = "Died", Value = "Died"},
+                new SelectListItem() { Text = "Culled", Value = "Culled"},
+                new SelectListItem() { Text = "Unclassed", Value = "Unclassed"},
+                new SelectListItem() { Text = "Herd Replacement", Value = "Herd Replacement"}
+            };
+            @ViewBag.statusList = statusList;
             return View(animal);
         }
 

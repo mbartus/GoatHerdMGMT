@@ -39,6 +39,7 @@
                 @Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
             </div>
         </div>
+        <fieldset disabled>
         <div class="row">
             <div class="col-md-1">
                 <div class="checkbox">
@@ -62,11 +63,11 @@
                 </div>
             </div>
         </div>
+            </fieldset>
         <div class="control-group">
-            @Html.LabelFor(model => model.status_code, new { @class = "control-label" })
+            @Html.LabelFor(m => m.status_code, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.status_code, new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.status_code, null, new { @class = "help-inline" })
+                @Html.DropDownListFor(m => m.status_code, (IEnumerable<SelectListItem>)ViewData["statusList"], "Select a status", new { @class = "form-control" })
             </div>
         </div>
 
@@ -118,6 +119,7 @@
             </div>
         </div>
 
+        <fieldset disabled>
         <div class="control-group">
             @Html.LabelFor(model => model.species, new { @class = "control-label" })
             <div class="controls">
@@ -125,60 +127,61 @@
                 @Html.ValidationMessageFor(model => model.species, null, new { @class = "help-inline" })
             </div>
         </div>
+            </fieldset>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.weaning_weight, new { @class = "control-label" })
-            <div class="controls">
-                @Html.TextBoxFor(model => model.weaning_weight, new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.weaning_weight, null, new { @class = "help-inline" })
-            </div>
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.weaning_weight, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(model => model.weaning_weight, new { @class="form-control"})
+                        @Html.ValidationMessageFor(model => model.weaning_weight, null, new { @class = "help-inline" })
+                    </div>
+                </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.weaning_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
-            </div>
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.weaning_date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
+                    </div>
+                </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.market_weight, new { @class = "control-label" })
-            <div class="controls">
-                @Html.TextBoxFor(model => model.market_weight, new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.market_weight, null, new { @class = "help-inline" })
-            </div>
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.market_weight, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(model => model.market_weight, new { @class="form-control"})
+                        @Html.ValidationMessageFor(model => model.market_weight, null, new { @class = "help-inline" })
+                    </div>
+                </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.market_date, new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.market_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.market_date, null, new { @class = "help-inline" })
-            </div>
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.market_date, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.market_date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.market_date, null, new { @class = "help-inline" })
+                    </div>
+                </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.disposal_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.disposal_date, null, new { @class = "help-inline" })
-            </div>
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.disposal_date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.disposal_date, null, new { @class = "help-inline" })
+                    </div>
+                </div>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
-            <div class="controls">
-                @Html.TextAreaFor(model => model.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px" })
-                @Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
-            </div>
-        </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextAreaFor(model => model.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px" })
+                        @Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
+                    </div>
+                </div>
 
-        <div class="form-actions no-color" style="padding-bottom:15px">
-            <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
-            @Html.ActionLink("Cancel", "Index", "Animal", new { @class="btn btn-danger" , @style="margin-top:15px;"})
-        </div>
-    </fieldset>
+                <div class="form-actions no-color" style="padding-bottom:15px">
+                    <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
+                    @Html.ActionLink("Cancel", "Index", "Animal", new { @class="btn btn-danger" , @style="margin-top:15px;"})
+                </div>
+            </fieldset>
     }
 </div>
 @section Scripts {

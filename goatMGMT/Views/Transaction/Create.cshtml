@@ -15,15 +15,22 @@
 
     <fieldset class="form-horizontal">
         <legend>Transaction</legend>
-
-        <div class="control-group">
-            @Html.LabelFor(model => model.type, new { @class = "control-label" })
-            <div class="controls">
-                @Html.TextBoxFor(model => model.type, new { @class="form-control" })
-                @Html.ValidationMessageFor(model => model.type, null, new { @class = "help-inline" })
+        <div class="row">
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.type) Income
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBox("expense") Expense
+                    </label>
+                </div>
             </div>
         </div>
-
         <div class="control-group">
             @Html.LabelFor(model => model.item_type, new { @class = "control-label" })
             <div class="controls">

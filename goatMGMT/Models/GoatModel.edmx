@@ -103,7 +103,7 @@
           <Property Name="userid" Type="int" Nullable="false" />
           <Property Name="associate_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" />
-          <Property Name="type" Type="bit" />
+          <Property Name="type" Type="bit" Nullable="false" />
           <Property Name="item_type" Type="nvarchar(max)" />
           <Property Name="quantity" Type="decimal" Precision="18" Scale="2" />
           <Property Name="unit_price" Type="decimal" Precision="18" Scale="2" />
@@ -133,6 +133,10 @@
           <Property Name="First_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Last_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Farm_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="firstQuestion" Type="nvarchar(max)" />
+          <Property Name="firstAnswer" Type="nvarchar(max)" />
+          <Property Name="secondQuestion" Type="nvarchar(max)" />
+          <Property Name="secondAnswer" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -246,7 +250,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__useri__1FEDB87C">
+        <Association Name="FK__Transacti__useri__25A691D2">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,7 +347,7 @@
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breeding" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__useri__1FEDB87C" Association="Self.FK__Transacti__useri__1FEDB87C">
+          <AssociationSet Name="FK__Transacti__useri__25A691D2" Association="Self.FK__Transacti__useri__25A691D2">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
@@ -412,7 +416,7 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Associate" EntitySet="Associates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__useri__1FEDB87C" Association="goatDBModel.FK__Transacti__useri__1FEDB87C">
+          <AssociationSet Name="FK__Transacti__useri__25A691D2" Association="goatDBModel.FK__Transacti__useri__25A691D2">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
@@ -532,13 +536,13 @@
           <Property Name="userid" Type="Int32" Nullable="false" />
           <Property Name="associate_id" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="type" Type="Boolean" />
+          <Property Name="type" Type="Boolean" Nullable="false" />
           <Property Name="item_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="quantity" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="unit_price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="total_payment" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK__Transacti__useri__1FEDB87C" FromRole="Transaction" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK__Transacti__useri__25A691D2" FromRole="Transaction" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Treatment">
           <Key>
@@ -564,9 +568,13 @@
           <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Farm_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="firstQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="firstAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="secondQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="secondAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Animals" Relationship="goatDBModel.FK_Animals_UserProfile" FromRole="UserProfile" ToRole="Animal" />
           <NavigationProperty Name="Associates" Relationship="goatDBModel.FK__Associate__useri__025D5595" FromRole="UserProfile" ToRole="Associate" />
-          <NavigationProperty Name="Transactions" Relationship="goatDBModel.FK__Transacti__useri__1FEDB87C" FromRole="UserProfile" ToRole="Transaction" />
+          <NavigationProperty Name="Transactions" Relationship="goatDBModel.FK__Transacti__useri__25A691D2" FromRole="UserProfile" ToRole="Transaction" />
           <NavigationProperty Name="webpages_Roles" Relationship="goatDBModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
         </EntityType>
         <EntityType Name="webpages_Membership">
@@ -698,7 +706,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__useri__1FEDB87C">
+        <Association Name="FK__Transacti__useri__25A691D2">
           <End Type="goatDBModel.UserProfile" Role="UserProfile" Multiplicity="1" />
           <End Type="goatDBModel.Transaction" Role="Transaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -842,6 +850,10 @@
           <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="goatDBModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="secondAnswer" ColumnName="secondAnswer" />
+                <ScalarProperty Name="secondQuestion" ColumnName="secondQuestion" />
+                <ScalarProperty Name="firstAnswer" ColumnName="firstAnswer" />
+                <ScalarProperty Name="firstQuestion" ColumnName="firstQuestion" />
                 <ScalarProperty Name="Farm_Name" ColumnName="Farm_Name" />
                 <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
                 <ScalarProperty Name="First_Name" ColumnName="First_Name" />

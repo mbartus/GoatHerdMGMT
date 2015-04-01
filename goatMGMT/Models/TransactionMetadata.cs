@@ -17,13 +17,13 @@ namespace goatMGMT.Models
 
         [Required]
         [DisplayName("Type")]
-        public string type {get; set;}
+        public bool type {get; set;}
 
-        [Required]
+        
         [DisplayName("Quantity")]
         public decimal quantity {get; set;}
 
-        [Required]
+        
         [DisplayName("Unit Price")]
         public decimal unit_price {get; set;}
 
@@ -31,7 +31,7 @@ namespace goatMGMT.Models
         [DisplayName("Total")]
         public decimal total_payment { get; set; }
 
-        [Required]
+       
         [DisplayName("Notes")]
         public string notes { get; set; }
     }

@@ -89,8 +89,9 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Transaction transaction)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && transaction.userid != 0)
             {
+                transaction.UserProfile = db.UserProfiles.FirstOrDefault(m => m.UserId == transaction.userid);
                 db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

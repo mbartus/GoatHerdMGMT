@@ -19,7 +19,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.name, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.name, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.name, new { @class="form-control", @placeholder = "Enter Animal Name or ID"})
                 @Html.ValidationMessageFor(model => model.name, null, new { @class = "help-inline" })
             </div>
         </div>        
@@ -27,7 +27,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.tag, new { @class = "control-label" })
 			<div class="controls">
-				@Html.TextBoxFor(model => model.tag, new { @class="form-control"})
+				@Html.TextBoxFor(model => model.tag, new { @class="form-control" , @placeholder = "Enter Tag ID" })
 				@Html.ValidationMessageFor(model => model.tag, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -35,7 +35,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.dob, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.dob, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.dob, new { @class = "form-control", @placeholder = "MM/DD/YYYY" })
 				@Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -65,7 +65,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.status_code, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.status_code, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.status_code, new { @class = "form-control", @placeholder = "Add Drop Down here: Active, Dead, Sold for Breeding, Sold for Meat, Culled, Unclassified, Herd Replacement" })
                 @Html.ValidationMessageFor(model => model.status_code, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.breed_code, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.breed_code, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.breed_code, new { @class="form-control", @placeholder = "Add drop down: Purbred Boer, Percentage-87.5 Boer, Percentage-75 Boer, Spanish, Nubian, Boer x Spanish, Pure Kiko, Percentage-87.5 Kiko, Percentage-75 Kiko, Kiko x Spanish, Kiko x Boer, Boer X Nubian, Boer x Spanish x Nubian, Savanna, Percentag-87.5 Savanna, Percentage-75 Savanna, Savanna x Boer,Savanna x Kiko, Savanna x Boer x Kiko,Nubian x Spanish,Angora,Boer x Angora,Kiko x Angora,UNKNOWN CROSS,OTHERS"})
 				@Html.ValidationMessageFor(model => model.breed_code, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -81,7 +81,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.regulation_no, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.regulation_no, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.regulation_no, new { @class="form-control", @placeholder = "Optional. Add Purebreed Regulation Number"})
 				@Html.ValidationMessageFor(model => model.regulation_no, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -89,7 +89,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.microchip_id, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.microchip_id, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.microchip_id, new { @class="form-control", @placeholder = "Optional"})
 				@Html.ValidationMessageFor(model => model.microchip_id, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -97,7 +97,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.premise_id, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.premise_id, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.premise_id, new { @class="form-control", @placeholder = "Optional"})
 				@Html.ValidationMessageFor(model => model.premise_id, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -105,7 +105,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.herd_id_code, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.herd_id_code, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.herd_id_code, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.herd_id_code, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -113,7 +113,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.breed_registry, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.breed_registry, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.breed_registry, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.breed_registry, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -121,7 +121,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.species, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.species, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.species, new { @class = "form-control", @placeholder = "Add drop down: Goat, Sheep, Other" })
 				@Html.ValidationMessageFor(model => model.species, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -129,7 +129,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.weaning_weight, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.weaning_weight, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.weaning_weight, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.weaning_weight, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -137,7 +137,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.weaning_date, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.weaning_date, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -145,7 +145,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.market_weight, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.market_weight, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.market_weight, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.market_weight, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -153,7 +153,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.market_date, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.market_date, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.market_date, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.market_date, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -161,7 +161,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextBoxFor(model => model.disposal_date, new { @class="form-control"})
+                @Html.TextBoxFor(model => model.disposal_date, new { @class = "form-control", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.disposal_date, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -169,7 +169,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.remarks, new { @class = "control-label" })
 			<div class="controls">
-                @Html.TextAreaFor(model => model.remarks, new { @class="form-control" , @style="max-width:100%; min-width:100%; min-height:71px"})
+                @Html.TextAreaFor(model => model.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px", @placeholder = "Optional" })
 				@Html.ValidationMessageFor(model => model.remarks, null, new { @class = "help-inline" })
 			</div>
 		</div>

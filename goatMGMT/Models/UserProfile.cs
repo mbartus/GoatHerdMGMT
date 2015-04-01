@@ -29,6 +29,10 @@ namespace goatMGMT.Models
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
         public string Farm_Name { get; set; }
+        public string firstQuestion { get; set; }
+        public string firstAnswer { get; set; }
+        public string secondQuestion { get; set; }
+        public string secondAnswer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Animal> Animals { get; set; }

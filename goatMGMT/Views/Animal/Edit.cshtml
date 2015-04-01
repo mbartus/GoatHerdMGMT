@@ -72,10 +72,9 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.breed_code, new { @class = "control-label" })
+            @Html.LabelFor(m => m.breed_code, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.breed_code, new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.breed_code, null, new { @class = "help-inline" })
+                @Html.DropDownListFor(m => m.breed_code, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed", new { @class = "form-control" })
             </div>
         </div>
 
@@ -119,15 +118,13 @@
             </div>
         </div>
 
-        <fieldset disabled>
         <div class="control-group">
             @Html.LabelFor(model => model.species, new { @class = "control-label" })
-            <div class="controls">
-                @Html.TextBoxFor(model => model.species, new { @class="form-control"})
+            <div class="controls" disabled>
+                @Html.TextBoxFor(model => model.species, new { @class="form-control", @readonly = "readonly"})
                 @Html.ValidationMessageFor(model => model.species, null, new { @class = "help-inline" })
             </div>
         </div>
-            </fieldset>
 
                 <div class="control-group">
                     @Html.LabelFor(model => model.weaning_weight, new { @class = "control-label" })

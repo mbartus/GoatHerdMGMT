@@ -75,12 +75,11 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.breed_code, new { @class = "control-label" })
-			<div class="controls">
-                @Html.TextBoxFor(model => model.breed_code, new { @class="form-control", @placeholder = "Add drop down: Purbred Boer, Percentage-87.5 Boer, Percentage-75 Boer, Spanish, Nubian, Boer x Spanish, Pure Kiko, Percentage-87.5 Kiko, Percentage-75 Kiko, Kiko x Spanish, Kiko x Boer, Boer X Nubian, Boer x Spanish x Nubian, Savanna, Percentag-87.5 Savanna, Percentage-75 Savanna, Savanna x Boer,Savanna x Kiko, Savanna x Boer x Kiko,Nubian x Spanish,Angora,Boer x Angora,Kiko x Angora,UNKNOWN CROSS,OTHERS"})
-				@Html.ValidationMessageFor(model => model.breed_code, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            @Html.LabelFor(m => m.breed_code, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(m => m.breed_code, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed", new { @class = "form-control" })
+            </div>
+        </div>
 
         <div class="control-group">
             @Html.LabelFor(model => model.regulation_no, new { @class = "control-label" })

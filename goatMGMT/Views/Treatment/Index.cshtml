@@ -32,9 +32,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.treatment.product)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.treatment.remarks)
-                </th>
                 <th></th>
             </tr>
 
@@ -58,9 +55,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.treatment.product)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.treatment.remarks)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.treatment.id, id2 = item.treatment.animal_id}) |

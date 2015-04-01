@@ -15,13 +15,13 @@
     <table class="table table-striped">
         <tr>
             <th>
-                Mother's Tag
+                Dam's Tag
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.breeding.mother_id)
             </th>
             <th>
-                Father's Tag
+                Sire's Tag
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.breeding.father_id)
@@ -32,9 +32,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.breeding.expected_kidding_date)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.breeding.remarks)
-            </th>
+
             <th></th>
         </tr>
 
@@ -58,9 +56,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.breeding.expected_kidding_date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.breeding.remarks)
                 </td>
                 <td>
                     @Html.ActionLink("View Births", "Index", "Birth", new { id2 = item.breeding.mother_id, id3 = item.breeding.father_id }, null) |

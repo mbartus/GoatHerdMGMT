@@ -17,11 +17,11 @@ namespace goatMGMT.Models
         public int id { get; set; }
 
         [Required]
-        [DisplayName("Mother's Name")]
+        [DisplayName("Dam's Name")]
         public Int32 mother_id { get; set; }
 
         [Required]
-        [DisplayName("Father's Name")]
+        [DisplayName("Sire's Name")]
         public Int32 father_id { get; set; }
 
         [Required]

@@ -70,7 +70,10 @@ namespace goatMGMT.Controllers
             bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
             foreach (Animal birth in births)
             {
-                bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = birth.tag, Value = "" + birth.id });
+                if (db.Births.Where(m => m.child_id == birth.id).Count() < 1)
+                {
+                    bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = birth.tag, Value = "" + birth.id });
+                }
             }
             @ViewBag.offspringDrop = bvm.offspring;
             return View("Create", bvm);

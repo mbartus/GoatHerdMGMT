@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Contact Us";
-    Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml"); 
+    Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml");
 }
 <div class="container" style="padding-top: 70px;">
     <div>
@@ -13,44 +13,78 @@
 
             <fieldset class="form-horizontal">
                 <legend>We would like to hear your thoughts!</legend>
+                <div id="warning" style="display:none;color:red">
+                    WARNING, YOU EFFED UP
+                </div>
                 <div class="control-group">
                     @Html.LabelFor(m => m.name, new { @class = "control-label" })
                     <div class="controls">
-                        @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.name, new { @id = "name", @class = "form-control" })
                     </div>
                 </div>
                 <div class="control-group">
                     @Html.LabelFor(m => m.email, new { @class = "control-label" })
                     <div class="controls">
-                        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.email, new { @id = "email", @class = "form-control" })
                     </div>
                 </div>
                 <div class="control-group">
                     @Html.LabelFor(m => m.subject, new { @class = "control-label" })
                     <div class="controls">
-                        @Html.TextBoxFor(m => m.subject, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.subject, new { @id = "subject", @class = "form-control" })
                     </div>
                 </div>
                 <div class="control-group">
                     @Html.LabelFor(m => m.comment, new { @class = "control-label" })
                     <div class="controls">
-                        @Html.TextAreaFor(m => m.comment, new { @class = "form-control" , @style = "max-width:100%; min-width:100%; min-height:71px" })
+                        @Html.TextAreaFor(m => m.comment, new { @id = "comment", @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
                     </div>
                 </div>
                 <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">
-                    <input value="Send Feedback" type="submit" class="btn btn-success" />
+                    <input value="Send Feedback" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" />
                 </div>
             </fieldset>
         }
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Are you sure?" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Thank you</h4>
+                </div>
+                <div class="modal-body">
+                    Your comment has been submitted.
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Close" class="btn btn-danger" data-toggle="modal" data-target="#myModal" />
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
-    </div>
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             $("#active-contact").addClass("active");
             $("#layout-header").css({ "background-image": "url(/Content/imgs/header3.png)", "color": "white"});
         });
-    </script>
-</div>
+</script>
+
+<script type="text/javascript">
+    $('#myModal').on('show.bs.modal', function (e) {
+        if (document.getElementById("comment").value == '') {
+            //TODO set warning text
+            document.getElementById("warning").style.display = 'block';
+            return e.preventDefault();
+        }
+    })
+
+    $('#myModal').on('hidden.bs.modal', function (e) {
+        onsubmit();
+    })
+</script>

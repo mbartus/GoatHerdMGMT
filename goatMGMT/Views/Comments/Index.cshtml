@@ -3,16 +3,16 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<div class="container"
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.date_sent)
+            Comment
+        </th>
+        <th>
+            Date Sent
         </th>
         <th>
             @Html.DisplayNameFor(model => model.name)
@@ -22,9 +22,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.comment1)
         </th>
         <th></th>
     </tr>
@@ -47,7 +44,6 @@
             @Html.DisplayFor(modelItem => item.comment1)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
@@ -55,3 +51,23 @@
 }
 
 </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Are you sure?" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+            </div>
+            <div class="modal-body">
+                This data will be permenately deleted and you will not be able to recover it.
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

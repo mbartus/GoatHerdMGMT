@@ -89,6 +89,17 @@
             </ul>
         </div> 
         }
+        @if (User.IsInRole("admin"))
+        {
+            <div class="dash-section">
+                <h4><a href="~/Comments/Index">View Comments</a></h4>
+                <ul>
+                    <li>
+                        View user feedback.
+                    </li>
+                </ul>
+            </div>
+        }
     </div>
 </body>
 <script type="text/javascript">

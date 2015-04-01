@@ -13,53 +13,63 @@
         <div class="table-responsive">
             <table class="table table-striped">
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.item_type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.quantity)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.unit_price)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.total_payment)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.notes)
-                    </th>
-                    <th></th>
-                </tr>
+    <th>
+        @Html.DisplayNameFor(model => model.type)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.item_type)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.quantity)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.unit_price)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.total_payment)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.notes)
+    </th>
+    <th></th>
+</tr>
 
-                @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.item_type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.unit_price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.total_payment)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.notes)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.id })
-                    </td>
-                </tr>
-                }
+@foreach (var item in Model)
+{
+    <tr>
+        <
+        <td>
+            @if (item.type)
+            {
+                @Html.Raw("Income")
+            }
+            else
+            {
+                @Html.Raw("Expense")
+            }
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.item_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
 
             </table>
         </div>

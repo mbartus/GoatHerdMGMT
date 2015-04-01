@@ -15,34 +15,34 @@ namespace goatMGMT.Models
         [DisplayName("Name")]
         public string name { get; set; }
 
-        [Required]
+        
         [DisplayName("Street")]
         public string street { get; set; }
 
-        [Required]
+   
         [DisplayName("City")]
         public string city { get; set; }
 
-        [Required]
+       
         [DisplayName("State")]
         public string state { get; set; }
 
-        [Required]
+        
         [DisplayName("Zip")]
         public string zip { get; set; }
 
-        [Required]
+      
         [DisplayName("Phone")]
         public string telephone { get; set; }
 
         [DisplayName("Fax")]
         public string fax { get; set; }
 
-        [Required]
+       
         [DisplayName("Email")]
         public string email { get; set; }
         
-        [Required]
+       
         [DisplayName("Notes")]
         public string notes { get; set; }
     }

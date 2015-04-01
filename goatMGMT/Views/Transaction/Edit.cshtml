@@ -85,4 +85,16 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript">
+    $('#expense').click(function () {
+        if ($('#type').prop('checked')) {
+            $('#type').prop('checked', false);
+        }
+    });
+    $('#type').click(function () {
+        if ($('#expense').prop('checked')) {
+            $('#expense').prop('checked', false);
+        }
+    });
+</script>
 

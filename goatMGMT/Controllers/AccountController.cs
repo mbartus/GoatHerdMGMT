@@ -10,11 +10,14 @@ using System.Net.Mail;
 using Recaptcha.Web;
 using Recaptcha.Web.Mvc;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace goatMGMT.Controllers
 {
     public class AccountController : Controller
     {
+        private goatDBEntities db = new goatDBEntities();
+        
         [HttpGet]
         public ActionResult Login()
         {
@@ -161,19 +164,23 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid)
             {
+                int userID = (int)Membership.GetUser().ProviderUserKey;
+                UserProfile currentUser = db.UserProfiles.Find(userID);
+                currentUser.firstQuestion = vmIn.SecurityQuestion1;
+                currentUser.secondQuestion = vmIn.SecurityQuestion2;
+                currentUser.firstAnswer = vmIn.SecurityQuestionAnswer1;
+                currentUser.secondAnswer = vmIn.SecurityQuestionAnswer2;
+                db.Entry(currentUser).State = EntityState.Modified;
                 try
                 {
-                    // no say microsoft
-                    //bool done = Membership.GetUser().ChangePasswordQuestionAndAnswer(vmIn.Password, vmIn.SecurityQuestion, vmIn.SecurityQuestionAnswer);
-                    //if (done) return RedirectToAction("Manage", "Account");
+                    db.SaveChanges();
                 }
                 catch
                 {
-                    ModelState.AddModelError("", "Sorry, password is invalid");
-                    return View(vmIn);
+                    return RedirectToAction("Error", "Home");
                 }
+                return RedirectToAction("Manage");
             }
-            // should never get here
             return View(vmIn);
         }
         
@@ -187,6 +194,115 @@ namespace goatMGMT.Controllers
             }
             return View(currentUser);
         }
+
+        [HttpGet]
+        public ActionResult ForgotPassword1()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword1(String username)
+        {
+            // suppress errors from modelstate since we only need username
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    UserProfile user = db.UserProfiles.First(m => m.Username == username);
+                    return RedirectToAction("ForgotPassword2", new { id = user.UserId });
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Sorry, we couldn't find you. You must have used a different email.");
+                    return View();
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPassword2(Int32 id)
+        {
+            UserProfile user = db.UserProfiles.Find(id);
+            ChangeSecurityQuestionViewModel csvm = new ChangeSecurityQuestionViewModel()
+            {
+                SecurityQuestion1 = user.firstQuestion,
+                SecurityQuestion2 = user.secondQuestion,
+                userID = id
+            };
+
+            return View(csvm);
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword2(ChangeSecurityQuestionViewModel csvm)
+        {
+            if (ModelState.IsValid)
+            {
+                UserProfile user = db.UserProfiles.Find(csvm.userID);
+                if (user.firstAnswer == csvm.SecurityQuestionAnswer1 && user.secondAnswer == csvm.SecurityQuestionAnswer2)
+                {
+                    return RedirectToAction("ResetPassword", new { id = user.UserId});
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Your answers are not correct, please try again.");
+                    return View(csvm);
+                }
+            }
+            return View(csvm);
+        }
+
+
+        [HttpGet]
+        public ActionResult ResetPassword(Int32 id)
+        {
+            UserProfile user = db.UserProfiles.Find(id);
+            RegisterViewModel rvm = new RegisterViewModel()
+            {
+                Username = user.Username,
+                userID = id
+            };
+            return View(rvm);
+        }
+        
+        [HttpPost]
+        public ActionResult ResetPassword(RegisterViewModel rvm)
+        {
+            if (ModelState.IsValid)
+            {
+                if (rvm.Password == rvm.ConfirmPassword)
+                {
+                    if (rvm.Password.Length > 5)
+                    {
+                        try
+                        {
+                            UserProfile user = db.UserProfiles.Find(rvm.userID);
+                            var token = WebSecurity.GeneratePasswordResetToken(user.Username);
+                            WebSecurity.ResetPassword(token, rvm.Password);
+                            return RedirectToAction("Login");
+                        }
+                        catch
+                        {
+                            return RedirectToAction("Error", "Home");
+                        }
+                    }
+                    else 
+                    {
+                        ModelState.AddModelError("", "Passwords must be at least 6 characters");
+                        return View(rvm); 
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Passwords do not match, please try again");
+                    return View(rvm);
+                }
+            }
+                return View(rvm);
+        }
+
 
         public ActionResult RegistrationConfirmation()
         {

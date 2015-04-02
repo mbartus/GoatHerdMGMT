@@ -338,7 +338,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="RecaptchaNet.ReadMe.txt" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\GoatModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -434,6 +433,9 @@
     <Content Include="Views\Birth\Index.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Account\CreateAdmin.cshtml" />
+    <Content Include="Views\Account\ForgotPassword1.cshtml" />
+    <Content Include="Views\Account\ForgotPassword2.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

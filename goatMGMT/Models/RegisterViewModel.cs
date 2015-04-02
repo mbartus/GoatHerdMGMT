@@ -22,5 +22,7 @@ namespace goatMGMT.Models
         [Required]
         [DisplayName("Confirm Password")]
         public string ConfirmPassword { get; set; }
+
+        public Int32 userID { get; set; } // used for password reset
     }
 }

@@ -136,17 +136,21 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Birth birth)
         {
+            birth.Animal = db.Animals.Find(birth.child_id);
+            birth.Animal1 = db.Animals.Find(birth.father_id);
+            birth.Animal2 = db.Animals.Find(birth.mother_id);
             if (ModelState.IsValid)
             {
                 db.Entry(birth).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id2 = birth.father_id, id3 = birth.mother_id });
             }
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
             bvm.father_tag = birth.Animal1.tag;
             bvm.mother_tag = birth.Animal2.tag;
+
             return View(birth);
         }
 
@@ -176,7 +180,7 @@ namespace goatMGMT.Controllers
             Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             db.Births.Remove(birth);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id2 = birth.father_id, id3 = birth.mother_id });
         }
 
         protected override void Dispose(bool disposing)

@@ -14,6 +14,10 @@
     <fieldset>
         <legend>Birth</legend>
         @Html.HiddenFor(m => m.birth.Animal.id)
+        @Html.HiddenFor(m => m.birth.father_id)
+        @Html.HiddenFor(m => m.birth.mother_id)
+        @Html.HiddenFor(m => m.birth.child_id)
+        @Html.HiddenFor(m => m.birth.id)
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">

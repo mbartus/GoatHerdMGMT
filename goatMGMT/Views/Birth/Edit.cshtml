@@ -14,9 +14,12 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
-        @Html.HiddenFor(m => m.birth.Animal)
-        @Html.HiddenFor(m => m.birth.Animal1)
-        @Html.HiddenFor(m => m.birth.Animal2)
+
+        @Html.HiddenFor(m => m.birth.father_id)
+        @Html.HiddenFor(m => m.birth.mother_id)
+        @Html.HiddenFor(m => m.birth.child_id)
+        @Html.HiddenFor(m => m.birth.id)
+        
         <fieldset class="form-horizontal">
             <legend>Breeding</legend>
 

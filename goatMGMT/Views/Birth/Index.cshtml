@@ -10,6 +10,7 @@
 
     <p>
         @Html.ActionLink("Create New", "Create", "Birth", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Back to Breedings", "Index", "Breeding", new { }, new { @class = "btn btn-warning" })
     </p>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -34,9 +35,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.birth.born)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.birth.notes)
                 </th>
                 <th></th>
             </tr>
@@ -64,9 +62,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.birth.born)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.birth.notes)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.birth.id }) |

@@ -42,7 +42,7 @@
         </td>
         <td>
             <label>
-                <input type="checkbox">
+                <input name="myCheckBoxes" type="checkbox">
             </label>
         </td>
     </tr>
@@ -74,12 +74,24 @@
 <script>
     function doCheck() {
         var checkboxes = new Array();
-        checkboxes = document.getElementsByTagName('input');
-        var check = !document.getElementsByName("masterCheck").checked;
+        checkboxes = document.getElementsByName('myCheckBoxes');
+        var check = document.getElementsByName("masterCheck").checked;
         for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].type == 'checkbox') {
-                checkboxes[i].checked = check;
+            checkboxes[i].checked = check;
+        }
+    }
+    
+    function getCheckedBoxes() {
+        var checkboxes = document.getElementsByName("myCheckBoxes");
+        var checkboxesChecked = [];
+        // loop over them all
+        for (var i = 0; i < checkboxes.length; i++) {
+            // And stick the checked ones onto an array...
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i]);
             }
         }
+        // Return the array if it is non-empty, or null
+        return checkboxesChecked.length > 0 ? checkboxesChecked : null;
     }
 </script>

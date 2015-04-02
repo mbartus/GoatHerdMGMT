@@ -14,6 +14,14 @@ namespace goatMGMT
     // visit http://go.microsoft.com/fwlink/?LinkId=301868
     public class MvcApplication : System.Web.HttpApplication
     {
+        public void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+        }
+        
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

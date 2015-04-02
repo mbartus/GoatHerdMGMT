@@ -7,6 +7,9 @@ using goatMGMT.Models;
 using WebMatrix.WebData;
 using System.Web.Security;
 using System.Net.Mail;
+using Recaptcha.Web;
+using Recaptcha.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace goatMGMT.Controllers
 {
@@ -39,8 +42,24 @@ namespace goatMGMT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel registerData)
+        async public Task<ActionResult> Register(RegisterViewModel registerData)
         {
+            RecaptchaVerificationHelper recaptchaHelper = this.GetRecaptchaVerificationHelper();
+
+            if (String.IsNullOrEmpty(recaptchaHelper.Response))
+            {
+                ModelState.AddModelError("", "Captcha answer cannot be empty.");
+                return View(registerData);
+            }
+
+            RecaptchaVerificationResult recaptchaResult = await recaptchaHelper.VerifyRecaptchaResponseTaskAsync();
+
+            if (recaptchaResult != RecaptchaVerificationResult.Success)
+            {
+                ModelState.AddModelError("", "Incorrect captcha answer.");
+                return View(registerData);
+            }
+
             if (ModelState.IsValid)
             {
                 if (registerData.Password != registerData.ConfirmPassword) // check if passwords are the same

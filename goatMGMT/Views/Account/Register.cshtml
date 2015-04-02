@@ -1,5 +1,6 @@
 @model goatMGMT.Models.RegisterViewModel
 @using System.Web.Mvc;
+@using Recaptcha.Web.Mvc;
 @{
     ViewBag.Title = "Register";
     Layout = @Url.Content("~/Views/Shared/_Layout.cshtml");
@@ -34,6 +35,9 @@
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control"})
                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = "help-inline" })
                 </div>
+            </div>
+            <div style="padding-top: 10px;">
+                    @Html.Recaptcha()
             </div>
             <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">
                 <input value="Register" type="submit" class="btn btn-success" />

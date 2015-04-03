@@ -103,7 +103,14 @@ namespace goatMGMT.Controllers
             {
                 animal.owner = (int)Membership.GetUser().ProviderUserKey;
                 db.Animals.Add(animal);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             List<SelectListItem> speciesList = new List<SelectListItem>() {
@@ -214,7 +221,14 @@ namespace goatMGMT.Controllers
             {
                 animal.owner = (int)Membership.GetUser().ProviderUserKey;
                 db.Entry(animal).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.owner = new SelectList(db.UserProfiles, "UserId", "Username", animal.owner);
@@ -279,7 +293,14 @@ namespace goatMGMT.Controllers
         {
             Animal animal = db.Animals.Find(id);
             db.Animals.Remove(animal);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index");
         }
 

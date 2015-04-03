@@ -64,7 +64,14 @@ namespace goatMGMT.Controllers
             {
                 transaction.userid = (int)Membership.GetUser().ProviderUserKey;
                 db.Transactions.Add(transaction);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -93,7 +100,14 @@ namespace goatMGMT.Controllers
             {
                 transaction.UserProfile = db.UserProfiles.FirstOrDefault(m => m.UserId == transaction.userid);
                 db.Entry(transaction).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             return View(transaction);
@@ -119,7 +133,14 @@ namespace goatMGMT.Controllers
         {
             Transaction transaction = db.Transactions.Find(id);
             db.Transactions.Remove(transaction);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index");
         }
 

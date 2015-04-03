@@ -51,7 +51,14 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid)
             {
                 db.Comments.Add(comment);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -83,7 +90,14 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(comment).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             return View(comment);
@@ -94,7 +108,14 @@ namespace goatMGMT.Controllers
         {
             Comment comment = db.Comments.Find(id);
             db.Comments.Remove(comment);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index");
         }
 

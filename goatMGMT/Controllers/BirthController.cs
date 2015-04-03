@@ -91,7 +91,14 @@ namespace goatMGMT.Controllers
                 birthViewModel.birth.Animal1 = db.Animals.Find(birthViewModel.birth.father_id);
                 birthViewModel.birth.Animal2 = db.Animals.Find(birthViewModel.birth.mother_id);
                 db.Births.Add(birthViewModel.birth);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index", new { id2 = birthViewModel.birth.father_id, id3 = birthViewModel.birth.mother_id});
             }
 
@@ -142,7 +149,14 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(birth).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index", new { id2 = birth.father_id, id3 = birth.mother_id });
             }
             BirthViewModel bvm = new BirthViewModel();
@@ -179,7 +193,14 @@ namespace goatMGMT.Controllers
         {
             Birth birth = db.Births.FirstOrDefault(m => m.id == id);
             db.Births.Remove(birth);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index", new { id2 = birth.father_id, id3 = birth.mother_id });
         }
 

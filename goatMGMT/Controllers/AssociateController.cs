@@ -57,7 +57,14 @@ namespace goatMGMT.Controllers
             {
                 associate.userid = (int)Membership.GetUser().ProviderUserKey;
                 db.Associates.Add(associate);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -85,7 +92,14 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(associate).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             return View(associate);
@@ -111,7 +125,14 @@ namespace goatMGMT.Controllers
         {
             Associate associate = db.Associates.Find(id);
             db.Associates.Remove(associate);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index");
         }
 

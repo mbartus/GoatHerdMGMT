@@ -85,7 +85,14 @@ namespace goatMGMT.Controllers
                 tvm.treatment.Animal = db.Animals.Find(tvm.animalList.ElementAt(tvm.treatment.animal_id - 1).id);
                 tvm.treatment.animal_id = tvm.treatment.Animal.id;
                 db.Treatments.Add(tvm.treatment);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             List<SelectListItem> alist = new List<SelectListItem>();
@@ -125,7 +132,14 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(treatment).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             TreatmentViewModel tvm = new TreatmentViewModel();
@@ -158,7 +172,14 @@ namespace goatMGMT.Controllers
         {
             Treatment treatment = db.Treatments.Find(id, id2);
             db.Treatments.Remove(treatment);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index");
         }
 

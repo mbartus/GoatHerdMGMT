@@ -100,7 +100,14 @@ namespace goatMGMT.Controllers
                 breeding.father_id = breeding.Animal.id;
                 breeding.mother_id = breeding.Animal1.id;
                 db.Breedings.Add(breeding);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             List<SelectListItem> mlist = new List<SelectListItem>();
@@ -148,7 +155,14 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(breeding).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return RedirectToAction("Index");
             }
             BreedingViewModel bvm = new BreedingViewModel();
@@ -184,7 +198,14 @@ namespace goatMGMT.Controllers
         {
             Breeding breeding = db.Breedings.Find(id, id2, id3);
             db.Breedings.Remove(breeding);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return RedirectToAction("Index");
         }
 

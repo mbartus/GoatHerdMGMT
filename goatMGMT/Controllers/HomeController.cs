@@ -44,10 +44,14 @@ namespace goatMGMT.Controllers
                 com.comment1 = cvm.comment;
                 com.date_sent = System.DateTime.Now;
                 db.Comments.Add(com);
-              
+                try
+                {
                     db.SaveChanges();
-           
-
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
                 return View();
             }
             return View(cvm);

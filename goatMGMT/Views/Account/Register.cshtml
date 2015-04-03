@@ -39,8 +39,22 @@
             <div style="padding-top: 10px;">
                     @Html.Recaptcha()
             </div>
+            <div class="checkbox" style="padding-top: 10px;">
+                <label>
+                    <input id="check"type="checkbox"> I agree to the <a id="laClick">terms and conditions</a>.
+                </label>
+            </div>    
             <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">
-                <input value="Register" type="submit" class="btn btn-success" />
+                <input value="Register" type="submit" class="btn btn-success" style="visibility:hidden" id="regButton"/>
+            </div>
+            <div id="laText" style="padding-top:10px; visibility:hidden;">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Model.agreement
+                        <br />
+                        <a id="close">Close</a>
+                    </div>
+                </div>
             </div>
         </fieldset>
         }
@@ -48,3 +62,19 @@
     @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     }
+<script type="text/javascript">
+    $('#check').change(function () {
+        if ($('#check').prop('checked')) {
+            $("#regButton").css('visibility', 'visible');
+        }
+        else {
+            $("#regButton").css('visibility', 'hidden');
+        }
+    });
+    $('#laClick').click(function () {
+        $("#laText").css('visibility', 'visible');
+    });
+    $('#close').click(function () {
+        $("#laText").css('visibility', 'hidden');
+    });
+</script>

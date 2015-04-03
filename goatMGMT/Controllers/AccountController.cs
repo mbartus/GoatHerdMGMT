@@ -40,7 +40,11 @@ namespace goatMGMT.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel rvm = new RegisterViewModel()
+            {
+                agreement = db.Licenses.Find(1).Agreement
+            };
+            return View(rvm);
         }
 
         [HttpPost]

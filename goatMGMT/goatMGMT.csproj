@@ -184,6 +184,7 @@
     <Compile Include="Controllers\BreedingController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LicenseController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\TreatmentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,6 +208,10 @@
     <Compile Include="Models\BreedingMetadata.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ChangeSecurityQuestionViewModel.cs" />
+    <Compile Include="Models\License.cs">
+      <DependentUpon>GoatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LicenseViewModel.cs" />
     <Compile Include="Models\TreatmentMetadata.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
     <Compile Include="Models\Comment.cs">
@@ -436,6 +441,11 @@
     <Content Include="Views\Account\ForgotPassword1.cshtml" />
     <Content Include="Views\Account\ForgotPassword2.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\License\Create.cshtml" />
+    <Content Include="Views\License\Delete.cshtml" />
+    <Content Include="Views\License\Details.cshtml" />
+    <Content Include="Views\License\Edit.cshtml" />
+    <Content Include="Views\License\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

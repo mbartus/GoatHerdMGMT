@@ -3,54 +3,57 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="container"
-<h2>Index</h2>
+<div class="container" style="padding-bottom: 15px;">
+<h2>Comments</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Subject
-        </th>
-        <th>
-            Comment
-        </th>
-        <th>
-            Date Sent
-        </th>
-        <th></th>
-        <th>
-            <label>
-                <input name="masterCheck" type="checkbox" onclick="doCheck()"> Check All
-            </label>
-        </th>
-    </tr>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Date Sent
+                </th>
+                <th></th>
+                <th>
+                    <label>
+                        <input name="masterCheck" type="checkbox" onclick="doCheck()"> Check All
+                    </label>
+                </th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comment1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_sent)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-        <td>
-            <label>
-                <input name="myCheckBoxes" type="checkbox">
-            </label>
-        </td>
-    </tr>
-}
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_sent)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                </td>
+                <td>
+                    <label>
+                        <input name="myCheckBoxes" type="checkbox">
+                    </label>
+                </td>
+            </tr>
+            }
 
-</table>
-    <button>Delete</button>
+        </table>
+    </div>
+    <button class="btn btn-danger">Delete</button>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Are you sure?" aria-hidden="true">

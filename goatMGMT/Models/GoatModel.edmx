@@ -95,6 +95,13 @@
           <Property Name="email" Type="nvarchar(max)" />
           <Property Name="comment" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="License">
+          <Key>
+            <PropertyRef Name="pk" />
+          </Key>
+          <Property Name="pk" Type="int" Nullable="false" />
+          <Property Name="Agreement" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Transactions">
           <Key>
             <PropertyRef Name="id" />
@@ -316,6 +323,7 @@
           <EntitySet Name="Births" EntityType="Self.Births" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Breeding" EntityType="Self.Breeding" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatments" EntityType="Self.Treatments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
@@ -378,6 +386,7 @@
           <EntitySet Name="Births" EntityType="goatDBModel.Birth" />
           <EntitySet Name="Breedings" EntityType="goatDBModel.Breeding" />
           <EntitySet Name="Comments" EntityType="goatDBModel.Comment" />
+          <EntitySet Name="Licenses" EntityType="goatDBModel.License" />
           <EntitySet Name="Transactions" EntityType="goatDBModel.Transaction" />
           <EntitySet Name="Treatments" EntityType="goatDBModel.Treatment" />
           <EntitySet Name="UserProfiles" EntityType="goatDBModel.UserProfile" />
@@ -527,6 +536,13 @@
           <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="License">
+          <Key>
+            <PropertyRef Name="pk" />
+          </Key>
+          <Property Name="pk" Type="Int32" Nullable="false" />
+          <Property Name="Agreement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -815,6 +831,14 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="date_sent" ColumnName="date_sent" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Licenses">
+            <EntityTypeMapping TypeName="goatDBModel.License">
+              <MappingFragment StoreEntitySet="License">
+                <ScalarProperty Name="Agreement" ColumnName="Agreement" />
+                <ScalarProperty Name="pk" ColumnName="pk" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

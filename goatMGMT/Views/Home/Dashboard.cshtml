@@ -9,51 +9,56 @@
 </head>
 <body>
     <div class="container" style="padding-top: 15px; padding-bottom: 15px;">
-        <div class="dash-section">
-            <h4><a href="~/Animal/Index">Manage Animals</a></h4>
-            <ul>
-                <li>
-                    View all animals in your herd.
-                </li>
-                <li>
-                    Add an animal to your herd.
-                </li>
-            </ul>
+        <div class="row">
+            <div class="dash-section col-md-6">
+                <h4><a href="~/Animal/Index">Manage Animals</a></h4>
+                <ul>
+                    <li>
+                        View all animals in your herd.
+                    </li>
+                    <li>
+                        Add an animal to your herd.
+                    </li>
+                </ul>
+            </div>
+            <div class="dash-section col-md-6">
+                <h4><a href="~/Transaction/Index">Manage Transactions</a></h4>
+                <ul>
+                    <li>
+                        View past transactions.
+                    </li>
+                    <li>
+                        Add a new transaction.
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="dash-section">
-            <h4><a href="~/Transaction/Index">Manage Transactions</a></h4>
-            <ul>
-                <li>
-                    View past transactions.
-                </li>
-                <li>
-                    Add a new transaction.
-                </li>
-            </ul>
+        <div class="row">
+            <div class="dash-section col-md-6">
+                <h4><a href="~/Associate/Index">Manage Associates</a></h4>
+                <ul>
+                    <li>
+                        View associates that you have worked with.
+                    </li>
+                    <li>
+                        Add an associate.
+                    </li>
+                </ul>
+            </div>
+            <div class="dash-section col-md-6">
+                <h4><a href="~/Treatment/Index">Manage Health Records</a></h4>
+                <ul>
+                    <li>
+                        View animal health records and treatments.
+                    </li>
+                    <li>
+                        Add a new treatment.
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="dash-section">
-            <h4><a href="~/Associate/Index">Manage Associates</a></h4>
-            <ul>
-                <li>
-                    View associates that you have worked with.
-                </li>
-                <li>
-                    Add an associate.
-                </li>
-            </ul>
-        </div>
-        <div class="dash-section">
-            <h4><a href="~/Treatment/Index">Manage Health Records</a></h4>
-            <ul>
-                <li>
-                    View animal health records and treatments.
-                </li>
-                <li>
-                    Add a new treatment.
-                </li>
-            </ul>
-        </div>
-        <div class="dash-section">
+        <div class="row">
+            <div class="dash-section col-md-6">
             <h4><a href="~/Breeding/Index">Manage Breeding Records</a></h4>
             <ul>
                 <li>
@@ -64,34 +69,39 @@
                 </li>
             </ul>
         </div>
-        <div class="dash-section">
-            <h4><a href="">Generate Reports</a></h4>
-            <ul>
-                <li>
-                    Generate reports of your herd.
-                </li>
-                <li>
-                    Export to excel.
-                </li>
-            </ul>
+        @if (User.IsInRole("admin") || User.IsInRole("user"))
+        {
+            <div class="dash-section col-md-6">
+                <h4><a href="">Generate Reports</a></h4>
+                <ul>
+                    <li>
+                        Generate reports of your herd.
+                    </li>
+                    <li>
+                        Export to excel.
+                    </li>
+                </ul>
+            </div>
+        }
         </div>
+        <div class="row">
         @if (User.IsInRole("admin"))
         {
-        <div class="dash-section">
-            <h4><a href="~/Account/CreateAdmin">Add Admin Account</a></h4>
-            <ul>
-                <li>
-                    Add another admin account.
-                </li>
-                <li>
-                    Admins can see all data and can create other admins.
-                </li>
-            </ul>
-        </div> 
+            <div class="dash-section col-md-6">
+                <h4><a href="~/Account/CreateAdmin">Add Admin Account</a></h4>
+                <ul>
+                    <li>
+                        Add another admin account.
+                    </li>
+                    <li>
+                        Admins can see all data and can create other admins.
+                    </li>
+                </ul>
+            </div> 
         }
         @if (User.IsInRole("admin"))
         {
-            <div class="dash-section">
+            <div class="dash-section col-md-6">
                 <h4><a href="~/Comments/Index">View Comments</a></h4>
                 <ul>
                     <li>
@@ -100,7 +110,24 @@
                 </ul>
             </div>
         }
+        </div>
+    <div class="row">
+        @if (User.IsInRole("admin"))
+        {
+        <div class="dash-section col-md-6">
+            <h4><a href="~/License/Edit/1">Edit License Agreement</a></h4>
+            <ul>
+                <li>
+                    View the current license agreement.
+                </li>
+                <li>
+                    Edit the license agreement.
+                </li>
+            </ul>
+        </div>
+        }
     </div>
+</div>
 </body>
 <script type="text/javascript">
     $(document).ready(function () {

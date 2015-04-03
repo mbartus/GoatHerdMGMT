@@ -30,6 +30,7 @@ namespace goatMGMT.Models
         public virtual DbSet<Birth> Births { get; set; }
         public virtual DbSet<Breeding> Breedings { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<License> Licenses { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Treatment> Treatments { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }

@@ -36,7 +36,9 @@
                     @Html.DisplayFor(modelItem => item.subject)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.comment1)
+                    <div style="max-height:60px; overflow:hidden">
+                        @Html.DisplayFor(modelItem => item.comment1)
+                    </div>
                 </td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id=item.id }) |
@@ -48,28 +50,3 @@
         </table>
     </div>
 </div>
-
-<script>
-    function doCheck() {
-        var checkboxes = new Array();
-        checkboxes = document.getElementsByName('myCheckBoxes');
-        var check = document.getElementsByName("masterCheck").checked;
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = check;
-        }
-    }
-    
-    function getCheckedBoxes() {
-        var checkboxes = document.getElementsByName("myCheckBoxes");
-        var checkboxesChecked = [];
-        // loop over them all
-        for (var i = 0; i < checkboxes.length; i++) {
-            // And stick the checked ones onto an array...
-            if (checkboxes[i].checked) {
-                checkboxesChecked.push(checkboxes[i]);
-            }
-        }
-        // Return the array if it is non-empty, or null
-        return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-    }
-</script>

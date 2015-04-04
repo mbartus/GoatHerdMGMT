@@ -26,5 +26,7 @@ namespace goatMGMT.Models
         public Int32 userID { get; set; } // used for password reset
 
         public string agreement { get; set; }
+
+        public string token { get; set; }
     }
 }

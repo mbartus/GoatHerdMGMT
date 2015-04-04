@@ -247,7 +247,8 @@ namespace goatMGMT.Controllers
                 UserProfile user = db.UserProfiles.Find(csvm.userID);
                 if (user.firstAnswer == csvm.SecurityQuestionAnswer1 && user.secondAnswer == csvm.SecurityQuestionAnswer2)
                 {
-                    return RedirectToAction("ResetPassword", new { id = user.UserId});
+                    var token = WebSecurity.GeneratePasswordResetToken(user.Username);
+                    return RedirectToAction("ResetPassword", new { id = user.UserId, t = token});
                 }
                 else
                 {
@@ -260,13 +261,14 @@ namespace goatMGMT.Controllers
 
 
         [HttpGet]
-        public ActionResult ResetPassword(Int32 id)
+        public ActionResult ResetPassword(Int32 id, String t)
         {
             UserProfile user = db.UserProfiles.Find(id);
             RegisterViewModel rvm = new RegisterViewModel()
             {
                 Username = user.Username,
-                userID = id
+                userID = id,
+                token = t
             };
             return View(rvm);
         }
@@ -283,8 +285,7 @@ namespace goatMGMT.Controllers
                         try
                         {
                             UserProfile user = db.UserProfiles.Find(rvm.userID);
-                            var token = WebSecurity.GeneratePasswordResetToken(user.Username);
-                            WebSecurity.ResetPassword(token, rvm.Password);
+                            WebSecurity.ResetPassword(rvm.token, rvm.Password);
                             return RedirectToAction("Login");
                         }
                         catch

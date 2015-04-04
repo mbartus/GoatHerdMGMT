@@ -10,13 +10,16 @@
         <table class="table table-striped">
             <tr>
                 <th>
-                    Subject
+                    @Html.DisplayNameFor(model => model.email)
                 </th>
                 <th>
-                    Comment
+                    @Html.DisplayNameFor(model => model.subject)
                 </th>
                 <th>
-                    Date Sent
+                    @Html.DisplayNameFor(model => model.comment1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date_sent)
                 </th>
                 <th></th>
                 <th>
@@ -28,6 +31,9 @@
 
             @foreach (var item in Model) {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.subject)
                 </td>

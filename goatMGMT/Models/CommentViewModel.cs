@@ -7,8 +7,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace goatMGMT.Models
 {
+    [MetadataType(typeof(CommentViewModel))]
+    public partial class Comment { }
     public class CommentViewModel
     {
+        public int id {get;set;}
+
         [DisplayName("Name")]
         [MaxLength(50)]
         public string name { get; set; }
@@ -18,13 +22,17 @@ namespace goatMGMT.Models
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string email { get; set; }
-        
+
+        [DisplayName("Date Sent")]
+        [DataType(DataType.DateTime)]
+        public DateTime date_sent { get; set; }
+
         [DisplayName("Subject")]
         [MaxLength(50)]
         public string subject { get; set; }
         
-        [DisplayName("Comment")]
+        [DisplayName("Message")]
         [Required]
-        public string comment { get; set; }
+        public string comment1 { get; set; }
     }
 }

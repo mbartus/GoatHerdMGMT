@@ -41,7 +41,7 @@ namespace goatMGMT.Controllers
                 com.name = cvm.name;
                 com.email = cvm.email;
                 com.subject = cvm.subject;
-                com.comment1 = cvm.comment;
+                com.comment1 = cvm.comment1;
                 com.date_sent = System.DateTime.Now;
                 db.Comments.Add(com);
                 try

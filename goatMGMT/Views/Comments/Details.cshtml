@@ -3,47 +3,56 @@
 @{
     ViewBag.Title = "Details";
 }
-<div class="container"
+<div class="container">
 <h2>Details</h2>
 <div>
-    <h4>@Html.DisplayFor(model => model.subject)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Date Sent:
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.date_sent)
-        </dd>
+    <fieldset>
+        <legend>Breeding</legend>
 
-        <dt>
-            Name:
-        </dt>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>
+                              <b> @Html.DisplayNameFor(model => model.email):</b> @Html.DisplayFor(model => model.email)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                               <b> @Html.DisplayNameFor(model => model.name):</b> @Html.DisplayFor(model => model.name)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                              <b>  @Html.DisplayNameFor(model => model.date_sent):</b> @Html.DisplayFor(model => model.date_sent)
+                                </td>
+                            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
-
-        <dt>
-            Email:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            Comment:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.comment1)
-        </dd>
-
-    </dl>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><b> @Html.DisplayNameFor(model => model.subject): </b> @Html.DisplayFor(model => model.subject) </h3>
+                    </div>
+                    <div class="panel-body">
+                      <b>  @Html.DisplayNameFor(model => model.comment1): </b> @Html.DisplayFor(model => model.comment1)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </fieldset>
+    <p>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
 </div>

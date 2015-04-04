@@ -5,62 +5,111 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
 <h2>Details</h2>
 
 <fieldset>
 	<legend>Transaction</legend>
-	<dl>
-		<dt>
-			@Html.DisplayNameFor(model => model.type)
-		</dt>
+	
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.type)</h3>
+                </div>
+                <div class="panel-body">
+                    @if (Model.type)
+                            {
+                        @Html.Raw("Income")
+                            }
+                            else
+                            {
+                        @Html.Raw("Expense")
+                            }
 
-		<dd>
-			@Html.DisplayFor(model => model.type)
-		</dd>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.item_type)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.item_type)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.date)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.date)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.quantity)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.quantity)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.unit_price)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.unit_price)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.total_payment)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.total_payment)
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.item_type)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.item_type)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.quantity)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.quantity)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.unit_price)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.unit_price)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.total_payment)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.total_payment)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.notes)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.notes)
-		</dd>
-
-	</dl>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.notes)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.notes)
+                </div>
+            </div>
+        </div>
+    </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color" style="padding-bottom: 15px;">
+        @Html.ActionLink("Back to List", "Index", "Associate", new { @class = "btn btn-default" })
+    </div>
+}
+</div>

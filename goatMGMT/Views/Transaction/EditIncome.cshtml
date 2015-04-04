@@ -13,33 +13,24 @@
     @Html.ValidationSummary(true)
 
     <fieldset class="form-horizontal">
-        <legend>Transaction</legend>
+        <legend>Income</legend>
 
         @Html.HiddenFor(model => model.userid)
         @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.type)
 
-        <div class="row">
-            <div class="col-md-1">
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBoxFor(model => model.type) Income
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBox("expense") Expense
-                    </label>
-                </div>
+        <div class="control-group">
+            @Html.LabelFor(m => m.item_type, new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(m => m.item_type, (IEnumerable<SelectListItem>)ViewData["incomeList"], "Select an Income Type", new { @class = "form-control" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.item_type, new { @class = "control-label" })
+            @Html.LabelFor(model => model.date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.item_type, new { @class="form-control" })
-                @Html.ValidationMessageFor(model => model.item_type, null, new { @class = "help-inline" })
+                @Html.TextBoxFor(model => model.date, new { @class = "form-control", @placeholder = "MM/DD/YYYY" })
+                @Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
             </div>
         </div>
 
@@ -85,16 +76,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-<script type="text/javascript">
-    $('#expense').click(function () {
-        if ($('#type').prop('checked')) {
-            $('#type').prop('checked', false);
-        }
-    });
-    $('#type').click(function () {
-        if ($('#expense').prop('checked')) {
-            $('#expense').prop('checked', false);
-        }
-    });
-</script>
 

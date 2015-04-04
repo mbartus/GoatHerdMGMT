@@ -19,6 +19,11 @@ namespace goatMGMT.Models
         [DisplayName("Type")]
         public bool type {get; set;}
 
+        [Required]
+        [DisplayName("Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime date { get; set; }
         
         [DisplayName("Quantity")]
         public decimal quantity {get; set;}

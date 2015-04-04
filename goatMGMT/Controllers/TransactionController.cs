@@ -49,7 +49,21 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Transaction/Create
-        public ActionResult Create()
+        public ActionResult CreateIncome()
+        {
+            List<SelectListItem> incomeList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
+                new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
+                new SelectListItem() { Text = "Sale for Breeding", Value = "Sale for Breeding"},
+                new SelectListItem() { Text = "Sale for Pet/Show", Value = "Sale for Pet/Show"},
+                new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
+                new SelectListItem() { Text = "Other", Value = "Other"}
+            };
+            @ViewBag.incomeList = incomeList;
+            return View();
+        }
+
+        public ActionResult CreateExpense()
         {
             List<SelectListItem> expenseList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Feed/Hay", Value = "Feed/Hay"},
@@ -61,7 +75,31 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Utilities", Value = "Utilities"},
                 new SelectListItem() { Text = "Others", Value = "Others"}
             };
-            @ViewBag.speciesList = expenseList;
+            @ViewBag.expenseList = expenseList;
+            return View();
+        }
+
+        //
+        // POST: /Transaction/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateIncome(Transaction transaction)
+        {
+            if (ModelState.IsValid)
+            {
+                transaction.type = true;
+                transaction.userid = (int)Membership.GetUser().ProviderUserKey;
+                db.Transactions.Add(transaction);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                return RedirectToAction("Index");
+            }
             List<SelectListItem> incomeList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
                 new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
@@ -70,18 +108,17 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
                 new SelectListItem() { Text = "Other", Value = "Other"}
             };
-            @ViewBag.speciesList = incomeList;
-            return View();
+            @ViewBag.incomeList = incomeList;
+            return View(transaction);
         }
 
-        //
-        // POST: /Transaction/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Transaction transaction)
+        public ActionResult CreateExpense(Transaction transaction)
         {
             if (ModelState.IsValid)
             {
+                transaction.type = false;
                 transaction.userid = (int)Membership.GetUser().ProviderUserKey;
                 db.Transactions.Add(transaction);
                 try
@@ -104,7 +141,19 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Utilities", Value = "Utilities"},
                 new SelectListItem() { Text = "Others", Value = "Others"}
             };
-            @ViewBag.speciesList = expenseList;
+            @ViewBag.expenseList = expenseList;
+            return View(transaction);
+        }
+
+        //
+        // GET: /Transaction/Edit/5
+        public ActionResult EditIncome(Int32 id)
+        {
+            Transaction transaction = db.Transactions.Find(id);
+            if (transaction == null)
+            {
+                return HttpNotFound();
+            }
             List<SelectListItem> incomeList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
                 new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
@@ -113,13 +162,11 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
                 new SelectListItem() { Text = "Other", Value = "Other"}
             };
-            @ViewBag.speciesList = incomeList;
+            @ViewBag.incomeList = incomeList;
             return View(transaction);
         }
 
-        //
-        // GET: /Transaction/Edit/5
-        public ActionResult Edit(Int32 id)
+        public ActionResult EditExpense(Int32 id)
         {
             Transaction transaction = db.Transactions.Find(id);
             if (transaction == null)
@@ -136,7 +183,30 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Utilities", Value = "Utilities"},
                 new SelectListItem() { Text = "Others", Value = "Others"}
             };
-            @ViewBag.speciesList = expenseList;
+            @ViewBag.expenseList = expenseList;
+            return View(transaction);
+        }
+
+        //
+        // POST: /Transaction/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditIncome(Transaction transaction)
+        {
+            if (ModelState.IsValid && transaction.userid != 0)
+            {
+                transaction.UserProfile = db.UserProfiles.FirstOrDefault(m => m.UserId == transaction.userid);
+                db.Entry(transaction).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                return RedirectToAction("Index");
+            }
             List<SelectListItem> incomeList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
                 new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
@@ -145,15 +215,13 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
                 new SelectListItem() { Text = "Other", Value = "Other"}
             };
-            @ViewBag.speciesList = incomeList;
+            @ViewBag.incomeList = incomeList;
             return View(transaction);
         }
 
-        //
-        // POST: /Transaction/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Transaction transaction)
+        public ActionResult EditExpense(Transaction transaction)
         {
             if (ModelState.IsValid && transaction.userid != 0)
             {
@@ -179,16 +247,7 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Utilities", Value = "Utilities"},
                 new SelectListItem() { Text = "Others", Value = "Others"}
             };
-            @ViewBag.speciesList = expenseList;
-            List<SelectListItem> incomeList = new List<SelectListItem>() {
-                new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
-                new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
-                new SelectListItem() { Text = "Sale for Breeding", Value = "Sale for Breeding"},
-                new SelectListItem() { Text = "Sale for Pet/Show", Value = "Sale for Pet/Show"},
-                new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
-                new SelectListItem() { Text = "Other", Value = "Other"}
-            };
-            @ViewBag.speciesList = incomeList;
+            @ViewBag.expenseList = expenseList;
             return View(transaction);
         }
 

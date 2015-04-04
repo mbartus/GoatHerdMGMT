@@ -14,8 +14,7 @@
     <fieldset>
         <legend>Birth</legend>
         @Html.HiddenFor(m => m.birth.Animal.id)
-        @Html.HiddenFor(m => m.birth.father_id)
-        @Html.HiddenFor(m => m.birth.mother_id)
+        @Html.HiddenFor(m => m.birth.breed_id)
         @Html.HiddenFor(m => m.birth.child_id)
         @Html.HiddenFor(m => m.birth.id)
         <div class="row">
@@ -120,7 +119,7 @@
         @Html.AntiForgeryToken()
         <div class="form-actions no-color" style="padding-bottom: 15px;">
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
-            @Html.ActionLink("Cancel", "Index", "Birth", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id },  new { @class = "btn btn-default" })
+            @Html.ActionLink("Cancel", "Index", "Birth", new { id = Model.birth.breed_id },  new { @class = "btn btn-default" })
         </div>
 
     <!-- Modal -->

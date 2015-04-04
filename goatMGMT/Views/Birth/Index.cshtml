@@ -9,7 +9,7 @@
     <h2>Births</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Birth", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Create New", "Create", "Birth", new { id = Model.birth.breed_id }, new { @class = "btn btn-success" })
         @Html.ActionLink("Back to Breedings", "Index", "Breeding", new { }, new { @class = "btn btn-warning" })
     </p>
     <div class="table-responsive">

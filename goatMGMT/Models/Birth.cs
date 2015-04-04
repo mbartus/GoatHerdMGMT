@@ -16,8 +16,7 @@ namespace goatMGMT.Models
     {
         public int id { get; set; }
         public int child_id { get; set; }
-        public int mother_id { get; set; }
-        public int father_id { get; set; }
+        public int breed_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<bool> type { get; set; }
         public Nullable<int> parity { get; set; }
@@ -27,7 +26,6 @@ namespace goatMGMT.Models
         public string notes { get; set; }
     
         public virtual Animal Animal { get; set; }
-        public virtual Animal Animal1 { get; set; }
-        public virtual Animal Animal2 { get; set; }
+        public virtual Breeding Breeding { get; set; }
     }
 }

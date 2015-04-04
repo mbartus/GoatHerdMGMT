@@ -292,6 +292,21 @@ namespace goatMGMT.Controllers
         public ActionResult DeleteConfirmed(Int32 id)
         {
             Animal animal = db.Animals.Find(id);
+            var treatments = db.Treatments.Include(a => a.Animal.UserProfile).Where(b => b.animal_id == animal.id);
+            var breedings = db.Breedings.Include(a => a.Animal.UserProfile).Where(b => b.father_id == animal.id || b.mother_id == animal.id);
+            foreach(Treatment tre in treatments)
+            {
+                db.Treatments.Remove(tre);
+            }
+            foreach(Breeding bre in breedings)
+            {
+                var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.breed_id == bre.id);
+                foreach (Birth bi in births)
+                {
+                    db.Births.Remove(bi);
+                }
+                db.Breedings.Remove(bre);
+            }
             db.Animals.Remove(animal);
             try
             {

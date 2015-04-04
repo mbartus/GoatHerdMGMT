@@ -51,6 +51,26 @@ namespace goatMGMT.Controllers
         // GET: /Transaction/Create
         public ActionResult Create()
         {
+            List<SelectListItem> expenseList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Feed/Hay", Value = "Feed/Hay"},
+                new SelectListItem() { Text= "Fertilizer/Seed", Value = "Fertilizer/Seed"},
+                new SelectListItem() { Text = "Equipment", Value = "Equipment"},
+                new SelectListItem() { Text = "Vet Medication", Value = "Vet Medication"},
+                new SelectListItem() { Text = "Farm Supplies", Value = "Farm Supplies"},
+                new SelectListItem() { Text = "Animal Purchase", Value = "Animal Purchase"},
+                new SelectListItem() { Text = "Utilities", Value = "Utilities"},
+                new SelectListItem() { Text = "Others", Value = "Others"}
+            };
+            @ViewBag.speciesList = expenseList;
+            List<SelectListItem> incomeList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
+                new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
+                new SelectListItem() { Text = "Sale for Breeding", Value = "Sale for Breeding"},
+                new SelectListItem() { Text = "Sale for Pet/Show", Value = "Sale for Pet/Show"},
+                new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
+                new SelectListItem() { Text = "Other", Value = "Other"}
+            };
+            @ViewBag.speciesList = incomeList;
             return View();
         }
 
@@ -74,7 +94,26 @@ namespace goatMGMT.Controllers
                 }
                 return RedirectToAction("Index");
             }
-
+            List<SelectListItem> expenseList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Feed/Hay", Value = "Feed/Hay"},
+                new SelectListItem() { Text= "Fertilizer/Seed", Value = "Fertilizer/Seed"},
+                new SelectListItem() { Text = "Equipment", Value = "Equipment"},
+                new SelectListItem() { Text = "Vet Medication", Value = "Vet Medication"},
+                new SelectListItem() { Text = "Farm Supplies", Value = "Farm Supplies"},
+                new SelectListItem() { Text = "Animal Purchase", Value = "Animal Purchase"},
+                new SelectListItem() { Text = "Utilities", Value = "Utilities"},
+                new SelectListItem() { Text = "Others", Value = "Others"}
+            };
+            @ViewBag.speciesList = expenseList;
+            List<SelectListItem> incomeList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
+                new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
+                new SelectListItem() { Text = "Sale for Breeding", Value = "Sale for Breeding"},
+                new SelectListItem() { Text = "Sale for Pet/Show", Value = "Sale for Pet/Show"},
+                new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
+                new SelectListItem() { Text = "Other", Value = "Other"}
+            };
+            @ViewBag.speciesList = incomeList;
             return View(transaction);
         }
 
@@ -87,6 +126,26 @@ namespace goatMGMT.Controllers
             {
                 return HttpNotFound();
             }
+            List<SelectListItem> expenseList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Feed/Hay", Value = "Feed/Hay"},
+                new SelectListItem() { Text= "Fertilizer/Seed", Value = "Fertilizer/Seed"},
+                new SelectListItem() { Text = "Equipment", Value = "Equipment"},
+                new SelectListItem() { Text = "Vet Medication", Value = "Vet Medication"},
+                new SelectListItem() { Text = "Farm Supplies", Value = "Farm Supplies"},
+                new SelectListItem() { Text = "Animal Purchase", Value = "Animal Purchase"},
+                new SelectListItem() { Text = "Utilities", Value = "Utilities"},
+                new SelectListItem() { Text = "Others", Value = "Others"}
+            };
+            @ViewBag.speciesList = expenseList;
+            List<SelectListItem> incomeList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
+                new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
+                new SelectListItem() { Text = "Sale for Breeding", Value = "Sale for Breeding"},
+                new SelectListItem() { Text = "Sale for Pet/Show", Value = "Sale for Pet/Show"},
+                new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
+                new SelectListItem() { Text = "Other", Value = "Other"}
+            };
+            @ViewBag.speciesList = incomeList;
             return View(transaction);
         }
 
@@ -110,6 +169,26 @@ namespace goatMGMT.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            List<SelectListItem> expenseList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Feed/Hay", Value = "Feed/Hay"},
+                new SelectListItem() { Text= "Fertilizer/Seed", Value = "Fertilizer/Seed"},
+                new SelectListItem() { Text = "Equipment", Value = "Equipment"},
+                new SelectListItem() { Text = "Vet Medication", Value = "Vet Medication"},
+                new SelectListItem() { Text = "Farm Supplies", Value = "Farm Supplies"},
+                new SelectListItem() { Text = "Animal Purchase", Value = "Animal Purchase"},
+                new SelectListItem() { Text = "Utilities", Value = "Utilities"},
+                new SelectListItem() { Text = "Others", Value = "Others"}
+            };
+            @ViewBag.speciesList = expenseList;
+            List<SelectListItem> incomeList = new List<SelectListItem>() {
+                new SelectListItem() { Text= "Sale of Meat Kids", Value = "Sale of Meat Kids"},
+                new SelectListItem() { Text= "Sale of Culls", Value = "Sale of Culls"},
+                new SelectListItem() { Text = "Sale for Breeding", Value = "Sale for Breeding"},
+                new SelectListItem() { Text = "Sale for Pet/Show", Value = "Sale for Pet/Show"},
+                new SelectListItem() { Text = "Farm Income", Value = "Farm Income"},
+                new SelectListItem() { Text = "Other", Value = "Other"}
+            };
+            @ViewBag.speciesList = incomeList;
             return View(transaction);
         }
 

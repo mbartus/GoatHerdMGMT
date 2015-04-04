@@ -15,8 +15,7 @@
         @Html.ValidationSummary(true)
 
 
-        @Html.HiddenFor(m => m.birth.father_id)
-        @Html.HiddenFor(m => m.birth.mother_id)
+        @Html.HiddenFor(m => m.birth.breed_id)
         @Html.HiddenFor(m => m.birth.child_id)
         @Html.HiddenFor(m => m.birth.id)
         
@@ -117,7 +116,7 @@
 
             <div class="form-actions no-color" style="padding-bottom:15px">
                 <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
-                @Html.ActionLink("Cancel", "Index", "Birth", new { id2 = Model.birth.father_id, id3 = Model.birth.mother_id }, new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+                @Html.ActionLink("Cancel", "Index", "Birth", new { id = Model.birth.breed_id }, new { @class = "btn btn-danger", @style = "margin-top:15px;" })
             </div>
         </fieldset>
     }

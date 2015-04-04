@@ -14,6 +14,12 @@ namespace goatMGMT.Models
     
     public partial class Breeding
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Breeding()
+        {
+            this.Births = new HashSet<Birth>();
+        }
+    
         public int id { get; set; }
         public int mother_id { get; set; }
         public int father_id { get; set; }
@@ -24,5 +30,7 @@ namespace goatMGMT.Models
     
         public virtual Animal Animal { get; set; }
         public virtual Animal Animal1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Birth> Births { get; set; }
     }
 }

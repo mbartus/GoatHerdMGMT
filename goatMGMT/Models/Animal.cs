@@ -18,8 +18,6 @@ namespace goatMGMT.Models
         public Animal()
         {
             this.Births = new HashSet<Birth>();
-            this.Births1 = new HashSet<Birth>();
-            this.Births2 = new HashSet<Birth>();
             this.Breedings = new HashSet<Breeding>();
             this.Breedings1 = new HashSet<Breeding>();
             this.Treatments = new HashSet<Treatment>();
@@ -53,10 +51,6 @@ namespace goatMGMT.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Birth> Births { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Birth> Births1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Birth> Births2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Breeding> Breedings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

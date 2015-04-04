@@ -17,25 +17,24 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Birth/
-        public ActionResult Index(Int32 id2, Int32 id3)
+        public ActionResult Index(Int32 id)
         {
             List<BirthViewModel> bvmList = new List<BirthViewModel>();
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.Animal1.id == id2 && b.Animal2.id == id3);
+            var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.breed_id == id);
             foreach (Birth birth in births)
             {
                 BirthViewModel bvm = new BirthViewModel();
                 bvm.birth = birth;
                 bvm.offspring_tag = birth.Animal.tag;
-                bvm.father_tag = birth.Animal1.tag;
-                bvm.mother_tag = birth.Animal2.tag;
+                bvm.father_tag = db.Animals.Find(db.Breedings.Find(id).father_id).tag;
+                bvm.mother_tag = db.Animals.Find(db.Breedings.Find(id).mother_id).tag;
                 bvmList.Add(bvm);
             }
             BirthViewModel bvmFinal = new BirthViewModel();
             bvmFinal.ien = bvmList;
             bvmFinal.birth = new Birth();
-            bvmFinal.birth.father_id = id2;
-            bvmFinal.birth.mother_id = id3;
+            bvmFinal.birth.breed_id = id;
             return View(bvmFinal);
         }
 
@@ -51,21 +50,20 @@ namespace goatMGMT.Controllers
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
-            bvm.father_tag = birth.Animal1.tag;
-            bvm.mother_tag = birth.Animal2.tag;
+            bvm.father_tag = db.Animals.Find(db.Breedings.Find(id).father_id).tag;
+            bvm.mother_tag = db.Animals.Find(db.Breedings.Find(id).mother_id).tag;
             return View(bvm);
         }
 
         //
         // GET: /Birth/Create
-        public ActionResult Create(Int32 id2, Int32 id3)
+        public ActionResult Create(Int32 id)
         {
             BirthViewModel bvm = new BirthViewModel();
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var births = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == true);
             bvm.birth = new Birth();
-            bvm.birth.father_id = id2;
-            bvm.birth.mother_id = id3;
+            bvm.birth.breed_id = id;
             bvm.offspring = new List<System.Web.Mvc.SelectListItem>();
             bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
             foreach (Animal birth in births)
@@ -88,8 +86,6 @@ namespace goatMGMT.Controllers
             if (ModelState.IsValid && birthViewModel.offspringChoice != -1)
             {
                 birthViewModel.birth.Animal = db.Animals.Find(birthViewModel.offspringChoice);
-                birthViewModel.birth.Animal1 = db.Animals.Find(birthViewModel.birth.father_id);
-                birthViewModel.birth.Animal2 = db.Animals.Find(birthViewModel.birth.mother_id);
                 db.Births.Add(birthViewModel.birth);
                 try
                 {
@@ -99,7 +95,7 @@ namespace goatMGMT.Controllers
                 {
                     return RedirectToAction("Error", "Home");
                 }
-                return RedirectToAction("Index", new { id2 = birthViewModel.birth.father_id, id3 = birthViewModel.birth.mother_id});
+                return RedirectToAction("Index", new { id = birthViewModel.birth.breed_id });
             }
 
             BirthViewModel bvm = new BirthViewModel();
@@ -132,8 +128,8 @@ namespace goatMGMT.Controllers
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
-            bvm.father_tag = birth.Animal1.tag;
-            bvm.mother_tag = birth.Animal2.tag;
+            bvm.father_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).father_id).tag;
+            bvm.mother_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).mother_id).tag;
             return View(bvm);
         }
 
@@ -144,8 +140,6 @@ namespace goatMGMT.Controllers
         public ActionResult Edit(Birth birth)
         {
             birth.Animal = db.Animals.Find(birth.child_id);
-            birth.Animal1 = db.Animals.Find(birth.father_id);
-            birth.Animal2 = db.Animals.Find(birth.mother_id);
             if (ModelState.IsValid)
             {
                 db.Entry(birth).State = EntityState.Modified;
@@ -157,13 +151,13 @@ namespace goatMGMT.Controllers
                 {
                     return RedirectToAction("Error", "Home");
                 }
-                return RedirectToAction("Index", new { id2 = birth.father_id, id3 = birth.mother_id });
+                return RedirectToAction("Index", new { id = birth.breed_id });
             }
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
-            bvm.father_tag = birth.Animal1.tag;
-            bvm.mother_tag = birth.Animal2.tag;
+            bvm.father_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).father_id).tag;
+            bvm.mother_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).mother_id).tag;
 
             return View(birth);
         }
@@ -180,8 +174,8 @@ namespace goatMGMT.Controllers
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
-            bvm.father_tag = birth.Animal1.tag;
-            bvm.mother_tag = birth.Animal2.tag;
+            bvm.father_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).father_id).tag;
+            bvm.mother_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).mother_id).tag;
             return View(bvm);
         }
 
@@ -201,7 +195,7 @@ namespace goatMGMT.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
-            return RedirectToAction("Index", new { id2 = birth.father_id, id3 = birth.mother_id });
+            return RedirectToAction("Index", new { id = birth.breed_id });
         }
 
         protected override void Dispose(bool disposing)

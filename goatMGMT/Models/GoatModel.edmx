@@ -55,13 +55,11 @@
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="child_id" />
-            <PropertyRef Name="mother_id" />
-            <PropertyRef Name="father_id" />
+            <PropertyRef Name="breed_id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="child_id" Type="int" Nullable="false" />
-          <Property Name="mother_id" Type="int" Nullable="false" />
-          <Property Name="father_id" Type="int" Nullable="false" />
+          <Property Name="breed_id" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" />
           <Property Name="type" Type="bit" />
           <Property Name="parity" Type="int" />
@@ -73,8 +71,6 @@
         <EntityType Name="Breeding">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="mother_id" />
-            <PropertyRef Name="father_id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="mother_id" Type="int" Nullable="false" />
@@ -197,7 +193,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Births__child_id__1293BD5E">
+        <Association Name="FK__Births__breed_id__46136164">
+          <End Role="Breeding" Type="Self.Breeding" Multiplicity="1" />
+          <End Role="Births" Type="Self.Births" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Breeding">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Births">
+              <PropertyRef Name="breed_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Births__child_id__451F3D2B">
           <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
           <End Role="Births" Type="Self.Births" Multiplicity="*" />
           <ReferentialConstraint>
@@ -209,31 +217,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Births__father_i__147C05D0">
-          <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
-          <End Role="Births" Type="Self.Births" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animals">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Births">
-              <PropertyRef Name="father_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Births__mother_i__1387E197">
-          <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
-          <End Role="Births" Type="Self.Births" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animals">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Births">
-              <PropertyRef Name="mother_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Breeding__father__184C96B4">
+        <Association Name="FK__Breeding__father__4242D080">
           <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
           <End Role="Breeding" Type="Self.Breeding" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,7 +229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Breeding__mother__1758727B">
+        <Association Name="FK__Breeding__mother__414EAC47">
           <End Role="Animals" Type="Self.Animals" Multiplicity="1" />
           <End Role="Breeding" Type="Self.Breeding" Multiplicity="*" />
           <ReferentialConstraint>
@@ -335,23 +319,19 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Associates" EntitySet="Associates" />
           </AssociationSet>
-          <AssociationSet Name="FK__Births__child_id__1293BD5E" Association="Self.FK__Births__child_id__1293BD5E">
+          <AssociationSet Name="FK__Births__breed_id__46136164" Association="Self.FK__Births__breed_id__46136164">
+            <End Role="Breeding" EntitySet="Breeding" />
+            <End Role="Births" EntitySet="Births" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Births__child_id__451F3D2B" Association="Self.FK__Births__child_id__451F3D2B">
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Births" EntitySet="Births" />
           </AssociationSet>
-          <AssociationSet Name="FK__Births__father_i__147C05D0" Association="Self.FK__Births__father_i__147C05D0">
-            <End Role="Animals" EntitySet="Animals" />
-            <End Role="Births" EntitySet="Births" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Births__mother_i__1387E197" Association="Self.FK__Births__mother_i__1387E197">
-            <End Role="Animals" EntitySet="Animals" />
-            <End Role="Births" EntitySet="Births" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Breeding__father__184C96B4" Association="Self.FK__Breeding__father__184C96B4">
+          <AssociationSet Name="FK__Breeding__father__4242D080" Association="Self.FK__Breeding__father__4242D080">
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breeding" />
           </AssociationSet>
-          <AssociationSet Name="FK__Breeding__mother__1758727B" Association="Self.FK__Breeding__mother__1758727B">
+          <AssociationSet Name="FK__Breeding__mother__414EAC47" Association="Self.FK__Breeding__mother__414EAC47">
             <End Role="Animals" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breeding" />
           </AssociationSet>
@@ -393,23 +373,15 @@
           <EntitySet Name="webpages_Membership" EntityType="goatDBModel.webpages_Membership" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="goatDBModel.webpages_OAuthMembership" />
           <EntitySet Name="webpages_Roles" EntityType="goatDBModel.webpages_Roles" />
-          <AssociationSet Name="FK__Births__child_id__1293BD5E" Association="goatDBModel.FK__Births__child_id__1293BD5E">
+          <AssociationSet Name="FK__Births__child_id__451F3D2B" Association="goatDBModel.FK__Births__child_id__451F3D2B">
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Birth" EntitySet="Births" />
           </AssociationSet>
-          <AssociationSet Name="FK__Births__father_i__147C05D0" Association="goatDBModel.FK__Births__father_i__147C05D0">
-            <End Role="Animal" EntitySet="Animals" />
-            <End Role="Birth" EntitySet="Births" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Births__mother_i__1387E197" Association="goatDBModel.FK__Births__mother_i__1387E197">
-            <End Role="Animal" EntitySet="Animals" />
-            <End Role="Birth" EntitySet="Births" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Breeding__father__184C96B4" Association="goatDBModel.FK__Breeding__father__184C96B4">
+          <AssociationSet Name="FK__Breeding__father__4242D080" Association="goatDBModel.FK__Breeding__father__4242D080">
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breedings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Breeding__mother__1758727B" Association="goatDBModel.FK__Breeding__mother__1758727B">
+          <AssociationSet Name="FK__Breeding__mother__414EAC47" Association="goatDBModel.FK__Breeding__mother__414EAC47">
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Breeding" EntitySet="Breedings" />
           </AssociationSet>
@@ -424,6 +396,10 @@
           <AssociationSet Name="FK__Associate__useri__025D5595" Association="goatDBModel.FK__Associate__useri__025D5595">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Associate" EntitySet="Associates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Births__breed_id__46136164" Association="goatDBModel.FK__Births__breed_id__46136164">
+            <End Role="Breeding" EntitySet="Breedings" />
+            <End Role="Birth" EntitySet="Births" />
           </AssociationSet>
           <AssociationSet Name="FK__Transacti__useri__25A691D2" Association="goatDBModel.FK__Transacti__useri__25A691D2">
             <End Role="UserProfile" EntitySet="UserProfiles" />
@@ -463,11 +439,9 @@
           <Property Name="market_date" Type="DateTime" Precision="3" />
           <Property Name="disposal_date" Type="DateTime" Precision="3" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Births" Relationship="goatDBModel.FK__Births__child_id__1293BD5E" FromRole="Animal" ToRole="Birth" />
-          <NavigationProperty Name="Births1" Relationship="goatDBModel.FK__Births__father_i__147C05D0" FromRole="Animal" ToRole="Birth" />
-          <NavigationProperty Name="Births2" Relationship="goatDBModel.FK__Births__mother_i__1387E197" FromRole="Animal" ToRole="Birth" />
-          <NavigationProperty Name="Breedings" Relationship="goatDBModel.FK__Breeding__father__184C96B4" FromRole="Animal" ToRole="Breeding" />
-          <NavigationProperty Name="Breedings1" Relationship="goatDBModel.FK__Breeding__mother__1758727B" FromRole="Animal" ToRole="Breeding" />
+          <NavigationProperty Name="Births" Relationship="goatDBModel.FK__Births__child_id__451F3D2B" FromRole="Animal" ToRole="Birth" />
+          <NavigationProperty Name="Breedings" Relationship="goatDBModel.FK__Breeding__father__4242D080" FromRole="Animal" ToRole="Breeding" />
+          <NavigationProperty Name="Breedings1" Relationship="goatDBModel.FK__Breeding__mother__414EAC47" FromRole="Animal" ToRole="Breeding" />
           <NavigationProperty Name="Treatments" Relationship="goatDBModel.FK__Treatment__anima__22CA2527" FromRole="Animal" ToRole="Treatment" />
           <NavigationProperty Name="UserProfile" Relationship="goatDBModel.FK_Animals_UserProfile" FromRole="Animal" ToRole="UserProfile" />
         </EntityType>
@@ -492,13 +466,11 @@
           <Key>
             <PropertyRef Name="id" />
             <PropertyRef Name="child_id" />
-            <PropertyRef Name="mother_id" />
-            <PropertyRef Name="father_id" />
+            <PropertyRef Name="breed_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="child_id" Type="Int32" Nullable="false" />
-          <Property Name="mother_id" Type="Int32" Nullable="false" />
-          <Property Name="father_id" Type="Int32" Nullable="false" />
+          <Property Name="breed_id" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Precision="3" />
           <Property Name="type" Type="Boolean" />
           <Property Name="parity" Type="Int32" />
@@ -506,15 +478,12 @@
           <Property Name="alive" Type="Int32" />
           <Property Name="born" Type="Int32" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Births__child_id__1293BD5E" FromRole="Birth" ToRole="Animal" />
-          <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK__Births__father_i__147C05D0" FromRole="Birth" ToRole="Animal" />
-          <NavigationProperty Name="Animal2" Relationship="goatDBModel.FK__Births__mother_i__1387E197" FromRole="Birth" ToRole="Animal" />
+          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Births__child_id__451F3D2B" FromRole="Birth" ToRole="Animal" />
+          <NavigationProperty Name="Breeding" Relationship="goatDBModel.FK__Births__breed_id__46136164" FromRole="Birth" ToRole="Breeding" />
         </EntityType>
         <EntityType Name="Breeding">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="mother_id" />
-            <PropertyRef Name="father_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="mother_id" Type="Int32" Nullable="false" />
@@ -523,8 +492,9 @@
           <Property Name="pregnancy_check" Type="DateTime" Precision="3" />
           <Property Name="expected_kidding_date" Type="DateTime" Precision="3" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Breeding__father__184C96B4" FromRole="Breeding" ToRole="Animal" />
-          <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK__Breeding__mother__1758727B" FromRole="Breeding" ToRole="Animal" />
+          <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Breeding__father__4242D080" FromRole="Breeding" ToRole="Animal" />
+          <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK__Breeding__mother__414EAC47" FromRole="Breeding" ToRole="Animal" />
+          <NavigationProperty Name="Births" Relationship="goatDBModel.FK__Births__breed_id__46136164" FromRole="Breeding" ToRole="Birth" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -626,7 +596,7 @@
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserProfiles" Relationship="goatDBModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
         </EntityType>
-        <Association Name="FK__Births__child_id__1293BD5E">
+        <Association Name="FK__Births__child_id__451F3D2B">
           <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
           <End Type="goatDBModel.Birth" Role="Birth" Multiplicity="*" />
           <ReferentialConstraint>
@@ -638,31 +608,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Births__father_i__147C05D0">
-          <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
-          <End Type="goatDBModel.Birth" Role="Birth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animal">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Birth">
-              <PropertyRef Name="father_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Births__mother_i__1387E197">
-          <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
-          <End Type="goatDBModel.Birth" Role="Birth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animal">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Birth">
-              <PropertyRef Name="mother_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Breeding__father__184C96B4">
+        <Association Name="FK__Breeding__father__4242D080">
           <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
           <End Type="goatDBModel.Breeding" Role="Breeding" Multiplicity="*" />
           <ReferentialConstraint>
@@ -674,7 +620,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Breeding__mother__1758727B">
+        <Association Name="FK__Breeding__mother__414EAC47">
           <End Type="goatDBModel.Animal" Role="Animal" Multiplicity="1" />
           <End Type="goatDBModel.Breeding" Role="Breeding" Multiplicity="*" />
           <ReferentialConstraint>
@@ -719,6 +665,18 @@
             </Principal>
             <Dependent Role="Associate">
               <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Births__breed_id__46136164">
+          <End Type="goatDBModel.Breeding" Role="Breeding" Multiplicity="1" />
+          <End Type="goatDBModel.Birth" Role="Birth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Breeding">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Birth">
+              <PropertyRef Name="breed_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -802,8 +760,7 @@
                 <ScalarProperty Name="parity" ColumnName="parity" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="father_id" ColumnName="father_id" />
-                <ScalarProperty Name="mother_id" ColumnName="mother_id" />
+                <ScalarProperty Name="breed_id" ColumnName="breed_id" />
                 <ScalarProperty Name="child_id" ColumnName="child_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

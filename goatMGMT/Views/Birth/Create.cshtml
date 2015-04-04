@@ -17,8 +17,7 @@
         <fieldset class="form-horizontal">
             <legend>Birth</legend>
             
-            @Html.HiddenFor(m => m.birth.father_id)
-            @Html.HiddenFor(m => m.birth.mother_id)
+            @Html.HiddenFor(m => m.birth.breed_id)
             <div class="control-group">
                 @Html.LabelFor(m => m.offspringChoice, new { @class = "control-label" })
                 <div class="controls">
@@ -60,7 +59,7 @@
 
             <div class="form-actions no-color" style="padding-bottom:15px">
                 <input type="submit" value="Create" class="btn btn-success" style="margin-top:15px;" />
-                @Html.ActionLink("Cancel", "Index", "Birth", new {id2 = Model.birth.father_id, id3 = Model.birth.mother_id}, new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+                @Html.ActionLink("Cancel", "Index", "Birth", new {id = Model.birth.breed_id }, new { @class = "btn btn-danger", @style = "margin-top:15px;" })
             </div>
         </fieldset>
     }

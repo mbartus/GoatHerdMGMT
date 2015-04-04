@@ -41,9 +41,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Breeding/Details/5
-        public ActionResult Details(Int32 id, Int32 id2, Int32 id3)
+        public ActionResult Details(Int32 id)
         {
-            Breeding breeding = db.Breedings.Find(id, id2, id3);
+            Breeding breeding = db.Breedings.Find(id);
             if (breeding == null)
             {
                 return HttpNotFound();
@@ -67,15 +67,15 @@ namespace goatMGMT.Controllers
             bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
             List<SelectListItem> mlist = new List<SelectListItem>();
             List<SelectListItem> flist = new List<SelectListItem>();
-            mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
-            flist.Add(new SelectListItem { Text = "Select Mother", Value = "0" });
+            mlist.Add(new SelectListItem { Text = "Select Sire", Value = "0" });
+            flist.Add(new SelectListItem { Text = "Select Dam", Value = "0" });
             for (int i = 1; i <= bvm.maleList.Count(); i++)
             {
-                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).name, Value = "" + i });
+                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).tag, Value = "" + i });
             }
             for (int i = 1; i <= bvm.femaleList.Count(); i++)
             {
-                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).name, Value = "" + i });
+                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).tag, Value = "" + i });
             }
             @ViewBag.flist = flist;
             @ViewBag.mlist = mlist;
@@ -112,15 +112,15 @@ namespace goatMGMT.Controllers
             }
             List<SelectListItem> mlist = new List<SelectListItem>();
             List<SelectListItem> flist = new List<SelectListItem>();
-            mlist.Add(new SelectListItem { Text = "Select Father", Value = "0" });
-            flist.Add(new SelectListItem { Text = "Select Mother", Value = "0" });
+            mlist.Add(new SelectListItem { Text = "Select Sire", Value = "0" });
+            flist.Add(new SelectListItem { Text = "Select Dam", Value = "0" });
             for (int i = 1; i <= bvm.maleList.Count(); i++)
             {
-                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).name, Value = "" + i });
+                mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).tag, Value = "" + i });
             }
             for (int i = 1; i <= bvm.femaleList.Count(); i++)
             {
-                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).name, Value = "" + i });
+                flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).tag, Value = "" + i });
             }
             @ViewBag.flist = flist;
             @ViewBag.mlist = mlist;
@@ -130,9 +130,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Breeding/Edit/5
-        public ActionResult Edit(Int32 id, Int32 id2, Int32 id3)
+        public ActionResult Edit(Int32 id)
         {
-            Breeding breeding = db.Breedings.Find(id, id2, id3);
+            Breeding breeding = db.Breedings.Find(id);
             if (breeding == null)
             {
                 return HttpNotFound();
@@ -174,9 +174,9 @@ namespace goatMGMT.Controllers
 
         //
         // GET: /Breeding/Delete/5
-        public ActionResult Delete(Int32 id, Int32 id2, Int32 id3)
+        public ActionResult Delete(Int32 id)
         {
-            Breeding breeding = db.Breedings.Find(id, id2, id3);
+            Breeding breeding = db.Breedings.Find(id);
             if (breeding == null)
             {
                 return HttpNotFound();
@@ -194,10 +194,15 @@ namespace goatMGMT.Controllers
         // POST: /Breeding/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Int32 id, Int32 id2, Int32 id3)
+        public ActionResult DeleteConfirmed(Int32 id)
         {
-            Breeding breeding = db.Breedings.Find(id, id2, id3);
+            Breeding breeding = db.Breedings.Find(id);
+            var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.breed_id == id);
             db.Breedings.Remove(breeding);
+            foreach (Birth bi in births)
+            {
+                db.Births.Remove(bi);
+            }
             try
             {
                 db.SaveChanges();

@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace goatMGMT.Models
 {
-    [MetadataType(typeof(CommentViewModel))]
+    [MetadataType(typeof(CommentMetadata))]
     public partial class Comment { }
-    public class CommentViewModel
+    public class CommentMetadata
     {
         public int id {get;set;}
 

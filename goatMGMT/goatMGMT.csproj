@@ -217,7 +217,7 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\CommentMetadata.cs" />
     <Compile Include="Models\GoatModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -446,6 +446,7 @@
     <Content Include="Views\License\Details.cshtml" />
     <Content Include="Views\License\Edit.cshtml" />
     <Content Include="Views\License\Index.cshtml" />
+    <Content Include="Views\Home\FeedbackConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

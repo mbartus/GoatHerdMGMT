@@ -23,6 +23,12 @@ namespace goatMGMT.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult FeedbackConfirm()
+        {
+            return View();
+        }
+
         [HttpGet] 
         public ActionResult Contact()
         {
@@ -33,15 +39,10 @@ namespace goatMGMT.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Contact(CommentViewModel cvm)
+        public ActionResult Contact(Comment com)
         {
             if (ModelState.IsValid)
             {
-                Comment com = new Comment();
-                com.name = cvm.name;
-                com.email = cvm.email;
-                com.subject = cvm.subject;
-                com.comment1 = cvm.comment1;
                 com.date_sent = System.DateTime.Now;
                 db.Comments.Add(com);
                 try
@@ -52,9 +53,9 @@ namespace goatMGMT.Controllers
                 {
                     return RedirectToAction("Error", "Home");
                 }
-                return View();
+                return Redirect("~/Home/FeedbackConfirm");
             }
-            return View(cvm);
+            return View(com);
         }
 
         public ActionResult Pricing()

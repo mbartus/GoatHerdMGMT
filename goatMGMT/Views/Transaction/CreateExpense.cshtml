@@ -50,7 +50,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.unit_price, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.DisplayFor(model => model.unit_price, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.unit_price, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.unit_price, null, new { @class = "help-inline" })
                 </div>
             </div>

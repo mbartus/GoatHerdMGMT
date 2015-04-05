@@ -9,7 +9,8 @@ namespace goatMGMT
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-2.1.3.js"));
+                        "~/Scripts/jquery-2.1.3.js",
+                        "~/Scripts/jquery.tablesorter.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
@@ -20,12 +21,23 @@ namespace goatMGMT
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
+                        "~/Scripts/bootstrap.min.js",
+                        "~/Scripts/bootstrap-datepicker.min.js",
+                        "~/Scripts/bootstrap-datepicker.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tables").Include(
+                      "~/Scripts/jquery.tablesorter.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/bootstrap-datepicker.min.css",
+                      "~/Content/bootstrap-datepicker3.min.css",
+                      "~/Content/tablesorterstyle.css",
                       "~/Content/bootstrap-responsive.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

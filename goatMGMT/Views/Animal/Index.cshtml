@@ -12,70 +12,106 @@
             @Html.ActionLink("Compare", "Compare", "Animal", new { @class="btn btn-warning" } )
         </p>
         <div class="table-responsive">
-            <table class="table table-striped">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tag)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dob)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.sex)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.breed_code)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.species)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.status_code)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tag)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.dob)
-                    </td>
-                    <td>
-                        @if (item.sex) 
-                        { 
+            <table class="table table-striped tablesorter" id="animalTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tag)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dob)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sex)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.breed_code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.species)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status_code)
+                        </th>
+                        <th class="non-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dob)
+                        </td>
+                        <td>
+                            @if (item.sex)
+                            {
                             @Html.Raw("Male")
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
                             @Html.Raw("Female")
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.breed_code)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.species)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.status_code)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.id })
-                    </td>
-                </tr>
-                }
-
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.breed_code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.species)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status_code)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
+    <div id="pager" class="pager">
+        <form>
+            <button type="button" class="btn btn-default first">First</button>
+            <button type="button" class="btn btn-default prev">Prev</button>
+            <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+            <button type="button" class="btn btn-default next">Next</button>
+            <button type="button" class="btn btn-default last">Last</button><br />
+            Items on page&nbsp<select class="pagesize">
+                <option selected="selected" value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="9999">View All</option>
+            </select>
+        </form>
+    </div>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
+    <script src="~/Scripts/jquery.sieve.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#animalTable').tablesorter({
+                theme: 'default',
+                headers: {
+                    '.non-sort': { sorter: false }
+                }
+            }).tablesorter().tablesorterPager({
+                container: $('#pager'),
+                output: '{startRow} to {endRow} ({totalRows})'
+            });
+            $('#animalTable').sieve();
+        });
+    </script>

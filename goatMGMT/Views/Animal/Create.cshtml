@@ -64,7 +64,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="help-block">This cannot be changed after animal creation</div>
+                <div class="help-block">Sex cannot be changed after animal creation</div>
             </div>
         </div>
         <div class="control-group">
@@ -130,7 +130,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="help-block">This cannot be changed after animal creation</div>
+                <div class="help-block">Species cannot be changed after animal creation</div>
             </div>
         </div>
 
@@ -200,6 +200,7 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datepicker")
 }
 <script type="text/javascript">
     $('#sex2').click(function () {
@@ -211,5 +212,11 @@
         if ($('#sex2').prop('checked')) {
             $('#sex2').prop('checked', false);
         }
+    });
+    $(function () {
+        $('#dob').datepicker();
+        $('#weaning_date').datepicker();
+        $('#market_date').datepicker();
+        $('#disposal_date').datepicker();
     });
 </script>

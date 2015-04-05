@@ -1,4 +1,4 @@
-﻿@model IEnumerable<goatMGMT.Models.Transaction>
+﻿@model goatMGMT.Models.GraphViewModel
 
     @{
     ViewBag.Title = "Compare Transactions";
@@ -7,61 +7,7 @@
     <div class="container">
         <h2>Compare Transactions</h2>
         @Html.ActionLink("Back", "Index", "Associate", new { @class="btn btn-warning" , @style="margin-top:15px;"})
-        @*<div class="table-responsive">
-            <table class="table table-striped highchart">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.item_type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.quantity)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.unit_price)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.total_payment)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.notes)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.item_detail)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.item_type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.unit_Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.total_Payment)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.notes)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.id })
-                    </td>
-                </tr>
-                }
-
-            </table>
-        </div>*@
-<div id="chartdiv" style="margin-bottom:15px;"></div>
+        <div id="chartdiv" style="margin-bottom:15px;"></div>
     </div>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
@@ -73,20 +19,11 @@
             "type": "serial",
             "theme": "light",
             "dataProvider": [{
-                "cost": "Feed",
-                "amount": 500
+                "cost": "Income",
+                "amount": @Model.income
             }, {
-                "cost": "Hay",
-                "amount": 500
-            }, {
-                "cost": "Lumber",
-                "amount": 4725
-            }, {
-                "cost": "Water",
-                "amount": 3000
-            }, {
-                "cost": "Nails",
-                "amount": 225
+                "cost": "Expense",
+                "amount": @Model.expense
             }],
             "valueAxes": [{
                 "gridColor": "#FFFFFF",

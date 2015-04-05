@@ -208,6 +208,7 @@
     <Compile Include="Models\BreedingMetadata.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ChangeSecurityQuestionViewModel.cs" />
+    <Compile Include="Models\GraphViewModel.cs" />
     <Compile Include="Models\License.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>

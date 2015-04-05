@@ -32,7 +32,24 @@ namespace goatMGMT.Controllers
         // GET: /Transaction/Compare
         public ActionResult Compare()
         {
-            return View(db.Transactions.ToList());
+            var incomes = db.Transactions.Where(m => m.type == true).ToList();
+            double incomeTotal = 0;
+            foreach (Transaction trans in incomes)
+            {
+                incomeTotal += (double)trans.total_payment;
+            }
+            var expenses = db.Transactions.Where(m => m.type == false).ToList();
+            double expenseTotal = 0;
+            foreach (Transaction trans in expenses)
+            {
+                expenseTotal += (double)trans.total_payment;
+            }
+            GraphViewModel gvm = new GraphViewModel()
+            {
+                income = incomeTotal,
+                expense = expenseTotal
+            };
+            return View(gvm);
         }
 
         //

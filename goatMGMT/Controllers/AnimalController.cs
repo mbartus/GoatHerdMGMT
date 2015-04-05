@@ -161,6 +161,60 @@ namespace goatMGMT.Controllers
             return View(animal);
         }
 
+        public ActionResult Compare()
+        {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            int myAnimalCount = db.Animals.Where(m => m.owner == userID).Count();
+            int animalCount = db.Animals.Count();
+            var myAnimals = db.Animals.Where(m => m.owner == userID).ToList();
+            double bw = 0;
+            double bwall = 0;
+            double ww = 0;
+            double wwall = 0;
+            double pw = 0;
+            double pwall = 0;
+            foreach (Animal animal in myAnimals)
+            {
+                if (animal.birth_weight != null)
+                {
+                    bw += (double)animal.birth_weight;
+                }
+                if (animal.weaning_weight != null)
+                {
+                    ww += (double)animal.weaning_weight;
+                }
+                if (animal.post_weaning_weight != null)
+                {
+                    pw += (double)animal.post_weaning_weight;
+                }
+            }
+            foreach (Animal animal in db.Animals)
+            {
+                if (animal.birth_weight != null)
+                {
+                    bwall += (double)animal.birth_weight;
+                }
+                if (animal.weaning_weight != null)
+                {
+                    wwall += (double)animal.weaning_weight;
+                }
+                if (animal.post_weaning_weight != null)
+                {
+                    pwall += (double)animal.post_weaning_weight;
+                }
+            }
+            GraphViewModel gvm = new GraphViewModel()
+            {
+                birthweight = bw / myAnimalCount,
+                birthweightall = bwall / animalCount,
+                weaningweight = ww / myAnimalCount,
+                weaningweightall = wwall / animalCount,
+                postweaningweight = pw / myAnimalCount,
+                postweaningweightall = pwall / animalCount
+            };
+            return View(gvm);
+        }
+
         //
         // GET: /Animal/Edit/5
         public ActionResult Edit(Int32 id)

@@ -32,13 +32,14 @@ namespace goatMGMT.Controllers
         // GET: /Transaction/Compare
         public ActionResult Compare()
         {
-            var incomes = db.Transactions.Where(m => m.type == true).ToList();
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            var incomes = db.Transactions.Where(m => m.type == true && m.userid == userID).ToList();
             double incomeTotal = 0;
             foreach (Transaction trans in incomes)
             {
                 incomeTotal += (double)trans.total_payment;
             }
-            var expenses = db.Transactions.Where(m => m.type == false).ToList();
+            var expenses = db.Transactions.Where(m => m.type == false && m.userid == userID).ToList();
             double expenseTotal = 0;
             foreach (Transaction trans in expenses)
             {

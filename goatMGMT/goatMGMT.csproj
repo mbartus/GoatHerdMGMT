@@ -450,6 +450,7 @@
     <Content Include="Views\Home\FeedbackConfirm.cshtml" />
     <Content Include="Views\Transaction\CreateExpense.cshtml" />
     <Content Include="Views\Transaction\EditExpense.cshtml" />
+    <Content Include="Views\Animal\Compare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

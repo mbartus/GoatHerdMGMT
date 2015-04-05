@@ -17,7 +17,7 @@
             <legend>Treatment</legend>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.treatment.animal_id, new { @class = "control-label" })
+                @Html.LabelFor(model => model.treatment.animal_id, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
                     @Html.DropDownList("treatment.animal_id", (IEnumerable<SelectListItem>)ViewData["alist"], new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.treatment.animal_id, null, new { @class = "help-inline" })
@@ -25,41 +25,41 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.treatment.date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.treatment.date, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.treatment.date, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.treatment.date, new { @class = "form-control", @placeholder="Enter the date of the treatment" })
                     @Html.ValidationMessageFor(model => model.treatment.date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.treatment.item_type, new { @class = "control-label" })
+                @Html.LabelFor(model => model.treatment.item_type, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.treatment.item_type, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.treatment.item_type, new { @class = "form-control", @placeholder="Enter the type of the treatment (surgery, checkup, etc.)"})
                     @Html.ValidationMessageFor(model => model.treatment.item_type, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.treatment.dosage, new { @class = "control-label" })
+                @Html.LabelFor(model => model.treatment.dosage, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.treatment.dosage, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.treatment.dosage, new { @class = "form-control", @placeholder="Enter the dosage that was given" })
                     @Html.ValidationMessageFor(model => model.treatment.dosage, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.treatment.product, new { @class = "control-label" })
+                @Html.LabelFor(model => model.treatment.product, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.treatment.product, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.treatment.product, new { @class = "form-control", @placeholder="Enter the product that was used" })
                     @Html.ValidationMessageFor(model => model.treatment.product, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.treatment.remarks, new { @class = "control-label" })
+                @Html.LabelFor(model => model.treatment.remarks, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.treatment.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
+                    @Html.TextAreaFor(model => model.treatment.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px", @placeholder="Enter additional information here"})
                     @Html.ValidationMessageFor(model => model.treatment.remarks, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -74,5 +74,11 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datepicker")
 }
+<script type="text/javascript">
+    $(function () {
+        $('#treatment_date').datepicker();
+    });
+</script>
 

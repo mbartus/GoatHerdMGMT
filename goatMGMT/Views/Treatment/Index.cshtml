@@ -1,69 +1,105 @@
 @model IEnumerable<goatMGMT.Models.TreatmentViewModel>
 
-@{
+    @{
     ViewBag.Title = "Treatment";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    }
 
-<div class="container">
-    <h2>Treatment</h2>
+    <div class="container">
+        <h2>Treatment</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create", "Treatment", new { @class = "btn btn-success" })
-    </p>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <tr>
-                <th>
-                    Animal Tag
-                </th>
-                <th>
-                    Animal Name
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.treatment.date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.treatment.item_type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.treatment.dosage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.treatment.product)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.animal_tag)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.animal_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.treatment.date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.treatment.item_type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.treatment.dosage)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.treatment.product)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.treatment.id, id2 = item.treatment.animal_id}) |
-                        @Html.ActionLink("Details", "Details", new { id = item.treatment.id, id2 = item.treatment.animal_id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.treatment.id, id2 = item.treatment.animal_id })
-                    </td>
-                </tr>
-            }
-
-        </table>
+        <p>
+            @Html.ActionLink("Create New", "Create", "Treatment", new { @class = "btn btn-success" })
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped tablesorter" id="treatTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Animal Tag
+                        </th>
+                        <th>
+                            Animal Name
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.treatment.date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.treatment.item_type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.treatment.dosage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.treatment.product)
+                        </th>
+                        <th class="non-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.animal_tag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.animal_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.treatment.date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.treatment.item_type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.treatment.dosage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.treatment.product)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.treatment.id, id2 = item.treatment.animal_id}) |
+                            @Html.ActionLink("Details", "Details", new { id = item.treatment.id, id2 = item.treatment.animal_id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.treatment.id, id2 = item.treatment.animal_id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div id="pager" class="pager">
+            <form>
+                <button type="button" class="btn btn-default first">First</button>
+                <button type="button" class="btn btn-default prev">Prev</button>
+                <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+                <button type="button" class="btn btn-default next">Next</button>
+                <button type="button" class="btn btn-default last">Last</button><br />
+                Items on page&nbsp<select class="pagesize">
+                    <option selected="selected" value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="9999">View All</option>
+                </select>
+            </form>
+        </div>
     </div>
-</div>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
+    <script src="~/Scripts/jquery.sieve.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#treatTable').tablesorter({
+                theme: 'default',
+                headers: {
+                    '.non-sort': { sorter: false }
+                }
+            }).tablesorter().tablesorterPager({
+                container: $('#pager'),
+                output: '{startRow} to {endRow} ({totalRows})'
+            });
+            $('#treatTable').sieve();
+        });
+    </script>

@@ -15,27 +15,27 @@
                 <legend>We would like to hear your thoughts!</legend>
                 
                 <div class="control-group">
-                    @Html.LabelFor(m => m.name, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.name, new { @class = "control-label" })<small> (Optional)</small>
                     <div class="controls">
-                        @Html.TextBoxFor(m => m.name, new { @id = "name", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.name, new { @id = "name", @class = "form-control", @placeholder="Enter your name so we know what to call you"})
                     </div>
                 </div>
                 <div class="control-group">
-                    @Html.LabelFor(m => m.email, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.email, new { @class = "control-label" })<small> (Optional)</small>
                     <div class="controls">
-                        @Html.TextBoxFor(m => m.email, new { @id = "email", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.email, new { @id = "email", @class = "form-control", @placeholder="Enter your email so we can get back to you" })
                     </div>
                 </div>
                 <div class="control-group">
-                    @Html.LabelFor(m => m.subject, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.subject, new { @class = "control-label" })<small> (Optional)</small>
                     <div class="controls">
-                        @Html.TextBoxFor(m => m.subject, new { @id = "subject", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.subject, new { @id = "subject", @class = "form-control", @placeholder="Enter the subject of your feedback" })
                     </div>
                 </div>
                 <div class="control-group">
-                    @Html.LabelFor(m => m.comment1, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.comment1, new { @class = "control-label" })<small> (Required)</small>
                     <div class="controls">
-                        @Html.TextAreaFor(m => m.comment1, new { @id = "comment", @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
+                        @Html.TextAreaFor(m => m.comment1, new { @id = "comment", @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px", @placeholder="Enter your feedback" })
                     </div>
                 </div>
                 <div class="form-actions no-color" style="padding-top: 15px; padding-bottom: 15px;">

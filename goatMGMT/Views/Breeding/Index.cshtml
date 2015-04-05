@@ -1,71 +1,107 @@
 @model IEnumerable<goatMGMT.Models.BreedingViewModel>
 
-@{
+    @{
     ViewBag.Title = "Breeding";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    }
 
-<div class="container">
-<h2>Breeding</h2>
+    <div class="container">
+        <h2>Breeding</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Breeding", new { @class = "btn btn-success" })
-</p>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <tr>
-            <th>
-                Dam's Tag
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.breeding.mother_id)
-            </th>
-            <th>
-                Sire's Tag
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.breeding.father_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.breeding.date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.breeding.expected_kidding_date)
-            </th>
+        <p>
+            @Html.ActionLink("Create New", "Create", "Breeding", new { @class = "btn btn-success" })
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped tablesorter" id="breedingtable">
+                <thead>
+                    <tr>
+                        <th>
+                            Dam's Tag
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.breeding.mother_id)
+                        </th>
+                        <th>
+                            Sire's Tag
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.breeding.father_id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.breeding.date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.breeding.expected_kidding_date)
+                        </th>
 
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mother_tag)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mother_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.father_tag)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.father_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.breeding.date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.breeding.expected_kidding_date)
-                </td>
-                <td>
-                    @Html.ActionLink("View Births", "Index", "Birth", new { id = item.breeding.id }, null) |
-                    @Html.ActionLink("Edit", "Edit", new {  id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id })
-                </td>
-            </tr>
-            }
-
-        </table>
+                        <th class="non-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mother_tag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mother_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.father_tag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.father_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.breeding.date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.breeding.expected_kidding_date)
+                        </td>
+                        <td>
+                            @Html.ActionLink("View Births", "Index", "Birth", new { id = item.breeding.id }, null) |
+                            @Html.ActionLink("Edit", "Edit", new {  id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.breeding.id, id2 = item.breeding.mother_id, id3 = item.breeding.father_id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div id="pager" class="pager">
+            <form>
+                <button type="button" class="btn btn-default first">First</button>
+                <button type="button" class="btn btn-default prev">Prev</button>
+                <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+                <button type="button" class="btn btn-default next">Next</button>
+                <button type="button" class="btn btn-default last">Last</button><br />
+                Items on page&nbsp<select class="pagesize">
+                    <option selected="selected" value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="9999">View All</option>
+                </select>
+            </form>
+        </div>
     </div>
-</div>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
+    <script src="~/Scripts/jquery.sieve.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#breedingtable').tablesorter({
+                theme: 'default',
+                headers: {
+                    '.non-sort': { sorter: false }
+                }
+            }).tablesorter().tablesorterPager({
+                container: $('#pager'),
+                output: '{startRow} to {endRow} ({totalRows})'
+            });
+            $('#breedingtable').sieve();
+        });
+    </script>

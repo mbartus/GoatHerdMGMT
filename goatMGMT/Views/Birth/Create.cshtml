@@ -19,40 +19,40 @@
             
             @Html.HiddenFor(m => m.birth.breed_id)
             <div class="control-group">
-                @Html.LabelFor(m => m.offspringChoice, new { @class = "control-label" })
+                @Html.LabelFor(m => m.offspringChoice, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
                     @Html.DropDownList("offspringChoice", (IEnumerable<SelectListItem>)ViewData["offspringDrop"], new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.birth.score, new { @class = "control-label" })
+                @Html.LabelFor(model => model.birth.score, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.birth.score, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.birth.score, new { @class = "form-control", @placeholder="Enter the birth score" })
                     @Html.ValidationMessageFor(model => model.birth.score, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.birth.alive, new { @class = "control-label" })
+                @Html.LabelFor(model => model.birth.alive, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.birth.alive, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.birth.alive, new { @class = "form-control" , @placeholder="How many were alive from this breeding?"})
                     @Html.ValidationMessageFor(model => model.birth.alive, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.birth.born, new { @class = "control-label" })
+                @Html.LabelFor(model => model.birth.born, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.birth.born, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.birth.born, new { @class = "form-control" , @placeholder="How many were born from this breeding?"})
                     @Html.ValidationMessageFor(model => model.birth.born, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.birth.notes, new { @class = "control-label" })
+                @Html.LabelFor(model => model.birth.notes, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.birth.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px" })
+                    @Html.TextAreaFor(model => model.birth.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px", @placeholder="Enter additional information here"})
                     @Html.ValidationMessageFor(model => model.birth.notes, null, new { @class = "help-inline" })
                 </div>
             </div>

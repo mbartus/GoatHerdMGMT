@@ -17,73 +17,73 @@
         <legend>Associate</legend>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.name, new { @class = "control-label" })
+            @Html.LabelFor(model => model.name, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.name, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.name, new { @class="form-control", @placeholder="What is the associate's name?" })
                 @Html.ValidationMessageFor(model => model.name, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.street, new { @class = "control-label" })
+            @Html.LabelFor(model => model.street, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.street, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.street, new { @class="form-control" , @placeholder="What is the associate's street address?"})
                 @Html.ValidationMessageFor(model => model.street, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.city, new { @class = "control-label" })
+            @Html.LabelFor(model => model.city, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.city, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.city, new { @class="form-control" , @placeholder="What is the associate's city of residence?"})
                 @Html.ValidationMessageFor(model => model.city, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.state, new { @class = "control-label" })
+            @Html.LabelFor(model => model.state, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.state, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.state, new { @class="form-control" , @placeholder="What is the associate's state of residence?" })
                 @Html.ValidationMessageFor(model => model.state, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.zip, new { @class = "control-label" })
+            @Html.LabelFor(model => model.zip, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.zip, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.zip, new { @class="form-control" , @placeholder="What is the associate's zip code?"})
                 @Html.ValidationMessageFor(model => model.zip, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.telephone, new { @class = "control-label" })
+            @Html.LabelFor(model => model.telephone, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.telephone, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.telephone, new { @class="form-control" , @placeholder="What is the associate's phone number?"})
                 @Html.ValidationMessageFor(model => model.telephone, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.fax, new { @class = "control-label" })
+            @Html.LabelFor(model => model.fax, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.fax, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.fax, new { @class="form-control" , @placeholder="What is the associate's fax number?"})
                 @Html.ValidationMessageFor(model => model.fax, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.email, new { @class = "control-label" })
+            @Html.LabelFor(model => model.email, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.email, new { @class="form-control" })
+                @Html.TextBoxFor(model => model.email, new { @class="form-control" , @placeholder="What is the associate's email address?"})
                 @Html.ValidationMessageFor(model => model.email, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.notes, new { @class = "control-label" })
+            @Html.LabelFor(model => model.notes, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextAreaFor(model => model.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px;" })
+                @Html.TextAreaFor(model => model.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px;" , @placeholder="Enter additional information here" })
                 @Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
             </div>
         </div>

@@ -11,70 +11,105 @@
             @Html.ActionLink("Create New", "Create", "Associate", new{ @class="btn btn-success"})
         </p>
         <div class="table-responsive">
-            <table class="table table-striped">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.street)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.city)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.state)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.zip)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.telephone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.fax)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.email)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.street)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.city)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.state)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.zip)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.telephone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.fax)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.email)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.id })
-                    </td>
-                </tr>
-                }
-
+            <table class="table table-striped tablesorter" id="associateTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.street)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.city)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.state)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.zip)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.telephone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fax)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.email)
+                        </th>
+                        <th class="non-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.street)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.city)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.state)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.zip)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fax)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
-
+    <div id="pager" class="pager">
+        <form>
+            <button type="button" class="btn btn-default first">First</button>
+            <button type="button" class="btn btn-default prev">Prev</button>
+            <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+            <button type="button" class="btn btn-default next">Next</button>
+            <button type="button" class="btn btn-default last">Last</button><br />
+            Items on page&nbsp<select class="pagesize">
+                <option selected="selected" value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="9999">View All</option>
+            </select>
+        </form>
+    </div>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
+    <script src="~/Scripts/jquery.sieve.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#associateTable').tablesorter({
+                theme: 'default',
+                headers: {
+                    '.non-sort': { sorter: false }
+                }
+            }).tablesorter().tablesorterPager({
+                container: $('#pager'),
+                output: '{startRow} to {endRow} ({totalRows})'
+            });
+            $('#associateTable').sieve();
+        });
+    </script>

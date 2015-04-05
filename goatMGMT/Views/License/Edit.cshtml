@@ -19,7 +19,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.Agreement, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextAreaFor(model => model.Agreement, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:200px" })
+                @Html.TextAreaFor(model => model.Agreement, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:400px" })
                 @Html.ValidationMessageFor(model => model.Agreement, null, new { @class = "help-inline" })
             </div>
         </div>

@@ -247,6 +247,7 @@
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\webpages_Membership.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
@@ -506,15 +507,12 @@
     <Content Include="Views\Account\ForgotPassword1.cshtml" />
     <Content Include="Views\Account\ForgotPassword2.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\License\Create.cshtml" />
-    <Content Include="Views\License\Delete.cshtml" />
-    <Content Include="Views\License\Details.cshtml" />
     <Content Include="Views\License\Edit.cshtml" />
-    <Content Include="Views\License\Index.cshtml" />
     <Content Include="Views\Home\FeedbackConfirm.cshtml" />
     <Content Include="Views\Transaction\CreateExpense.cshtml" />
     <Content Include="Views\Transaction\EditExpense.cshtml" />
     <Content Include="Views\Animal\Compare.cshtml" />
+    <Content Include="Views\Account\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

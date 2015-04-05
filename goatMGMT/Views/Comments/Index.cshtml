@@ -1,52 +1,88 @@
 ﻿@model IEnumerable<goatMGMT.Models.Comment>
 
-@{
+    @{
     ViewBag.Title = "Index";
-}
-<div class="container" style="padding-bottom: 15px;">
-<h2>Comments</h2>
+    }
+    <div class="container" style="padding-bottom: 15px;">
+        <h2>Comments</h2>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.date_sent)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.subject)
-                </th>
-                <th>
-                    Message Preview
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.date_sent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.subject)
-                </td>
-                <td>
-                    <div style="max-height:60px; overflow:hidden">
-                        @Html.DisplayFor(modelItem => item.comment1)
-                    </div>
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.id })
-                </td>
-            </tr>
-            }
-
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped tablesorter" id="commentTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.date_sent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.subject)
+                        </th>
+                        <th>
+                            Message Preview
+                        </th>
+                        <th class="non-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date_sent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.subject)
+                        </td>
+                        <td>
+                            <div style="max-height:60px; overflow:hidden">
+                                @Html.DisplayFor(modelItem => item.comment1)
+                            </div>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+    <div id="pager" class="pager">
+        <form>
+            <button type="button" class="btn btn-default first">First</button>
+            <button type="button" class="btn btn-default prev">Prev</button>
+            <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+            <button type="button" class="btn btn-default next">Next</button>
+            <button type="button" class="btn btn-default last">Last</button><br />
+            Items on page&nbsp<select class="pagesize">
+                <option selected="selected" value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="9999">View All</option>
+            </select>
+        </form>
+    </div>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
+    <script src="~/Scripts/jquery.sieve.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#commentTable').tablesorter({
+                theme: 'default',
+                headers: {
+                    '.non-sort': { sorter: false }
+                }
+            }).tablesorter().tablesorterPager({
+                container: $('#pager'),
+                output: '{startRow} to {endRow} ({totalRows})'
+            });
+            $('#commentTable').sieve();
+        });
+    </script>

@@ -380,5 +380,40 @@ namespace goatMGMT.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult All()
+        {
+            
+            List<UserList> users = new List<UserList>();
+            foreach (UserProfile profile in db.UserProfiles)
+            {
+                UserList currentUser = new UserList();
+                currentUser.username = profile.Username;
+                if (db.webpages_Membership.Find(profile.UserId) != null)
+                {
+                    currentUser.creationDate = (DateTime)db.webpages_Membership.First(m => m.UserId == profile.UserId).CreateDate;
+                }
+                if (Roles.IsUserInRole(profile.Username,"admin"))
+                {
+                    currentUser.accountType = "Admin";
+                }
+                else if (Roles.IsUserInRole(profile.Username,"user"))
+                {
+                    currentUser.accountType = "Full";
+                } 
+                else
+                {
+                    currentUser.accountType = "Trial";
+                }
+                currentUser.animalcount = db.Animals.Where(m => m.owner == profile.UserId).Count();
+                users.Add(currentUser);
+            }
+            UserViewModel uvm = new UserViewModel()
+            {
+                userlist = users
+            };
+            return View(uvm);
+        }
     }
 }

@@ -200,6 +200,7 @@
     <Compile Include="Models\Birth.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BirthMetadata.cs" />
     <Compile Include="Models\BirthViewModel.cs" />
     <Compile Include="Models\Breeding.cs">
       <DependentUpon>GoatModel.tt</DependentUpon>
@@ -288,6 +289,7 @@
     <Content Include="Content\imgs\k_barn1.JPG" />
     <Content Include="Content\imgs\k_barn2.jpg" />
     <Content Include="Content\imgs\logotrans.png" />
+    <Content Include="Content\imgs\paleGoat.jpg" />
     <Content Include="Content\imgs\pale_bull.jpg" />
     <Content Include="Content\imgs\pale_bull2.jpg" />
     <Content Include="Content\tablesorterstyle.css" />

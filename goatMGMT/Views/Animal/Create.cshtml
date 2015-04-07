@@ -68,14 +68,14 @@
             </div>
         </div>
         <div class="control-group">
-            @Html.LabelFor(m => m.status_code, new { @class = "control-label" })<small> (Optional)</small>
+            @Html.LabelFor(m => m.status_code, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
                 @Html.DropDownListFor(m => m.status_code, (IEnumerable<SelectListItem>)ViewData["statusList"], "Select a status", new { @class = "form-control" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(m => m.breed_code, new { @class = "control-label" })<small> (Optional)</small>
+            @Html.LabelFor(m => m.breed_code, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
                 @Html.DropDownListFor(m => m.breed_code, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed", new { @class = "form-control" })
             </div>

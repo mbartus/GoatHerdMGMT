@@ -92,7 +92,6 @@ namespace goatMGMT.Controllers
             int userID = (int)Membership.GetUser().ProviderUserKey;
             bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
             bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
-            
             if (ModelState.IsValid && breeding.father_id != 0 && breeding.mother_id != 0)
             {
                 breeding.Animal = db.Animals.Find(bvm.maleList.ElementAt(breeding.father_id - 1).id);

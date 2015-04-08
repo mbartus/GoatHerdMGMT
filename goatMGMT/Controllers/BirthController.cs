@@ -50,8 +50,8 @@ namespace goatMGMT.Controllers
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
-            bvm.father_tag = db.Animals.Find(db.Breedings.Find(id).father_id).tag;
-            bvm.mother_tag = db.Animals.Find(db.Breedings.Find(id).mother_id).tag;
+            bvm.father_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).father_id).tag;
+            bvm.mother_tag = db.Animals.Find(db.Breedings.Find(birth.breed_id).mother_id).tag;
             return View(bvm);
         }
 

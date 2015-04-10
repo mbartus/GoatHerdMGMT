@@ -164,28 +164,35 @@ namespace goatMGMT.Controllers
         public ActionResult Compare()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
-            int myAnimalCount = db.Animals.Where(m => m.owner == userID).Count();
-            int animalCount = db.Animals.Count();
             var myAnimals = db.Animals.Where(m => m.owner == userID).ToList();
             double bw = 0;
+            int bwcount = 0;
             double bwall = 0;
+            int bwallcount = 0;
             double ww = 0;
+            int wwcount = 0;
             double wwall = 0;
+            int wwallcount = 0;
             double pw = 0;
+            int pwcount = 0;
             double pwall = 0;
+            int pwallcount = 0;
             foreach (Animal animal in myAnimals)
             {
                 if (animal.birth_weight != null)
                 {
                     bw += (double)animal.birth_weight;
+                    bwcount++;
                 }
                 if (animal.weaning_weight != null)
                 {
                     ww += (double)animal.weaning_weight;
+                    wwcount++;
                 }
                 if (animal.post_weaning_weight != null)
                 {
                     pw += (double)animal.post_weaning_weight;
+                    pwcount++;
                 }
             }
             foreach (Animal animal in db.Animals)
@@ -193,24 +200,27 @@ namespace goatMGMT.Controllers
                 if (animal.birth_weight != null)
                 {
                     bwall += (double)animal.birth_weight;
+                    bwallcount++;
                 }
                 if (animal.weaning_weight != null)
                 {
                     wwall += (double)animal.weaning_weight;
+                    wwallcount++;
                 }
                 if (animal.post_weaning_weight != null)
                 {
                     pwall += (double)animal.post_weaning_weight;
+                    pwallcount++;
                 }
             }
             GraphViewModel gvm = new GraphViewModel()
             {
-                birthweight = bw / myAnimalCount,
-                birthweightall = bwall / animalCount,
-                weaningweight = ww / myAnimalCount,
-                weaningweightall = wwall / animalCount,
-                postweaningweight = pw / myAnimalCount,
-                postweaningweightall = pwall / animalCount
+                birthweight = bw / bwcount,
+                birthweightall = bwall / bwallcount,
+                weaningweight = ww / wwcount,
+                weaningweightall = wwall / wwallcount,
+                postweaningweight = pw / pwcount,
+                postweaningweightall = pwall / pwallcount
             };
             return View(gvm);
         }

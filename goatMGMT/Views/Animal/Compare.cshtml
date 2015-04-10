@@ -7,178 +7,178 @@
 <div class="container">
     <h2>Compare Animals</h2>
     @Html.ActionLink("Back", "Index", "Associate", new { @class="btn btn-warning" , @style="margin-top:15px;"})
-    @Html.DropDownListFor(m => m.graphs1, Model.graphs1, "Select a Graph", new { @id="dd", @class = "form-control", @style="margin-top:15px;"})    
-<div id="chartdiv" style="margin-bottom:15px;"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Birth Weight</h3>
+            <div id="birthweight" style="margin-bottom:15px; height:350px;"></div>
+        </div>
+        <div class="col-md-4">
+            <h3>Weaning Weight</h3>
+            <div id="weaningweight" style="margin-bottom:15px; height:350px; font-size: 11px;"></div>
+        </div>
+        <div class="col-md-4">
+            <h3>Post-Weaning Weight</h3>
+            <div id="postweaningweight" style="margin-bottom:15px; height:350px; font-size: 11px;"></div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#dd").change(function() {
-            if ($('#dd').val() == "bw")
-            {
-                var chart = AmCharts.makeChart("chartdiv", {
-                    "type": "serial",
-                    "theme": "light",
-                    "dataProvider": [{
-                        "cost": "Average birth weight for my animals",
-                        "amount": @Model.birthweight
-                    }, {
-                        "cost": "Average birth weight for all animals",
-                        "amount": @Model.birthweightall
-                    }],
-                    "valueAxes": [{
-                        "gridColor": "#FFFFFF",
-                        "gridAlpha": 0.2,
-                        "dashLength": 0
-                    }],
-                    "gridAboveGraphs": true,
-                    "startDuration": 1,
-                    "graphs": [{
-                        "balloonText": "[[category]]: <b>[[value]]</b>",
-                        "fillAlphas": 0.8,
-                        "lineAlpha": 0.2,
-                        "type": "column",
-                        "valueField": "amount"
-                    }],
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "depth3D": 20,
-                    "angle": 30,
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "categoryField": "cost",
-                    "categoryAxis": {
-                        "gridPosition": "start",
-                        "gridAlpha": 0,
-                        "tickPosition": "start",
-                        "tickLength": 20
-                    },
-                    "exportConfig": {
-                        "menuTop": 0,
-                        "menuItems": [{
-                            "icon": '/lib/3/images/export.png',
-                            "format": 'png'
-                        }]
-                    }
-                });
+        var chart = AmCharts.makeChart("birthweight", {
+            "type": "serial",
+            "theme": "light",
+            "dataProvider": [{
+                "cost": "My animals",
+                "amount": @Model.birthweight
+            }, {
+                "cost": "All animals",
+                "amount": @Model.birthweightall
+            }],
+            "valueAxes": [{
+                "gridColor": "#FFFFFF",
+                "gridAlpha": 0.2,
+                "dashLength": 0
+            }],
+            "gridAboveGraphs": true,
+            "startDuration": 1,
+            "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "fillAlphas": 0.8,
+                "lineAlpha": 0.2,
+                "type": "column",
+                "valueField": "amount"
+            }],
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "depth3D": 20,
+            "angle": 30,
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "cost",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "gridAlpha": 0,
+                "tickPosition": "start",
+                "tickLength": 20
+            },
+            "exportConfig": {
+                "menuTop": 0,
+                "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'
+                }]
             }
-            if ($('#dd').val() == "ww")
-            {
-                var chart = AmCharts.makeChart("chartdiv", {
-                    "type": "serial",
-                    "theme": "light",
-                    "dataProvider": [{
-                        "cost": "Average weaning weight for my animals",
-                        "amount": @Model.weaningweight
-                    }, {
-                        "cost": "Average weaning weight for all animals",
-                        "amount": @Model.weaningweightall
-                    }],
-                    "valueAxes": [{
-                        "gridColor": "#FFFFFF",
-                        "gridAlpha": 0.2,
-                        "dashLength": 0
-                    }],
-                    "gridAboveGraphs": true,
-                    "startDuration": 1,
-                    "graphs": [{
-                        "balloonText": "[[category]]: <b>[[value]]</b>",
-                        "fillAlphas": 0.8,
-                        "lineAlpha": 0.2,
-                        "type": "column",
-                        "valueField": "amount"
-                    }],
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "depth3D": 20,
-                    "angle": 30,
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "categoryField": "cost",
-                    "categoryAxis": {
-                        "gridPosition": "start",
-                        "gridAlpha": 0,
-                        "tickPosition": "start",
-                        "tickLength": 20
-                    },
-                    "exportConfig": {
-                        "menuTop": 0,
-                        "menuItems": [{
-                            "icon": '/lib/3/images/export.png',
-                            "format": 'png'
-                        }]
-                    }
-                    
-                });
+        });
+        var chart = AmCharts.makeChart("weaningweight", {
+            "type": "serial",
+            "theme": "light",
+            "dataProvider": [{
+                "cost": "My animals",
+                "amount": @Model.weaningweight
+            }, {
+                "cost": "All Animals",
+                "amount": @Model.weaningweightall
+            }],
+            "valueAxes": [{
+                "gridColor": "#FFFFFF",
+                "gridAlpha": 0.2,
+                "dashLength": 0
+            }],
+            "gridAboveGraphs": true,
+            "startDuration": 1,
+            "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "fillAlphas": 0.8,
+                "lineAlpha": 0.2,
+                "type": "column",
+                "valueField": "amount"
+            }],
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "depth3D": 20,
+            "angle": 30,
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "cost",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "gridAlpha": 0,
+                "tickPosition": "start",
+                "tickLength": 20
+            },
+            "exportConfig": {
+                "menuTop": 0,
+                "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'
+                }]
             }
-            if ($('#dd').val() == "pww")
-            {
-                var chart = AmCharts.makeChart("chartdiv", {
-                    "type": "serial",
-                    "theme": "light",
-                    "dataProvider": [{
-                        "cost": "Average post-weaning weight for my animals",
-                        "amount": @Model.postweaningweight
-                    }, {
-                        "cost": "Average post-weaning weight for all animals",
-                        "amount": @Model.postweaningweightall
-                    }],
-                    "valueAxes": [{
-                        "gridColor": "#FFFFFF",
-                        "gridAlpha": 0.2,
-                        "dashLength": 0
-                    }],
-                    "gridAboveGraphs": true,
-                    "startDuration": 1,
-                    "graphs": [{
-                        "balloonText": "[[category]]: <b>[[value]]</b>",
-                        "fillAlphas": 0.8,
-                        "lineAlpha": 0.2,
-                        "type": "column",
-                        "valueField": "amount"
-                    }],
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "depth3D": 20,
-                    "angle": 30,
-                    "chartCursor": {
-                        "categoryBalloonEnabled": false,
-                        "cursorAlpha": 0,
-                        "zoomable": false
-                    },
-                    "categoryField": "cost",
-                    "categoryAxis": {
-                        "gridPosition": "start",
-                        "gridAlpha": 0,
-                        "tickPosition": "start",
-                        "tickLength": 20
-                    },
-                    "exportConfig": {
-                        "menuTop": 0,
-                        "menuItems": [{
-                            "icon": '/lib/3/images/export.png',
-                            "format": 'png'
-                        }]
-                    }
-                    
-                });
+
+        });
+        var chart = AmCharts.makeChart("postweaningweight", {
+            "type": "serial",
+            "theme": "light",
+            "dataProvider": [{
+                "cost": "My animals",
+                "amount": @Model.postweaningweight
+            }, {
+                "cost": "All animals",
+                "amount": @Model.postweaningweightall
+            }],
+            "valueAxes": [{
+                "gridColor": "#FFFFFF",
+                "gridAlpha": 0.2,
+                "dashLength": 0
+            }],
+            "gridAboveGraphs": true,
+            "startDuration": 1,
+            "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "fillAlphas": 0.8,
+                "lineAlpha": 0.2,
+                "type": "column",
+                "valueField": "amount"
+            }],
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "depth3D": 20,
+            "angle": 30,
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "cost",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "gridAlpha": 0,
+                "tickPosition": "start",
+                "tickLength": 20
+            },
+            "exportConfig": {
+                "menuTop": 0,
+                "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'
+                }]
             }
         });
     });

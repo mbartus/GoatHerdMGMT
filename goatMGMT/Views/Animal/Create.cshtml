@@ -153,15 +153,31 @@
         <div class="control-group">
             @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })<small> (Optional)</small>
 			<div class="controls">
-                @Html.TextBoxFor(model => model.weaning_date, new { @class = "form-control", @placeholder = "Enter Post-Weaning Date" })
+                @Html.TextBoxFor(model => model.weaning_date, new { @class = "form-control", @placeholder = "Enter Weaning Date" })
 				@Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
 			</div>
 		</div>
 
         <div class="control-group">
+            @Html.LabelFor(model => model.post_weaning_weight, new { @class = "control-label" })<small> (Optional)</small>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.post_weaning_weight, new { @class = "form-control" , @placeholder = "Enter Post-Weaning Weight in Pounds" })
+                @Html.ValidationMessageFor(model => model.post_weaning_weight, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.post_weaning_date, new { @class = "control-label" })<small> (Optional)</small>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.post_weaning_date, new { @class = "form-control", @placeholder = "Enter Post-Weaning Date"  })
+                @Html.ValidationMessageFor(model => model.post_weaning_date, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
             @Html.LabelFor(model => model.market_weight, new { @class = "control-label" })<small> (Optional)</small>
 			<div class="controls">
-                @Html.TextBoxFor(model => model.market_weight, new { @class = "form-control", @placeholder = "Enter Post-Weaning Weight in Pounds" })
+                @Html.TextBoxFor(model => model.market_weight, new { @class = "form-control", @placeholder = "Enter Market Weight in Pounds" })
 				@Html.ValidationMessageFor(model => model.market_weight, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -218,5 +234,6 @@
         $('#weaning_date').datepicker();
         $('#market_date').datepicker();
         $('#disposal_date').datepicker();
+        $('#post_weaning_date').datepicker();
     });
 </script>

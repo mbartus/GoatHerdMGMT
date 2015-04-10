@@ -7,11 +7,28 @@
     <div class="container">
         <h2>Compare Transactions</h2>
         @Html.ActionLink("Back", "Index", "Transaction", new { @class="btn btn-warning" , @style="margin-top:15px;"})
-        <div id="chartdiv" style="margin-bottom:15px;"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Income VS Expense</h3>
+                <div id="chartdiv" style="margin-bottom:15px;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Income Categories</h3>
+                <div id="incomepie" style="margin-bottom:15px; height:350px;"></div>
+            </div>
+            <div class="col-md-6">
+                <h3>Expense Categories</h3>
+                <div id="expensepie" style="margin-bottom:15px; height:350px; font-size: 11px;"></div>
+            </div>
+        </div>
+        
     </div>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         
@@ -64,6 +81,73 @@
                     "icon": '/lib/3/images/export.png',
                     "format": 'png'
                 }]
+            }
+        });
+        var chart1 = AmCharts.makeChart("incomepie", {
+            "type": "pie",
+            "theme": "light",
+            "dataProvider": [
+        {
+            "name": "Sale of meat kids",
+            "value": @Model.sfmk
+        }, {
+            "name": "Sale of culls",
+            "value": @Model.sfc
+        }, {
+            "name": "Sale for breeding",
+            "value": @Model.sfb
+        }, {
+            "name": "Sale for pet/show",
+            "value": @Model.sfp
+        }, {
+            "name": "Farm income",
+            "value": @Model.fi
+        }, {
+            "name": "Other",
+            "value": @Model.other
+        }],
+            "valueField": "value",
+            "titleField": "name",
+            "exportConfig":{	
+                "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'	  
+                }]  
+            }
+        });
+        var chart1 = AmCharts.makeChart("expensepie", {
+            "type": "pie",
+            "theme": "light",
+            "dataProvider": [
+        {
+            "name": "Feed/Hay",
+            "value": @Model.fh
+        }, {
+            "name": "Fertilizer/Seed",
+            "value": @Model.fs
+        }, {
+            "name": "Vet Medication",
+            "value": @Model.vm
+        }, {
+            "name": "Farm Supplies",
+            "value": @Model.fsp
+        }, {
+            "name": "Animal Purchase",
+            "value": @Model.ap
+        }, {
+            "name": "Utilities",
+            "value": @Model.ut
+        }, {
+            "name": "Other",
+            "value": @Model.other2
+        }],
+            "valueField": "value",
+            "titleField": "name",
+            "exportConfig":{	
+                "menuItems": [{
+                    "icon": '/lib/3/images/export.png',
+                    "format": 'png'	  
+                }]  
             }
         });
     });

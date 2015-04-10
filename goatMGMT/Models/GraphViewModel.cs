@@ -12,6 +12,34 @@ namespace goatMGMT.Models
 
         public double expense { get; set; }
 
+        public double sfp { get; set; }
+
+        public double sfc { get; set; }
+
+        public double sfmk { get; set; }
+
+        public double sfb { get; set; }
+
+        public double fi { get; set; }
+
+        public double other { get; set; }
+
+        public double other2 { get; set; }
+
+        public double fh { get; set; }
+
+        public double fs { get; set; }
+
+        public double eq { get; set; }
+
+        public double vm { get; set; }
+
+        public double fsp { get; set; }
+
+        public double ap { get; set; }
+
+        public double ut { get; set; }
+
         public double birthweight { get; set; }
 
         public double birthweightall { get; set; }

@@ -35,20 +35,104 @@ namespace goatMGMT.Controllers
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var incomes = db.Transactions.Where(m => m.type == true && m.userid == userID).ToList();
             double incomeTotal = 0;
+            double a = 0;
+            double b = 0;
+            double c = 0;
+            double d = 0;
+            double e = 0;
+            double f = 0;
+            double g = 0;
+            double h = 0;
+            double i = 0;
+            double j = 0;
+            double k = 0;
+            double l = 0;
+            double x = 0;
+            double n = 0;
             foreach (Transaction trans in incomes)
             {
                 incomeTotal += (double)trans.total_payment;
+                if (trans.item_type == "Sale of Meat Kids")
+                {
+                    a += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Sale of Culls")
+                {
+                    b += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Sale for Breeding")
+                {
+                    c += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Sale for Pet/Show")
+                {
+                    d += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Farm Income")
+                {
+                    e += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Other")
+                {
+                    f += (double)trans.total_payment;
+                }
             }
             var expenses = db.Transactions.Where(m => m.type == false && m.userid == userID).ToList();
             double expenseTotal = 0;
             foreach (Transaction trans in expenses)
             {
                 expenseTotal += (double)trans.total_payment;
+                if (trans.item_type == "Feed/Hay")
+                {
+                    g += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Fertilizer/Seed")
+                {
+                    h += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Equipment")
+                {
+                    i += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Vet Medication")
+                {
+                    j += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Farm Supplies")
+                {
+                    k += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Animal Purchase")
+                {
+                    l += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Utilities")
+                {
+                    x += (double)trans.total_payment;
+                }
+                if (trans.item_type == "Others")
+                {
+                    n += (double)trans.total_payment;
+                }
             }
             GraphViewModel gvm = new GraphViewModel()
             {
                 income = incomeTotal,
-                expense = expenseTotal
+                expense = expenseTotal,
+                sfmk = a,
+                sfc = b,
+                sfb = c,
+                sfp = d,
+                fi = e,
+                other = f,
+                fh = g,
+                fs = h,
+                eq = i,
+                vm = j,
+                fsp = k,
+                ap = l,
+                ut = x,
+                other2 = n
             };
             return View(gvm);
         }

@@ -59,9 +59,7 @@
         </fieldset>
         }
     </div>
-    @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    }
+<script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/jqueryval")"></script>
 <script type="text/javascript">
     $('#check').change(function () {
         if ($('#check').prop('checked')) {

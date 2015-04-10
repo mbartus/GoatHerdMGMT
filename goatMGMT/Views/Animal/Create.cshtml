@@ -199,7 +199,7 @@
 
 </div>
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/jqueryval")"></script>
     @Scripts.Render("~/bundles/datepicker")
 }
 <script type="text/javascript">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using goatMGMT.Models;
+using System.Web.Security;
 
 namespace goatMGMT.Controllers
 {
@@ -75,6 +76,46 @@ namespace goatMGMT.Controllers
                 ViewBag.Title = "Dashboard";
             }
             return View();
+        }
+
+        [Authorize(Roles = "admin, user")]
+        public ActionResult Summary()
+        {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            SummaryViewModel svm = new SummaryViewModel();
+            var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
+            svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == false).Count();
+            svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == true).Count();
+            svm.activeSire = svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == false && m.status_code == "Active").Count();
+            svm.activeDam = svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == true && m.status_code == "Active").Count();
+            svm.currentYear = System.DateTime.Now.Year;
+            svm.lastYear = svm.currentYear - 1;
+            foreach (Birth birth in db.Births)
+            {
+                foreach (Animal animal in myAnimalList.Where(m => m.sex == false))
+                {
+                    if (birth.Breeding.mother_id == animal.id)
+                    {
+                        if (birth.parity == 1)
+                        {
+                            svm.damParity1Count++;
+                        }
+                        else if (birth.parity == 2)
+                        {
+                            svm.damParity2Count++;
+                        }
+                        else if (birth.parity == 3)
+                        {
+                            svm.damParity3Count++;
+                        }
+                        else 
+                        {
+                            svm.damParity4Count++;
+                        }
+                    }
+                }
+            }
+            return View(svm);
         }
 
         public ActionResult Error()

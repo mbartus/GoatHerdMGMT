@@ -21,8 +21,6 @@ namespace goatMGMT.Models
         public Nullable<bool> type { get; set; }
         public Nullable<int> parity { get; set; }
         public Nullable<int> score { get; set; }
-        public Nullable<int> alive { get; set; }
-        public Nullable<int> born { get; set; }
         public string notes { get; set; }
     
         public virtual Animal Animal { get; set; }

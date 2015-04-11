@@ -9,21 +9,22 @@
         @Html.ActionLink("Back", "Index", "Transaction", new { @class="btn btn-warning" , @style="margin-top:15px;"})
         <div class="row">
             <div class="col-md-12">
-                <h3>Income VS Expense</h3>
-                <div id="chartdiv" style="margin-bottom:15px;"></div>
+                <h3>Income Categories</h3>
+                <div id="incomepie" style="margin-bottom:15px; height:350px; font-size: 11px;"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <h3>Income Categories</h3>
-                <div id="incomepie" style="margin-bottom:15px; height:350px;"></div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h3>Expense Categories</h3>
                 <div id="expensepie" style="margin-bottom:15px; height:350px; font-size: 11px;"></div>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Income VS Expense</h3>
+                <div id="chartdiv" style="margin-bottom:15px; height:350px; font-size: 11px;"></div>
+            </div>
+        </div>
     </div>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>

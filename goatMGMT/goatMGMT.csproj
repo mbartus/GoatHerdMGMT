@@ -191,6 +191,7 @@
       <DependentUpon>GoatModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LicenseViewModel.cs" />
+    <Compile Include="Models\SummaryViewModel.cs" />
     <Compile Include="Models\TreatmentMetadata.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
     <Compile Include="Models\Comment.cs">
@@ -507,6 +508,7 @@
     <Content Include="Views\Transaction\EditExpense.cshtml" />
     <Content Include="Views\Animal\Compare.cshtml" />
     <Content Include="Views\Account\All.cshtml" />
+    <Content Include="Views\Home\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

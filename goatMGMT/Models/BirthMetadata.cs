@@ -16,12 +16,6 @@ namespace goatMGMT.Models
         [Key]
         public int id { get; set; }
 
-        [DisplayName("Born")]
-        public Int32 born { get; set; }
-
-        [DisplayName("Alive")]
-        public Int32 alive { get; set; }
-
         [DisplayName("Score")]
         public Int32 score { get; set; }
 

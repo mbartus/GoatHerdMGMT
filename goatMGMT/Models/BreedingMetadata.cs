@@ -16,6 +16,13 @@ namespace goatMGMT.Models
         [Key]
         public int id { get; set; }
 
+        [DisplayName("Born")]
+        public Int32 born { get; set; }
+
+        [DisplayName("Alive")]
+        public Int32 alive { get; set; }
+
+
         [Required]
         [DisplayName("Dam's Name")]
         public Int32 mother_id { get; set; }

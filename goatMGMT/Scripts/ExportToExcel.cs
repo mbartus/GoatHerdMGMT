@@ -193,8 +193,8 @@ namespace goatMGMT.Scripts
                 worksheet.Cells[row, 3].Value = birth.Breeding.father_id;
                 worksheet.Cells[row, 4].Value = birth.date;
                 worksheet.Cells[row, 5].Value = birth.score;
-                worksheet.Cells[row, 6].Value = birth.alive;
-                worksheet.Cells[row, 7].Value = birth.born;
+                //worksheet.Cells[row, 6].Value = birth.alive;
+                //worksheet.Cells[row, 7].Value = birth.born;
                 worksheet.Cells[row, 8].Value = birth.notes;
                 row++;
             }

@@ -15,6 +15,37 @@ namespace goatMGMT.Controllers
     {
         private goatDBEntities db = new goatDBEntities();
 
+
+        // GET: updateLitter
+        public ActionResult updateLitter(Int32 id)
+        {
+            BreedingViewModel bvm = new BreedingViewModel();
+            bvm.breeding = db.Breedings.Find(id);
+            return View(bvm);
+        }
+
+        // POST: updateLitter
+        [HttpPost]
+        public ActionResult updateLitter(Breeding breeding)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(breeding).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                return RedirectToAction("Index", new { id = breeding.id });
+            }
+            BreedingViewModel bvm = new BreedingViewModel();
+            bvm.breeding = breeding;
+            return View(bvm);
+        }
+
         //
         // GET: /Birth/
         public ActionResult Index(Int32 id)

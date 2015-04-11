@@ -1,0 +1,58 @@
+﻿@model goatMGMT.Models.BreedingViewModel
+
+@{
+    ViewBag.Title = "Update Litter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Update Litter Information</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="form-horizontal">
+            <legend>Litter</legend>
+
+            
+            @Html.HiddenFor(m => m.breeding.id)
+            @Html.HiddenFor(m => m.breeding.remarks)
+            @Html.HiddenFor(m => m.breeding.date)
+            @Html.HiddenFor(m => m.breeding.expected_kidding_date)
+            @Html.HiddenFor(m => m.breeding.father_id)
+            @Html.HiddenFor(m => m.breeding.mother_id)
+            @Html.HiddenFor(m => m.breeding.pregnancy_check)
+
+            @Html.HiddenFor(m => m.breeding.id)
+            
+            <div class="control-group">
+                @Html.LabelFor(model => model.breeding.born, new { @class = "control-label" })<small> (Optional)</small>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.breeding.born, new { @class = "form-control", @placeholder = "Number of offspring born in this litter" })
+                    @Html.ValidationMessageFor(model => model.breeding.born, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.breeding.alive, new { @class = "control-label" })<small> (Optional)</small>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.breeding.alive, new { @class = "form-control", @placeholder = "Number of offspring that survived" })
+                    @Html.ValidationMessageFor(model => model.breeding.alive, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="form-actions no-color" style="padding-bottom:15px">
+                <input type="submit" value="Update" class="btn btn-success" style="margin-top:15px;" />
+                @Html.ActionLink("Cancel", "Index", "Birth", new { id = Model.breeding.id }, new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+            </div>
+        </fieldset>
+    }
+
+</div>
+@section Scripts {
+    <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/jqueryval")"></script>
+}
+

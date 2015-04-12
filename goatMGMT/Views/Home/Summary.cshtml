@@ -27,6 +27,12 @@
     </div>
     <div class="row info-block">
         <div class="col-md-12">
+            <h4>Average Daily Gain Comparisons</h4>
+            <div id="adggraph" style="width: 100%; font-size:12px; height:450px; margin-bottom:15px;"></div>
+        </div>
+    </div>
+    <div class="row info-block">
+        <div class="col-md-12">
             <h4>Multiple Birth Statistics</h4>
             <div id="birthgraph" style="width: 100%; font-size:12px; height:350px; margin-bottom:15px;"></div>
         </div>
@@ -499,6 +505,85 @@
                 "category": "4+",
                 "income": @Model.damParity4Count,
                 "expenses": @Model.damParity4BW
+            }
+        ]
+    });
+    var chart8 = AmCharts.makeChart("adggraph", {
+        "type": "serial",
+        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+        "categoryField": "category",
+        "rotate": true,
+        "startDuration": 1,
+        "categoryAxis": {
+            "gridPosition": "start",
+            "position": "left"
+        },
+        "trendLines": [],
+        "graphs": [
+            {
+                "balloonText": "My Herd:[[value]]",
+                "fillAlphas": 0.8,
+                "id": "AmGraph-1",
+                "lineAlpha": 0.2,
+                "title": "Income",
+                "type": "column",
+                "valueField": "income"
+            },
+            {
+                "balloonText": "All Herds:[[value]]",
+                "fillAlphas": 0.8,
+                "id": "AmGraph-2",
+                "lineAlpha": 0.2,
+                "title": "Expenses",
+                "type": "column",
+                "valueField": "expenses"
+            }
+        ],
+        "guides": [],
+        "valueAxes": [
+            {
+                "id": "ValueAxis-1",
+                "position": "top",
+                "axisAlpha": 0
+            }
+        ],
+        "allLabels": [],
+        "amExport": {
+            "right": 20,
+            "top": 20
+        },
+        "balloon": {},
+        "titles": [],
+        "dataProvider": [
+            {
+                "category": "Weaning",
+                "income": @Model.ADGWeaning,
+                "expenses": @Model.allADGWeaning
+            },
+            {
+                "category": "Weaning(Male)",
+                "income": @Model.maleADGWeaning,
+                "expenses": @Model.allMaleADGWeaning
+            },
+            {
+                "category": "Weaning(Female)",
+                "income": @Model.femaleADGWeaning,
+                "expenses": @Model.allFemaleADGWeaning
+            },
+            {
+                "category": "Post-Weaning",
+                "income": @Model.ADGPostWeaning,
+                "expenses": @Model.allADGPostWeaning
+            },
+            {
+                "category": "Post-Weaning(Male)",
+                "income": @Model.maleADGPostWeaning,
+                "expenses": @Model.allMaleADGPostWeaning
+            },
+            {
+                "category": "Post-Weaning(Female)",
+                "income": @Model.femaleADGPostWeaning,
+                "expenses": @Model.allFemaleADGPostWeaning
             }
         ]
     });

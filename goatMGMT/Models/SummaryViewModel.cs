@@ -94,5 +94,29 @@ namespace goatMGMT.Models
         public double tripletWWAvg { get; set; }
 
         public double quadWWAvg { get; set; }
+
+        public double allADGWeaning { get; set; }
+
+        public double allMaleADGWeaning { get; set; }
+
+        public double allFemaleADGWeaning { get; set; }
+
+        public double allADGPostWeaning { get; set; }
+
+        public double allMaleADGPostWeaning { get; set; }
+
+        public double allFemaleADGPostWeaning { get; set; }
+
+        public double ADGWeaning { get; set; }
+
+        public double maleADGWeaning { get; set; }
+
+        public double femaleADGWeaning { get; set; }
+
+        public double ADGPostWeaning { get; set; }
+
+        public double maleADGPostWeaning { get; set; }
+
+        public double femaleADGPostWeaning { get; set; } 
     }
 }

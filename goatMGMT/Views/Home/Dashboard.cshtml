@@ -75,7 +75,7 @@
         @if (User.IsInRole("admin") || User.IsInRole("user"))
         {
             <div class="dash-section col-md-6">
-                <h4><a href="~/Home/Summary">Generate Reports</a></h4>
+                <h4><a href="~/Home/Summary">Generate Summary</a></h4>
                 <ul>
                     <li>
                         Generate reports of your herd.
@@ -89,7 +89,7 @@
         else
         {
             <div class="dash-section col-md-6">
-                <h4><a href="~/Account/Manage">Generate Reports</a></h4>
+                <h4><a href="~/Account/Manage">Generate Summary</a></h4>
                 <ul>
                     <li style="font-weight:700;">
                         You must upgrade your account to use this feature.
@@ -103,6 +103,16 @@
                 </ul>
             </div>
         }
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4><a href="~/Animal/Kids">Kids Performance</a></h4>
+                <ul>
+                    <li>
+                        Compare average daily gains of all animals.
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="row">
         @if (User.IsInRole("admin"))

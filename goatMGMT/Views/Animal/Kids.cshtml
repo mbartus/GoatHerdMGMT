@@ -1,0 +1,108 @@
+﻿@model IEnumerable<goatMGMT.Models.Kid>
+
+    @{
+    ViewBag.Title = "Kids Performance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <div class="container">
+        <h2>Kids Performance</h2>
+        <p class="help-block" style="margin-bottom:20px;">Note: Animals must have a birth date/weight and either a weaning date/weight or post-weaning weight/date to be on this page.<br />ADG = Average Daily Gain.</p>
+        <div class="table-responsive">
+            <table class="table table-striped tablesorter" id="kidsTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Tag
+                        </th>
+                        <th>
+                            Sex
+                        </th>
+                        <th>
+                            Species
+                        </th>
+                        <th>
+                            Age at Weaning (in days)
+                        </th>
+                        <th>
+                            ADG at Weaning
+                        </th>
+                        <th>
+                            Age at Post-Weaning (in days)
+                        </th>
+                        <th>
+                            ADG at Post-Weaning
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.animal.tag)
+                        </td>
+                        <td>
+                            @if (item.animal.sex)
+                            {
+                            @Html.Raw("Male")
+                            }
+                            else
+                            {
+                            @Html.Raw("Female")
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.animal.species)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ageAtWeaning)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.averageDailyGainWeaning)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ageAtPostWeaning)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.averageDailyGainPostWeaning)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="pager" class="pager">
+        <form>
+            <button type="button" class="btn btn-default first">First</button>
+            <button type="button" class="btn btn-default prev">Prev</button>
+            <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+            <button type="button" class="btn btn-default next">Next</button>
+            <button type="button" class="btn btn-default last">Last</button><br />
+            Items on page&nbsp<select class="pagesize">
+                <option selected="selected" value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="9999">View All</option>
+            </select>
+        </form>
+    </div>
+    <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+    <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
+    <script src="~/Scripts/jquery.sieve.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#kidsTable').tablesorter({
+                theme: 'default',
+                headers: {
+                    '.non-sort': { sorter: false }
+                }
+            }).tablesorter().tablesorterPager({
+                container: $('#pager'),
+                output: '{startRow} to {endRow} ({totalRows})'
+            });
+            $('#kidsTable').sieve();
+        });
+    </script>
+

@@ -225,6 +225,34 @@ namespace goatMGMT.Controllers
             return View(gvm);
         }
 
+        public ActionResult Kids()
+        {
+            int userID = (int)Membership.GetUser().ProviderUserKey; 
+            List<Kid> kids = new List<Kid>();
+            foreach (Animal currentAnimal in db.Animals.Where(m => m.owner == userID))
+            {
+                if (currentAnimal.birth_weight != null && (currentAnimal.weaning_date != null && currentAnimal.weaning_weight != null) || (currentAnimal.post_weaning_date != null && currentAnimal.post_weaning_weight != null))
+                {
+                    Kid kid = new Kid()
+                    {
+                        animal = currentAnimal
+                    };
+                    if (currentAnimal.weaning_date != null && currentAnimal.weaning_weight != null)
+                    {
+                        kid.ageAtWeaning = ((DateTime)currentAnimal.weaning_date - currentAnimal.dob).Days;
+                        kid.averageDailyGainWeaning = (double)(currentAnimal.weaning_weight - currentAnimal.birth_weight) / kid.ageAtWeaning;
+                    }
+                    if (currentAnimal.post_weaning_date != null && currentAnimal.post_weaning_weight != null)
+                    {
+                        kid.ageAtPostWeaning = ((DateTime)currentAnimal.post_weaning_date - currentAnimal.dob).Days;
+                        kid.averageDailyGainPostWeaning = (double)(currentAnimal.post_weaning_weight - currentAnimal.birth_weight) / kid.ageAtPostWeaning;
+                    }
+                    kids.Add(kid);
+                }
+            }
+            return View(kids);
+        }
+
         //
         // GET: /Animal/Edit/5
         public ActionResult Edit(Int32 id)

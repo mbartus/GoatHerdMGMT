@@ -184,8 +184,20 @@ namespace goatMGMT.Controllers
                     svm.matingCount++;
                     svm.kiddingCount += breeding.Births.Count();
                     svm.kiddingPercentage = svm.matingCount / svm.kiddingCount;
+                    if (breeding.alive == null)
+                    {
+                        breeding.alive = 0;
+                    }
+                    if (breeding.born == null)
+                    {
+                        breeding.born = 0;
+                    }
                     svm.kidsAliveCount += (int)breeding.alive;
                     svm.kidsBornCount += (int)breeding.born;
+                    if (svm.kidsAliveCount == 0)
+                    {
+                        svm.kidsAliveCount = 1;
+                    }
                     svm.kidsAlivePercentage = svm.kidsBornCount / svm.kidsAliveCount;
                     foreach (Birth birth in breeding.Births)
                     {
@@ -392,8 +404,13 @@ namespace goatMGMT.Controllers
             {
                 worksheet.Cells[row, 1].Value = animal.name;
                 worksheet.Cells[row, 2].Value = animal.tag;
-                worksheet.Cells[row, 3].Value = animal.dob;
-                worksheet.Cells[row, 4].Value = animal.sex;
+                worksheet.Cells[row, 3].Value = animal.dob.ToShortDateString();
+                if (animal.sex) {
+                    worksheet.Cells[row, 4].Value = "Male";
+                }
+                else {
+                    worksheet.Cells[row, 4].Value = "Female";
+                }
                 worksheet.Cells[row, 5].Value = animal.breed_code;
                 worksheet.Cells[row, 6].Value = animal.species;
                 worksheet.Cells[row, 7].Value = animal.status_code;
@@ -455,7 +472,14 @@ namespace goatMGMT.Controllers
             row = 2;
             foreach (Transaction transaction in transactions)
             {
-                worksheet.Cells[row, 1].Value = transaction.type;
+                if (transaction.type)
+                {
+                    worksheet.Cells[row, 1].Value = "Income";
+                }
+                else
+                {
+                    worksheet.Cells[row, 1].Value = "Expense";
+                }
                 worksheet.Cells[row, 2].Value = transaction.item_type;
                 worksheet.Cells[row, 3].Value = transaction.date;
                 worksheet.Cells[row, 4].Value = transaction.quantity;
@@ -508,8 +532,8 @@ namespace goatMGMT.Controllers
             row = 2;
             foreach (Breeding breeding in breedings)
             {
-                worksheet.Cells[row, 1].Value = breeding.mother_id;
-                worksheet.Cells[row, 2].Value = breeding.father_id;
+                worksheet.Cells[row, 1].Value = db.Animals.Find(breeding.mother_id).tag;
+                worksheet.Cells[row, 2].Value = db.Animals.Find(breeding.father_id).tag;
                 worksheet.Cells[row, 3].Value = breeding.date;
                 worksheet.Cells[row, 4].Value = breeding.pregnancy_check;
                 worksheet.Cells[row, 5].Value = breeding.expected_kidding_date;
@@ -533,13 +557,13 @@ namespace goatMGMT.Controllers
             row = 2;
             foreach (Birth birth in births)
             {
-                worksheet.Cells[row, 1].Value = birth.child_id;
-                worksheet.Cells[row, 2].Value = birth.Breeding.mother_id;
-                worksheet.Cells[row, 3].Value = birth.Breeding.father_id;
-                worksheet.Cells[row, 4].Value = birth.date;
+                worksheet.Cells[row, 1].Value = db.Animals.Find(birth.child_id).tag;
+                worksheet.Cells[row, 2].Value = db.Animals.Find(db.Breedings.Find(birth.breed_id).mother_id).tag;
+                worksheet.Cells[row, 3].Value = db.Animals.Find(db.Breedings.Find(birth.breed_id).father_id).tag;
+                worksheet.Cells[row, 4].Value = db.Animals.Find(birth.child_id).dob;
                 worksheet.Cells[row, 5].Value = birth.score;
-                //worksheet.Cells[row, 6].Value = birth.alive;
-                //worksheet.Cells[row, 7].Value = birth.born;
+                worksheet.Cells[row, 6].Value = db.Breedings.Find(birth.breed_id).born;
+                worksheet.Cells[row, 7].Value = db.Breedings.Find(birth.breed_id).alive;
                 worksheet.Cells[row, 8].Value = birth.notes;
                 row++;
             }
@@ -549,8 +573,12 @@ namespace goatMGMT.Controllers
             package.Workbook.Properties.Title = "GoatMGMT: " + DateTime.Now;
             package.Workbook.Properties.Author = db.UserProfiles.Find(userID).Username; //TODO switch to First_name + Last_name
 
-            package.Save();
-
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment; filename=FarmsDatabaseReport.xlsx");
+            Response.BinaryWrite(package.GetAsByteArray());
+            Response.End();
+            
             return RedirectToAction("Summary");
         }
         

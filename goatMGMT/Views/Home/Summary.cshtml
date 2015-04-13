@@ -16,8 +16,8 @@
     </div>
     <div class="row info-block">
         <div class="col-md-12">
-            <h4>Kids Born and Kids Weaned</h4>
-            <div id="kidgraph" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px;"></div>
+            <h4>Offspring Born and Offspring Weaned</h4>
+            <div id="Offspringgraph" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px;"></div>
         </div>
     </div>
     <div class="row info-block">
@@ -40,7 +40,7 @@
     </div>
     <div class="row info-block">
         <div class="col-md-12">
-            <h4>Mating Count and Kidding Count</h4>
+            <h4>Mating Count and Birthing Count</h4>
             <div id="breedinggraph" style="width: 100%; font-size:12px; height:150px; margin-bottom:15px;"></div>
         </div>
     </div>
@@ -122,7 +122,7 @@
             }
         ]
     });
-    var chart2 = AmCharts.makeChart("kidgraph", {
+    var chart2 = AmCharts.makeChart("Offspringgraph", {
         "type": "serial",
         "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
         "categoryField": "category",
@@ -354,7 +354,7 @@
                 "valueField": "income"
             },
             {
-                "balloonText": "Kidding:[[value]]",
+                "balloonText": "Offspringding:[[value]]",
                 "fillAlphas": 0.8,
                 "id": "AmGraph-2",
                 "lineAlpha": 0.2,
@@ -434,7 +434,7 @@
         "titles": [],
         "dataProvider": [
             {
-                "category": "Kids",
+                "category": "Offspring",
                 "income": @Model.kidsBornCount,
                 "expenses": @Model.kidsAliveCount
             }

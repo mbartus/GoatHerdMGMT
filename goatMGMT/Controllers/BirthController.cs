@@ -11,6 +11,7 @@ using System.Web.WebPages.Html;
 
 namespace goatMGMT.Controllers
 {
+    [Authorize]
     public class BirthController : Controller
     {
         private goatDBEntities db = new goatDBEntities();
@@ -19,8 +20,18 @@ namespace goatMGMT.Controllers
         // GET: updateLitter
         public ActionResult updateLitter(Int32 id)
         {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             BreedingViewModel bvm = new BreedingViewModel();
             bvm.breeding = db.Breedings.Find(id);
+            if (bvm.breeding == null)
+            {
+                return HttpNotFound();
+            }
+            bvm.breeding.Animal = db.Animals.Find(bvm.breeding.father_id);
+            if ((!User.IsInRole("admin")) && bvm.breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
             return View(bvm);
         }
 
@@ -53,6 +64,18 @@ namespace goatMGMT.Controllers
             List<BirthViewModel> bvmList = new List<BirthViewModel>();
             int userID = (int)Membership.GetUser().ProviderUserKey;
             var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.breed_id == id);
+
+            Breeding breeding = db.Breedings.Find(id);
+            if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+            
             foreach (Birth birth in births)
             {
                 BirthViewModel bvm = new BirthViewModel();
@@ -74,10 +97,23 @@ namespace goatMGMT.Controllers
         public ActionResult Details(Int32 id)
         {
             Birth birth = db.Births.FirstOrDefault(m => m.id == id);
+            
             if (birth == null)
             {
                 return HttpNotFound();
             }
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            Breeding breeding = db.Breedings.Find(birth.breed_id);
+            if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+            
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
@@ -97,6 +133,18 @@ namespace goatMGMT.Controllers
             bvm.birth.breed_id = id;
             bvm.offspring = new List<System.Web.Mvc.SelectListItem>();
             bvm.offspring.Add(new System.Web.Mvc.SelectListItem { Text = "Select Offspring", Value = "" + -1 });
+
+            Breeding breeding = db.Breedings.Find(id);
+            if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+            
             foreach (Animal birth in births)
             {
                 if (db.Births.Where(m => m.child_id == birth.id).Count() < 1)
@@ -152,10 +200,23 @@ namespace goatMGMT.Controllers
         public ActionResult Edit(Int32 id)
         {
             Birth birth = db.Births.FirstOrDefault(m => m.id == id);
+
             if (birth == null)
             {
                 return HttpNotFound();
             }
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            Breeding breeding = db.Breedings.Find(birth.breed_id);
+            if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;
@@ -198,10 +259,23 @@ namespace goatMGMT.Controllers
         public ActionResult Delete(Int32 id)
         {
             Birth birth = db.Births.FirstOrDefault(m => m.id == id);
+
             if (birth == null)
             {
                 return HttpNotFound();
             }
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            Breeding breeding = db.Breedings.Find(birth.breed_id);
+            if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+            
             BirthViewModel bvm = new BirthViewModel();
             bvm.birth = birth;
             bvm.offspring_tag = birth.Animal.tag;

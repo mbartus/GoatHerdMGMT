@@ -32,8 +32,13 @@ namespace goatMGMT.Controllers
         // GET: /Animal/Details/5
         public ActionResult Details(Int32 id)
         {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             Animal animal = db.Animals.Find(id);
             if (animal == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -257,8 +262,13 @@ namespace goatMGMT.Controllers
         // GET: /Animal/Edit/5
         public ActionResult Edit(Int32 id)
         {
+            int userID = (int)Membership.GetUser().ProviderUserKey; 
             Animal animal = db.Animals.Find(id);
             if (animal == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -369,8 +379,13 @@ namespace goatMGMT.Controllers
         // GET: /Animal/Delete/5
         public ActionResult Delete(Int32 id)
         {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             Animal animal = db.Animals.Find(id);
             if (animal == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }

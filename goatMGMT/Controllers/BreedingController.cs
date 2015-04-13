@@ -44,7 +44,13 @@ namespace goatMGMT.Controllers
         public ActionResult Details(Int32 id)
         {
             Breeding breeding = db.Breedings.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -132,12 +138,17 @@ namespace goatMGMT.Controllers
         public ActionResult Edit(Int32 id)
         {
             Breeding breeding = db.Breedings.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (breeding == null)
             {
                 return HttpNotFound();
             }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
             BreedingViewModel bvm = new BreedingViewModel();
-            int userID = (int)Membership.GetUser().ProviderUserKey;
             bvm.breeding = breeding;
             bvm.father_name = bvm.breeding.Animal.name;
             bvm.mother_name = bvm.breeding.Animal1.name;
@@ -176,7 +187,13 @@ namespace goatMGMT.Controllers
         public ActionResult Delete(Int32 id)
         {
             Breeding breeding = db.Breedings.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (breeding == null)
+            {
+                return HttpNotFound();
+            }
+            breeding.Animal = db.Animals.Find(breeding.father_id);
+            if ((!User.IsInRole("admin")) && breeding.Animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }

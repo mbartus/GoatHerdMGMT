@@ -142,7 +142,12 @@ namespace goatMGMT.Controllers
         public ActionResult Details(Int32 id)
         {
             Transaction transaction = db.Transactions.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && transaction.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -252,7 +257,12 @@ namespace goatMGMT.Controllers
         public ActionResult EditIncome(Int32 id)
         {
             Transaction transaction = db.Transactions.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && transaction.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -271,7 +281,12 @@ namespace goatMGMT.Controllers
         public ActionResult EditExpense(Int32 id)
         {
             Transaction transaction = db.Transactions.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && transaction.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -358,7 +373,12 @@ namespace goatMGMT.Controllers
         public ActionResult Delete(Int32 id)
         {
             Transaction transaction = db.Transactions.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && transaction.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }

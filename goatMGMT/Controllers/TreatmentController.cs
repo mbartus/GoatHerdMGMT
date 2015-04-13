@@ -42,7 +42,13 @@ namespace goatMGMT.Controllers
         public ActionResult Details(Int32 id, Int32 id2)
         {
             Treatment treatment = db.Treatments.Find(id, id2);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (treatment == null)
+            {
+                return HttpNotFound();
+            }
+            treatment.Animal = db.Animals.Find(treatment.animal_id);
+            if ((!User.IsInRole("admin")) && treatment.Animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -111,12 +117,17 @@ namespace goatMGMT.Controllers
         public ActionResult Edit(Int32 id, Int32 id2)
         {
             Treatment treatment = db.Treatments.Find(id, id2);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (treatment == null)
             {
                 return HttpNotFound();
             }
+            treatment.Animal = db.Animals.Find(treatment.animal_id);
+            if ((!User.IsInRole("admin")) && treatment.Animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
             TreatmentViewModel tvm = new TreatmentViewModel();
-            int userID = (int)Membership.GetUser().ProviderUserKey;
             tvm.treatment = treatment;
             tvm.animal_name = tvm.treatment.Animal.name;
             return View(tvm);
@@ -153,7 +164,13 @@ namespace goatMGMT.Controllers
         public ActionResult Delete(Int32 id, Int32 id2)
         {
             Treatment treatment = db.Treatments.Find(id, id2);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (treatment == null)
+            {
+                return HttpNotFound();
+            }
+            treatment.Animal = db.Animals.Find(treatment.animal_id);
+            if ((!User.IsInRole("admin")) && treatment.Animal.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }

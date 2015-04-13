@@ -33,7 +33,12 @@ namespace goatMGMT.Controllers
         public ActionResult Details(Int32 id)
         {
             Associate associate = db.Associates.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (associate == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && associate.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -76,7 +81,12 @@ namespace goatMGMT.Controllers
         public ActionResult Edit(Int32 id)
         {
             Associate associate = db.Associates.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (associate == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && associate.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }
@@ -110,7 +120,12 @@ namespace goatMGMT.Controllers
         public ActionResult Delete(Int32 id)
         {
             Associate associate = db.Associates.Find(id);
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             if (associate == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && associate.UserProfile.UserId != userID)
             {
                 return HttpNotFound();
             }

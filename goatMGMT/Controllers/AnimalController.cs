@@ -230,7 +230,7 @@ namespace goatMGMT.Controllers
             return View(gvm);
         }
 
-        public ActionResult Kids()
+        public ActionResult Offspring()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey; 
             List<Kid> kids = new List<Kid>();

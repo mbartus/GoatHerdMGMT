@@ -511,7 +511,7 @@
     <Content Include="Views\Account\All.cshtml" />
     <Content Include="Views\Home\Summary.cshtml" />
     <Content Include="Views\Birth\updateLitter.cshtml" />
-    <Content Include="Views\Animal\Kids.cshtml" />
+    <Content Include="Views\Animal\Offspring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

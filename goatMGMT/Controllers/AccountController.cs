@@ -74,7 +74,7 @@ namespace goatMGMT.Controllers
                     ModelState.AddModelError("", "Sorry, passwords do not match");
                     return View(registerData);
                 }
-                if (registerData.Password.Length <= 6) // check if password length id greater than 5
+                if (registerData.Password.Length < 6) // check if password length id greater than 5
                 {
                     ModelState.AddModelError("", "Sorry, passwords must be at least 6 characters");
                     return View(registerData);
@@ -132,7 +132,7 @@ namespace goatMGMT.Controllers
                     ModelState.AddModelError("", "Sorry, passwords do not match");
                     return View(cpIn);
                 }
-                if (cpIn.newPassword.Length <= 6) // check if password length id greater than 5
+                if (cpIn.newPassword.Length < 6) // check if password length id greater than 5
                 {
                     ModelState.AddModelError("", "Sorry, passwords must be at least 6 characters");
                     return View(cpIn);
@@ -332,7 +332,7 @@ namespace goatMGMT.Controllers
                     ModelState.AddModelError("", "Sorry, passwords do not match");
                     return View(registerData);
                 }
-                if (registerData.Password.Length <= 6) // check if password length id greater than 5
+                if (registerData.Password.Length < 6) // check if password length id greater than 5
                 {
                     ModelState.AddModelError("", "Sorry, passwords must be at least 6 characters");
                     return View(registerData);

@@ -422,12 +422,12 @@ namespace goatMGMT.Controllers
                 worksheet.Cells[row, 13].Value = animal.breed_registry;
                 worksheet.Cells[row, 14].Value = animal.birth_weight;
                 worksheet.Cells[row, 15].Value = animal.weaning_weight;
-                worksheet.Cells[row, 16].Value = animal.weaning_date;
+                worksheet.Cells[row, 16].Value = animal.weaning_date == null ? "" : ((DateTime)animal.weaning_date).ToShortDateString();
                 worksheet.Cells[row, 17].Value = animal.post_weaning_weight;
-                worksheet.Cells[row, 18].Value = animal.post_weaning_date;
+                worksheet.Cells[row, 18].Value = animal.post_weaning_date == null ? "" : ((DateTime)animal.post_weaning_date).ToShortDateString();
                 worksheet.Cells[row, 19].Value = animal.market_weight;
-                worksheet.Cells[row, 20].Value = animal.market_date;
-                worksheet.Cells[row, 21].Value = animal.disposal_date;
+                worksheet.Cells[row, 20].Value = animal.market_date == null ? "" : ((DateTime)animal.market_date).ToShortDateString();
+                worksheet.Cells[row, 21].Value = animal.disposal_date == null ? "" : ((DateTime)animal.disposal_date).ToShortDateString();
                 worksheet.Cells[row, 22].Value = animal.remarks;
                 row++;
             }
@@ -449,7 +449,7 @@ namespace goatMGMT.Controllers
             {
                 worksheet.Cells[row, 1].Value = treatment.Animal.tag;
                 worksheet.Cells[row, 2].Value = treatment.Animal.name;
-                worksheet.Cells[row, 3].Value = treatment.date;
+                worksheet.Cells[row, 3].Value = treatment.date == null ? "" : ((DateTime)treatment.date).ToShortDateString();
                 worksheet.Cells[row, 4].Value = treatment.item_type;
                 worksheet.Cells[row, 5].Value = treatment.dosage;
                 worksheet.Cells[row, 6].Value = treatment.product;
@@ -481,7 +481,7 @@ namespace goatMGMT.Controllers
                     worksheet.Cells[row, 1].Value = "Expense";
                 }
                 worksheet.Cells[row, 2].Value = transaction.item_type;
-                worksheet.Cells[row, 3].Value = transaction.date;
+                worksheet.Cells[row, 3].Value = transaction.date == null ? "" : ((DateTime)transaction.date).ToShortDateString();
                 worksheet.Cells[row, 4].Value = transaction.quantity;
                 worksheet.Cells[row, 5].Value = transaction.unit_price;
                 worksheet.Cells[row, 6].Value = transaction.total_payment;
@@ -534,9 +534,9 @@ namespace goatMGMT.Controllers
             {
                 worksheet.Cells[row, 1].Value = db.Animals.Find(breeding.mother_id).tag;
                 worksheet.Cells[row, 2].Value = db.Animals.Find(breeding.father_id).tag;
-                worksheet.Cells[row, 3].Value = breeding.date;
+                worksheet.Cells[row, 3].Value = breeding.date == null ? "" : ((DateTime)breeding.date).ToShortDateString(); ;
                 worksheet.Cells[row, 4].Value = breeding.pregnancy_check;
-                worksheet.Cells[row, 5].Value = breeding.expected_kidding_date;
+                worksheet.Cells[row, 5].Value = breeding.expected_kidding_date == null ? "" : ((DateTime)breeding.expected_kidding_date).ToShortDateString(); 
                 worksheet.Cells[row, 6].Value = breeding.remarks;
                 row++;
             }

@@ -86,8 +86,8 @@ namespace goatMGMT.Controllers
                 bvmList.Add(bvm);
             }
             BirthViewModel bvmFinal = new BirthViewModel();
-            bvmFinal.born = (int)breeding.born;
-            bvmFinal.alive = (int)breeding.alive;
+            bvmFinal.born = breeding.born == null ? 0 : (int)breeding.born;
+            bvmFinal.alive = breeding.alive == null ? 0 : (int)breeding.alive;
             bvmFinal.ien = bvmList;
             bvmFinal.birth = new Birth();
             bvmFinal.birth.breed_id = id;

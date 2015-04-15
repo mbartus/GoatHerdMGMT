@@ -192,8 +192,8 @@ namespace goatMGMT.Controllers
                     {
                         breeding.born = 0;
                     }
-                    svm.kidsAliveCount += (int)breeding.alive;
-                    svm.kidsBornCount += (int)breeding.born;
+                    svm.kidsAliveCount += breeding.alive == null ? 0 : (int)breeding.alive;
+                    svm.kidsBornCount += breeding.born == null ? 0 : (int)breeding.born;
                     if (svm.kidsAliveCount == 0)
                     {
                         svm.kidsAliveCount = 1;
@@ -225,7 +225,7 @@ namespace goatMGMT.Controllers
                                 svm.damParity3BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                         }
-                        else
+                        else if (birth.parity > 3)
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {

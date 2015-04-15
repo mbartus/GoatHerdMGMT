@@ -86,9 +86,13 @@ namespace goatMGMT.Controllers
                 bvmList.Add(bvm);
             }
             BirthViewModel bvmFinal = new BirthViewModel();
+            bvmFinal.born = (int)breeding.born;
+            bvmFinal.alive = (int)breeding.alive;
             bvmFinal.ien = bvmList;
             bvmFinal.birth = new Birth();
             bvmFinal.birth.breed_id = id;
+            bvmFinal.father_tag = db.Animals.Find(db.Breedings.Find(id).father_id).tag;
+            bvmFinal.mother_tag = db.Animals.Find(db.Breedings.Find(id).mother_id).tag;
             return View(bvmFinal);
         }
 

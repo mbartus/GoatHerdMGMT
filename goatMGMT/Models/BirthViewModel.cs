@@ -20,6 +20,12 @@ namespace goatMGMT.Models
         [DisplayName("Offspring's Tag")]
         public string offspring_tag { get; set; }
 
+        [DisplayName("Born")]
+        public int born { get; set; }
+
+        [DisplayName("Alive")]
+        public int alive { get; set; }
+
         public List<SelectListItem> offspring { get; set; }
 
         [DisplayName("Offspring's Name")]

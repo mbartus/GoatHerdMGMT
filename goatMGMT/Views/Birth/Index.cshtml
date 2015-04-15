@@ -15,6 +15,40 @@
         @Html.ActionLink("Update Litter Info", "updateLitter", "Birth", new { id = Model.birth.breed_id }, new { @class = "btn btn-default" })
     </p>
     <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mother_tag)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.father_tag)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.born)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.alive)
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.mother_tag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.father_tag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.born)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.alive)
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="table-responsive">
         <table class="table table-striped tablesorter" id="birthtable">
             <thead>
                 <tr>

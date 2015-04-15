@@ -46,33 +46,34 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.breeding.date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.date, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
-                    @Html.EditorFor(model => model.breeding.date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.breeding.date, new { @class = "form-control", @placeholder = "Enter the date of the breeding" })
                     @Html.ValidationMessageFor(model => model.breeding.date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })
+                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.EditorFor(model => model.breeding.pregnancy_check, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.breeding.pregnancy_check, new { @class = "form-control", @placeholder = "Enter the date of the pregnancy check" })
                     @Html.ValidationMessageFor(model => model.breeding.pregnancy_check, null, new { @class = "help-inline" })
                 </div>
             </div>
 
-            <div class="control-group">
-                @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })
-                <div class="controls">
-                    @Html.EditorFor(model => model.breeding.expected_kidding_date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.breeding.expected_kidding_date, null, new { @class = "help-inline" })
-                </div>
-            </div>
+
+            <<div class="control-group">
+    @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })<small> (Optional)</small>
+    <div class="controls">
+        @Html.TextBoxFor(model => model.breeding.expected_kidding_date, new { @class = "form-control", @placeholder = "Enter the expected kidding date" })
+        @Html.ValidationMessageFor(model => model.breeding.expected_kidding_date, null, new { @class = "help-inline" })
+    </div>
+</div>
 
             <div class="control-group">
                 @Html.LabelFor(model => model.breeding.remarks, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.breeding.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px" })
+                    @Html.TextAreaFor(model => model.breeding.remarks, new { @class = "form-control", @style = "max-width:100%; min-width:100%;  min-height:71px", @placeholder = "Enter additional information here" })
                     @Html.ValidationMessageFor(model => model.breeding.remarks, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -87,5 +88,14 @@
     </div>
     @section Scripts {
         <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/jqueryval")"></script>
+    @Scripts.Render("~/bundles/datepicker")
     }
+<script type="text/javascript">
+    $(function () {
+        $('#breeding_date').datepicker();
+        $('#breeding_pregnancy_check').datepicker();
+        $('#breeding_expected_kidding_date').datepicker();
+    });
+</script>
+    
 

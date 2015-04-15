@@ -17,6 +17,19 @@
         <legend>Animal</legend>
 
         <div class="control-group">
+
+            @Html.LabelFor(m => m.species, new { @class = "control-label" })<small> (Required)</small>
+            <div class="controls">
+                @Html.DropDownListFor(m => m.species, (IEnumerable<SelectListItem>)ViewData["speciesList"], "Select a species", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="help-block">Species cannot be changed after animal creation</div>
+            </div>
+        </div>
+
+        <div class="control-group">
             @Html.LabelFor(model => model.name, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
                 @Html.TextBoxFor(model => model.name, new { @class="form-control", @placeholder = "Enter Animal Name or ID"})
@@ -121,18 +134,7 @@
 			</div>
 		</div>
 
-        <div class="control-group">
-
-            @Html.LabelFor(m => m.species, new { @class = "control-label" })<small> (Required)</small>
-            <div class="controls">
-                @Html.DropDownListFor(m => m.species, (IEnumerable<SelectListItem>)ViewData["speciesList"], "Select a species", new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="help-block">Species cannot be changed after animal creation</div>
-            </div>
-        </div>
+       
 
         <div class="control-group">
             @Html.LabelFor(model => model.birth_weight, new { @class = "control-label" })<small> (Optional)</small>

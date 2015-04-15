@@ -28,9 +28,9 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.date, new { @class = "control-label" })
+                @Html.LabelFor(model => model.date, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.date, new { @class = "form-control", @placeholder = "MM/DD/YYYY" })
+                    @Html.TextBoxFor(model => model.date, new { @class = "form-control", @placeholder = "Enter the date of the transaction" })
                     @Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.quantity, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.quantity, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.quantity, new { @class = "form-control", @placeholder = "How many did you buy?" })
                     @Html.ValidationMessageFor(model => model.quantity, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -46,7 +46,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.total_payment, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.total_payment, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.total_payment, new { @class = "form-control", @placeholder = "What was the total cost?" })
                     @Html.ValidationMessageFor(model => model.total_payment, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -54,15 +54,15 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.unit_price, new { @class = "control-label" })
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.unit_price, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.unit_price, new { @class = "form-control", @placeholder = "How much did each unit cost?" })
                     @Html.ValidationMessageFor(model => model.unit_price, null, new { @class = "help-inline" })
                 </div>
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.notes, new { @class = "control-label" })
+                @Html.LabelFor(model => model.notes, new { @class = "control-label"})
                 <div class="controls">
-                    @Html.TextAreaFor(model => model.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px;" })
+                    @Html.TextAreaFor(model => model.notes, new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px;", @placeholder = "Enter additional information here" })
                     @Html.ValidationMessageFor(model => model.notes, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -76,5 +76,11 @@
 </div>
 @section Scripts {
     <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/jqueryval")"></script>
+@Scripts.Render("~/bundles/datepicker")
 }
+<script type="text/javascript">
+    $(function () {
+        $('#date').datepicker();
+    });
+</script>
 

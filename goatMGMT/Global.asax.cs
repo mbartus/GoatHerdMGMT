@@ -8,6 +8,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using WebMatrix.WebData;
 
+
+
 namespace goatMGMT
 {
     // Note: For instructions on enabling IIS7 classic mode, 
@@ -16,6 +18,7 @@ namespace goatMGMT
     {        
         protected void Application_Start()
         {
+
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -25,3 +28,4 @@ namespace goatMGMT
         }
     }
 }
+

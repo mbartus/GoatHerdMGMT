@@ -101,6 +101,10 @@ namespace goatMGMT.Controllers
             int FemaleADGPWCount = 0;
             SummaryViewModel svm = new SummaryViewModel();
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                myAnimalList = db.Animals.ToList();
+            }
             svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == false).Count();
             svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == true).Count();
             svm.activeSire = db.Animals.Where(m => m.owner == userID && m.sex == false && m.status_code == "Active").Count();
@@ -374,14 +378,14 @@ namespace goatMGMT.Controllers
             int userID = (int)Membership.GetUser().ProviderUserKey;
             //Create Animals
             ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Animals");
-            worksheet.Cells[1, 1].Value = "Name";
-            worksheet.Cells[1, 2].Value = "Tag";
-            worksheet.Cells[1, 3].Value = "Date of Birth";
-            worksheet.Cells[1, 4].Value = "Sex";
-            worksheet.Cells[1, 5].Value = "Breed Code";
-            worksheet.Cells[1, 6].Value = "Species";
-            worksheet.Cells[1, 7].Value = "Status";
-            worksheet.Cells[1, 8].Value = "Child";
+            worksheet.Cells[1, 1].Value = "Species";
+            worksheet.Cells[1, 2].Value = "Name";
+            worksheet.Cells[1, 3].Value = "Tag";
+            worksheet.Cells[1, 4].Value = "Date of Birth";
+            worksheet.Cells[1, 5].Value = "Sex";
+            worksheet.Cells[1, 6].Value = "Maturity";
+            worksheet.Cells[1, 7].Value = "Breed Code";
+            worksheet.Cells[1, 8].Value = "Status";
             worksheet.Cells[1, 9].Value = "Regulation Number";
             worksheet.Cells[1, 10].Value = "Microchip ID";
             worksheet.Cells[1, 11].Value = "Premise ID";
@@ -399,22 +403,33 @@ namespace goatMGMT.Controllers
 
             // populate a row for each animal
             List<Animal> animals = db.Animals.Where(animal => animal.owner == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                animals = db.Animals.ToList();
+            }
             int row = 2;
             foreach (Animal animal in animals)
             {
-                worksheet.Cells[row, 1].Value = animal.name;
-                worksheet.Cells[row, 2].Value = animal.tag;
-                worksheet.Cells[row, 3].Value = animal.dob.ToShortDateString();
+                worksheet.Cells[row, 1].Value = animal.species;
+                worksheet.Cells[row, 2].Value = animal.name;
+                worksheet.Cells[row, 3].Value = animal.tag;
+                worksheet.Cells[row, 4].Value = animal.dob.ToShortDateString();
                 if (animal.sex) {
-                    worksheet.Cells[row, 4].Value = "Male";
+                    worksheet.Cells[row, 5].Value = "Male";
                 }
                 else {
-                    worksheet.Cells[row, 4].Value = "Female";
+                    worksheet.Cells[row, 5].Value = "Female";
                 }
-                worksheet.Cells[row, 5].Value = animal.breed_code;
-                worksheet.Cells[row, 6].Value = animal.species;
-                worksheet.Cells[row, 7].Value = animal.status_code;
-                worksheet.Cells[row, 8].Value = animal.isChild;
+                if (animal.isChild)
+                {
+                    worksheet.Cells[row, 6].Value = "Offspring";
+                }
+                else
+                {
+                    worksheet.Cells[row, 6].Value = "Adult";
+                }
+                worksheet.Cells[row, 7].Value = animal.breed_code;
+                worksheet.Cells[row, 8].Value = animal.status_code;
                 worksheet.Cells[row, 9].Value = animal.regulation_no;
                 worksheet.Cells[row, 10].Value = animal.microchip_id;
                 worksheet.Cells[row, 11].Value = animal.premise_id;
@@ -444,6 +459,10 @@ namespace goatMGMT.Controllers
             worksheet.Cells[1, 7].Value = "Remarks";
 
             List<Treatment> treatments = db.Treatments.Where(treatment => treatment.Animal.owner == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                treatments = db.Treatments.ToList();
+            }
             row = 2;
             foreach (Treatment treatment in treatments)
             {
@@ -469,6 +488,10 @@ namespace goatMGMT.Controllers
             worksheet.Cells[1, 7].Value = "Notes";
 
             List<Transaction> transactions = db.Transactions.Where(transaction => transaction.userid == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                transactions = db.Transactions.ToList();
+            }
             row = 2;
             foreach (Transaction transaction in transactions)
             {
@@ -491,7 +514,7 @@ namespace goatMGMT.Controllers
             worksheet.Cells.AutoFitColumns(0);
 
             //create Associates
-            worksheet = package.Workbook.Worksheets.Add("Associates");
+            worksheet = package.Workbook.Worksheets.Add("Business Contacts");
             worksheet.Cells[1, 1].Value = "Name";
             worksheet.Cells[1, 2].Value = "Street";
             worksheet.Cells[1, 3].Value = "City";
@@ -503,6 +526,10 @@ namespace goatMGMT.Controllers
             worksheet.Cells[1, 9].Value = "Notes";
 
             List<Associate> associates = db.Associates.Where(associate => associate.userid == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                associates = db.Associates.ToList();
+            }
             row = 2;
             foreach (Associate associate in associates)
             {
@@ -521,14 +548,18 @@ namespace goatMGMT.Controllers
 
             //create Breedings
             worksheet = package.Workbook.Worksheets.Add("Breedings");
-            worksheet.Cells[1, 1].Value = "Mother's Tag";
-            worksheet.Cells[1, 2].Value = "Father's Tag";
+            worksheet.Cells[1, 1].Value = "Dam's Tag";
+            worksheet.Cells[1, 2].Value = "Sire's Tag";
             worksheet.Cells[1, 3].Value = "Breeding Date";
             worksheet.Cells[1, 4].Value = "Pregnancy Check";
-            worksheet.Cells[1, 5].Value = "Expected Kidding Date";
+            worksheet.Cells[1, 5].Value = "Expected Birthing Date";
             worksheet.Cells[1, 6].Value = "Remarks";
 
             List<Breeding> breedings = db.Breedings.Where(breeding => breeding.Animal.owner == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                breedings = db.Breedings.ToList();
+            }
             row = 2;
             foreach (Breeding breeding in breedings)
             {
@@ -545,15 +576,20 @@ namespace goatMGMT.Controllers
             //create Births
             worksheet = package.Workbook.Worksheets.Add("Birth_Records");
             worksheet.Cells[1, 1].Value = "Offspring's Tag";
-            worksheet.Cells[1, 2].Value = "Mother's Tag";
-            worksheet.Cells[1, 3].Value = "Father's Tag";
+            worksheet.Cells[1, 2].Value = "Dam's Tag";
+            worksheet.Cells[1, 3].Value = "Sire's Tag";
             worksheet.Cells[1, 4].Value = "Date of Birth";
             worksheet.Cells[1, 5].Value = "Score";
-            worksheet.Cells[1, 6].Value = "Alive";
-            worksheet.Cells[1, 7].Value = "Born";
-            worksheet.Cells[1, 8].Value = "Notes";
+            worksheet.Cells[1, 6].Value = "Dam's Parity";
+            worksheet.Cells[1, 7].Value = "Alive";
+            worksheet.Cells[1, 8].Value = "Born";
+            worksheet.Cells[1, 9].Value = "Notes";
 
             List<Birth> births = db.Births.Where(birth => birth.Animal.owner == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                births = db.Births.ToList();
+            }
             row = 2;
             foreach (Birth birth in births)
             {
@@ -562,9 +598,10 @@ namespace goatMGMT.Controllers
                 worksheet.Cells[row, 3].Value = db.Animals.Find(db.Breedings.Find(birth.breed_id).father_id).tag;
                 worksheet.Cells[row, 4].Value = db.Animals.Find(birth.child_id).dob;
                 worksheet.Cells[row, 5].Value = birth.score;
-                worksheet.Cells[row, 6].Value = db.Breedings.Find(birth.breed_id).born;
-                worksheet.Cells[row, 7].Value = db.Breedings.Find(birth.breed_id).alive;
-                worksheet.Cells[row, 8].Value = birth.notes;
+                worksheet.Cells[row, 6].Value = db.Breedings.Find(birth.breed_id).parity;
+                worksheet.Cells[row, 7].Value = db.Breedings.Find(birth.breed_id).born;
+                worksheet.Cells[row, 8].Value = db.Breedings.Find(birth.breed_id).alive;
+                worksheet.Cells[row, 9].Value = birth.notes;
                 row++;
             }
             worksheet.Cells.AutoFitColumns(0);

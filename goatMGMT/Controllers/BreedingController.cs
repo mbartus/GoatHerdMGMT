@@ -26,6 +26,10 @@ namespace goatMGMT.Controllers
             {
                 breedings = db.Breedings.Include(a => a.Animal.UserProfile);
             }
+            double damsBirthed = 0;
+            double damsBred = 0;
+            double offBorn = 0;
+            double offAlive = 0;
             foreach (Breeding bre in breedings)
             {
                 BreedingViewModel be = new BreedingViewModel();
@@ -35,8 +39,38 @@ namespace goatMGMT.Controllers
                 be.father_tag = db.Animals.Find(bre.father_id).tag;
                 be.mother_tag = db.Animals.Find(bre.mother_id).tag;
                 beList.Add(be);
+                if (bre.born != null)
+                {
+                    offBorn += (int)bre.born;
+                }
+                if (bre.alive != null)
+                {
+                    offAlive += (int)bre.alive;
+                }
+                if (bre.pregnancy_check != null)
+                {
+                    if ((bool)bre.pregnancy_check)
+                    {
+                        damsBirthed++;
+                    }
+                }
+                damsBred++;
             }
-            return View(beList);
+            BreedingViewModel bvmFinal = new BreedingViewModel();
+            bvmFinal.ien = beList;
+            if (offAlive == 0)
+            {
+                offAlive++;
+            }
+            bvmFinal.mortalityRate = (int) ((1 - (offAlive / offBorn)) * 100);
+            if (damsBred == 0)
+            {
+                damsBred++;
+            }
+            bvmFinal.conceptionRate = (int) ((damsBirthed / damsBred) * 100);
+            bvmFinal.totAlive = (int)offAlive;
+            bvmFinal.totBorn = (int)offBorn;
+            return View(bvmFinal);
         }
 
         //

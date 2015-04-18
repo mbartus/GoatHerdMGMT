@@ -26,7 +26,7 @@ namespace goatMGMT.Models
         public bool sex { get; set; }
 
         [Required]
-        [DisplayName("Child")]
+        [DisplayName("Maturity")]
         public bool isChild { get; set; }
 
         [DisplayName("Breed Code")]
@@ -39,7 +39,7 @@ namespace goatMGMT.Models
         [DisplayName("Name")]
         public string name { get; set; }
 
-        [DisplayName("Regulation Number")]
+        [DisplayName("Registration Number")]
         public string regulation_no { get; set; }
 
         [DisplayName("Microchip ID")]

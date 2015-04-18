@@ -22,6 +22,8 @@ namespace goatMGMT.Models
         [DisplayName("Alive")]
         public Int32 alive { get; set; }
 
+        [DisplayName("Dam's Parity")]
+        public Int32 parity { get; set; }
 
         [Required]
         [DisplayName("Dam's Name")]
@@ -38,13 +40,12 @@ namespace goatMGMT.Models
         public DateTime date { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DisplayName("Date of Pregnancy Check")]
-        public DateTime pregnancy_check { get; set; }
+        [DisplayName("Pregnant?")]
+        public bool pregnancy_check { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DisplayName("Expected Kidding Date")]
+        [DisplayName("Expected Birthing Date")]
         public DateTime expected_kidding_date { get; set; }
 
         [DisplayName("Remarks")]

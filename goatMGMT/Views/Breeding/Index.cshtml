@@ -1,4 +1,4 @@
-@model IEnumerable<goatMGMT.Models.BreedingViewModel>
+@model goatMGMT.Models.BreedingViewModel
 
     @{
     ViewBag.Title = "Breeding";
@@ -7,6 +7,37 @@
 
     <div class="container">
         <h2>Breeding</h2>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.conceptionRate):</b> @Html.DisplayFor(model => model.conceptionRate)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.totBorn):</b> @Html.DisplayFor(model => model.totBorn)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.totAlive):</b> @Html.DisplayFor(model => model.totAlive)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.mortalityRate):</b> @Html.DisplayFor(model => model.mortalityRate)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <p>
             @Html.ActionLink("Create New", "Create", "Breeding", new { @class = "btn btn-success" })
@@ -38,7 +69,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.ien)
                     {
                     <tr>
                         <td>

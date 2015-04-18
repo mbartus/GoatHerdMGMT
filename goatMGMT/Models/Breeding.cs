@@ -24,11 +24,12 @@ namespace goatMGMT.Models
         public int mother_id { get; set; }
         public int father_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public Nullable<System.DateTime> pregnancy_check { get; set; }
         public Nullable<System.DateTime> expected_kidding_date { get; set; }
         public Nullable<int> alive { get; set; }
         public Nullable<int> born { get; set; }
         public string remarks { get; set; }
+        public Nullable<int> parity { get; set; }
+        public Nullable<bool> pregnancy_check { get; set; }
     
         public virtual Animal Animal { get; set; }
         public virtual Animal Animal1 { get; set; }

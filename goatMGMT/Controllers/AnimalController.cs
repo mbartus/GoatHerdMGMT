@@ -25,7 +25,36 @@ namespace goatMGMT.Controllers
             {
                 animals = db.Animals.ToList();
             }
-            return View(animals);
+
+            List<AnimalViewModel> avmList = new List<AnimalViewModel>();
+            int sireCount = 0;
+            int damCount = 0;
+            int offCount = 0;
+            foreach (Animal an in animals)
+            {
+                AnimalViewModel avm = new AnimalViewModel();
+                avm.animal = an;
+                avmList.Add(avm);
+                if (an.sex && !an.isChild && an.status_code == "Active")
+                {
+                    sireCount++;
+                }
+                else if (!an.sex && !an.isChild && an.status_code == "Active")
+                {
+                    damCount++;
+                }
+                else if (an.isChild && (an.status_code == "Active" || an.status_code == "Unclassified") )
+                {
+                    offCount++;
+                }
+            }
+            AnimalViewModel avmFinal = new AnimalViewModel();
+            avmFinal.ien = avmList;
+            avmFinal.numSires = sireCount;
+            avmFinal.numDams = damCount;
+            avmFinal.numOff = offCount;
+
+            return View(avmFinal);
         }
 
         //
@@ -62,7 +91,7 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Sold for breeding", Value = "Sold for breeding"},
                 new SelectListItem() { Text = "Died", Value = "Died"},
                 new SelectListItem() { Text = "Culled", Value = "Culled"},
-                new SelectListItem() { Text = "Unclassed", Value = "Unclassed"},
+                new SelectListItem() { Text = "Unclassed (for offspring)", Value = "Unclassed"},
                 new SelectListItem() { Text = "Herd Replacement", Value = "Herd Replacement"}
             };
             @ViewBag.statusList = statusList;
@@ -103,7 +132,7 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Animal animal)
         {
-
+            
             if (ModelState.IsValid)
             {
                 animal.owner = (int)Membership.GetUser().ProviderUserKey;
@@ -131,7 +160,7 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Sold for breeding", Value = "Sold for breeding"},
                 new SelectListItem() { Text = "Died", Value = "Died"},
                 new SelectListItem() { Text = "Culled", Value = "Culled"},
-                new SelectListItem() { Text = "Unclassed", Value = "Unclassed"},
+                new SelectListItem() { Text = "Unclassed (for offspring)", Value = "Unclassed"},
                 new SelectListItem() { Text = "Herd Replacement", Value = "Herd Replacement"}
             };
             @ViewBag.statusList = statusList;
@@ -278,7 +307,7 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Sold for breeding", Value = "Sold for breeding"},
                 new SelectListItem() { Text = "Died", Value = "Died"},
                 new SelectListItem() { Text = "Culled", Value = "Culled"},
-                new SelectListItem() { Text = "Unclassed", Value = "Unclassed"},
+                new SelectListItem() { Text = "Unclassed (for offspring)", Value = "Unclassed"},
                 new SelectListItem() { Text = "Herd Replacement", Value = "Herd Replacement"}
             };
             @ViewBag.statusList = statusList;
@@ -340,7 +369,7 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Sold for breeding", Value = "Sold for breeding"},
                 new SelectListItem() { Text = "Died", Value = "Died"},
                 new SelectListItem() { Text = "Culled", Value = "Culled"},
-                new SelectListItem() { Text = "Unclassed", Value = "Unclassed"},
+                new SelectListItem() { Text = "Unclassed (for offspring)", Value = "Unclassed"},
                 new SelectListItem() { Text = "Herd Replacement", Value = "Herd Replacement"}
             };
             @ViewBag.statusList = statusList;

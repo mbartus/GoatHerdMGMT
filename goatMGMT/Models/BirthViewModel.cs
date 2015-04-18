@@ -26,6 +26,9 @@ namespace goatMGMT.Models
         [DisplayName("Alive")]
         public int alive { get; set; }
 
+        [DisplayName("Dam's Parity")]
+        public int parity { get; set; }
+
         public List<SelectListItem> offspring { get; set; }
 
         [DisplayName("Offspring's Name")]

@@ -39,13 +39,7 @@
                 </div>
             </div>
 
-            <div class="control-group">
-                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })<small> (Optional)</small>
-                <div class="controls">
-                    @Html.TextBoxFor(model => model.breeding.pregnancy_check, new { @class = "form-control", @placeholder="Enter the date of the pregnancy check" })
-                    @Html.ValidationMessageFor(model => model.breeding.pregnancy_check, null, new { @class = "help-inline" })
-                </div>
-            </div>
+           
 
             <div class="control-group">
                 @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })<small> (Optional)</small>
@@ -80,6 +74,18 @@
         $('#breeding_date').datepicker();
         $('#breeding_pregnancy_check').datepicker();
         $('#breeding_expected_kidding_date').datepicker();
+    });
+</script>
+<script type="text/javascript">
+    $('#opt2').click(function () {
+        if ($('#pregnancy_check').prop('checked')) {
+            $('#pregnancy_check').prop('checked', false);
+        }
+    });
+    $('#pregnancy_check').click(function () {
+        if ($('#opt2').prop('checked')) {
+            $('#opt2').prop('checked', false);
+        }
     });
 </script>
 

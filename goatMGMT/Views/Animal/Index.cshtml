@@ -1,4 +1,4 @@
-@model IEnumerable<goatMGMT.Models.Animal>
+@model goatMGMT.Models.AnimalViewModel
 
     @{
     ViewBag.Title = "My Animals";
@@ -6,6 +6,32 @@
     }
     <div class="container">
         <h2>Animals</h2>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.numSires):</b> @Html.DisplayFor(model => model.numSires)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b> @Html.DisplayNameFor(model => model.numDams):</b> @Html.DisplayFor(model => model.numDams)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>  @Html.DisplayNameFor(model => model.numOff):</b> @Html.DisplayFor(model => model.numOff)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <p>
             @Html.ActionLink("Create New", "Create", "Animal", new{ @class="btn btn-success"})
@@ -16,43 +42,46 @@
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.name)
+                            @Html.DisplayNameFor(model => model.animal.name)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.tag)
+                            @Html.DisplayNameFor(model => model.animal.tag)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.dob)
+                            @Html.DisplayNameFor(model => model.animal.dob)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.sex)
+                            @Html.DisplayNameFor(model => model.animal.sex)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.breed_code)
+                            @Html.DisplayNameFor(model => model.animal.isChild)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.species)
+                            @Html.DisplayNameFor(model => model.animal.breed_code)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.status_code)
+                            @Html.DisplayNameFor(model => model.animal.species)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.animal.status_code)
                         </th>
                         <th class="non-sort"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model) {
+                    @foreach (var item in Model.ien) {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.name)
+                            @Html.DisplayFor(modelItem => item.animal.name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.tag)
+                            @Html.DisplayFor(modelItem => item.animal.tag)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.dob)
+                            @Html.DisplayFor(modelItem => item.animal.dob)
                         </td>
                         <td>
-                            @if (item.sex)
+                            @if (item.animal.sex)
                             {
                             @Html.Raw("Male")
                             }
@@ -62,18 +91,28 @@
                             }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.breed_code)
+                            @if (item.animal.isChild)
+                            {
+                                @Html.Raw("Offspring")
+                            }
+                            else
+                            {
+                                @Html.Raw("Adult")
+                            }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.species)
+                            @Html.DisplayFor(modelItem => item.animal.breed_code)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.status_code)
+                            @Html.DisplayFor(modelItem => item.animal.species)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                            @Html.DisplayFor(modelItem => item.animal.status_code)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.animal.id }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.animal.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.animal.id })
                         </td>
                     </tr>
                     }

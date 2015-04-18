@@ -19,7 +19,6 @@ namespace goatMGMT.Models
         public int breed_id { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<bool> type { get; set; }
-        public Nullable<int> parity { get; set; }
         public Nullable<int> score { get; set; }
         public string notes { get; set; }
     

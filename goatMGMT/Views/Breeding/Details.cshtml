@@ -76,7 +76,18 @@
                         <h3 class="panel-title">@Html.DisplayNameFor(model => model.breeding.pregnancy_check)</h3>
                     </div>
                     <div class="panel-body">
-                        @Html.DisplayFor(model => model.breeding.pregnancy_check)
+                        @if (Model.breeding.pregnancy_check == null)
+                        {
+                            @Html.Raw("Unknown")
+                        }
+                        else if ((bool)Model.breeding.pregnancy_check)
+                        {
+                            @Html.Raw("Yes")
+                        }
+                        else
+                        {
+                            @Html.Raw("No")
+                        }
                     </div>
                 </div>
             </div>

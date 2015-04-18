@@ -52,7 +52,11 @@
 				@Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
 			</div>
 		</div>
-        <div class="row" style="padding-top:10px;">
+
+        <div style="padding-top:10px;">
+            @Html.LabelFor(model => model.sex, new { @class = "control-label" })<small> (Required)</small>
+        </div>
+        <div class="row" style="">
             <div class="col-md-1">
                 <div class="checkbox">
                     <label>
@@ -67,19 +71,33 @@
                     </label>
                 </div>
             </div>
-            <div class="col-md-1">
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBoxFor(model => model.isChild) Child
-                    </label>
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="help-block">Sex cannot be changed after animal creation</div>
             </div>
         </div>
+
+        <div style="padding-top:10px;">
+            @Html.LabelFor(model => model.isChild, new { @class = "control-label" })<small> (Required)</small>
+        </div>
+        <div class="row" style="padding-bottom:10px;">
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBox("off2") Adult
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.isChild) Offspring
+                    </label>
+                </div>
+            </div>
+        </div>
+        
         <div class="control-group">
             @Html.LabelFor(m => m.status_code, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
@@ -97,7 +115,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.regulation_no, new { @class = "control-label" })<small> (Optional)</small>
 			<div class="controls">
-                @Html.TextBoxFor(model => model.regulation_no, new { @class="form-control", @placeholder = "Enter Regulation Number"})
+                @Html.TextBoxFor(model => model.regulation_no, new { @class="form-control", @placeholder = "Enter Registration Number"})
 				@Html.ValidationMessageFor(model => model.regulation_no, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -221,6 +239,15 @@
     @Scripts.Render("~/bundles/datepicker")
 }
 <script type="text/javascript">
+    $(document).ready(function () {
+        $('#sex').prop('checked');
+        $('#off2').prop('checked');
+    })
+    $(document).ready(function () {
+        if (!$('#isChild').is(':checked')) {
+            $('#off2').prop('checked', true);
+        }
+    })
     $('#sex2').click(function () {
         if ($('#sex').prop('checked')) {
             $('#sex').prop('checked', false);
@@ -229,6 +256,16 @@
     $('#sex').click(function () {
         if ($('#sex2').prop('checked')) {
             $('#sex2').prop('checked', false);
+        }
+    });
+    $('#off2').click(function () {
+        if ($('#isChild').prop('checked')) {
+            $('#isChild').prop('checked', false);
+        }
+    });
+    $('#isChild').click(function () {
+        if ($('#off2').prop('checked')) {
+            $('#off2').prop('checked', false);
         }
     });
     $(function () {

@@ -19,7 +19,7 @@
             
             @Html.HiddenFor(m => m.birth.breed_id)
             <div class="control-group">
-                @Html.LabelFor(m => m.offspringChoice, new { @class = "control-label" })<small> (Required)</small>
+                @Html.LabelFor(m => m.offspringChoice, new { @class = "control-label" })<small> (Required) NOTE: Child must already be created on the Animal page</small>
                 <div class="controls">
                     @Html.DropDownList("offspringChoice", (IEnumerable<SelectListItem>)ViewData["offspringDrop"], new { @class = "form-control" })
                 </div>

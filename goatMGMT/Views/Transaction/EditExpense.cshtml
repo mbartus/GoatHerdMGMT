@@ -30,7 +30,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.date, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.date, new { @class = "form-control", @placeholder = "Enter the date of the transaction" })
+                    @Html.TextBoxFor(model => model.date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter the date of the transaction" })
                     @Html.ValidationMessageFor(model => model.date, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -69,7 +69,7 @@
 
             <div class="form-actions no-color" style="padding-bottom: 15px;">
                 <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
-                @Html.ActionLink("Cancel", "Index", "Associate", new { @class = "btn btn-default", @style = "margin-top:15px;" })
+                @Html.ActionLink("Cancel", "Index", "Transaction", new { @class = "btn btn-default", @style = "margin-top:15px;" })
             </div>
         </fieldset>
     }

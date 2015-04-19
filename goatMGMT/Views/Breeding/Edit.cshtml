@@ -48,7 +48,7 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.breeding.date, new { @class = "control-label" })<small> (Required)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.breeding.date, new { @class = "form-control", @placeholder = "Enter the date of the breeding" })
+                    @Html.TextBoxFor(model => model.breeding.date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter the date of the breeding" })
                     @Html.ValidationMessageFor(model => model.breeding.date, null, new { @class = "help-inline" })
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="control-group">
     @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })<small> (Optional)</small>
     <div class="controls">
-        @Html.TextBoxFor(model => model.breeding.expected_kidding_date, new { @class = "form-control", @placeholder = "Enter the expected kidding date" })
+        @Html.TextBoxFor(model => model.breeding.expected_kidding_date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter the expected birthing date" })
         @Html.ValidationMessageFor(model => model.breeding.expected_kidding_date, null, new { @class = "help-inline" })
     </div>
 </div>

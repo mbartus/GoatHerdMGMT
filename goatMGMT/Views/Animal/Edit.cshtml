@@ -173,9 +173,9 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })<small> (Optional)</small>
+            @Html.LabelFor(model => model.weaning_date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.weaning_date, new { @class = "form-control", @placeholder = "Enter Weaning Date" })
+                @Html.TextBoxFor(model => model.weaning_date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Weaning Date" })
                 @Html.ValidationMessageFor(model => model.weaning_date, null, new { @class = "help-inline" })
             </div>
         </div>
@@ -190,7 +190,7 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.post_weaning_date, new { @class = "control-label" })<small> (Optional)</small>
+            @Html.LabelFor(model => model.post_weaning_date, new { @class = "control-label" })
             <div class="controls">
                 @Html.TextBoxFor(model => model.post_weaning_date, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Post-Weaning Date" })
                 @Html.ValidationMessageFor(model => model.post_weaning_date, null, new { @class = "help-inline" })
@@ -207,17 +207,17 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.market_date, new { @class = "control-label" })<small> (Optional)</small>
+            @Html.LabelFor(model => model.market_date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.market_date, new { @class = "form-control", @placeholder = "Enter Market Date" })
+                @Html.TextBoxFor(model => model.market_date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Market Date" })
                 @Html.ValidationMessageFor(model => model.market_date, null, new { @class = "help-inline" })
             </div>
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })<small> (Optional)</small>
+            @Html.LabelFor(model => model.disposal_date, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.disposal_date, new { @class = "form-control", @placeholder = "Enter Disposal Date" })
+                @Html.TextBoxFor(model => model.disposal_date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Disposal Date" })
                 @Html.ValidationMessageFor(model => model.disposal_date, null, new { @class = "help-inline" })
             </div>
         </div>

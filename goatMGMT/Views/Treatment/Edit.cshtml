@@ -34,7 +34,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.treatment.date, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.treatment.date, new { @class = "form-control", @placeholder = "Enter the date of the treatment" })
+                @Html.TextBoxFor(model => model.treatment.date,  "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter the date of the treatment" })
                 @Html.ValidationMessageFor(model => model.treatment.date, null, new { @class = "help-inline" })
             </div>
         </div>

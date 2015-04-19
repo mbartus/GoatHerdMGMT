@@ -54,6 +54,14 @@
             </div>
 
             <div class="control-group">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.breeding.pregnancy_check) Pregnant?
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-group">
     @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })<small> (Optional)</small>
     <div class="controls">
         @Html.TextBoxFor(model => model.breeding.expected_kidding_date, new { @class = "form-control", @placeholder = "Enter the expected kidding date" })

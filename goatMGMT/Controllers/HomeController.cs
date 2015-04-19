@@ -101,14 +101,18 @@ namespace goatMGMT.Controllers
             int FemaleADGPWCount = 0;
             SummaryViewModel svm = new SummaryViewModel();
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
-            if (User.IsInRole("admin"))
-            {
-                myAnimalList = db.Animals.ToList();
-            }
             svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == false).Count();
             svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == true).Count();
             svm.activeSire = db.Animals.Where(m => m.owner == userID && m.sex == false && m.status_code == "Active").Count();
             svm.activeDam = db.Animals.Where(m => m.owner == userID && m.sex == true && m.status_code == "Active").Count();
+            if (User.IsInRole("admin"))
+            {
+                myAnimalList = db.Animals.ToList();
+                svm.totalSire = db.Animals.Where(m => m.sex == false).Count();
+                svm.totalDam = db.Animals.Where(m => m.sex == true).Count();
+                svm.activeSire = db.Animals.Where(m => m.sex == false && m.status_code == "Active").Count();
+                svm.activeDam = db.Animals.Where(m => m.sex == true && m.status_code == "Active").Count();
+            }
             svm.currentYear = System.DateTime.Now.Year;
             svm.lastYear = svm.currentYear - 1;
             foreach (Animal animal in myAnimalList)
@@ -119,34 +123,47 @@ namespace goatMGMT.Controllers
                     {
                         if (animal.weaning_date != null && animal.weaning_weight != null)
                         {
-                            svm.maleADGWeaning = (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                            svm.ADGWeaning = (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                            ADGWCount++;
-                            MaleADGWCount++;
+                            if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
+                            {
+                                svm.maleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                ADGWCount++;
+                                MaleADGWCount++;
+                            }
                         }
                         if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
                         {
-                            svm.maleADGPostWeaning = (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                            svm.ADGPostWeaning = (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                            ADGPWCount++;
-                            MaleADGPWCount++;
+                            if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
+                            {
+                                svm.maleADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                ADGPWCount++;
+                                MaleADGPWCount++;
+                            }
                         }
                     }
                     else
                     {
                         if (animal.weaning_date != null && animal.weaning_weight != null)
                         {
-                            svm.femaleADGWeaning = (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                            svm.ADGWeaning = (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                            ADGWCount++;
-                            FemaleADGWCount++;
+                            if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
+                            {
+                                svm.femaleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                ADGWCount++;
+                                FemaleADGWCount++;
+                            }
+                            
                         }
                         if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
                         {
-                            svm.femaleADGPostWeaning = (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                            svm.ADGPostWeaning = (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                            ADGPWCount++;
-                            FemaleADGPWCount++;
+                            if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
+                            {
+                                svm.femaleADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                ADGPWCount++;
+                                FemaleADGPWCount++;
+                            }
                         }
                     }
                 }
@@ -306,34 +323,49 @@ namespace goatMGMT.Controllers
                     {
                         if (a.weaning_date != null && a.weaning_weight != null)
                         {
-                            svm.allMaleADGWeaning = (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                            svm.allADGWeaning = (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                            allADGWCount++;
-                            allMaleADGWCount++;
+                            if (((DateTime)a.weaning_date - a.dob).Days > 10)
+                            {
+                                svm.allMaleADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
+                                svm.allADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
+                                allADGWCount++;
+                                allMaleADGWCount++;
+                            }
+                            
                         }
                         if (a.post_weaning_date != null && a.post_weaning_weight != null)
                         {
-                            svm.allMaleADGPostWeaning = (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                            svm.allADGPostWeaning = (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                            allADGPWCount++;
-                            allMaleADGPWCount++;
+                            if (((DateTime)a.post_weaning_date - a.dob).Days > 10)
+                            {
+                                svm.allMaleADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
+                                svm.allADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
+                                allADGPWCount++;
+                                allMaleADGPWCount++;
+                            }
+                            
                         }
                     }
                     else
                     {
                         if (a.weaning_date != null && a.weaning_weight != null)
                         {
-                            svm.allFemaleADGWeaning = (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                            svm.allADGWeaning = (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                            allADGWCount++;
-                            allFemaleADGWCount++;
+                            if (((DateTime)a.weaning_date - a.dob).Days > 10)
+                            {
+                                svm.allFemaleADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
+                                svm.allADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
+                                allADGWCount++;
+                                allFemaleADGWCount++;
+                            }
                         }
                         if (a.post_weaning_date != null && a.post_weaning_weight != null)
                         {
-                            svm.allFemaleADGPostWeaning = (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                            svm.allADGPostWeaning = (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                            allADGPWCount++;
-                            allFemaleADGPWCount++;
+                            if (((DateTime)a.post_weaning_date - a.dob).Days > 10)
+                            {
+                                svm.allFemaleADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
+                                svm.allADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
+                                allADGPWCount++;
+                                allFemaleADGPWCount++;
+                            }
+                            
                         }
                     }
                 }

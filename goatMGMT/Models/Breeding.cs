@@ -29,7 +29,7 @@ namespace goatMGMT.Models
         public Nullable<int> born { get; set; }
         public string remarks { get; set; }
         public Nullable<int> parity { get; set; }
-        public Nullable<bool> pregnancy_check { get; set; }
+        public bool pregnancy_check { get; set; }
     
         public virtual Animal Animal { get; set; }
         public virtual Animal Animal1 { get; set; }

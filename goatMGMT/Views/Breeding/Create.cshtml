@@ -39,13 +39,26 @@
                 </div>
             </div>
 
-            <div class="control-group">
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBoxFor(model => model.breeding.pregnancy_check) Pregnant?
-                    </label>
+            <div style="padding-top:10px;">
+                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })<small> (Required - 'No' by default)</small>
+            </div>
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(model => model.breeding.pregnancy_check) Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBox("preg2") No
+                        </label>
+                    </div>
                 </div>
             </div>
+
 
             <div class="control-group">
                 @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })<small> (Optional)</small>
@@ -80,16 +93,14 @@
         $('#breeding_date').datepicker();
         $('#breeding_expected_kidding_date').datepicker();
     });
-</script>
-<script type="text/javascript">
-    $('#opt2').click(function () {
-        if ($('#pregnancy_check').prop('checked')) {
-            $('#pregnancy_check').prop('checked', false);
+    $('#preg2').click(function () {
+        if ($('#breeding_pregnancy_check').prop('checked')) {
+            $('#breeding_pregnancy_check').prop('checked', false);
         }
     });
-    $('#pregnancy_check').click(function () {
-        if ($('#opt2').prop('checked')) {
-            $('#opt2').prop('checked', false);
+    $('#breeding_pregnancy_check').click(function () {
+        if ($('#preg2').prop('checked')) {
+            $('#preg2').prop('checked', false);
         }
     });
 </script>

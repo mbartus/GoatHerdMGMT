@@ -53,11 +53,23 @@
                 </div>
             </div>
 
-            <div class="control-group">
-                <div class="checkbox">
-                    <label>
-                        @Html.CheckBoxFor(model => model.breeding.pregnancy_check) Pregnant?
-                    </label>
+            <div style="padding-top:10px;">
+                @Html.LabelFor(model => model.breeding.pregnancy_check, new { @class = "control-label" })<small> (Required)</small>
+            </div>
+            <div class="row" style="padding-bottom:10px;">
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(model => model.breeding.pregnancy_check) Yes
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBox("preg2") No
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -93,6 +105,21 @@
     $(function () {
         $('#breeding_date').datepicker();
         $('#breeding_expected_kidding_date').datepicker();
+    });
+    $(document).ready(function () {
+        if (!$('#breeding_pregnancy_check').is(':checked')) {
+            $('#preg2').prop('checked', true);
+        }
+    })
+    $('#preg2').click(function () {
+        if ($('#breeding_pregnancy_check').prop('checked')) {
+            $('#breeding_pregnancy_check').prop('checked', false);
+        }
+    });
+    $('#breeding_pregnancy_check').click(function () {
+        if ($('#preg2').prop('checked')) {
+            $('#preg2').prop('checked', false);
+        }
     });
 </script>
     

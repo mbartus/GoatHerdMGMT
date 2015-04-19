@@ -48,7 +48,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.dob, new { @class = "control-label" })<small> (Required)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.dob, new { @class = "form-control", @placeholder = "Enter Date of Birth" })
+                @Html.TextBoxFor(model => model.dob, new { @class = "form-control", @Value = Model.dob.ToString("MM/dd/yyyy") })
                 @Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
             </div>
         </div>

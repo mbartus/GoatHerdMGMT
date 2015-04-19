@@ -192,7 +192,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.post_weaning_date, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
-                @Html.TextBoxFor(model => model.post_weaning_date, new { @class = "form-control", @placeholder = "Enter Post-Weaning Date" })
+                @Html.TextBoxFor(model => model.post_weaning_date, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter Post-Weaning Date" })
                 @Html.ValidationMessageFor(model => model.post_weaning_date, null, new { @class = "help-inline" })
             </div>
         </div>

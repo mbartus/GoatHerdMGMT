@@ -41,6 +41,13 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (breeding.alive > breeding.born)
+                {
+                    BreedingViewModel bv = new BreedingViewModel();
+                    bv.breeding = breeding;
+                    ModelState.AddModelError("", "The number of animals alive in this litter must be less than the number born.");
+                    return View(bv);
+                }
                 db.Entry(breeding).State = EntityState.Modified;
                 try
                 {

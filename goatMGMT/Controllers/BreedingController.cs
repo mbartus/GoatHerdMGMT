@@ -47,22 +47,22 @@ namespace goatMGMT.Controllers
                 {
                     offAlive += (int)bre.alive;
                 }
-                if (bre.pregnancy_check != null)
+                if (bre.pregnancy_check)
                 {
-                    if ((bool)bre.pregnancy_check)
-                    {
                         damsBirthed++;
-                    }
                 }
                 damsBred++;
             }
             BreedingViewModel bvmFinal = new BreedingViewModel();
             bvmFinal.ien = beList;
-            if (offAlive == 0)
+            if (offBorn == 0)
             {
-                offAlive++;
+                bvmFinal.mortalityRate = 0;
             }
-            bvmFinal.mortalityRate = (int) ((1 - (offAlive / offBorn)) * 100);
+            else
+            {
+                bvmFinal.mortalityRate = (int)((1 - (offAlive / offBorn)) * 100);
+            }
             if (damsBred == 0)
             {
                 damsBred++;

@@ -6,7 +6,7 @@
 <div class="container" style="padding-top: 15px; padding-bottom: 15px;">
         <div class="row">
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Animal/Index">Manage Animals</a></h4>
+                <h4><a href="~/Animal/Index" onclick="spinme()">Manage Animals</a></h4>
                 <ul>
                     <li>
                         View all animals in your herd.
@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Transaction/Index">Manage Transactions</a></h4>
+                <h4><a href="~/Transaction/Index" onclick="spinme()">Manage Transactions</a></h4>
                 <ul>
                     <li>
                         View past transactions.
@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Associate/Index">Manage Business Contacts</a></h4>
+                <h4><a href="~/Associate/Index" onclick="spinme()">Manage Business Contacts</a></h4>
                 <ul>
                     <li>
                         Store business contacts that you have worked with.
@@ -41,7 +41,7 @@
                 </ul>
             </div>
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Treatment/Index">Manage Health Records</a></h4>
+                <h4><a href="~/Treatment/Index" onclick="spinme()">Manage Health Records</a></h4>
                 <ul>
                     <li>
                         View animal health records and treatments.
@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Breeding/Index">Manage Breeding and Birth Records</a></h4>
+                <h4><a href="~/Breeding/Index" onclick="spinme()">Manage Breeding and Birth Records</a></h4>
             <ul>
                 <li>
                     View breeding and birth records.
@@ -70,7 +70,7 @@
         @if (User.IsInRole("admin") || User.IsInRole("user"))
         {
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Home/Summary">Generate Summary</a></h4>
+                <h4><a href="~/Home/Summary" onclick="spinme()">Generate Summary</a></h4>
                 <ul>
                     <li>
                         Generate reports of your herd.
@@ -84,7 +84,7 @@
         else
         {
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Account/Manage">Generate Summary</a></h4>
+                <h4><a href="~/Account/Manage" onclick="spinme()">Generate Summary</a></h4>
                 <ul>
                     <li style="font-weight:700;">
                         You must upgrade your account to use this feature.
@@ -101,7 +101,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h4 onclick="spinme()"><a href="~/Animal/Offspring">Offspring Performance</a></h4>
+                <h4><a href="~/Animal/Offspring" onclick="spinme()">Offspring Performance</a></h4>
                 <ul>
                     <li>
                         Compare average daily gains of all animals.
@@ -113,7 +113,7 @@
         @if (User.IsInRole("admin"))
         {
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Account/CreateAdmin">Add Admin Account</a></h4>
+                <h4><a href="~/Account/CreateAdmin" onclick="spinme()">Add Admin Account</a></h4>
                 <ul>
                     <li>
                         Add another admin account.
@@ -127,7 +127,7 @@
         @if (User.IsInRole("admin"))
         {
             <div class="dash-section col-md-6">
-                <h4 onclick="spinme()"><a href="~/Comments/Index">View Comments</a></h4>
+                <h4><a href="~/Comments/Index" onclick="spinme()">View Comments</a></h4>
                 <ul>
                     <li>
                         View user feedback.
@@ -140,7 +140,7 @@
         @if (User.IsInRole("admin"))
         {
         <div class="dash-section col-md-6">
-            <h4 onclick="spinme()"><a href="~/License/Edit/1">Edit License Agreement</a></h4>
+            <h4><a href="~/License/Edit/1" onclick="spinme()">Edit License Agreement</a></h4>
             <ul>
                 <li>
                     View the current license agreement.
@@ -151,7 +151,7 @@
             </ul>
         </div>
         <div class="dash-section col-md-6">
-            <h4 onclick="spinme()"><a href="~/Account/All">View All Users</a></h4>
+            <h4><a href="~/Account/All" onclick="spinme()">View All Users</a></h4>
             <ul>
                 <li>
                     View all users that have signed up for an account.

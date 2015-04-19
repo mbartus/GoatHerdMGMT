@@ -79,7 +79,7 @@ namespace goatMGMT.Controllers
             return View();
         }
 
-        [Authorize(Roles = "admin, user")]
+        [Authorize]
         public ActionResult Summary()
         {
             int userID = (int)Membership.GetUser().ProviderUserKey;
@@ -403,7 +403,7 @@ namespace goatMGMT.Controllers
             return View(svm);
         }
 
-        [Authorize(Roles="admin, user")]
+        [Authorize]
         public ActionResult Export()
         {
             ExcelPackage package = new ExcelPackage();

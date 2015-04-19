@@ -67,8 +67,6 @@
                 </li>
             </ul>
         </div>
-        @if (User.IsInRole("admin") || User.IsInRole("user"))
-        {
             <div class="dash-section col-md-6">
                 <h4><a href="~/Home/Summary" onclick="spinme()">Generate Summary</a></h4>
                 <ul>
@@ -80,24 +78,6 @@
                     </li>
                 </ul>
             </div>
-        }
-        else
-        {
-            <div class="dash-section col-md-6">
-                <h4><a href="~/Account/Manage" onclick="spinme()">Generate Summary</a></h4>
-                <ul>
-                    <li style="font-weight:700;">
-                        You must upgrade your account to use this feature.
-                    </li>
-                    <li>
-                        Generate reports of your herd.
-                    </li>
-                    <li>
-                        Export to excel.
-                    </li>
-                </ul>
-            </div>
-        }
         </div>
         <div class="row">
             <div class="col-md-6">

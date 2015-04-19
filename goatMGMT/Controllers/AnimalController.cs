@@ -263,9 +263,14 @@ namespace goatMGMT.Controllers
         {
             int userID = (int)Membership.GetUser().ProviderUserKey; 
             List<Kid> kids = new List<Kid>();
-            foreach (Animal currentAnimal in db.Animals.Where(m => m.owner == userID))
+            var animalList = db.Animals.Where(m => m.owner == userID);
+            if (User.IsInRole("admin"))
             {
-                if (currentAnimal.birth_weight != null && (currentAnimal.weaning_date != null && currentAnimal.weaning_weight != null) || (currentAnimal.post_weaning_date != null && currentAnimal.post_weaning_weight != null))
+                animalList = db.Animals;
+            }
+            foreach (Animal currentAnimal in animalList)
+            {
+                if (currentAnimal.birth_weight != null && ((currentAnimal.weaning_date != null && currentAnimal.weaning_weight != null) || (currentAnimal.post_weaning_date != null && currentAnimal.post_weaning_weight != null)))
                 {
                     Kid kid = new Kid()
                     {

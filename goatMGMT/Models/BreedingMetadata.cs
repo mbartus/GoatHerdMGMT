@@ -39,7 +39,6 @@ namespace goatMGMT.Models
         [DisplayName("Date of Breeding")]
         public DateTime date { get; set; }
 
-        [DataType(DataType.Date)]
         [DisplayName("Pregnant?")]
         public bool pregnancy_check { get; set; }
 

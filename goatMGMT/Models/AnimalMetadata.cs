@@ -59,6 +59,7 @@ namespace goatMGMT.Models
         public string species { get; set; }
 
         [DisplayName("Weight at Birth")]
+        [Range(0.0, 10.0)]
         public double birth_weight { get; set; }
 
         [DisplayName("Weight at Weaning")]

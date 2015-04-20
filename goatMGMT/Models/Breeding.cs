@@ -30,6 +30,7 @@ namespace goatMGMT.Models
         public string remarks { get; set; }
         public Nullable<int> parity { get; set; }
         public bool pregnancy_check { get; set; }
+        public Nullable<System.DateTime> expected_birthing_date { get; set; }
     
         public virtual Animal Animal { get; set; }
         public virtual Animal Animal1 { get; set; }

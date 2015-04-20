@@ -83,6 +83,7 @@
           <Property Name="remarks" Type="nvarchar(max)" />
           <Property Name="parity" Type="int" />
           <Property Name="pregnancy_check" Type="bit" Nullable="false" />
+          <Property Name="expected_birthing_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -500,6 +501,7 @@
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="parity" Type="Int32" />
           <Property Name="pregnancy_check" Type="Boolean" Nullable="false" />
+          <Property Name="expected_birthing_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Animal" Relationship="goatDBModel.FK__Breeding__father__4DB4832C" FromRole="Breeding" ToRole="Animal" />
           <NavigationProperty Name="Animal1" Relationship="goatDBModel.FK__Breeding__mother__4CC05EF3" FromRole="Breeding" ToRole="Animal" />
           <NavigationProperty Name="Births" Relationship="goatDBModel.FK__Births__breed_id__51851410" FromRole="Breeding" ToRole="Birth" />
@@ -778,6 +780,7 @@
           <EntitySetMapping Name="Breedings">
             <EntityTypeMapping TypeName="goatDBModel.Breeding">
               <MappingFragment StoreEntitySet="Breeding">
+                <ScalarProperty Name="expected_birthing_date" ColumnName="expected_birthing_date" />
                 <ScalarProperty Name="pregnancy_check" ColumnName="pregnancy_check" />
                 <ScalarProperty Name="parity" ColumnName="parity" />
                 <ScalarProperty Name="remarks" ColumnName="remarks" />

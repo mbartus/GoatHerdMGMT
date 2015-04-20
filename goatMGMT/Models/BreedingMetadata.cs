@@ -35,7 +35,7 @@ namespace goatMGMT.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Date of Breeding")]
         public DateTime date { get; set; }
 
@@ -43,9 +43,14 @@ namespace goatMGMT.Models
         public bool pregnancy_check { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Expected Birthing Date")]
         public DateTime expected_kidding_date { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Actual Birthing Date")]
+        public DateTime expected_birthing_date { get; set; }
 
         [DisplayName("Remarks")]
         public string remarks { get; set; }

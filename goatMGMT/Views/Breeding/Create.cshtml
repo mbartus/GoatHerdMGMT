@@ -63,10 +63,19 @@
             <div class="control-group">
                 @Html.LabelFor(model => model.breeding.expected_kidding_date, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.breeding.expected_kidding_date, new { @class = "form-control" , @placeholder="Enter the expected kidding date"})
+                    @Html.TextBoxFor(model => model.breeding.expected_kidding_date, new { @class = "form-control" , @placeholder="Enter the expected birthing date"})
                     @Html.ValidationMessageFor(model => model.breeding.expected_kidding_date, null, new { @class = "help-inline" })
                 </div>
             </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.breeding.expected_birthing_date, new { @class = "control-label" })<small> (Optional)</small>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.breeding.expected_birthing_date, new { @class = "form-control", @placeholder = "Enter the actual birthing date" })
+                    @Html.ValidationMessageFor(model => model.breeding.expected_birthing_date, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
 
             <div class="control-group">
                 @Html.LabelFor(model => model.breeding.remarks, new { @class = "control-label" })<small> (Optional)</small>
@@ -92,6 +101,7 @@
     $(function () {
         $('#breeding_date').datepicker();
         $('#breeding_expected_kidding_date').datepicker();
+        $('#breeding_expected_birthing_date').datepicker();
     });
     $('#preg2').click(function () {
         if ($('#breeding_pregnancy_check').prop('checked')) {

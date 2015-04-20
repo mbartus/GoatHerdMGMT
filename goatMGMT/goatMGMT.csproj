@@ -277,6 +277,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\imgs\fadeGoatField.jpg" />
     <Content Include="bin\goatMGMT.dll" />
     <Content Include="bin\goatMGMT.pdb" />
     <Content Include="bin\System.Net.Http.Extensions.dll" />
@@ -292,6 +293,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\imgs\goatPen.jpg" />
     <Content Include="Content\imgs\header.png" />
     <Content Include="Content\imgs\header1.png" />
     <Content Include="Content\imgs\header2.png" />
@@ -305,6 +307,7 @@
     <Content Include="Content\imgs\k_barn1.JPG" />
     <Content Include="Content\imgs\k_barn2.jpg" />
     <Content Include="Content\imgs\logotrans.png" />
+    <Content Include="Content\imgs\manyGoats.png" />
     <Content Include="Content\imgs\paleGoat.jpg" />
     <Content Include="Content\imgs\pale_bull.jpg" />
     <Content Include="Content\imgs\pale_bull2.jpg" />

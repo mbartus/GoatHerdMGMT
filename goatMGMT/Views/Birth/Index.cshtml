@@ -26,17 +26,38 @@
                         </tr>
                         <tr>
                             <td>
-                                <b>  @Html.DisplayNameFor(model => model.parity):</b> @Html.DisplayFor(model => model.parity)
+                                @if (Model.parity == -1)
+                                {
+                                    <b>  @Html.DisplayNameFor(model => model.parity):</b> @Html.Raw("Not entered")
+                                }
+                                else
+                                {
+                                    <b>  @Html.DisplayNameFor(model => model.parity):</b> @Html.DisplayFor(model => model.parity)
+                                }
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>  @Html.DisplayNameFor(model => model.born):</b> @Html.DisplayFor(model => model.born)
+                                @if (Model.born == -1)
+                                {
+                                    <b>  @Html.DisplayNameFor(model => model.born):</b> @Html.Raw("Not entered")
+                                }
+                                else
+                                {
+                                    <b>  @Html.DisplayNameFor(model => model.born):</b> @Html.DisplayFor(model => model.born)
+                                }
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>  @Html.DisplayNameFor(model => model.alive):</b> @Html.DisplayFor(model => model.alive)
+                                @if (Model.alive == -1)
+                                {
+                                    <b>  @Html.DisplayNameFor(model => model.alive):</b> @Html.Raw("Not entered")
+                                }
+                                else
+                                {
+                                    <b>  @Html.DisplayNameFor(model => model.alive):</b> @Html.DisplayFor(model => model.alive)
+                                }
                             </td>
                         </tr>
                     </table>

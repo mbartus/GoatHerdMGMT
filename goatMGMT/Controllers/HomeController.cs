@@ -418,7 +418,7 @@ namespace goatMGMT.Controllers
             worksheet.Cells[1, 6].Value = "Maturity";
             worksheet.Cells[1, 7].Value = "Breed Code";
             worksheet.Cells[1, 8].Value = "Status";
-            worksheet.Cells[1, 9].Value = "Regulation Number";
+            worksheet.Cells[1, 9].Value = "Registration Number";
             worksheet.Cells[1, 10].Value = "Microchip ID";
             worksheet.Cells[1, 11].Value = "Premise ID";
             worksheet.Cells[1, 12].Value = "Herd ID";
@@ -583,9 +583,10 @@ namespace goatMGMT.Controllers
             worksheet.Cells[1, 1].Value = "Dam's Tag";
             worksheet.Cells[1, 2].Value = "Sire's Tag";
             worksheet.Cells[1, 3].Value = "Breeding Date";
-            worksheet.Cells[1, 4].Value = "Pregnancy Check";
+            worksheet.Cells[1, 4].Value = "Pregnant";
             worksheet.Cells[1, 5].Value = "Expected Birthing Date";
-            worksheet.Cells[1, 6].Value = "Remarks";
+            worksheet.Cells[1, 6].Value = "Actual Birthing Date";
+            worksheet.Cells[1, 7].Value = "Remarks";
 
             List<Breeding> breedings = db.Breedings.Where(breeding => breeding.Animal.owner == userID).ToList();
             if (User.IsInRole("admin"))
@@ -598,9 +599,17 @@ namespace goatMGMT.Controllers
                 worksheet.Cells[row, 1].Value = db.Animals.Find(breeding.mother_id).tag;
                 worksheet.Cells[row, 2].Value = db.Animals.Find(breeding.father_id).tag;
                 worksheet.Cells[row, 3].Value = breeding.date == null ? "" : ((DateTime)breeding.date).ToShortDateString(); ;
-                worksheet.Cells[row, 4].Value = breeding.pregnancy_check;
-                worksheet.Cells[row, 5].Value = breeding.expected_kidding_date == null ? "" : ((DateTime)breeding.expected_kidding_date).ToShortDateString(); 
-                worksheet.Cells[row, 6].Value = breeding.remarks;
+                if (breeding.pregnancy_check)
+                {
+                    worksheet.Cells[row, 4].Value = "Yes";
+                }
+                else
+                {
+                    worksheet.Cells[row, 4].Value = "No";
+                }
+                worksheet.Cells[row, 5].Value = breeding.expected_kidding_date == null ? "" : ((DateTime)breeding.expected_kidding_date).ToShortDateString();
+                worksheet.Cells[row, 6].Value = breeding.actual_birthing_date == null ? "" : ((DateTime)breeding.actual_birthing_date).ToShortDateString();
+                worksheet.Cells[row, 7].Value = breeding.remarks;
                 row++;
             }
             worksheet.Cells.AutoFitColumns(0);

@@ -408,7 +408,6 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid)
             {
-                animal.owner = (int)Membership.GetUser().ProviderUserKey;
                 db.Entry(animal).State = EntityState.Modified;
                 try
                 {

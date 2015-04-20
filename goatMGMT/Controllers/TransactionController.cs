@@ -312,7 +312,6 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid && transaction.userid != 0)
             {
-                transaction.UserProfile = db.UserProfiles.FirstOrDefault(m => m.UserId == transaction.userid);
                 db.Entry(transaction).State = EntityState.Modified;
                 try
                 {
@@ -342,7 +341,6 @@ namespace goatMGMT.Controllers
         {
             if (ModelState.IsValid && transaction.userid != 0)
             {
-                transaction.UserProfile = db.UserProfiles.FirstOrDefault(m => m.UserId == transaction.userid);
                 db.Entry(transaction).State = EntityState.Modified;
                 try
                 {

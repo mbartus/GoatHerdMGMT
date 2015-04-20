@@ -65,7 +65,7 @@
                             @Html.DisplayNameFor(model => model.breeding.expected_kidding_date)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.breeding.expected_birthing_date)
+                            @Html.DisplayNameFor(model => model.breeding.actual_birthing_date)
                         </th>
 
                         <th class="non-sort"></th>
@@ -94,7 +94,7 @@
                             @Html.DisplayFor(modelItem => item.breeding.expected_kidding_date)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.breeding.expected_birthing_date)
+                            @Html.DisplayFor(modelItem => item.breeding.actual_birthing_date)
                         </td>
                         <td>
                             @Html.ActionLink("View Births", "Index", "Birth", new { id = item.breeding.id }, null) |

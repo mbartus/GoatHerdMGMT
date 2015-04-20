@@ -82,10 +82,10 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.breeding.expected_birthing_date, new { @class = "control-label" })<small> (Optional)</small>
+                @Html.LabelFor(model => model.breeding.actual_birthing_date, new { @class = "control-label" })<small> (Optional)</small>
                 <div class="controls">
-                    @Html.TextBoxFor(model => model.breeding.expected_birthing_date, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter the actual birthing date" })
-                    @Html.ValidationMessageFor(model => model.breeding.expected_birthing_date, null, new { @class = "help-inline" })
+                    @Html.TextBoxFor(model => model.breeding.actual_birthing_date, "{0:MM/dd/yyyy}", new { @class = "form-control", @placeholder = "Enter the actual birthing date" })
+                    @Html.ValidationMessageFor(model => model.breeding.actual_birthing_date, null, new { @class = "help-inline" })
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
     $(function () {
         $('#breeding_date').datepicker();
         $('#breeding_expected_kidding_date').datepicker();
-        $('#breeding_expected_birthing_date').datepicker();
+        $('#breeding_actual_birthing_date').datepicker();
     });
     $(document).ready(function () {
         if (!$('#breeding_pregnancy_check').is(':checked')) {

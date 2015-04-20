@@ -58,6 +58,63 @@ namespace goatMGMT.Controllers
         }
 
         //
+        // GET: /Animal/HealthRecordsIndex/5
+        public ActionResult HealthRecordsIndex(Int32 id)
+        {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            Animal animal = db.Animals.Find(id);
+            if (animal == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+            return View(animal);
+        }
+
+        //
+        // GET: /Animal/HealthRecordsUpdate/5
+        public ActionResult HealthRecordsUpdate(Int32 id)
+        {
+            int userID = (int)Membership.GetUser().ProviderUserKey;
+            Animal animal = db.Animals.Find(id);
+            if (animal == null)
+            {
+                return HttpNotFound();
+            }
+            else if ((!User.IsInRole("admin")) && animal.UserProfile.UserId != userID)
+            {
+                return HttpNotFound();
+            }
+            return View(animal);
+        }
+
+        //
+        // POST: /Animal/HealthRecordsUpdate/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HealthRecordsUpdate(Animal animal)
+        {
+            if (ModelState.IsValid)
+            {
+                animal.owner = (int)Membership.GetUser().ProviderUserKey;
+                db.Entry(animal).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                return RedirectToAction("HealthRecordsIndex", new { id = animal.id });
+            }
+            return View(animal);
+        }
+
+        //
         // GET: /Animal/Details/5
         public ActionResult Details(Int32 id)
         {
@@ -80,8 +137,6 @@ namespace goatMGMT.Controllers
         {
             List<SelectListItem> speciesList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Goat (Meat)", Value = "Goat (Meat)"},
-                new SelectListItem() { Text= "Goat (Milk)", Value = "Goat (Milk)"},
-                new SelectListItem() { Text = "Sheep", Value = "Sheep"},
                 new SelectListItem() { Text = "Other", Value = "Other"}
             };
             @ViewBag.speciesList = speciesList;
@@ -149,8 +204,6 @@ namespace goatMGMT.Controllers
             }
             List<SelectListItem> speciesList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Goat (Meat)", Value = "Goat (Meat)"},
-                new SelectListItem() { Text= "Goat (Milk)", Value = "Goat (Milk)"},
-                new SelectListItem() { Text = "Sheep", Value = "Sheep"},
                 new SelectListItem() { Text = "Other", Value = "Other"}
             };
             @ViewBag.speciesList = speciesList;

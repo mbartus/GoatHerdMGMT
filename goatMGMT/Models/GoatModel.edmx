@@ -34,6 +34,10 @@
           <Property Name="market_date" Type="datetime" />
           <Property Name="disposal_date" Type="datetime" />
           <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="FAMACHA_score" Type="int" />
+          <Property Name="fecal_egg_count" Type="int" />
+          <Property Name="body_condition_score" Type="int" />
+          <Property Name="hair_coat_score" Type="int" />
         </EntityType>
         <EntityType Name="Associates">
           <Key>
@@ -439,6 +443,10 @@
           <Property Name="market_date" Type="DateTime" Precision="3" />
           <Property Name="disposal_date" Type="DateTime" Precision="3" />
           <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FAMACHA_score" Type="Int32" />
+          <Property Name="fecal_egg_count" Type="Int32" />
+          <Property Name="body_condition_score" Type="Int32" />
+          <Property Name="hair_coat_score" Type="Int32" />
           <NavigationProperty Name="Births" Relationship="goatDBModel.FK__Births__child_id__5090EFD7" FromRole="Animal" ToRole="Birth" />
           <NavigationProperty Name="Breedings" Relationship="goatDBModel.FK__Breeding__father__4DB4832C" FromRole="Animal" ToRole="Breeding" />
           <NavigationProperty Name="Breedings1" Relationship="goatDBModel.FK__Breeding__mother__4CC05EF3" FromRole="Animal" ToRole="Breeding" />
@@ -705,6 +713,10 @@
           <EntitySetMapping Name="Animals">
             <EntityTypeMapping TypeName="goatDBModel.Animal">
               <MappingFragment StoreEntitySet="Animals">
+                <ScalarProperty Name="hair_coat_score" ColumnName="hair_coat_score" />
+                <ScalarProperty Name="body_condition_score" ColumnName="body_condition_score" />
+                <ScalarProperty Name="fecal_egg_count" ColumnName="fecal_egg_count" />
+                <ScalarProperty Name="FAMACHA_score" ColumnName="FAMACHA_score" />
                 <ScalarProperty Name="remarks" ColumnName="remarks" />
                 <ScalarProperty Name="disposal_date" ColumnName="disposal_date" />
                 <ScalarProperty Name="market_date" ColumnName="market_date" />

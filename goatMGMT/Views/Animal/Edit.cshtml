@@ -184,7 +184,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.post_weaning_weight, new { @class = "control-label" })
             <div class="controls">
-                @Html.TextBoxFor(model => model.post_weaning_weight, new{ @class = "form-control" })
+                @Html.TextBoxFor(model => model.post_weaning_weight, new{ @class = "form-control", @placeholder = "Enter Post-Weaning Weight" })
                 @Html.ValidationMessageFor(model => model.post_weaning_weight, null, new { @class = "help-inline" })
             </div>
         </div>

@@ -97,5 +97,20 @@ namespace goatMGMT.Models
 
         [DisplayName("Comments")]
         public string remarks { get; set; }
+
+        [DisplayName("FAMACHA Score")]
+        [Range(1, 5)]
+        public int FAMACHA_score { get; set; }
+
+        [DisplayName("Fecal Egg Count")]
+        public int fecal_egg_count { get; set; }
+
+        [DisplayName("Body Condition Score")]
+        [Range(1, 5)]
+        public int body_condition_score { get; set; }
+
+        [DisplayName("Hair Coat Score")]
+        [Range(1, 5)]
+        public int hair_coat_score { get; set; }
     }
 }

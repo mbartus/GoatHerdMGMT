@@ -48,6 +48,10 @@ namespace goatMGMT.Models
         public Nullable<System.DateTime> market_date { get; set; }
         public Nullable<System.DateTime> disposal_date { get; set; }
         public string remarks { get; set; }
+        public Nullable<int> FAMACHA_score { get; set; }
+        public Nullable<int> fecal_egg_count { get; set; }
+        public Nullable<int> body_condition_score { get; set; }
+        public Nullable<int> hair_coat_score { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Birth> Births { get; set; }

@@ -549,6 +549,8 @@
     <Content Include="Views\Home\Summary.cshtml" />
     <Content Include="Views\Birth\updateLitter.cshtml" />
     <Content Include="Views\Animal\Offspring.cshtml" />
+    <Content Include="Views\Animal\HealthRecordsIndex.cshtml" />
+    <Content Include="Views\Animal\HealthRecordsUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

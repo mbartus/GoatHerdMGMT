@@ -1,0 +1,81 @@
+﻿@model goatMGMT.Models.Animal
+
+@{
+    ViewBag.Title = "Health Record";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Health Record</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="form-horizontal">
+            <legend>Animal Health Record</legend>
+
+                @Html.HiddenFor(m => m.species)
+                @Html.HiddenFor(model => model.name)
+                @Html.HiddenFor(model => model.tag)
+                @Html.HiddenFor(model => model.dob)
+                @Html.HiddenFor(model => model.sex)
+                @Html.HiddenFor(model => model.isChild)
+                @Html.HiddenFor(m => m.status_code)
+                @Html.HiddenFor(m => m.breed_code)
+                @Html.HiddenFor(model => model.regulation_no)
+                @Html.HiddenFor(model => model.microchip_id)
+                @Html.HiddenFor(model => model.premise_id)
+                @Html.HiddenFor(model => model.herd_id_code)
+                @Html.HiddenFor(model => model.breed_registry)
+                @Html.HiddenFor(model => model.birth_weight)
+                @Html.HiddenFor(model => model.weaning_weight)
+                @Html.HiddenFor(model => model.weaning_date)
+                @Html.HiddenFor(model => model.post_weaning_weight)
+                @Html.HiddenFor(model => model.post_weaning_date)
+                @Html.HiddenFor(model => model.market_weight)
+                @Html.HiddenFor(model => model.market_date)
+                @Html.HiddenFor(model => model.disposal_date)
+                @Html.HiddenFor(model => model.remarks)
+   
+            <div class="control-group">
+                @Html.LabelFor(model => model.FAMACHA_score, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.FAMACHA_score, new { @class = "form-control", @placeholder = "Enter FAMACHA score (1-5)" })
+                    @Html.ValidationMessageFor(model => model.FAMACHA_score, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.fecal_egg_count, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.fecal_egg_count, new { @class = "form-control", @placeholder = "Enter fecal egg count" })
+                    @Html.ValidationMessageFor(model => model.fecal_egg_count, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.body_condition_score, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.body_condition_score, new { @class = "form-control", @placeholder = "Enter body condition score (1-5)" })
+                    @Html.ValidationMessageFor(model => model.body_condition_score, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.hair_coat_score, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.hair_coat_score, new { @class = "form-control", @placeholder = "Enter hiar coat score (1-5)" })
+                    @Html.ValidationMessageFor(model => model.hair_coat_score, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="form-actions no-color" style="padding-bottom:15px">
+                <input type="submit" value="Update" class="btn btn-success" style="margin-top:15px;" />
+                @Html.ActionLink("Cancel", "HealthRecordsIndex", "Animal", new { id = Model.id }, new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+            </div>
+        </fieldset>
+    }
+
+</div>

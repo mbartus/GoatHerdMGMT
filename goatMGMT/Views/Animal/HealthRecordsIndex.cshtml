@@ -1,0 +1,56 @@
+﻿@model goatMGMT.Models.Animal
+
+@{
+    ViewBag.Title = "Health Records";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Health Records</h2>
+
+    <div class="col-md-3 col-md-offset-9 col-md-pull-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b>Tag:</b> @Html.DisplayFor(model => model.tag)</h3>
+            </div>
+            <div class="panel-body">
+                <b>Name:</b> @Html.DisplayFor(model => model.name)
+            </div>
+        </div>
+    </div>
+
+    <p>
+        @Html.ActionLink("Back to Animals", "Index", "Animal", new { @class = "btn btn-danger" })
+        @Html.ActionLink("Update Records", "HealthRecordsUpdate", "Animal", new { id = Model.id }, new { @class = "btn btn-success" })
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>
+                                <b> @Html.DisplayNameFor(model => model.FAMACHA_score):</b> @Html.DisplayFor(model => model.FAMACHA_score)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> @Html.DisplayNameFor(model => model.fecal_egg_count):</b> @Html.DisplayFor(model => model.fecal_egg_count)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> @Html.DisplayNameFor(model => model.hair_coat_score):</b> @Html.DisplayFor(model => model.hair_coat_score)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> @Html.DisplayNameFor(model => model.body_condition_score):</b> @Html.DisplayFor(model => model.body_condition_score)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

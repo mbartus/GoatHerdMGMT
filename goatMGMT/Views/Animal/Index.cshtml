@@ -110,6 +110,7 @@
                             @Html.DisplayFor(modelItem => item.animal.status_code)
                         </td>
                         <td>
+                            @Html.ActionLink("Health Records", "HealthRecordsIndex", new { id = item.animal.id }) |
                             @Html.ActionLink("Edit", "Edit", new { id=item.animal.id }) |
                             @Html.ActionLink("Details", "Details", new { id=item.animal.id }) |
                             @Html.ActionLink("Delete", "Delete", new { id=item.animal.id })

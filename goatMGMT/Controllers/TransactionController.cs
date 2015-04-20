@@ -49,6 +49,10 @@ namespace goatMGMT.Controllers
             double l = 0;
             double x = 0;
             double n = 0;
+            if (User.IsInRole("admin"))
+            {
+                incomes = db.Transactions.Where(m => m.type == true).ToList();
+            }
             foreach (Transaction trans in incomes)
             {
                 incomeTotal += (double)trans.total_payment;
@@ -78,6 +82,10 @@ namespace goatMGMT.Controllers
                 }
             }
             var expenses = db.Transactions.Where(m => m.type == false && m.userid == userID).ToList();
+            if (User.IsInRole("admin"))
+            {
+                expenses = db.Transactions.Where(m => m.type == false).ToList();
+            }
             double expenseTotal = 0;
             foreach (Transaction trans in expenses)
             {

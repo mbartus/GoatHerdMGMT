@@ -101,17 +101,17 @@ namespace goatMGMT.Controllers
             int FemaleADGPWCount = 0;
             SummaryViewModel svm = new SummaryViewModel();
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
-            svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == false).Count();
-            svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == true).Count();
-            svm.activeSire = db.Animals.Where(m => m.owner == userID && m.sex == false && m.status_code == "Active").Count();
-            svm.activeDam = db.Animals.Where(m => m.owner == userID && m.sex == true && m.status_code == "Active").Count();
+            svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == true).Count();
+            svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == false).Count();
+            svm.activeSire = db.Animals.Where(m => m.owner == userID && m.sex == true && m.status_code == "Active").Count();
+            svm.activeDam = db.Animals.Where(m => m.owner == userID && m.sex == false && m.status_code == "Active").Count();
             if (User.IsInRole("admin"))
             {
                 myAnimalList = db.Animals.ToList();
-                svm.totalSire = db.Animals.Where(m => m.sex == false).Count();
-                svm.totalDam = db.Animals.Where(m => m.sex == true).Count();
-                svm.activeSire = db.Animals.Where(m => m.sex == false && m.status_code == "Active").Count();
-                svm.activeDam = db.Animals.Where(m => m.sex == true && m.status_code == "Active").Count();
+                svm.totalSire = db.Animals.Where(m => m.sex == true).Count();
+                svm.totalDam = db.Animals.Where(m => m.sex == false).Count();
+                svm.activeSire = db.Animals.Where(m => m.sex == true && m.status_code == "Active").Count();
+                svm.activeDam = db.Animals.Where(m => m.sex == false && m.status_code == "Active").Count();
             }
             svm.currentYear = System.DateTime.Now.Year;
             svm.lastYear = svm.currentYear - 1;

@@ -50,7 +50,7 @@ namespace goatMGMT.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Actual Birthing Date")]
-        public DateTime expected_birthing_date { get; set; }
+        public DateTime actual_birthing_date { get; set; }
 
         [DisplayName("Remarks")]
         public string remarks { get; set; }

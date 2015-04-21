@@ -43,7 +43,7 @@ namespace goatMGMT.Controllers
                 {
                     damCount++;
                 }
-                else if (an.isChild && (an.status_code == "Active" || an.status_code == "Unclassified") )
+                else if (an.isChild && (an.status_code == "Active" || an.status_code == "Unclassed") )
                 {
                     offCount++;
                 }

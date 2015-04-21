@@ -277,6 +277,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\imgs\aboutHeader.png" />
     <Content Include="Content\imgs\fadeGoatField.jpg" />
     <Content Include="bin\goatMGMT.dll" />
     <Content Include="bin\goatMGMT.pdb" />
@@ -294,23 +295,20 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\imgs\goatPen.jpg" />
+    <Content Include="Content\imgs\header4.jpg" />
     <Content Include="Content\imgs\header.png" />
-    <Content Include="Content\imgs\header1.png" />
-    <Content Include="Content\imgs\header2.png" />
-    <Content Include="Content\imgs\header3.png" />
+    <Content Include="Content\imgs\header5.png" />
+    <Content Include="Content\imgs\header6.png" />
     <Content Include="Content\imgs\herd_pale.jpg" />
     <Content Include="Content\imgs\logo.jpg" />
-    <Content Include="Content\imgs\k_goat3.JPG" />
-    <Content Include="Content\imgs\k_goat2.JPG" />
-    <Content Include="Content\imgs\k_goat1.JPG" />
-    <Content Include="Content\imgs\k_herd.jpg" />
     <Content Include="Content\imgs\k_barn1.JPG" />
     <Content Include="Content\imgs\k_barn2.jpg" />
     <Content Include="Content\imgs\logotrans.png" />
     <Content Include="Content\imgs\manyGoats.png" />
     <Content Include="Content\imgs\paleGoat.jpg" />
-    <Content Include="Content\imgs\pale_bull.jpg" />
-    <Content Include="Content\imgs\pale_bull2.jpg" />
+    <Content Include="Content\imgs\contactHeader.png" />
+    <Content Include="Content\imgs\pricingHeader.png" />
+    <Content Include="Content\imgs\indexHeader.jpg" />
     <Content Include="Content\tablesorterstyle.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />

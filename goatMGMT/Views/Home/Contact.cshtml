@@ -5,7 +5,17 @@
     Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml");
 }
 <div class="container" style="padding-top: 70px;">
-    <div>
+    <div class="col-lg-6">
+        <h1>Contact Us</h1>
+        <h3><b>FARMS</b>database was inspired by a passion for livestock farming. Your feedback is what keeps us growing.</h3> 
+        <hr style="border-color:darkgray;" />
+        <h4>Want to leave your questions, comments or concerns? You can:</h4>
+        <ul style="margin-left:0px; line-height:40px; font-size: 17px; text-align:left;">
+            <li>E-mail an admin at farms.filemanager@gmail.com</li>
+            <li>Use our feedback form!</li>
+        </ul>
+    </div>
+    <div class="col-lg-6">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -51,14 +61,13 @@
 <script type="text/javascript">
         $(document).ready(function () {
             $("#active-contact").addClass("active");
-            $("#layout-header").css({ "background-image": "url(/Content/imgs/header3.png)", "color": "white"});
+            $("#layout-header").css({ "background-image": "url(/Content/imgs/contactHeader.png)"});
         });
 </script>
 
 <script type="text/javascript">
     $('#myModal').on('show.bs.modal', function (e) {
         if (document.getElementById("comment").value == '') {
-            //TODO set warning text
             document.getElementById("warning").style.display = 'block';
             return e.preventDefault();
         }

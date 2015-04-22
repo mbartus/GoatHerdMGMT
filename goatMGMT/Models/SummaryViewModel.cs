@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.WebPages.Html;
@@ -120,11 +121,7 @@ namespace goatMGMT.Models
 
         public double femaleADGPostWeaning { get; set; }
 
-        public List<SelectListItem> graphList = new List<SelectListItem>()
-        {
-             new SelectListItem() { Text = "General", Value = "General"},
-             new SelectListItem() { Text = "Weaning", Value = "Weaning"},
-             new SelectListItem() { Text = "Birth", Value = "Birth"}
-        };
+        [DisplayName("Select category of data to view")]
+        public string graphAnswer { get; set; }
     }
 }

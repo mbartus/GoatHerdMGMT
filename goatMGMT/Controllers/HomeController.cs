@@ -419,6 +419,13 @@ namespace goatMGMT.Controllers
             svm.maleADGPostWeaning = svm.maleADGPostWeaning / MaleADGPWCount;
             svm.femaleADGWeaning = svm.femaleADGWeaning / FemaleADGWCount;
             svm.femaleADGPostWeaning = svm.femaleADGPostWeaning / FemaleADGPWCount;
+            List<SelectListItem> graphList = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text = "General", Value = "General"},
+                new SelectListItem() { Text = "Weaning", Value = "Weaning"},
+                new SelectListItem() { Text = "Birth", Value = "Birth"}
+            };
+            @ViewBag.GraphList = graphList;
             return View(svm);
         }
 

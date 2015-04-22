@@ -226,6 +226,22 @@ namespace goatMGMT.Controllers
                     {
                         svm.kidsAliveCount = 1;
                     }
+                    if (breeding.parity == 1)
+                    {
+                        svm.damParity1Count++;
+                    }
+                    else if (breeding.parity == 2)
+                    {
+                        svm.damParity2Count++;
+                    }
+                    else if (breeding.parity == 3)
+                    {
+                        svm.damParity3Count++;
+                    }
+                    else if (breeding.parity > 3)
+                    {
+                        svm.damParity4Count++;
+                    }
                     svm.kidsAlivePercentage = svm.kidsBornCount / svm.kidsAliveCount;
                     foreach (Birth birth in breeding.Births)
                     {
@@ -233,7 +249,6 @@ namespace goatMGMT.Controllers
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
-                                svm.damParity1Count++;
                                 svm.damParity1BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                         }
@@ -241,7 +256,6 @@ namespace goatMGMT.Controllers
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
-                                svm.damParity2Count++;
                                 svm.damParity2BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                         }
@@ -249,7 +263,6 @@ namespace goatMGMT.Controllers
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
-                                svm.damParity3Count++;
                                 svm.damParity3BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                         }
@@ -257,7 +270,6 @@ namespace goatMGMT.Controllers
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
-                                svm.damParity4Count++;
                                 svm.damParity4BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                         }

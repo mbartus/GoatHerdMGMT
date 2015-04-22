@@ -16,6 +16,7 @@
     <fieldset class="form-horizontal">
         <legend>Animal</legend>
         @Html.HiddenFor(model => model.owner)
+        @Html.HiddenFor(model => model.sex)
 
         <div class="control-group">
             @Html.LabelFor(model => model.species, new { @class = "control-label" })

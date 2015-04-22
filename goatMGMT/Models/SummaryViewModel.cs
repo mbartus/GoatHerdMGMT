@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.WebPages.Html;
 
 namespace goatMGMT.Models
 {
@@ -117,6 +118,13 @@ namespace goatMGMT.Models
 
         public double maleADGPostWeaning { get; set; }
 
-        public double femaleADGPostWeaning { get; set; } 
+        public double femaleADGPostWeaning { get; set; }
+
+        public List<SelectListItem> graphList = new List<SelectListItem>()
+        {
+             new SelectListItem() { Text = "General", Value = "General"},
+             new SelectListItem() { Text = "Weaning", Value = "Weaning"},
+             new SelectListItem() { Text = "Birth", Value = "Birth"}
+        };
     }
 }

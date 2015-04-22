@@ -204,7 +204,14 @@ namespace goatMGMT.Controllers
                 {
                     svm.matingCount++;
                     svm.kiddingCount += breeding.Births.Count();
-                    svm.kiddingPercentage = svm.matingCount / svm.kiddingCount;
+                    if (svm.kiddingCount == 0)
+                    {
+                        svm.kiddingPercentage = 0;
+                    }
+                    else
+                    {
+                        svm.kiddingPercentage = (int)((svm.kiddingCount / svm.matingCount) * 100);
+                    }
                     if (breeding.alive == null)
                     {
                         breeding.alive = 0;

@@ -1,4 +1,5 @@
 ﻿@model goatMGMT.Models.SummaryViewModel
+@using System.Web.Mvc;
 
 @{
     ViewBag.Title = "Herd Summary";
@@ -8,52 +9,36 @@
     <h2 style="margin-bottom:15px;">Herd Summary</h2>
     @Html.ActionLink("Export to Excel", "Export", "Home", new{}, new{@class="btn btn-success", @style=""})
     <p style="margin-bottom:15px;">Download an excel sheet with all of your information filled in</p>
+    
+    <div class="control-group" style="padding-top: 15px; padding-bottom: 15px;">
+        @Html.LabelFor(m => m.graphAnswer, new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(m => m.graphAnswer, (IEnumerable<SelectListItem>)ViewData["GraphList"], "Select a category", new { @class = "form-control" })
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-md-12">
-            <h4>Number of Total/Active Sire and Dams</h4>
-            <div id="siredamgraph" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px;"></div>
+            <h4><span id="graph1Title"></span></h4>
+            <div id="graph1" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px; display:none;"></div>
         </div>
     </div>
-    <div class="row info-block">
+    <div class="row">
         <div class="col-md-12">
-            <h4>Offspring Born and Offspring Weaned</h4>
-            <div id="Offspringgraph" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px;"></div>
+            <h4><span id="graph2Title"></span></h4>
+            <div id="graph2" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px; display:none;"></div>
         </div>
     </div>
-    <div class="row info-block">
+    <div class="row">
         <div class="col-md-12">
-            <h4>Average Birth Weights and Weaning Weights</h4>
-            <div id="weightgraph" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px;"></div>
+            <h4><span id="graph3Title"></span></h4>
+            <div id="graph3" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px; display:none;"></div>
         </div>
     </div>
-    <div class="row info-block">
+    <div class="row">
         <div class="col-md-12">
-            <h4>Average Daily Gain Comparisons</h4>
-            <div id="adggraph" style="width: 100%; font-size:12px; height:450px; margin-bottom:15px;"></div>
-        </div>
-    </div>
-    <div class="row info-block">
-        <div class="col-md-12">
-            <h4>Multiple Birth Statistics</h4>
-            <div id="birthgraph" style="width: 100%; font-size:12px; height:350px; margin-bottom:15px;"></div>
-        </div>
-    </div>
-    <div class="row info-block">
-        <div class="col-md-12">
-            <h4>Mating Count and Birthing Count</h4>
-            <div id="breedinggraph" style="width: 100%; font-size:12px; height:150px; margin-bottom:15px;"></div>
-        </div>
-    </div>
-    <div class="row info-block">
-        <div class="col-md-12">
-            <h4>Birth Survival Rate</h4>
-            <div id="survivalgraph" style="width: 100%; font-size:12px; height:150px; margin-bottom:15px;"></div>
-        </div>
-    </div>
-    <div class="row info-block">
-        <div class="col-md-12">
-            <h4>Dam Parity Count and Average Birth Weight</h4>
-            <div id="paritygraph" style="width: 100%; font-size:12px; height:350px; margin-bottom:15px;"></div>
+            <h4><span id="graph4Title"></span></h4>
+            <div id="graph4" style="width: 100%; font-size:12px; height:250px; margin-bottom:15px; display:none;"></div>
         </div>
     </div>
 </div>

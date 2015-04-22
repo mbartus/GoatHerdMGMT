@@ -132,8 +132,29 @@ namespace goatMGMT.Controllers
             int userID = (int)Membership.GetUser().ProviderUserKey;
             bvm.maleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == true);
             bvm.femaleList = db.Animals.Include(a => a.UserProfile).Where(m => m.owner == userID && m.isChild == false && m.sex == false);
+            List<SelectListItem> mlist = new List<SelectListItem>();
+            List<SelectListItem> flist = new List<SelectListItem>();
             if (ModelState.IsValid && breeding.father_id != 0 && breeding.mother_id != 0)
             {
+                if (((DateTime)breeding.actual_birthing_date).CompareTo(((DateTime)breeding.date)) < 0)
+                {
+                    ModelState.AddModelError("", "Birthing date cannot be after breeding date.");
+                    mlist = new List<SelectListItem>();
+                    flist = new List<SelectListItem>();
+                    mlist.Add(new SelectListItem { Text = "Select Sire", Value = "0" });
+                    flist.Add(new SelectListItem { Text = "Select Dam", Value = "0" });
+                    for (int i = 1; i <= bvm.maleList.Count(); i++)
+                    {
+                        mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).tag, Value = "" + i });
+                    }
+                    for (int i = 1; i <= bvm.femaleList.Count(); i++)
+                    {
+                        flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).tag, Value = "" + i });
+                    }
+                    @ViewBag.flist = flist;
+                    @ViewBag.mlist = mlist;
+                    return View(bvm);
+                }
                 breeding.Animal = db.Animals.Find(bvm.maleList.ElementAt(breeding.father_id - 1).id);
                 breeding.Animal1 = db.Animals.Find(bvm.femaleList.ElementAt(breeding.mother_id - 1).id);
                 breeding.father_id = breeding.Animal.id;
@@ -149,8 +170,6 @@ namespace goatMGMT.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            List<SelectListItem> mlist = new List<SelectListItem>();
-            List<SelectListItem> flist = new List<SelectListItem>();
             mlist.Add(new SelectListItem { Text = "Select Sire", Value = "0" });
             flist.Add(new SelectListItem { Text = "Select Dam", Value = "0" });
             for (int i = 1; i <= bvm.maleList.Count(); i++)

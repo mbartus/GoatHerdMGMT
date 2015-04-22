@@ -70,7 +70,7 @@ namespace goatMGMT.Controllers
             alist.Add(new SelectListItem { Text = "Select Animal", Value = "0" });
             for (int i = 1; i <= tvm.animalList.Count(); i++)
             {
-                alist.Add(new SelectListItem { Text = tvm.animalList.ElementAt(i - 1).name, Value = "" + i });
+                alist.Add(new SelectListItem { Text = tvm.animalList.ElementAt(i - 1).tag, Value = "" + i });
             }
             @ViewBag.alist = alist;
             return View();
@@ -105,7 +105,7 @@ namespace goatMGMT.Controllers
             alist.Add(new SelectListItem { Text = "Select Animal", Value = "0" });
             for (int i = 1; i <= tvm.animalList.Count(); i++)
             {
-                alist.Add(new SelectListItem { Text = tvm.animalList.ElementAt(i - 1).name, Value = "" + i });
+                alist.Add(new SelectListItem { Text = tvm.animalList.ElementAt(i - 1).tag, Value = "" + i });
             }
             @ViewBag.alist = alist;
             ModelState.AddModelError("", "Please select an animal.");

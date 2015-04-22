@@ -54,7 +54,6 @@
                 @Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
             </div>
         </div>
-        <fieldset disabled>
             
             <div style="padding-top:10px;">
                 @Html.LabelFor(model => model.sex, new { @class = "control-label" })<small> (Required)</small>
@@ -63,19 +62,18 @@
                 <div class="col-md-1">
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBoxFor(model => model.sex) Male
+                            @Html.CheckBoxFor(model => model.sex, new { @Disabled="disabled"}) Male
                         </label>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBox("sex2") Female
+                            @Html.CheckBox("sex2", new { @Disabled="disabled"}) Female
                         </label>
                     </div>
                 </div>
             </div>
-        </fieldset>
         <div class="row">
             <div class="col-md-12">
                 <div class="help-block">Sex cannot be changed after animal creation (you must delete and recreate this animal)</div>
@@ -245,15 +243,18 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        if (!$('#sex').is(':checked')) {
+        if ($('#sex').val() == "True") {
+            $('#sex2').prop('checked', false);
+        }
+        else {
             $('#sex2').prop('checked', true);
         }
-    })
+    });
     $(document).ready(function () {
         if (!$('#isChild').is(':checked')) {
             $('#off2').prop('checked', true);
         }
-    })
+    });
     $('#off2').click(function () {
         if ($('#isChild').prop('checked')) {
             $('#isChild').prop('checked', false);

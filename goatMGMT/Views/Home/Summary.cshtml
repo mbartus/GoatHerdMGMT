@@ -47,8 +47,89 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        var chart = AmCharts.makeChart("siredamgraph", {
+    function adgGraph () {
+        var chart8 = AmCharts.makeChart("graph1", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "My Herd:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "All Herds:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
+            },
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "Weaning",
+                    "income": @Model.ADGWeaning,
+                    "expenses": @Model.allADGWeaning
+                    },
+                {
+                    "category": "Weaning(Male)",
+                    "income": @Model.maleADGWeaning,
+                    "expenses": @Model.allMaleADGWeaning
+                    },
+                {
+                    "category": "Weaning(Female)",
+                    "income": @Model.femaleADGWeaning,
+                    "expenses": @Model.allFemaleADGWeaning
+                    },
+                {
+                    "category": "Post-Weaning",
+                    "income": @Model.ADGPostWeaning,
+                    "expenses": @Model.allADGPostWeaning
+                    },
+                {
+                    "category": "Post-Weaning(Male)",
+                    "income": @Model.maleADGPostWeaning,
+                    "expenses": @Model.allMaleADGPostWeaning
+                    },
+                {
+                    "category": "Post-Weaning(Female)",
+                    "income": @Model.femaleADGPostWeaning,
+                    "expenses": @Model.allFemaleADGPostWeaning
+                    }
+            ]
+        });
+    }
+    function totalActiveGraph() {
+        var chart = AmCharts.makeChart("graph2", {
             "type": "serial",
             "dataProvider": [{
                 "country": "USA",
@@ -78,11 +159,11 @@
                 "country": "Sire",
                 "year2004": @Model.totalSire,
                 "year2005": @Model.activeSire
-            }, {
-                "country": "Dam",
-                "year2004": @Model.totalDam,
-                "year2005": @Model.activeDam
-            }],
+                }, {
+                    "country": "Dam",
+                    "year2004": @Model.totalDam,
+                    "year2005": @Model.activeDam
+                    }],
             "valueAxes": [{
                 "unit": "%",
                 "position": "left",
@@ -117,473 +198,446 @@
                     "path": "http://www.amcharts.com/lib/3/plugins/export/libs/"
                 }
             }
-
         });
-    var chart2 = AmCharts.makeChart("Offspringgraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "Born:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
+    }
+    function bornWeanedGraph() {
+        var chart2 = AmCharts.makeChart("graph1", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
             },
-            {
-                "balloonText": "Weaned:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "Total",
-                "income": @Model.totalBorn,
-                "expenses": @Model.totalWeaned
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Born:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "Weaned:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
             },
-            {
-                "category": "Male",
-                "income": @Model.malesBorn,
-                "expenses": @Model.malesWeaned
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "Total",
+                    "income": @Model.totalBorn,
+                    "expenses": @Model.totalWeaned
+                    },
+                {
+                    "category": "Male",
+                    "income": @Model.malesBorn,
+                    "expenses": @Model.malesWeaned
+                    },
+                {
+                    "category": "Female",
+                    "income": @Model.femalesBorn,
+                    "expenses": @Model.femalesWeaned
+                    }
+            ]
+        });
+    }
+    function bornWeaningWeightGraph() {
+        var chart3 = AmCharts.makeChart("graph2", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
             },
-            {
-                "category": "Female",
-                "income": @Model.femalesBorn,
-                "expenses": @Model.femalesWeaned
-            }
-        ]
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Birth:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "Weaning:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
+            },
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "Total",
+                    "income": @Model.avgBW,
+                    "expenses": @Model.avgWW
+                    },
+                {
+                    "category": "Male",
+                    "income": @Model.maleAvgBW,
+                    "expenses": @Model.maleAvgWW
+                    },
+                {
+                    "category": "Female",
+                    "income": @Model.femaleAvgBW,
+                    "expenses": @Model.femaleAvgWW
+                    }
+            ]
+        });
+    }
+    function matingBirthGraph() {
+        var chart5 = AmCharts.makeChart("graph1", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Matings:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "Offspring:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
+            },
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "Results",
+                    "income": @Model.matingCount,
+                    "expenses": @Model.kiddingCount
+                    }
+            ]
+        });
+    }
+    function survivalRateGraph() {
+        var chart6 = AmCharts.makeChart("graph2", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Born:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "Alive:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
+            },
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "Offspring",
+                    "income": @Model.kidsBornCount,
+                    "expenses": @Model.kidsAliveCount
+                    }
+            ]
+        });
+    }
+    function parityBirthWeightGraph() {
+        var chart7 = AmCharts.makeChart("graph3", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Dams:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "Avg Birth Weight:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
+            },
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "1",
+                    "income": @Model.damParity1Count,
+                    "expenses": @Model.damParity1BW
+                    },
+                {
+                    "category": "2",
+                    "income": @Model.damParity2Count,
+                    "expenses": @Model.damParity2BW
+                    },
+                {
+                    "category": "3",
+                    "income": @Model.damParity3Count,
+                    "expenses": @Model.damParity3BW
+                    },
+                {
+                    "category": "4+",
+                    "income": @Model.damParity4Count,
+                    "expenses": @Model.damParity4BW
+                }
+            ]
+        });
+    }
+    function multipleBirthsGraph() {
+        var chart4 = AmCharts.makeChart("graph4", {
+            "type": "serial",
+            "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+            "categoryField": "category",
+            "rotate": true,
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "Count:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "Income",
+                    "type": "column",
+                    "valueField": "income"
+                },
+                {
+                    "balloonText": "Avg Birth Weight:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Expenses",
+                    "type": "column",
+                    "valueField": "expenses"
+                },
+                 {
+                     "balloonText": "Avg Weaning Weight:[[value]]",
+                     "fillAlphas": 0.8,
+                     "id": "AmGraph-2",
+                     "lineAlpha": 0.2,
+                     "title": "Expenses",
+                     "type": "column",
+                     "valueField": "ww"
+                 }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "top",
+                    "axisAlpha": 0
+                }
+            ],
+            "allLabels": [],
+            "amExport": {
+                "right": 20,
+                "top": 20
+            },
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [
+                {
+                    "category": "Single",
+                    "income": @Model.singleBirthCount,
+                    "expenses": @Model.singleBWAvg,
+                    "ww": @Model.singleWWAvg
+                },
+                {
+                    "category": "Twins",
+                    "income": @Model.twinBirthCount,
+                    "expenses": @Model.twinBWAvg,
+                    "ww": @Model.twinWWAvg
+                },
+                {
+                    "category": "Triplets",
+                    "income": @Model.tripletBirthCount,
+                    "expenses": @Model.tripletBWAvg,
+                    "ww": @Model.tripletWWAvg
+                },
+                {
+                    "category": "Quad +",
+                    "income": @Model.quadBirthCount,
+                    "expenses": @Model.quadBWAvg,
+                    "ww": @Model.quadWWAvg
+                }
+            ]
+        });
+    }
+
+    $('#graphAnswer').change(function() {
+        if($('#graphAnswer').val() == "General") {
+            $('#graph1Title').html("Average Daily Gains")
+            $('#graph1').css('display', 'block')
+            adgGraph();
+            $('#graph2Title').html("Total/Active Animals")
+            $('#graph2').css('display', 'block')
+            totalActiveGraph();
+            $('#graph3Title').html(" ")
+            $('#graph3').css('display', 'none')
+            $('#graph4Title').html(" ")
+            $('#graph4').css('display', 'none')
+        }
+        else if ($('#graphAnswer').val() == "Weaning") {
+            $('#graph1Title').html("Total Offspring Born/Weaned")
+            $('#graph1').css('display', 'block')
+            bornWeanedGraph();
+            $('#graph2Title').html("Average Birth Weight / Weaning Weight")
+            $('#graph2').css('display', 'block')
+            bornWeaningWeightGraph();
+            $('#graph3Title').html(" ")
+            $('#graph3').css('display', 'none')
+            $('#graph4Title').html(" ")
+            $('#graph4').css('display', 'none')
+        }
+        else if ($('#graphAnswer').val() == "Birth") {
+            $('#graph1Title').html("Mating and Birth Count")
+            $('#graph1').css('display', 'block')
+            matingBirthGraph();
+            $('#graph2Title').html("Birth Survival Rate")
+            $('#graph2').css('display', 'block')
+            survivalRateGraph();
+            $('#graph3Title').html("Dam Parity Count and Average Birth Weight")
+            $('#graph3').css('display', 'block')
+            parityBirthWeightGraph();
+            $('#graph4Title').html("Multiple Births")
+            $('#graph4').css('display', 'block')
+            multipleBirthsGraph();
+        }
     });
-    var chart3 = AmCharts.makeChart("weightgraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "Birth:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
-            },
-            {
-                "balloonText": "Weaning:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "Total",
-                "income": @Model.avgBW,
-                "expenses": @Model.avgWW
-            },
-            {
-                "category": "Male",
-                "income": @Model.maleAvgBW,
-                "expenses": @Model.maleAvgWW
-            },
-            {
-                "category": "Female",
-                "income": @Model.femaleAvgBW,
-                "expenses": @Model.femaleAvgWW
-            }
-        ]
-    });
-    var chart4 = AmCharts.makeChart("birthgraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "Count:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
-            },
-            {
-                "balloonText": "Avg Birth Weight:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            },
-             {
-                 "balloonText": "Avg Weaning Weight:[[value]]",
-                 "fillAlphas": 0.8,
-                 "id": "AmGraph-2",
-                 "lineAlpha": 0.2,
-                 "title": "Expenses",
-                 "type": "column",
-                 "valueField": "ww"
-             }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "Single",
-                "income": @Model.singleBirthCount,
-                "expenses": @Model.singleBWAvg,
-                "ww": @Model.singleWWAvg
-            },
-            {
-                "category": "Twins",
-                "income": @Model.twinBirthCount,
-                "expenses": @Model.twinBWAvg,
-                "ww": @Model.twinWWAvg
-            },
-            {
-                "category": "Triplets",
-                "income": @Model.tripletBirthCount,
-                "expenses": @Model.tripletBWAvg,
-                "ww": @Model.tripletWWAvg
-            },
-            {
-                "category": "Quad +",
-                "income": @Model.quadBirthCount,
-                "expenses": @Model.quadBWAvg,
-                "ww": @Model.quadWWAvg
-            }
-        ]
-    });
-    var chart5 = AmCharts.makeChart("breedinggraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "Matings:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
-            },
-            {
-                "balloonText": "Offspring:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "Results",
-                "income": @Model.matingCount,
-                "expenses": @Model.kiddingCount
-            }
-        ]
-    });
-    var chart6 = AmCharts.makeChart("survivalgraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "Born:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
-            },
-            {
-                "balloonText": "Alive:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "Offspring",
-                "income": @Model.kidsBornCount,
-                "expenses": @Model.kidsAliveCount
-            }
-        ]
-    });
-    var chart7 = AmCharts.makeChart("paritygraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "Dams:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
-            },
-            {
-                "balloonText": "Avg Birth Weight:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "1",
-                "income": @Model.damParity1Count,
-                "expenses": @Model.damParity1BW
-            },
-            {
-                "category": "2",
-                "income": @Model.damParity2Count,
-                "expenses": @Model.damParity2BW
-            },
-            {
-                "category": "3",
-                "income": @Model.damParity3Count,
-                "expenses": @Model.damParity3BW
-            },
-            {
-                "category": "4+",
-                "income": @Model.damParity4Count,
-                "expenses": @Model.damParity4BW
-            }
-        ]
-    });
-    var chart8 = AmCharts.makeChart("adggraph", {
-        "type": "serial",
-        "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-        "categoryField": "category",
-        "rotate": true,
-        "startDuration": 1,
-        "categoryAxis": {
-            "gridPosition": "start",
-            "position": "left"
-        },
-        "trendLines": [],
-        "graphs": [
-            {
-                "balloonText": "My Herd:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-1",
-                "lineAlpha": 0.2,
-                "title": "Income",
-                "type": "column",
-                "valueField": "income"
-            },
-            {
-                "balloonText": "All Herds:[[value]]",
-                "fillAlphas": 0.8,
-                "id": "AmGraph-2",
-                "lineAlpha": 0.2,
-                "title": "Expenses",
-                "type": "column",
-                "valueField": "expenses"
-            }
-        ],
-        "guides": [],
-        "valueAxes": [
-            {
-                "id": "ValueAxis-1",
-                "position": "top",
-                "axisAlpha": 0
-            }
-        ],
-        "allLabels": [],
-        "amExport": {
-            "right": 20,
-            "top": 20
-        },
-        "balloon": {},
-        "titles": [],
-        "dataProvider": [
-            {
-                "category": "Weaning",
-                "income": @Model.ADGWeaning,
-                "expenses": @Model.allADGWeaning
-            },
-            {
-                "category": "Weaning(Male)",
-                "income": @Model.maleADGWeaning,
-                "expenses": @Model.allMaleADGWeaning
-            },
-            {
-                "category": "Weaning(Female)",
-                "income": @Model.femaleADGWeaning,
-                "expenses": @Model.allFemaleADGWeaning
-            },
-            {
-                "category": "Post-Weaning",
-                "income": @Model.ADGPostWeaning,
-                "expenses": @Model.allADGPostWeaning
-            },
-            {
-                "category": "Post-Weaning(Male)",
-                "income": @Model.maleADGPostWeaning,
-                "expenses": @Model.allMaleADGPostWeaning
-            },
-            {
-                "category": "Post-Weaning(Female)",
-                "income": @Model.femaleADGPostWeaning,
-                "expenses": @Model.allFemaleADGPostWeaning
-            }
-        ]
-    });
-});
 </script>

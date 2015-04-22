@@ -26,11 +26,11 @@ namespace goatMGMT.Models
         public Int32 parity { get; set; }
 
         [Required]
-        [DisplayName("Dam's Name")]
+        [DisplayName("Dam's Tag")]
         public Int32 mother_id { get; set; }
 
         [Required]
-        [DisplayName("Sire's Name")]
+        [DisplayName("Sire's Tag")]
         public Int32 father_id { get; set; }
 
         [Required]

@@ -54,7 +54,6 @@
                 @Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
             </div>
         </div>
-            
             <div style="padding-top:10px;">
                 @Html.LabelFor(model => model.sex, new { @class = "control-label" })<small> (Required)</small>
             </div>
@@ -62,14 +61,14 @@
                 <div class="col-md-1">
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBoxFor(model => model.sex, new { @Disabled="disabled"}) Male
+                            @Html.CheckBoxFor(model => model.sex, new { @disabled = "disabled" }) Male
                         </label>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBox("sex2", new { @Disabled="disabled"}) Female
+                            @Html.CheckBox("sex2", new { @disabled="disabled"}) Female
                         </label>
                     </div>
                 </div>

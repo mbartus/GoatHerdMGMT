@@ -30,7 +30,7 @@
         </div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.name, new { @class = "control-label" })<small> (Required)</small>
+            @Html.LabelFor(model => model.name, new { @class = "control-label" })<small> (Optional)</small>
             <div class="controls">
                 @Html.TextBoxFor(model => model.name, new { @class="form-control", @placeholder = "Enter Animal Name or ID"})
                 @Html.ValidationMessageFor(model => model.name, null, new { @class = "help-inline" })

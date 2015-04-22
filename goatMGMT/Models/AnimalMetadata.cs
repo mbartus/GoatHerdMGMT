@@ -29,13 +29,14 @@ namespace goatMGMT.Models
         [DisplayName("Maturity")]
         public bool isChild { get; set; }
 
+        [Required]
         [DisplayName("Breed Code")]
         public string breed_code { get; set; }
 
+        [Required]
         [DisplayName("Status")]
         public string status_code { get; set; }
 
-        [Required]
         [DisplayName("Name")]
         public string name { get; set; }
 

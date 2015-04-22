@@ -54,8 +54,7 @@
                 @Html.ValidationMessageFor(model => model.dob, null, new { @class = "help-inline" })
             </div>
         </div>
-        <fieldset disabled>
-            
+
             <div style="padding-top:10px;">
                 @Html.LabelFor(model => model.sex, new { @class = "control-label" })<small> (Required)</small>
             </div>
@@ -63,19 +62,19 @@
                 <div class="col-md-1">
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBoxFor(model => model.sex) Male
+                            @Html.CheckBoxFor(model => model.sex, new { @disabled = "disabled" }) Male
                         </label>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="checkbox">
                         <label>
-                            @Html.CheckBox("sex2") Female
+                            @Html.CheckBox("sex2", new { @disabled = "disabled" }) Female
                         </label>
                     </div>
                 </div>
             </div>
-        </fieldset>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="help-block">Sex cannot be changed after animal creation (you must delete and recreate this animal)</div>

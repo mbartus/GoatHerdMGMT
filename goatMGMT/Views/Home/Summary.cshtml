@@ -53,6 +53,7 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
     function adgGraph () {
         var chart = AmCharts.makeChart("graph1", {
@@ -196,7 +197,6 @@
         var chart = AmCharts.makeChart( "graph1", {
             "type": "pie",
             "theme": "none",
-            "title": "Born",        //TODO i made this up
             "legend": {
                 "markerType": "circle",
                 "position": "right",
@@ -220,11 +220,9 @@
                 }
             }
         } );
-
         var chart2 = AmCharts.makeChart( "graph2", {
             "type": "pie",
             "theme": "none",
-            "title": "Weaned",
             "legend": {
                 "markerType": "circle",
                 "position": "right",
@@ -502,7 +500,7 @@
                     "category": "4+",
                     "income": @Model.damParity4Count,
                     "expenses": @Model.damParity4BW
-                }
+                    }
             ]
         });
     }
@@ -568,25 +566,25 @@
                     "income": @Model.singleBirthCount,
                     "expenses": @Model.singleBWAvg,
                     "ww": @Model.singleWWAvg
-                },
+                    },
                 {
                     "category": "Twins",
                     "income": @Model.twinBirthCount,
                     "expenses": @Model.twinBWAvg,
                     "ww": @Model.twinWWAvg
-                },
+                    },
                 {
                     "category": "Triplets",
                     "income": @Model.tripletBirthCount,
                     "expenses": @Model.tripletBWAvg,
                     "ww": @Model.tripletWWAvg
-                },
+                    },
                 {
                     "category": "Quad +",
                     "income": @Model.quadBirthCount,
                     "expenses": @Model.quadBWAvg,
                     "ww": @Model.quadWWAvg
-                }
+                    }
             ]
         });
     }
@@ -605,14 +603,14 @@
             $('#graph4').css('display', 'none')
         }
         else if ($('#graphAnswer').val() == "Weaning") {
-            $('#graph1Title').html("Total Offspring Born/Weaned")
+            $('#graph1Title').html("Total Offspring Born")
             $('#graph1').css('display', 'block')
-            bornWeanedGraph();
-            $('#graph2Title').html("Average Birth Weight / Weaning Weight")
+            $('#graph2Title').html("Total Offspring Weaned")
             $('#graph2').css('display', 'block')
+            bornWeanedGraph();
+            $('#graph3Title').html("Average Birth Weight / Weaning Weight")
+            $('#graph3').css('display', 'block')
             bornWeaningWeightGraph();
-            $('#graph3Title').html(" ")
-            $('#graph3').css('display', 'none')
             $('#graph4Title').html(" ")
             $('#graph4').css('display', 'none')
         }

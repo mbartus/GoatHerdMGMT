@@ -17,6 +17,13 @@
         </div>
     </div>
     
+    <div class="control-group" style="padding-top: 15px; padding-bottom: 15px;">
+        @Html.LabelFor(m => m.breedCode, new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(m => m.breedCode, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed to compare", new { @class = "form-control" })
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <h4><span id="graph1Title"></span></h4>
@@ -148,11 +155,11 @@
             }, {
                 "country": "Sire",
                 "year2004": @Model.totalSire,
-                "year2005": @Model.activeSire
+                "year2005": @Model.activeSire,
                 }, {
                     "country": "Dam",
                     "year2004": @Model.totalDam,
-                    "year2005": @Model.activeDam
+                    "year2005": @Model.activeDam,
                     }],
             "valueAxes": [{
                 "unit": "%",
@@ -241,17 +248,17 @@
                 {
                     "category": "Total",
                     "income": @Model.totalBorn,
-                    "expenses": @Model.totalWeaned
+                    "expenses": @Model.totalWeaned,
                     },
                 {
                     "category": "Male",
                     "income": @Model.malesBorn,
-                    "expenses": @Model.malesWeaned
+                    "expenses": @Model.malesWeaned,
                     },
                 {
                     "category": "Female",
                     "income": @Model.femalesBorn,
-                    "expenses": @Model.femalesWeaned
+                    "expenses": @Model.femalesWeaned,
                     }
             ]
         });
@@ -307,7 +314,7 @@
                 {
                     "category": "Total",
                     "income": @Model.avgBW,
-                    "expenses": @Model.avgWW
+                    "expenses": @Model.avgWW,
                     },
                 {
                     "category": "Male",

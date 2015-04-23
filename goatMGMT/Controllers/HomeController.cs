@@ -99,7 +99,13 @@ namespace goatMGMT.Controllers
             int ADGPWCount = 0;
             int MaleADGPWCount = 0;
             int FemaleADGPWCount = 0;
+
+            int[,] mySumBreeds = new int[25, 6];
+            int[,] allSumBreeds = new int[25, 6];
+
             SummaryViewModel svm = new SummaryViewModel();
+            svm.myArray = new double[25, 5];
+            svm.allArray = new double[25, 5];
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
             svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == true && m.isChild == false).Count();
             svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == false && m.isChild == false).Count();
@@ -129,16 +135,397 @@ namespace goatMGMT.Controllers
                                 svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
                                 ADGWCount++;
                                 MaleADGWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer" : {
+                                        svm.myArray[0, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[0, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[0, 0]++;
+                                        mySumBreeds[0, 1]++;
+                                        break;
+                                    }
+                                    case "Percentage-87.5 Boer" : {
+                                        svm.myArray[1, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[1, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[1, 0]++;
+                                        mySumBreeds[1, 1]++;
+                                        break;
+                                    }
+                                    case "Percentage-75 Boer" : {
+                                        svm.myArray[2, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[2, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[2, 0]++;
+                                        mySumBreeds[2, 1]++;
+                                        break;
+                                    }
+                                    case "Spanish" : {
+                                        svm.myArray[3, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[3, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[3, 0]++;
+                                        mySumBreeds[3, 1]++;
+                                        break;
+                                    }
+                                    case "Nubian" : {
+                                        svm.myArray[4, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[4, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[4, 0]++;
+                                        mySumBreeds[4, 1]++;
+                                        break;
+                                    }
+                                    case "Boer x Spanish" : {
+                                        svm.myArray[5, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[5, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[5, 0]++;
+                                        mySumBreeds[5, 1]++;
+                                        break;
+                                    }
+                                    case "Pure Kiko" : {
+                                        svm.myArray[6, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[6, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[6, 0]++;
+                                        mySumBreeds[6, 1]++;
+                                        break;
+                                    }
+                                    case "Percentage-87.5 Kiko" : {
+                                        svm.myArray[7, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[7, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[7, 0]++;
+                                        mySumBreeds[7, 1]++;
+                                        break;
+                                    }
+                                    case "Percentage-75 Kiko" : {
+                                        svm.myArray[8, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[8, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[8, 0]++;
+                                        mySumBreeds[8, 1]++;
+                                        break;
+                                    }
+                                    case "Kiko x Spanish" : {
+                                        svm.myArray[9, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[9, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[9, 0]++;
+                                        mySumBreeds[9, 1]++;
+                                        break;
+                                    }
+                                    case  "Kiko x Boer" : {
+                                        svm.myArray[10, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[10, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[10, 0]++;
+                                        mySumBreeds[10, 1]++;
+                                        break;
+                                    }
+                                    case "Boer X Nubian" : {
+                                        svm.myArray[11, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[11, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[11, 0]++;
+                                        mySumBreeds[11, 1]++;
+                                        break;
+                                    }
+                                    case "Boer x Spanish x Nubian" : {
+                                        svm.myArray[12, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[12, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[12, 0]++;
+                                        mySumBreeds[12, 1]++;
+                                        break;
+                                    }
+                                    case "Savanna" : {
+                                        svm.myArray[13, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[13, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[13, 0]++;
+                                        mySumBreeds[13, 1]++;
+                                        break;
+                                    }
+                                    case "Percentag-87.5 Savanna" : {
+                                        svm.myArray[14, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[14, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[14, 0]++;
+                                        mySumBreeds[14, 1]++;
+                                        break;
+                                    }
+                                    case "Percentage-75 Savanna" : {
+                                        svm.myArray[15, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[15, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[15, 0]++;
+                                        mySumBreeds[15, 1]++;
+                                        break;
+                                    }
+                                    case "Savanna x Boer" : {
+                                        svm.myArray[16, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[16, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[16, 0]++;
+                                        mySumBreeds[16, 1]++;
+                                        break;
+                                    }
+                                    case "Savanna x Kiko" : {
+                                        svm.myArray[17, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[17, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[17, 0]++;
+                                        mySumBreeds[17, 1]++;
+                                        break;
+                                    }
+                                    case "Nubian x Spanish" : {
+                                        svm.myArray[18, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[18, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[18, 0]++;
+                                        mySumBreeds[18, 1]++;
+                                        break;
+                                    }
+                                    case "Savanna x Boer x Kiko" : {
+                                        svm.myArray[19, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[19, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[19, 0]++;
+                                        mySumBreeds[19, 1]++;
+                                        break;
+                                    }
+                                    case "Angora" : {
+                                        svm.myArray[20, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[20, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[20, 0]++;
+                                        mySumBreeds[20, 1]++;
+                                        break;
+                                    }
+                                    case "Boer x Angora" : {
+                                        svm.myArray[21, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[21, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[21, 0]++;
+                                        mySumBreeds[21, 1]++;
+                                        break;
+                                    }
+                                    case "Kiko x Angora" : {
+                                        svm.myArray[22, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[22, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[22, 0]++;
+                                        mySumBreeds[22, 1]++;
+                                        break;
+                                    }
+                                    case "UNKNOWN CROSS" : {
+                                        svm.myArray[23, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[23, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[23, 0]++;
+                                        mySumBreeds[23, 1]++;
+                                        break;
+                                    }
+                                    case "OTHERS" : {
+                                        svm.myArray[24, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        svm.myArray[24, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                        mySumBreeds[24, 0]++;
+                                        mySumBreeds[24, 1]++;
+                                        break;
+                                    }
+                                }
                             }
                         }
                         if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
-                                svm.maleADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.maleADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
                                 ADGPWCount++;
                                 MaleADGPWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.myArray[0, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[0, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[0, 3]++;
+                                            mySumBreeds[0, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.myArray[1, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[1, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[1, 3]++;
+                                            mySumBreeds[1, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.myArray[2, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[2, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[2, 3]++;
+                                            mySumBreeds[2, 4]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.myArray[3, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[3, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[3, 3]++;
+                                            mySumBreeds[3, 4]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.myArray[4, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[4, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[4, 3]++;
+                                            mySumBreeds[4, 4]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.myArray[5, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[5, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[5, 3]++;
+                                            mySumBreeds[5, 4]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.myArray[6, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[6, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[6, 3]++;
+                                            mySumBreeds[6, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.myArray[7, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[7, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[7, 3]++;
+                                            mySumBreeds[7, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.myArray[8, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[8, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[8, 3]++;
+                                            mySumBreeds[8, 4]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.myArray[9, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[9, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[9, 3]++;
+                                            mySumBreeds[9, 4]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.myArray[10, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[10, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[10, 3]++;
+                                            mySumBreeds[10, 4]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.myArray[11, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[11, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[11, 3]++;
+                                            mySumBreeds[11, 4]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.myArray[12, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[12, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[12, 3]++;
+                                            mySumBreeds[12, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.myArray[13, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[13, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[13, 3]++;
+                                            mySumBreeds[13, 4]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.myArray[14, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[14, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[14, 3]++;
+                                            mySumBreeds[14, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.myArray[15, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[15, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[15, 3]++;
+                                            mySumBreeds[15, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.myArray[16, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[16, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[16, 3]++;
+                                            mySumBreeds[16, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.myArray[17, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[17, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[17, 3]++;
+                                            mySumBreeds[17, 4]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.myArray[18, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[18, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[18, 3]++;
+                                            mySumBreeds[18, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.myArray[19, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[19, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[19, 3]++;
+                                            mySumBreeds[19, 4]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.myArray[20, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[20, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[20, 3]++;
+                                            mySumBreeds[20, 4]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.myArray[21, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[21, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[21, 3]++;
+                                            mySumBreeds[21, 4]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.myArray[22, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[22, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[22, 3]++;
+                                            mySumBreeds[22, 4]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.myArray[23, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[23, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[23, 3]++;
+                                            mySumBreeds[23, 4]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.myArray[24, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[24, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[24, 3]++;
+                                            mySumBreeds[24, 4]++;
+                                            break;
+                                        }
+                                }
                             }
                         }
                     }
@@ -152,6 +539,209 @@ namespace goatMGMT.Controllers
                                 svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
                                 ADGWCount++;
                                 FemaleADGWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.myArray[0, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[0, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[0, 0]++;
+                                            mySumBreeds[0, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.myArray[1, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[1, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[1, 0]++;
+                                            mySumBreeds[1, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.myArray[2, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[2, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[2, 0]++;
+                                            mySumBreeds[2, 2]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.myArray[3, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[3, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[3, 0]++;
+                                            mySumBreeds[3, 2]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.myArray[4, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[4, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[4, 0]++;
+                                            mySumBreeds[4, 2]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.myArray[5, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[5, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[5, 0]++;
+                                            mySumBreeds[5, 2]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.myArray[6, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[6, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[6, 0]++;
+                                            mySumBreeds[6, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.myArray[7, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[7, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[7, 0]++;
+                                            mySumBreeds[7, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.myArray[8, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[8, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[8, 0]++;
+                                            mySumBreeds[8, 2]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.myArray[9, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[9, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[9, 0]++;
+                                            mySumBreeds[9, 2]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.myArray[10, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[10, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[10, 0]++;
+                                            mySumBreeds[10, 2]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.myArray[11, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[11, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[11, 0]++;
+                                            mySumBreeds[11, 2]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.myArray[12, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[12, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[12, 0]++;
+                                            mySumBreeds[12, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.myArray[13, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[13, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[13, 0]++;
+                                            mySumBreeds[13, 2]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.myArray[14, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[14, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[14, 0]++;
+                                            mySumBreeds[14, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.myArray[15, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[15, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[15, 0]++;
+                                            mySumBreeds[15, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.myArray[16, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[16, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[16, 0]++;
+                                            mySumBreeds[16, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.myArray[17, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[17, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[17, 0]++;
+                                            mySumBreeds[17, 2]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.myArray[18, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[18, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[18, 0]++;
+                                            mySumBreeds[18, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.myArray[19, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[19, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[19, 0]++;
+                                            mySumBreeds[19, 2]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.myArray[20, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[20, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[20, 0]++;
+                                            mySumBreeds[20, 2]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.myArray[21, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[21, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[21, 0]++;
+                                            mySumBreeds[21, 2]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.myArray[22, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[22, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[22, 0]++;
+                                            mySumBreeds[22, 2]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.myArray[23, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[23, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[23, 0]++;
+                                            mySumBreeds[23, 2]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.myArray[24, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[24, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[24, 0]++;
+                                            mySumBreeds[24, 2]++;
+                                            break;
+                                        }
+                                }
                             }
                             
                         }
@@ -163,6 +753,209 @@ namespace goatMGMT.Controllers
                                 svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
                                 ADGPWCount++;
                                 FemaleADGPWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.myArray[0, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[0, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[0, 3]++;
+                                            mySumBreeds[0, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.myArray[1, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[1, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[1, 3]++;
+                                            mySumBreeds[1, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.myArray[2, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[2, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[2, 3]++;
+                                            mySumBreeds[2, 5]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.myArray[3, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[3, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[3, 3]++;
+                                            mySumBreeds[3, 5]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.myArray[4, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[4, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[4, 3]++;
+                                            mySumBreeds[4, 5]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.myArray[5, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[5, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[5, 3]++;
+                                            mySumBreeds[5, 5]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.myArray[6, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[6, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[6, 3]++;
+                                            mySumBreeds[6, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.myArray[7, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[7, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[7, 3]++;
+                                            mySumBreeds[7, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.myArray[8, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[8, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[8, 3]++;
+                                            mySumBreeds[8, 5]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.myArray[9, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[9, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[9, 3]++;
+                                            mySumBreeds[9, 5]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.myArray[10, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[10, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[10, 3]++;
+                                            mySumBreeds[10, 5]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.myArray[11, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[11, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[11, 3]++;
+                                            mySumBreeds[11, 5]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.myArray[12, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[12, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[12, 3]++;
+                                            mySumBreeds[12, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.myArray[13, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[13, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[13, 3]++;
+                                            mySumBreeds[13, 5]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.myArray[14, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[14, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[14, 3]++;
+                                            mySumBreeds[14, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.myArray[15, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[15, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[15, 3]++;
+                                            mySumBreeds[15, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.myArray[16, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[16, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[16, 3]++;
+                                            mySumBreeds[16, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.myArray[17, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[17, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[17, 3]++;
+                                            mySumBreeds[17, 5]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.myArray[18, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[18, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[18, 3]++;
+                                            mySumBreeds[18, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.myArray[19, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[19, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[19, 3]++;
+                                            mySumBreeds[19, 5]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.myArray[20, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[20, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[20, 3]++;
+                                            mySumBreeds[20, 5]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.myArray[21, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[21, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[21, 3]++;
+                                            mySumBreeds[21, 5]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.myArray[22, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[22, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[22, 3]++;
+                                            mySumBreeds[22, 5]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.myArray[23, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[23, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[23, 3]++;
+                                            mySumBreeds[23, 5]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.myArray[24, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.myArray[24, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            mySumBreeds[24, 3]++;
+                                            mySumBreeds[24, 5]++;
+                                            break;
+                                        }
+                                }
                             }
                         }
                     }
@@ -334,59 +1127,877 @@ namespace goatMGMT.Controllers
                     }
                 }
             }
-            foreach (Animal a in db.Animals)
+            foreach (Animal animal in db.Animals)
             {
-                if (a.birth_weight != null && a.dob != null && (a.weaning_date != null && a.weaning_weight != null) || (a.post_weaning_date != null && a.post_weaning_weight != null))
+                if (animal.birth_weight != null && animal.dob != null && (animal.weaning_date != null && animal.weaning_weight != null) || (animal.post_weaning_date != null && animal.post_weaning_weight != null))
                 {
-                    if (a.sex)
+                    if (animal.sex)
                     {
-                        if (a.weaning_date != null && a.weaning_weight != null)
+                        if (animal.weaning_date != null && animal.weaning_weight != null)
                         {
-                            if (((DateTime)a.weaning_date - a.dob).Days > 10)
+                            if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
                             {
-                                svm.allMaleADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                                svm.allADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                                allADGWCount++;
-                                allMaleADGWCount++;
+                                svm.maleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                ADGWCount++;
+                                MaleADGWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.allArray[0, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[0, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[0, 0]++;
+                                            allSumBreeds[0, 1]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.allArray[1, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[1, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[1, 0]++;
+                                            allSumBreeds[1, 1]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.allArray[2, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[2, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[2, 0]++;
+                                            allSumBreeds[2, 1]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.allArray[3, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[3, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[3, 0]++;
+                                            allSumBreeds[3, 1]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.allArray[4, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[4, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[4, 0]++;
+                                            allSumBreeds[4, 1]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.allArray[5, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[5, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[5, 0]++;
+                                            allSumBreeds[5, 1]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.allArray[6, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[6, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[6, 0]++;
+                                            allSumBreeds[6, 1]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.allArray[7, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[7, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[7, 0]++;
+                                            allSumBreeds[7, 1]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.allArray[8, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[8, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[8, 0]++;
+                                            allSumBreeds[8, 1]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.allArray[9, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[9, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[9, 0]++;
+                                            allSumBreeds[9, 1]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.allArray[10, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[10, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[10, 0]++;
+                                            allSumBreeds[10, 1]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.allArray[11, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[11, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[11, 0]++;
+                                            allSumBreeds[11, 1]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.allArray[12, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[12, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[12, 0]++;
+                                            allSumBreeds[12, 1]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.allArray[13, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[13, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[13, 0]++;
+                                            allSumBreeds[13, 1]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.allArray[14, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[14, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[14, 0]++;
+                                            allSumBreeds[14, 1]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.allArray[15, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[15, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[15, 0]++;
+                                            allSumBreeds[15, 1]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.allArray[16, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[16, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[16, 0]++;
+                                            allSumBreeds[16, 1]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.allArray[17, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[17, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[17, 0]++;
+                                            allSumBreeds[17, 1]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.allArray[18, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[18, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[18, 0]++;
+                                            allSumBreeds[18, 1]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.allArray[19, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[19, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[19, 0]++;
+                                            allSumBreeds[19, 1]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.allArray[20, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[20, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[20, 0]++;
+                                            allSumBreeds[20, 1]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.allArray[21, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[21, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[21, 0]++;
+                                            allSumBreeds[21, 1]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.allArray[22, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[22, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[22, 0]++;
+                                            allSumBreeds[22, 1]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.allArray[23, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[23, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[23, 0]++;
+                                            allSumBreeds[23, 1]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.allArray[24, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[24, 1] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[24, 0]++;
+                                            allSumBreeds[24, 1]++;
+                                            break;
+                                        }
+                                }
                             }
-                            
                         }
-                        if (a.post_weaning_date != null && a.post_weaning_weight != null)
+                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
                         {
-                            if (((DateTime)a.post_weaning_date - a.dob).Days > 10)
+                            if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
-                                svm.allMaleADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                                svm.allADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                                allADGPWCount++;
-                                allMaleADGPWCount++;
+                                svm.maleADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                ADGPWCount++;
+                                MaleADGPWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.allArray[0, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[0, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[0, 3]++;
+                                            allSumBreeds[0, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.allArray[1, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[1, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[1, 3]++;
+                                            allSumBreeds[1, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.allArray[2, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[2, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[2, 3]++;
+                                            allSumBreeds[2, 4]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.allArray[3, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[3, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[3, 3]++;
+                                            allSumBreeds[3, 4]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.allArray[4, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[4, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[4, 3]++;
+                                            allSumBreeds[4, 4]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.allArray[5, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[5, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[5, 3]++;
+                                            allSumBreeds[5, 4]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.allArray[6, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[6, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[6, 3]++;
+                                            allSumBreeds[6, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.allArray[7, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[7, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[7, 3]++;
+                                            allSumBreeds[7, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.allArray[8, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[8, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[8, 3]++;
+                                            allSumBreeds[8, 4]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.allArray[9, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[9, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[9, 3]++;
+                                            allSumBreeds[9, 4]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.allArray[10, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[10, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[10, 3]++;
+                                            allSumBreeds[10, 4]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.allArray[11, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[11, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[11, 3]++;
+                                            allSumBreeds[11, 4]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.allArray[12, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[12, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[12, 3]++;
+                                            allSumBreeds[12, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.allArray[13, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[13, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[13, 3]++;
+                                            allSumBreeds[13, 4]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.allArray[14, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[14, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[14, 3]++;
+                                            allSumBreeds[14, 4]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.allArray[15, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[15, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[15, 3]++;
+                                            allSumBreeds[15, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.allArray[16, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[16, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[16, 3]++;
+                                            allSumBreeds[16, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.allArray[17, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[17, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[17, 3]++;
+                                            allSumBreeds[17, 4]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.allArray[18, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[18, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[18, 3]++;
+                                            allSumBreeds[18, 4]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.allArray[19, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[19, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[19, 3]++;
+                                            allSumBreeds[19, 4]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.allArray[20, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[20, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[20, 3]++;
+                                            allSumBreeds[20, 4]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.allArray[21, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[21, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[21, 3]++;
+                                            allSumBreeds[21, 4]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.allArray[22, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[22, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[22, 3]++;
+                                            allSumBreeds[22, 4]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.allArray[23, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[23, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[23, 3]++;
+                                            allSumBreeds[23, 4]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.allArray[24, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[24, 4] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[24, 3]++;
+                                            allSumBreeds[24, 4]++;
+                                            break;
+                                        }
+                                }
                             }
-                            
                         }
                     }
                     else
                     {
-                        if (a.weaning_date != null && a.weaning_weight != null)
+                        if (animal.weaning_date != null && animal.weaning_weight != null)
                         {
-                            if (((DateTime)a.weaning_date - a.dob).Days > 10)
+                            if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
                             {
-                                svm.allFemaleADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                                svm.allADGWeaning += (double)(a.weaning_weight - a.birth_weight) / ((DateTime)a.weaning_date - a.dob).Days;
-                                allADGWCount++;
-                                allFemaleADGWCount++;
+                                svm.femaleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                ADGWCount++;
+                                FemaleADGWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.allArray[0, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[0, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[0, 0]++;
+                                            allSumBreeds[0, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.allArray[1, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[1, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[1, 0]++;
+                                            allSumBreeds[1, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.allArray[2, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[2, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[2, 0]++;
+                                            allSumBreeds[2, 2]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.allArray[3, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[3, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[3, 0]++;
+                                            allSumBreeds[3, 2]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.allArray[4, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[4, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[4, 0]++;
+                                            allSumBreeds[4, 2]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.allArray[5, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[5, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[5, 0]++;
+                                            allSumBreeds[5, 2]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.allArray[6, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[6, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[6, 0]++;
+                                            allSumBreeds[6, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.allArray[7, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[7, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[7, 0]++;
+                                            allSumBreeds[7, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.allArray[8, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[8, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[8, 0]++;
+                                            allSumBreeds[8, 2]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.allArray[9, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[9, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[9, 0]++;
+                                            allSumBreeds[9, 2]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.allArray[10, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[10, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[10, 0]++;
+                                            allSumBreeds[10, 2]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.allArray[11, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[11, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[11, 0]++;
+                                            allSumBreeds[11, 2]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.allArray[12, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[12, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[12, 0]++;
+                                            allSumBreeds[12, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.allArray[13, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[13, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[13, 0]++;
+                                            allSumBreeds[13, 2]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.allArray[14, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[14, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[14, 0]++;
+                                            allSumBreeds[14, 2]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.allArray[15, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[15, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[15, 0]++;
+                                            allSumBreeds[15, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.allArray[16, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[16, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[16, 0]++;
+                                            allSumBreeds[16, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.allArray[17, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[17, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[17, 0]++;
+                                            allSumBreeds[17, 2]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.allArray[18, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[18, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[18, 0]++;
+                                            allSumBreeds[18, 2]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.allArray[19, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[19, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[19, 0]++;
+                                            allSumBreeds[19, 2]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.allArray[20, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[20, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[20, 0]++;
+                                            allSumBreeds[20, 2]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.allArray[21, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[21, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[21, 0]++;
+                                            allSumBreeds[21, 2]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.allArray[22, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[22, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[22, 0]++;
+                                            allSumBreeds[22, 2]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.allArray[23, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[23, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[23, 0]++;
+                                            allSumBreeds[23, 2]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.allArray[24, 0] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[24, 2] += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[24, 0]++;
+                                            allSumBreeds[24, 2]++;
+                                            break;
+                                        }
+                                }
                             }
+
                         }
-                        if (a.post_weaning_date != null && a.post_weaning_weight != null)
+                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
                         {
-                            if (((DateTime)a.post_weaning_date - a.dob).Days > 10)
+                            if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
-                                svm.allFemaleADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                                svm.allADGPostWeaning += (double)(a.post_weaning_weight - a.birth_weight) / ((DateTime)a.post_weaning_date - a.dob).Days;
-                                allADGPWCount++;
-                                allFemaleADGPWCount++;
+                                svm.femaleADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                ADGPWCount++;
+                                FemaleADGPWCount++;
+                                switch (animal.breed_code)
+                                {
+                                    case "Purbred Boer":
+                                        {
+                                            svm.allArray[0, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[0, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[0, 3]++;
+                                            allSumBreeds[0, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Boer":
+                                        {
+                                            svm.allArray[1, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[1, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[1, 3]++;
+                                            allSumBreeds[1, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Boer":
+                                        {
+                                            svm.allArray[2, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[2, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[2, 3]++;
+                                            allSumBreeds[2, 5]++;
+                                            break;
+                                        }
+                                    case "Spanish":
+                                        {
+                                            svm.allArray[3, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[3, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[3, 3]++;
+                                            allSumBreeds[3, 5]++;
+                                            break;
+                                        }
+                                    case "Nubian":
+                                        {
+                                            svm.allArray[4, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[4, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[4, 3]++;
+                                            allSumBreeds[4, 5]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish":
+                                        {
+                                            svm.allArray[5, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[5, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[5, 3]++;
+                                            allSumBreeds[5, 5]++;
+                                            break;
+                                        }
+                                    case "Pure Kiko":
+                                        {
+                                            svm.allArray[6, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[6, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[6, 3]++;
+                                            allSumBreeds[6, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-87.5 Kiko":
+                                        {
+                                            svm.allArray[7, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[7, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[7, 3]++;
+                                            allSumBreeds[7, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Kiko":
+                                        {
+                                            svm.allArray[8, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[8, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[8, 3]++;
+                                            allSumBreeds[8, 5]++;
+                                            break;
+                                        }
+                                    case "Kiko x Spanish":
+                                        {
+                                            svm.allArray[9, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[9, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[9, 3]++;
+                                            allSumBreeds[9, 5]++;
+                                            break;
+                                        }
+                                    case "Kiko x Boer":
+                                        {
+                                            svm.allArray[10, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[10, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[10, 3]++;
+                                            allSumBreeds[10, 5]++;
+                                            break;
+                                        }
+                                    case "Boer X Nubian":
+                                        {
+                                            svm.allArray[11, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[11, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[11, 3]++;
+                                            allSumBreeds[11, 5]++;
+                                            break;
+                                        }
+                                    case "Boer x Spanish x Nubian":
+                                        {
+                                            svm.allArray[12, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[12, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[12, 3]++;
+                                            allSumBreeds[12, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna":
+                                        {
+                                            svm.allArray[13, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[13, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[13, 3]++;
+                                            allSumBreeds[13, 5]++;
+                                            break;
+                                        }
+                                    case "Percentag-87.5 Savanna":
+                                        {
+                                            svm.allArray[14, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[14, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[14, 3]++;
+                                            allSumBreeds[14, 5]++;
+                                            break;
+                                        }
+                                    case "Percentage-75 Savanna":
+                                        {
+                                            svm.allArray[15, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[15, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[15, 3]++;
+                                            allSumBreeds[15, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer":
+                                        {
+                                            svm.allArray[16, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[16, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[16, 3]++;
+                                            allSumBreeds[16, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna x Kiko":
+                                        {
+                                            svm.allArray[17, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[17, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[17, 3]++;
+                                            allSumBreeds[17, 5]++;
+                                            break;
+                                        }
+                                    case "Nubian x Spanish":
+                                        {
+                                            svm.allArray[18, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[18, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[18, 3]++;
+                                            allSumBreeds[18, 5]++;
+                                            break;
+                                        }
+                                    case "Savanna x Boer x Kiko":
+                                        {
+                                            svm.allArray[19, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[19, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[19, 3]++;
+                                            allSumBreeds[19, 5]++;
+                                            break;
+                                        }
+                                    case "Angora":
+                                        {
+                                            svm.allArray[20, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[20, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[20, 3]++;
+                                            allSumBreeds[20, 5]++;
+                                            break;
+                                        }
+                                    case "Boer x Angora":
+                                        {
+                                            svm.allArray[21, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[21, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[21, 3]++;
+                                            allSumBreeds[21, 5]++;
+                                            break;
+                                        }
+                                    case "Kiko x Angora":
+                                        {
+                                            svm.allArray[22, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[22, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[22, 3]++;
+                                            allSumBreeds[22, 5]++;
+                                            break;
+                                        }
+                                    case "UNKNOWN CROSS":
+                                        {
+                                            svm.allArray[23, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[23, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[23, 3]++;
+                                            allSumBreeds[23, 5]++;
+                                            break;
+                                        }
+                                    case "OTHERS":
+                                        {
+                                            svm.allArray[24, 3] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            svm.allArray[24, 5] += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                            allSumBreeds[24, 3]++;
+                                            allSumBreeds[24, 5]++;
+                                            break;
+                                        }
+                                }
                             }
-                            
                         }
                     }
+                }
+            }
+            for (int i = 0; i < 25; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    svm.myArray[i, j] = svm.myArray[i, j] / mySumBreeds[i, j];
+                    svm.allArray[i, j] = svm.allArray[i, j] / allSumBreeds[i, j];
                 }
             }
             svm.maleAvgBW = svm.maleAvgBW / maleBWCount;
@@ -426,6 +2037,34 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "Birth", Value = "Birth"}
             };
             @ViewBag.GraphList = graphList;
+            List<SelectListItem> breedList = new List<SelectListItem>() {
+                new SelectListItem() { Text = "Purbred Boer", Value = "0"},
+                new SelectListItem() { Text = "Percentage-87.5 Boer", Value = "1"},
+                new SelectListItem() { Text = "Percentage-75 Boer", Value = "2"},
+                new SelectListItem() { Text = "Spanish", Value = "3"},
+                new SelectListItem() { Text = "Nubian", Value = "4"},
+                new SelectListItem() { Text = "Boer x Spanish", Value = "5"},
+                new SelectListItem() { Text = "Pure Kiko", Value = "6"},
+                new SelectListItem() { Text = "Percentage-87.5 Kiko", Value = "7"},
+                new SelectListItem() { Text = "Percentage-75 Kiko", Value = "8"},
+                new SelectListItem() { Text = "Kiko x Spanish", Value = "9"},
+                new SelectListItem() { Text = "Kiko x Boer", Value = "10"},
+                new SelectListItem() { Text = "Boer X Nubian", Value = "11"},
+                new SelectListItem() { Text = "Boer x Spanish x Nubian", Value = "12"},
+                new SelectListItem() { Text = "Savanna", Value = "13"},
+                new SelectListItem() { Text = "Percentag-87.5 Savanna", Value = "14"},
+                new SelectListItem() { Text = "Percentage-75 Savanna", Value = "15"},
+                new SelectListItem() { Text = "Savanna x Boer", Value = "16"},
+                new SelectListItem() { Text = "Savanna x Kiko", Value = "17"},
+                new SelectListItem() { Text = "Nubian x Spanish", Value = "18"},
+                new SelectListItem() { Text = "Savanna x Boer x Kiko", Value = "19"},
+                new SelectListItem() { Text = "Angora", Value = "20"},
+                new SelectListItem() { Text = "Boer x Angora", Value = "21"},
+                new SelectListItem() { Text = "Kiko x Angora", Value = "22"},
+                new SelectListItem() { Text = "UNKNOWN CROSS", Value = "23"},
+                new SelectListItem() { Text = "OTHERS", Value = "24"},
+            };
+            @ViewBag.breedList = breedList;
             return View(svm);
         }
 

@@ -104,8 +104,8 @@ namespace goatMGMT.Controllers
             int[,] allSumBreeds = new int[25, 6];
 
             SummaryViewModel svm = new SummaryViewModel();
-            svm.myArray = new double[25, 5];
-            svm.allArray = new double[25, 5];
+            svm.myArray = new double[25, 6];
+            svm.allArray = new double[25, 6];
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
             svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == true && m.isChild == false).Count();
             svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == false && m.isChild == false).Count();

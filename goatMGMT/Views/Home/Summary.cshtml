@@ -17,6 +17,13 @@
         </div>
     </div>
     
+    <div class="control-group" style="padding-top: 15px; padding-bottom: 15px;">
+        @Html.LabelFor(m => m.breedCode, new { @class = "control-label" })
+        <div class="controls">
+            @Html.DropDownListFor(m => m.breedCode, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed to compare", new { @class = "form-control" })
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <h4><span id="graph1Title"></span></h4>
@@ -140,6 +147,7 @@
                 "europe": @Model.totalSire,
                 "namerica": @Model.totalDam,
             }, {
+<<<<<<< HEAD
                 "year": "Active",
                 "europe": @Model.activeSire,
                 "namerica": @Model.activeDam,

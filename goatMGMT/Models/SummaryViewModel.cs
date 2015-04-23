@@ -121,6 +121,12 @@ namespace goatMGMT.Models
 
         public double femaleADGPostWeaning { get; set; }
 
+        public double[,] myArray { get; set; } // FIRST INDEX: Breeds, SECOND: Info (weaning, weaning(m), weaning(f),post-w,pw(m),pw(f)
+        public double[,] allArray { get; set; }
+
+        [DisplayName("Select a breed to compare")]
+        public int breedCode { get; set; }
+
         [DisplayName("Select category of data to view")]
         public string graphAnswer { get; set; }
     }

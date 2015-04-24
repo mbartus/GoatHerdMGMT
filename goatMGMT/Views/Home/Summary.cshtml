@@ -50,19 +50,15 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
-    var breedCode = $('#stringBreedCode').val();
     $('#stringBreedCode').change( function() {
-        alert($('#stringBreedCode').val());
-        $('#breedCode').val = parseInt($('#stringBreedCode').toString());
+        breedCode = $('#stringBreedCode').val();
     });
     function adgGraph () {
-        var breedCode = $('#stringBreedCode').val();
         var chart = AmCharts.makeChart("graph1", {
             "type": "serial",
             "theme": "none",
@@ -73,28 +69,28 @@
             },
             "dataProvider": [{
                 "category": "Weaning ADG",
-                "allHerd": @Model.allArray[breedCode, 0],
-                "myHerd": @Model.myArray[breedCode, 0],
+                "allHerd": $('#allArray').get($('#breedCode').val(), 0),
+                "myHerd": myArray[breedCode, 0],
             }, {
                 "category": "Weaning ADG (Male)",
-                "allHerd": @Model.allArray[Model.breedCode, 1],
-                "myHerd": @Model.myArray[Model.breedCode, 1],
+                "allHerd": $('#allArray').get($('#breedCode').val(), 1),
+                "myHerd": myArray[breedCode, 1],
             }, {
                 "category": "Weaning ADG (Female)",
-                "allHerd": @Model.allArray[Model.breedCode, 2],
-                "myHerd": @Model.myArray[Model.breedCode, 2],
+                "allHerd": $('#allArray').get($('#breedCode').val(), 2),
+                "myHerd": myArray[breedCode, 2],
             }, {
                 "category": "Post-Weaning ADG",
-                "allHerd": @Model.allArray[Model.breedCode, 3],
-                "myHerd": @Model.myArray[Model.breedCode, 3],
+                "allHerd": $('#allArray').get($('#breedCode').val(), 3),
+                "myHerd": myArray[breedCode, 3],
             }, {
                 "category": "Post-Weaning ADG (Male)",
-                "allHerd": @Model.allArray[Model.breedCode, 4],
-                "myHerd": @Model.myArray[Model.breedCode, 4],
+                "allHerd": $('#allArray').get($('#breedCode').val(), 4),
+                "myHerd": myArray[breedCode, 4],
             }, {
                 "category": "Post-Weaning ADG (Female)",
-                "allHerd": @Model.allArray[Model.breedCode, 5],
-                "myHerd": @Model.myArray[Model.breedCode, 5],
+                "allHerd": $('#allArray').get($('#breedCode').val(), 5),
+                "myHerd": myArray[breedCode, 5],
             }],
             "legend" : [{
                 "title":"first",
@@ -146,9 +142,9 @@
             "depth3D": 20,
             "angle": 30,
             "legend": {
-                "horizontalGap": 10,
+                "horizontalGap" : 10,
                 "useGraphSettings": true,
-                "markerSize": 10
+                "markerSize" : 10,
             },
             "dataProvider": [ {
                 "year": "Total",
@@ -379,8 +375,8 @@
                 {
                     "category": "Results",
                     "income": @Model.matingCount,
-                    "expenses": @Model.kiddingCount
-                    }
+                    "expenses": @Model.kiddingCount,
+                }
             ]
         });
     }
@@ -435,8 +431,8 @@
                 {
                     "category": "Offspring",
                     "income": @Model.kidsBornCount,
-                    "expenses": @Model.kidsAliveCount
-                    }
+                    "expenses": @Model.kidsAliveCount,
+                }
             ]
         });
     }
@@ -491,18 +487,18 @@
                 {
                     "category": "1",
                     "income": @Model.damParity1Count,
-                    "expenses": @Model.damParity1BW
-                    },
+                    "expenses": @Model.damParity1BW,
+                },
                 {
                     "category": "2",
                     "income": @Model.damParity2Count,
-                    "expenses": @Model.damParity2BW
-                    },
+                    "expenses": @Model.damParity2BW,
+                },
                 {
                     "category": "3",
                     "income": @Model.damParity3Count,
-                    "expenses": @Model.damParity3BW
-                    },
+                    "expenses": @Model.damParity3BW,
+                },
                 {
                     "category": "4+",
                     "income": @Model.damParity4Count,

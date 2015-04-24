@@ -1041,13 +1041,30 @@ namespace goatMGMT.Controllers
                     }
                     svm.kidsAlivePercentage = svm.kidsBornCount / svm.kidsAliveCount;
                      foreach (Birth birth in breeding.Births){
-                         if (animal.birth_weight != null)
+                         Animal tempAnimal = db.Animals.Find(birth.child_id);
+                         if (tempAnimal.birth_weight != null)
                          {
-                             svm.numberBorn++;
+                             if (tempAnimal.sex)
+                             {
+                                 svm.numberBornMale++;
+                             }
+                             else
+                             {
+                                 svm.numberBornFemale++;
+                             }
+                             
                          }
-                         if (animal.weaning_weight != null)
+                         if (tempAnimal.weaning_weight != null)
                          {
-                             svm.numberWeaned++;
+                             if (tempAnimal.sex)
+                             {
+                                 svm.numberWeanedMale++;
+                             }
+                             else
+                             {
+                                 svm.numberWeanedFemale++;
+                             }
+                             
                          }
                    }
 

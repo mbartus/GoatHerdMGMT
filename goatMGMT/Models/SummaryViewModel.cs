@@ -129,8 +129,10 @@ namespace goatMGMT.Models
 
         public int breedCode { get; set; }
 
-        public int numberWeaned { get; set; }
-        public int numberBorn { get; set; }
+        public int numberWeanedMale { get; set; }
+        public int numberWeanedFemale { get; set; }
+        public int numberBornMale { get; set; }
+        public int numberBornFemale { get; set; }
 
         [DisplayName("Select category of data to view")]
         public string graphAnswer { get; set; }

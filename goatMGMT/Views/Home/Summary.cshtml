@@ -58,22 +58,62 @@
     var myArray;
     var allArray;
     $('document').ready( function() {
-        myArray = [[]];
-        allArray = [[]];
+        breedCode = 0;
+        myArray = [];
+        allArray = [];
         @for (int i = 0; i < 25;  i++)
         {
+            @:var myTempArray = [];
+            @:var allTempArray = [];
             for (int j = 0; j < 6; j++)
             {
-                @:myArray[@i][@j] = @Model.myArray[i, j];
-                @:allArray[@i][@j] = @Model.allArray[i, j];
+                @:myTempArray[@j] = @Model.myArray[i, j];
+                @:allTempArray[@j] = @Model.allArray[i, j];
             }
+            @:myArray[@i] = myTempArray;
+            @:allArray[@i] = allTempArray;
         }
     });
     $('#stringBreedCode').change( function() {
-        breedCode = parseInt($('#stringBreedCode').val);
-        var temp = $('#graphAnswer').val();
-        $('#graphAnswer').val = "Select a category";
-        $('#graphAnswer').val = temp;
+        breedCode = parseInt($('#stringBreedCode').val());
+        if($('#graphAnswer').val() == "General") {
+            $('#graph1Title').html("Average Daily Gains (ADG)")
+            $('#graph1').css('display', 'block')
+            adgGraph();
+            $('#graph2Title').html("Total/Active Animals")
+            $('#graph2').css('display', 'block')
+            totalActiveGraph();
+            $('#graph3Title').html(" ")
+            $('#graph3').css('display', 'none')
+            $('#graph4Title').html(" ")
+            $('#graph4').css('display', 'none')
+        }
+        else if ($('#graphAnswer').val() == "Weaning") {
+            $('#graph1Title').html("Total Offspring Born")
+            $('#graph1').css('display', 'block')
+            $('#graph2Title').html("Total Offspring Weaned")
+            $('#graph2').css('display', 'block')
+            bornWeanedGraph();
+            $('#graph3Title').html("Average Birth Weight / Weaning Weight")
+            $('#graph3').css('display', 'block')
+            bornWeaningWeightGraph();
+            $('#graph4Title').html(" ")
+            $('#graph4').css('display', 'none')
+        }
+        else if ($('#graphAnswer').val() == "Birth") {
+            $('#graph1Title').html("Mating and Birth Count")
+            $('#graph1').css('display', 'block')
+            matingBirthGraph();
+            $('#graph2Title').html("Birth Survival Rate")
+            $('#graph2').css('display', 'block')
+            survivalRateGraph();
+            $('#graph3Title').html("Dam Parity Count and Average Birth Weight")
+            $('#graph3').css('display', 'block')
+            parityBirthWeightGraph();
+            $('#graph4Title').html("Multiple Births")
+            $('#graph4').css('display', 'block')
+            multipleBirthsGraph();
+        }
     });
     function adgGraph () {
         var chart = AmCharts.makeChart("graph1", {
@@ -86,28 +126,28 @@
             },
             "dataProvider": [{
                 "category": "Weaning ADG",
-                "allHerd": allArray[$('#breedCode').val(), 0],
-                "myHerd": myArray[$('#breedCode').val(), 0],
+                "allHerd": allArray[breedCode][0],
+                "myHerd": myArray[breedCode][0],
             }, {
                 "category": "Weaning ADG (Male)",
-                "allHerd": allArray[$('#breedCode').val(), 1],
-                "myHerd": myArray[$('#breedCode').val(), 1],
+                "allHerd": allArray[breedCode][1],
+                "myHerd": myArray[breedCode][1],
             }, {
                 "category": "Weaning ADG (Female)",
-                "allHerd": allArray[$('#breedCode').val(), 2],
-                "myHerd": myArray[$('#breedCode').val(), 2],
+                "allHerd": allArray[breedCode][2],
+                "myHerd": myArray[breedCode][2],
             }, {
                 "category": "Post-Weaning ADG",
-                "allHerd": allArray[$('#breedCode').val(), 3],
-                "myHerd": myArray[$('#breedCode').val(), 3],
+                "allHerd": allArray[breedCode][3],
+                "myHerd": myArray[breedCode][3],
             }, {
                 "category": "Post-Weaning ADG (Male)",
-                "allHerd": allArray[$('#breedCode').val(), 4],
-                "myHerd": myArray[$('#breedCode').val(), 4],
+                "allHerd": allArray[breedCode][4],
+                "myHerd": myArray[breedCode][4],
             }, {
                 "category": "Post-Weaning ADG (Female)",
-                "allHerd": allArray[$('#breedCode').val(), 5],
-                "myHerd": myArray[$('#breedCode').val(), 5],
+                "allHerd": allArray[breedCode][5],
+                "myHerd": myArray[breedCode][5],
             }],
             "legend" : [{
                 "title":"first",

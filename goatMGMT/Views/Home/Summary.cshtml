@@ -208,11 +208,8 @@
             },
             "dataProvider": [ {
                 "country": "Sire",
-                "litres": @Model.malesBorn,
-            }, {
-                "country": "Dam",
-                "litres": @Model.femalesBorn,
-            } ],
+                "litres": @Model.numberBorn,
+            },  ],
             "valueField": "litres",
             "titleField": "country",
             "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
@@ -234,11 +231,8 @@
             },
             "dataProvider": [ {
                 "country": "Sire",
-                "litres": @Model.malesWeaned,
-            }, {
-                "country": "Dam",
-                "litres": @Model.femalesWeaned,
-            } ],
+                "litres": @Model.numberWeaned,
+            }, ],
             "valueField": "litres",
             "titleField": "country",
             "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",

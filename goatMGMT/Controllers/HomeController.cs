@@ -99,6 +99,9 @@ namespace goatMGMT.Controllers
             int ADGPWCount = 0;
             int MaleADGPWCount = 0;
             int FemaleADGPWCount = 0;
+            int numberBornForWeaningGraph = 0;
+            int numberWeanedForWeaningGraph = 0;
+
 
             int[,] mySumBreeds = new int[25, 6];
             int[,] allSumBreeds = new int[25, 6];
@@ -992,7 +995,8 @@ namespace goatMGMT.Controllers
                             femaleWWCount++;
                         }
                     }
-                }
+                }  
+
                 foreach (Breeding breeding in db.Breedings.Where(m => m.father_id == animal.id))
                 {
                     svm.matingCount++;
@@ -1036,6 +1040,17 @@ namespace goatMGMT.Controllers
                         svm.damParity4Count++;
                     }
                     svm.kidsAlivePercentage = svm.kidsBornCount / svm.kidsAliveCount;
+                     foreach (Birth birth in breeding.Births){
+                         if (animal.birth_weight != null)
+                         {
+                             svm.numberBorn++;
+                         }
+                         if (animal.weaning_weight != null)
+                         {
+                             svm.numberWeaned++;
+                         }
+                   }
+
                     foreach (Birth birth in breeding.Births)
                     {
                         if (birth.Breeding.parity == 1)

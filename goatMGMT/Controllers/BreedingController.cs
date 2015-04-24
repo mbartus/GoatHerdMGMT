@@ -136,24 +136,27 @@ namespace goatMGMT.Controllers
             List<SelectListItem> flist = new List<SelectListItem>();
             if (ModelState.IsValid && breeding.father_id != 0 && breeding.mother_id != 0)
             {
-                if (((DateTime)breeding.actual_birthing_date).CompareTo(((DateTime)breeding.date)) < 0)
+                if (breeding.actual_birthing_date != null && breeding.date != null)
                 {
-                    ModelState.AddModelError("", "Birthing date cannot be after breeding date.");
-                    mlist = new List<SelectListItem>();
-                    flist = new List<SelectListItem>();
-                    mlist.Add(new SelectListItem { Text = "Select Sire", Value = "0" });
-                    flist.Add(new SelectListItem { Text = "Select Dam", Value = "0" });
-                    for (int i = 1; i <= bvm.maleList.Count(); i++)
+                    if (((DateTime)breeding.actual_birthing_date).CompareTo(((DateTime)breeding.date)) < 0)
                     {
-                        mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).tag, Value = "" + i });
+                        ModelState.AddModelError("", "Birthing date cannot be after breeding date.");
+                        mlist = new List<SelectListItem>();
+                        flist = new List<SelectListItem>();
+                        mlist.Add(new SelectListItem { Text = "Select Sire", Value = "0" });
+                        flist.Add(new SelectListItem { Text = "Select Dam", Value = "0" });
+                        for (int i = 1; i <= bvm.maleList.Count(); i++)
+                        {
+                            mlist.Add(new SelectListItem { Text = bvm.maleList.ElementAt(i - 1).tag, Value = "" + i });
+                        }
+                        for (int i = 1; i <= bvm.femaleList.Count(); i++)
+                        {
+                            flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).tag, Value = "" + i });
+                        }
+                        @ViewBag.flist = flist;
+                        @ViewBag.mlist = mlist;
+                        return View(bvm);
                     }
-                    for (int i = 1; i <= bvm.femaleList.Count(); i++)
-                    {
-                        flist.Add(new SelectListItem { Text = bvm.femaleList.ElementAt(i - 1).tag, Value = "" + i });
-                    }
-                    @ViewBag.flist = flist;
-                    @ViewBag.mlist = mlist;
-                    return View(bvm);
                 }
                 breeding.Animal = db.Animals.Find(bvm.maleList.ElementAt(breeding.father_id - 1).id);
                 breeding.Animal1 = db.Animals.Find(bvm.femaleList.ElementAt(breeding.mother_id - 1).id);

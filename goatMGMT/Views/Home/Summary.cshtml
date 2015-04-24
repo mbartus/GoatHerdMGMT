@@ -55,16 +55,21 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
+    var myArray;
+    var allArray;
     $('document').ready( function() {
-        var myArray = [,];
-        @foreach (var d in Model.myArray)
+        @for (int i = 0; i < 25;  i++)
         {
-            @:myArray.push("@d");
-                }
-       
+            for (int j = 0; j < 6; j++)
+            {
+            }
+        }
     });
     $('#stringBreedCode').change( function() {
-        breedCode = parseInt($('#stringBreedCode').val());
+        breedCode = parseInt($('#stringBreedCode').val);
+        var temp = $('#graphAnswer').val();
+        $('#graphAnswer').val = "Select a category";
+        $('#graphAnswer').val = temp;
     });
     function adgGraph () {
         var chart = AmCharts.makeChart("graph1", {
@@ -77,28 +82,28 @@
             },
             "dataProvider": [{
                 "category": "Weaning ADG",
-                "allHerd": $('#allArray').get($('#breedCode').val(), 0),
-                "myHerd": $('#myArray').get($('#breedCode').val(), 0),
+                "allHerd": allArray[$('#breedCode').val(), 0],
+                "myHerd": myArray[$('#breedCode').val(), 0],
             }, {
                 "category": "Weaning ADG (Male)",
-                "allHerd": $('#allArray').get($('#breedCode').val(), 1),
-                "myHerd": $('#myArray').get($('#breedCode').val(), 1),
+                "allHerd": allArray[$('#breedCode').val(), 1],
+                "myHerd": myArray[$('#breedCode').val(), 1],
             }, {
                 "category": "Weaning ADG (Female)",
-                "allHerd": $('#allArray').get($('#breedCode').val(), 2),
-                "myHerd": $('#myArray').get($('#breedCode').val(), 2),
+                "allHerd": allArray[$('#breedCode').val(), 2],
+                "myHerd": myArray[$('#breedCode').val(), 2],
             }, {
                 "category": "Post-Weaning ADG",
-                "allHerd": $('#allArray').get($('#breedCode').val(), 3),
-                "myHerd": $('#myArray').get($('#breedCode').val(), 3),
+                "allHerd": allArray[$('#breedCode').val(), 3],
+                "myHerd": myArray[$('#breedCode').val(), 3],
             }, {
                 "category": "Post-Weaning ADG (Male)",
-                "allHerd": $('#allArray').get($('#breedCode').val(), 4),
-                "myHerd": $('#myArray').get($('#breedCode').val(), 4),
+                "allHerd": allArray[$('#breedCode').val(), 4],
+                "myHerd": myArray[$('#breedCode').val(), 4],
             }, {
                 "category": "Post-Weaning ADG (Female)",
-                "allHerd": $('#allArray').get($('#breedCode').val(), 5),
-                "myHerd": $('#myArray').get($('#breedCode').val(), 5),
+                "allHerd": allArray[$('#breedCode').val(), 5],
+                "myHerd": myArray[$('#breedCode').val(), 5],
             }],
             "legend" : [{
                 "title":"first",
@@ -599,7 +604,6 @@
             ]
         });
     }
-
     $('#graphAnswer').change(function() {
         if($('#graphAnswer').val() == "General") {
             $('#graph1Title').html("Average Daily Gains (ADG)")

@@ -58,10 +58,14 @@
     var myArray;
     var allArray;
     $('document').ready( function() {
+        myArray = [[]];
+        allArray = [[]];
         @for (int i = 0; i < 25;  i++)
         {
             for (int j = 0; j < 6; j++)
             {
+                @:myArray[@i][@j] = @Model.myArray[i, j];
+                @:allArray[@i][@j] = @Model.allArray[i, j];
             }
         }
     });

@@ -55,8 +55,16 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
+    $('document').ready( function() {
+        var myArray = [,];
+        @foreach (var d in Model.myArray)
+        {
+            @:myArray.push("@d");
+                }
+       
+    });
     $('#stringBreedCode').change( function() {
-        breedCode = $('#stringBreedCode').val();
+        breedCode = parseInt($('#stringBreedCode').val());
     });
     function adgGraph () {
         var chart = AmCharts.makeChart("graph1", {
@@ -70,27 +78,27 @@
             "dataProvider": [{
                 "category": "Weaning ADG",
                 "allHerd": $('#allArray').get($('#breedCode').val(), 0),
-                "myHerd": myArray[breedCode, 0],
+                "myHerd": $('#myArray').get($('#breedCode').val(), 0),
             }, {
                 "category": "Weaning ADG (Male)",
                 "allHerd": $('#allArray').get($('#breedCode').val(), 1),
-                "myHerd": myArray[breedCode, 1],
+                "myHerd": $('#myArray').get($('#breedCode').val(), 1),
             }, {
                 "category": "Weaning ADG (Female)",
                 "allHerd": $('#allArray').get($('#breedCode').val(), 2),
-                "myHerd": myArray[breedCode, 2],
+                "myHerd": $('#myArray').get($('#breedCode').val(), 2),
             }, {
                 "category": "Post-Weaning ADG",
                 "allHerd": $('#allArray').get($('#breedCode').val(), 3),
-                "myHerd": myArray[breedCode, 3],
+                "myHerd": $('#myArray').get($('#breedCode').val(), 3),
             }, {
                 "category": "Post-Weaning ADG (Male)",
                 "allHerd": $('#allArray').get($('#breedCode').val(), 4),
-                "myHerd": myArray[breedCode, 4],
+                "myHerd": $('#myArray').get($('#breedCode').val(), 4),
             }, {
                 "category": "Post-Weaning ADG (Female)",
                 "allHerd": $('#allArray').get($('#breedCode').val(), 5),
-                "myHerd": myArray[breedCode, 5],
+                "myHerd": $('#myArray').get($('#breedCode').val(), 5),
             }],
             "legend" : [{
                 "title":"first",

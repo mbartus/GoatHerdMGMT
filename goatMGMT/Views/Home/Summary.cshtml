@@ -56,11 +56,13 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
+    var breedCode = $('#stringBreedCode').val();
     $('#stringBreedCode').change( function() {
-        alert($('#stringBreedCode').toString());
+        alert($('#stringBreedCode').val());
         $('#breedCode').val = parseInt($('#stringBreedCode').toString());
     });
     function adgGraph () {
+        var breedCode = $('#stringBreedCode').val();
         var chart = AmCharts.makeChart("graph1", {
             "type": "serial",
             "theme": "none",
@@ -71,8 +73,8 @@
             },
             "dataProvider": [{
                 "category": "Weaning ADG",
-                "allHerd": @Model.allArray[Model.breedCode, 0],
-                "myHerd": @Model.myArray[Model.breedCode, 0],
+                "allHerd": @Model.allArray[breedCode, 0],
+                "myHerd": @Model.myArray[breedCode, 0],
             }, {
                 "category": "Weaning ADG (Male)",
                 "allHerd": @Model.allArray[Model.breedCode, 1],

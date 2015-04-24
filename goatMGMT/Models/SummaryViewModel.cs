@@ -125,6 +125,8 @@ namespace goatMGMT.Models
         public double[,] allArray { get; set; }
 
         [DisplayName("Select a breed to compare")]
+        public string stringBreedCode { get; set; }
+
         public int breedCode { get; set; }
 
         [DisplayName("Select category of data to view")]

@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
+
     <h2 style="margin-bottom:15px;">Herd Summary</h2>
     @Html.ActionLink("Export to Excel", "Export", "Home", new{}, new{@class="btn btn-success", @style=""})
     <p style="margin-bottom:15px;">Download an excel sheet with all of your information filled in</p>
@@ -18,9 +19,9 @@
     </div>
     
     <div class="control-group" style="padding-top: 15px; padding-bottom: 15px;">
-        @Html.LabelFor(m => m.breedCode, new { @class = "control-label" })
+        @Html.LabelFor(m => m.stringBreedCode, new { @class = "control-label" })
         <div class="controls">
-            @Html.DropDownListFor(m => m.breedCode, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed to compare", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.stringBreedCode, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed to compare", new { @class = "form-control" })
         </div>
     </div>
 
@@ -55,6 +56,10 @@
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 <script type="text/javascript">
+    $('#stringBreedCode').change( function() {
+        alert($('#stringBreedCode').toString());
+        $('#breedCode').val = parseInt($('#stringBreedCode').toString());
+    });
     function adgGraph () {
         var chart = AmCharts.makeChart("graph1", {
             "type": "serial",

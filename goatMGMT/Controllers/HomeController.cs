@@ -3133,7 +3133,11 @@ namespace goatMGMT.Controllers
             worksheet.Cells[1, 19].Value = "Market Weight";
             worksheet.Cells[1, 20].Value = "Market Date";
             worksheet.Cells[1, 21].Value = "Disposal Date";
-            worksheet.Cells[1, 22].Value = "Comments";
+            worksheet.Cells[1, 22].Value = "FAMACHA Score";
+            worksheet.Cells[1, 23].Value = "Fecal Egg Count";
+            worksheet.Cells[1, 24].Value = "Hair Coat Score";
+            worksheet.Cells[1, 25].Value = "Body Condition Score";
+            worksheet.Cells[1, 26].Value = "Comments";
 
             // populate a row for each animal
             List<Animal> animals = db.Animals.Where(animal => animal.owner == userID).ToList();
@@ -3177,7 +3181,11 @@ namespace goatMGMT.Controllers
                 worksheet.Cells[row, 19].Value = animal.market_weight;
                 worksheet.Cells[row, 20].Value = animal.market_date == null ? "" : ((DateTime)animal.market_date).ToShortDateString();
                 worksheet.Cells[row, 21].Value = animal.disposal_date == null ? "" : ((DateTime)animal.disposal_date).ToShortDateString();
-                worksheet.Cells[row, 22].Value = animal.remarks;
+                worksheet.Cells[row, 22].Value = animal.FAMACHA_score;
+                worksheet.Cells[row, 23].Value = animal.fecal_egg_count;
+                worksheet.Cells[row, 24].Value = animal.hair_coat_score;
+                worksheet.Cells[row, 25].Value = animal.body_condition_score;
+                worksheet.Cells[row, 26].Value = animal.remarks;
                 row++;
             }
             worksheet.Cells.AutoFitColumns(0);

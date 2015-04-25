@@ -103,12 +103,12 @@ namespace goatMGMT.Controllers
             int numberWeanedForWeaningGraph = 0;
 
 
-            int[,] mySumBreeds = new int[25, 6];
-            int[,] allSumBreeds = new int[25, 6];
+            int[,] mySumBreeds = new int[25, 12];
+            int[,] allSumBreeds = new int[25, 12];
 
             SummaryViewModel svm = new SummaryViewModel();
-            svm.myArray = new double[26, 6];
-            svm.allArray = new double[26, 6];
+            svm.myArray = new double[26, 12];
+            svm.allArray = new double[26, 12];
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
             svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == true && m.isChild == false).Count();
             svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == false && m.isChild == false).Count();
@@ -973,11 +973,417 @@ namespace goatMGMT.Controllers
                         {
                             svm.maleAvgBW += (double)animal.birth_weight;
                             maleBWCount++;
+                            switch (animal.breed_code)
+                            {
+                                case "Purbred Boer":
+                                    {
+                                        svm.myArray[0, 6] += (double)animal.birth_weight;
+                                        svm.myArray[0, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[0, 6]++;
+                                        mySumBreeds[0, 7]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Boer":
+                                    {
+                                        svm.myArray[1, 6] += (double)animal.birth_weight;
+                                        svm.myArray[1, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[1, 6]++;
+                                        mySumBreeds[1, 7]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Boer":
+                                    {
+                                        svm.myArray[2, 6] += (double)animal.birth_weight;
+                                        svm.myArray[2, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[2, 6]++;
+                                        mySumBreeds[2, 7]++;
+                                        break;
+                                    }
+                                case "Spanish":
+                                    {
+                                        svm.myArray[3, 6] += (double)animal.birth_weight;
+                                        svm.myArray[3, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[3, 6]++;
+                                        mySumBreeds[3, 7]++;
+                                        break;
+                                    }
+                                case "Nubian":
+                                    {
+                                        svm.myArray[4, 6] += (double)animal.birth_weight;
+                                        svm.myArray[4, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[4, 6]++;
+                                        mySumBreeds[4, 7]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish":
+                                    {
+                                        svm.myArray[5, 6] += (double)animal.birth_weight;
+                                        svm.myArray[5, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[5, 6]++;
+                                        mySumBreeds[5, 7]++;
+                                        break;
+                                    }
+                                case "Pure Kiko":
+                                    {
+                                        svm.myArray[6, 6] += (double)animal.birth_weight;
+                                        svm.myArray[6, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[6, 6]++;
+                                        mySumBreeds[6, 7]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Kiko":
+                                    {
+                                        svm.myArray[7, 6] += (double)animal.birth_weight;
+                                        svm.myArray[7, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[7, 6]++;
+                                        mySumBreeds[7, 7]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Kiko":
+                                    {
+                                        svm.myArray[8, 6] += (double)animal.birth_weight;
+                                        svm.myArray[8, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[8, 6]++;
+                                        mySumBreeds[8, 7]++;
+                                        break;
+                                    }
+                                case "Kiko x Spanish":
+                                    {
+                                        svm.myArray[9, 6] += (double)animal.birth_weight;
+                                        svm.myArray[9, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[9, 6]++;
+                                        mySumBreeds[9, 7]++;
+                                        break;
+                                    }
+                                case "Kiko x Boer":
+                                    {
+                                        svm.myArray[10, 6] += (double)animal.birth_weight;
+                                        svm.myArray[10, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[10, 6]++;
+                                        mySumBreeds[10, 7]++;
+                                        break;
+                                    }
+                                case "Boer X Nubian":
+                                    {
+                                        svm.myArray[11, 6] += (double)animal.birth_weight;
+                                        svm.myArray[11, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[11, 6]++;
+                                        mySumBreeds[11, 7]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish x Nubian":
+                                    {
+                                        svm.myArray[12, 6] += (double)animal.birth_weight;
+                                        svm.myArray[12, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[12, 6]++;
+                                        mySumBreeds[12, 7]++;
+                                        break;
+                                    }
+                                case "Savanna":
+                                    {
+                                        svm.myArray[13, 6] += (double)animal.birth_weight;
+                                        svm.myArray[13, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[13, 6]++;
+                                        mySumBreeds[13, 7]++;
+                                        break;
+                                    }
+                                case "Percentag-87.5 Savanna":
+                                    {
+                                        svm.myArray[14, 6] += (double)animal.birth_weight;
+                                        svm.myArray[14, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[14, 6]++;
+                                        mySumBreeds[14, 7]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Savanna":
+                                    {
+                                        svm.myArray[15, 6] += (double)animal.birth_weight;
+                                        svm.myArray[15, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[15, 6]++;
+                                        mySumBreeds[15, 7]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer":
+                                    {
+                                        svm.myArray[16, 6] += (double)animal.birth_weight;
+                                        svm.myArray[16, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[16, 6]++;
+                                        mySumBreeds[16, 7]++;
+                                        break;
+                                    }
+                                case "Savanna x Kiko":
+                                    {
+                                        svm.myArray[17, 6] += (double)animal.birth_weight;
+                                        svm.myArray[17, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[17, 6]++;
+                                        mySumBreeds[17, 7]++;
+                                        break;
+                                    }
+                                case "Nubian x Spanish":
+                                    {
+                                        svm.myArray[18, 6] += (double)animal.birth_weight;
+                                        svm.myArray[18, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[18, 6]++;
+                                        mySumBreeds[18, 7]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer x Kiko":
+                                    {
+                                        svm.myArray[19, 6] += (double)animal.birth_weight;
+                                        svm.myArray[19, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[19, 6]++;
+                                        mySumBreeds[19, 7]++;
+                                        break;
+                                    }
+                                case "Angora":
+                                    {
+                                        svm.myArray[20, 6] += (double)animal.birth_weight;
+                                        svm.myArray[20, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[20, 6]++;
+                                        mySumBreeds[20, 7]++;
+                                        break;
+                                    }
+                                case "Boer x Angora":
+                                    {
+                                        svm.myArray[21, 6] += (double)animal.birth_weight;
+                                        svm.myArray[21, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[21, 6]++;
+                                        mySumBreeds[21, 7]++;
+                                        break;
+                                    }
+                                case "Kiko x Angora":
+                                    {
+                                        svm.myArray[22, 6] += (double)animal.birth_weight;
+                                        svm.myArray[22, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[22, 6]++;
+                                        mySumBreeds[22, 7]++;
+                                        break;
+                                    }
+                                case "UNKNOWN CROSS":
+                                    {
+                                        svm.myArray[23, 6] += (double)animal.birth_weight;
+                                        svm.myArray[23, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[23, 6]++;
+                                        mySumBreeds[23, 7]++;
+                                        break;
+                                    }
+                                case "OTHERS":
+                                    {
+                                        svm.myArray[24, 6] += (double)animal.birth_weight;
+                                        svm.myArray[24, 7] += (double)animal.birth_weight;
+                                        mySumBreeds[24, 6]++;
+                                        mySumBreeds[24, 7]++;
+                                        break;
+                                    }
+                            }
                         }
                         if (animal.weaning_weight != null)
                         {
                             svm.maleAvgWW += (double)animal.weaning_weight;
                             maleWWCount++;
+                            switch (animal.breed_code)
+                            {
+                                case "Purbred Boer":
+                                    {
+                                        svm.myArray[0, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[0, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[0, 9]++;
+                                        mySumBreeds[0, 10]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Boer":
+                                    {
+                                        svm.myArray[1, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[1, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[1, 9]++;
+                                        mySumBreeds[1, 10]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Boer":
+                                    {
+                                        svm.myArray[2, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[2, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[2, 9]++;
+                                        mySumBreeds[2, 10]++;
+                                        break;
+                                    }
+                                case "Spanish":
+                                    {
+                                        svm.myArray[3, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[3, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[3, 9]++;
+                                        mySumBreeds[3, 10]++;
+                                        break;
+                                    }
+                                case "Nubian":
+                                    {
+                                        svm.myArray[4, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[4, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[4, 9]++;
+                                        mySumBreeds[4, 10]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish":
+                                    {
+                                        svm.myArray[5, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[5, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[5, 9]++;
+                                        mySumBreeds[5, 10]++;
+                                        break;
+                                    }
+                                case "Pure Kiko":
+                                    {
+                                        svm.myArray[6, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[6, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[6, 9]++;
+                                        mySumBreeds[6, 10]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Kiko":
+                                    {
+                                        svm.myArray[7, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[7, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[7, 9]++;
+                                        mySumBreeds[7, 10]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Kiko":
+                                    {
+                                        svm.myArray[8, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[8, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[8, 9]++;
+                                        mySumBreeds[8, 10]++;
+                                        break;
+                                    }
+                                case "Kiko x Spanish":
+                                    {
+                                        svm.myArray[9, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[9, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[9, 9]++;
+                                        mySumBreeds[9, 10]++;
+                                        break;
+                                    }
+                                case "Kiko x Boer":
+                                    {
+                                        svm.myArray[10, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[10, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[10, 9]++;
+                                        mySumBreeds[10, 10]++;
+                                        break;
+                                    }
+                                case "Boer X Nubian":
+                                    {
+                                        svm.myArray[11, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[11, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[11, 9]++;
+                                        mySumBreeds[11, 10]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish x Nubian":
+                                    {
+                                        svm.myArray[12, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[12, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[12, 9]++;
+                                        mySumBreeds[12, 10]++;
+                                        break;
+                                    }
+                                case "Savanna":
+                                    {
+                                        svm.myArray[13, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[13, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[13, 9]++;
+                                        mySumBreeds[13, 10]++;
+                                        break;
+                                    }
+                                case "Percentag-87.5 Savanna":
+                                    {
+                                        svm.myArray[14, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[14, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[14, 9]++;
+                                        mySumBreeds[14, 10]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Savanna":
+                                    {
+                                        svm.myArray[15, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[15, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[15, 9]++;
+                                        mySumBreeds[15, 10]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer":
+                                    {
+                                        svm.myArray[16, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[16, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[16, 9]++;
+                                        mySumBreeds[16, 10]++;
+                                        break;
+                                    }
+                                case "Savanna x Kiko":
+                                    {
+                                        svm.myArray[17, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[17, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[17, 9]++;
+                                        mySumBreeds[17, 10]++;
+                                        break;
+                                    }
+                                case "Nubian x Spanish":
+                                    {
+                                        svm.myArray[18, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[18, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[18, 9]++;
+                                        mySumBreeds[18, 10]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer x Kiko":
+                                    {
+                                        svm.myArray[19, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[19, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[19, 9]++;
+                                        mySumBreeds[19, 10]++;
+                                        break;
+                                    }
+                                case "Angora":
+                                    {
+                                        svm.myArray[20, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[20, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[20, 9]++;
+                                        mySumBreeds[20, 10]++;
+                                        break;
+                                    }
+                                case "Boer x Angora":
+                                    {
+                                        svm.myArray[21, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[21, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[21, 9]++;
+                                        mySumBreeds[21, 10]++;
+                                        break;
+                                    }
+                                case "Kiko x Angora":
+                                    {
+                                        svm.myArray[22, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[22, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[22, 9]++;
+                                        mySumBreeds[22, 10]++;
+                                        break;
+                                    }
+                                case "UNKNOWN CROSS":
+                                    {
+                                        svm.myArray[23, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[23, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[23, 9]++;
+                                        mySumBreeds[23, 10]++;
+                                        break;
+                                    }
+                                case "OTHERS":
+                                    {
+                                        svm.myArray[24, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[24, 10] += (double)animal.weaning_weight;
+                                        mySumBreeds[24, 9]++;
+                                        mySumBreeds[24, 10]++;
+                                        break;
+                                    }
+                            }
                         }
                     }
                     else
@@ -988,11 +1394,417 @@ namespace goatMGMT.Controllers
                         {
                             svm.femaleAvgBW += (double)animal.birth_weight;
                             femaleBWCount++;
+                            switch (animal.breed_code)
+                            {
+                                case "Purbred Boer":
+                                    {
+                                        svm.myArray[0, 6] += (double)animal.birth_weight;
+                                        svm.myArray[0, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[0, 6]++;
+                                        mySumBreeds[0, 8]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Boer":
+                                    {
+                                        svm.myArray[1, 6] += (double)animal.birth_weight;
+                                        svm.myArray[1, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[1, 6]++;
+                                        mySumBreeds[1, 8]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Boer":
+                                    {
+                                        svm.myArray[2, 6] += (double)animal.birth_weight;
+                                        svm.myArray[2, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[2, 6]++;
+                                        mySumBreeds[2, 8]++;
+                                        break;
+                                    }
+                                case "Spanish":
+                                    {
+                                        svm.myArray[3, 6] += (double)animal.birth_weight;
+                                        svm.myArray[3, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[3, 6]++;
+                                        mySumBreeds[3, 8]++;
+                                        break;
+                                    }
+                                case "Nubian":
+                                    {
+                                        svm.myArray[4, 6] += (double)animal.birth_weight;
+                                        svm.myArray[4, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[4, 6]++;
+                                        mySumBreeds[4, 8]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish":
+                                    {
+                                        svm.myArray[5, 6] += (double)animal.birth_weight;
+                                        svm.myArray[5, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[5, 6]++;
+                                        mySumBreeds[5, 8]++;
+                                        break;
+                                    }
+                                case "Pure Kiko":
+                                    {
+                                        svm.myArray[6, 6] += (double)animal.birth_weight;
+                                        svm.myArray[6, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[6, 6]++;
+                                        mySumBreeds[6, 8]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Kiko":
+                                    {
+                                        svm.myArray[7, 6] += (double)animal.birth_weight;
+                                        svm.myArray[7, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[7, 6]++;
+                                        mySumBreeds[7, 8]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Kiko":
+                                    {
+                                        svm.myArray[8, 6] += (double)animal.birth_weight;
+                                        svm.myArray[8, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[8, 6]++;
+                                        mySumBreeds[8, 8]++;
+                                        break;
+                                    }
+                                case "Kiko x Spanish":
+                                    {
+                                        svm.myArray[9, 6] += (double)animal.birth_weight;
+                                        svm.myArray[9, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[9, 6]++;
+                                        mySumBreeds[9, 8]++;
+                                        break;
+                                    }
+                                case "Kiko x Boer":
+                                    {
+                                        svm.myArray[10, 6] += (double)animal.birth_weight;
+                                        svm.myArray[10, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[10, 6]++;
+                                        mySumBreeds[10, 8]++;
+                                        break;
+                                    }
+                                case "Boer X Nubian":
+                                    {
+                                        svm.myArray[11, 6] += (double)animal.birth_weight;
+                                        svm.myArray[11, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[11, 6]++;
+                                        mySumBreeds[11, 8]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish x Nubian":
+                                    {
+                                        svm.myArray[12, 6] += (double)animal.birth_weight;
+                                        svm.myArray[12, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[12, 6]++;
+                                        mySumBreeds[12, 8]++;
+                                        break;
+                                    }
+                                case "Savanna":
+                                    {
+                                        svm.myArray[13, 6] += (double)animal.birth_weight;
+                                        svm.myArray[13, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[13, 6]++;
+                                        mySumBreeds[13, 8]++;
+                                        break;
+                                    }
+                                case "Percentag-87.5 Savanna":
+                                    {
+                                        svm.myArray[14, 6] += (double)animal.birth_weight;
+                                        svm.myArray[14, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[14, 6]++;
+                                        mySumBreeds[14, 8]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Savanna":
+                                    {
+                                        svm.myArray[15, 6] += (double)animal.birth_weight;
+                                        svm.myArray[15, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[15, 6]++;
+                                        mySumBreeds[15, 8]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer":
+                                    {
+                                        svm.myArray[16, 6] += (double)animal.birth_weight;
+                                        svm.myArray[16, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[16, 6]++;
+                                        mySumBreeds[16, 8]++;
+                                        break;
+                                    }
+                                case "Savanna x Kiko":
+                                    {
+                                        svm.myArray[17, 6] += (double)animal.birth_weight;
+                                        svm.myArray[17, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[17, 6]++;
+                                        mySumBreeds[17, 8]++;
+                                        break;
+                                    }
+                                case "Nubian x Spanish":
+                                    {
+                                        svm.myArray[18, 6] += (double)animal.birth_weight;
+                                        svm.myArray[18, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[18, 6]++;
+                                        mySumBreeds[18, 8]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer x Kiko":
+                                    {
+                                        svm.myArray[19, 6] += (double)animal.birth_weight;
+                                        svm.myArray[19, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[19, 6]++;
+                                        mySumBreeds[19, 8]++;
+                                        break;
+                                    }
+                                case "Angora":
+                                    {
+                                        svm.myArray[20, 6] += (double)animal.birth_weight;
+                                        svm.myArray[20, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[20, 6]++;
+                                        mySumBreeds[20, 8]++;
+                                        break;
+                                    }
+                                case "Boer x Angora":
+                                    {
+                                        svm.myArray[21, 6] += (double)animal.birth_weight;
+                                        svm.myArray[21, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[21, 6]++;
+                                        mySumBreeds[21, 8]++;
+                                        break;
+                                    }
+                                case "Kiko x Angora":
+                                    {
+                                        svm.myArray[22, 6] += (double)animal.birth_weight;
+                                        svm.myArray[22, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[22, 6]++;
+                                        mySumBreeds[22, 8]++;
+                                        break;
+                                    }
+                                case "UNKNOWN CROSS":
+                                    {
+                                        svm.myArray[23, 6] += (double)animal.birth_weight;
+                                        svm.myArray[23, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[23, 6]++;
+                                        mySumBreeds[23, 8]++;
+                                        break;
+                                    }
+                                case "OTHERS":
+                                    {
+                                        svm.myArray[24, 6] += (double)animal.birth_weight;
+                                        svm.myArray[24, 8] += (double)animal.birth_weight;
+                                        mySumBreeds[24, 6]++;
+                                        mySumBreeds[24, 8]++;
+                                        break;
+                                    }
+                            }
                         }
                         if (animal.weaning_weight != null)
                         {
                             svm.femaleAvgWW += (double)animal.weaning_weight;
                             femaleWWCount++;
+                            switch (animal.breed_code)
+                            {
+                                case "Purbred Boer":
+                                    {
+                                        svm.myArray[0, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[0, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[0, 9]++;
+                                        mySumBreeds[0, 11]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Boer":
+                                    {
+                                        svm.myArray[1, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[1, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[1, 9]++;
+                                        mySumBreeds[1, 11]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Boer":
+                                    {
+                                        svm.myArray[2, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[2, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[2, 9]++;
+                                        mySumBreeds[2, 11]++;
+                                        break;
+                                    }
+                                case "Spanish":
+                                    {
+                                        svm.myArray[3, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[3, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[3, 9]++;
+                                        mySumBreeds[3, 11]++;
+                                        break;
+                                    }
+                                case "Nubian":
+                                    {
+                                        svm.myArray[4, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[4, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[4, 9]++;
+                                        mySumBreeds[4, 11]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish":
+                                    {
+                                        svm.myArray[5, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[5, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[5, 9]++;
+                                        mySumBreeds[5, 11]++;
+                                        break;
+                                    }
+                                case "Pure Kiko":
+                                    {
+                                        svm.myArray[6, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[6, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[6, 9]++;
+                                        mySumBreeds[6, 11]++;
+                                        break;
+                                    }
+                                case "Percentage-87.5 Kiko":
+                                    {
+                                        svm.myArray[7, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[7, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[7, 9]++;
+                                        mySumBreeds[7, 11]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Kiko":
+                                    {
+                                        svm.myArray[8, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[8, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[8, 9]++;
+                                        mySumBreeds[8, 11]++;
+                                        break;
+                                    }
+                                case "Kiko x Spanish":
+                                    {
+                                        svm.myArray[9, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[9, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[9, 9]++;
+                                        mySumBreeds[9, 11]++;
+                                        break;
+                                    }
+                                case "Kiko x Boer":
+                                    {
+                                        svm.myArray[10, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[10, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[10, 9]++;
+                                        mySumBreeds[10, 11]++;
+                                        break;
+                                    }
+                                case "Boer X Nubian":
+                                    {
+                                        svm.myArray[11, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[11, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[11, 9]++;
+                                        mySumBreeds[11, 11]++;
+                                        break;
+                                    }
+                                case "Boer x Spanish x Nubian":
+                                    {
+                                        svm.myArray[12, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[12, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[12, 9]++;
+                                        mySumBreeds[12, 11]++;
+                                        break;
+                                    }
+                                case "Savanna":
+                                    {
+                                        svm.myArray[13, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[13, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[13, 9]++;
+                                        mySumBreeds[13, 11]++;
+                                        break;
+                                    }
+                                case "Percentag-87.5 Savanna":
+                                    {
+                                        svm.myArray[14, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[14, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[14, 9]++;
+                                        mySumBreeds[14, 11]++;
+                                        break;
+                                    }
+                                case "Percentage-75 Savanna":
+                                    {
+                                        svm.myArray[15, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[15, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[15, 9]++;
+                                        mySumBreeds[15, 11]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer":
+                                    {
+                                        svm.myArray[16, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[16, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[16, 9]++;
+                                        mySumBreeds[16, 11]++;
+                                        break;
+                                    }
+                                case "Savanna x Kiko":
+                                    {
+                                        svm.myArray[17, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[17, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[17, 9]++;
+                                        mySumBreeds[17, 11]++;
+                                        break;
+                                    }
+                                case "Nubian x Spanish":
+                                    {
+                                        svm.myArray[18, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[18, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[18, 9]++;
+                                        mySumBreeds[18, 11]++;
+                                        break;
+                                    }
+                                case "Savanna x Boer x Kiko":
+                                    {
+                                        svm.myArray[19, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[19, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[19, 9]++;
+                                        mySumBreeds[19, 11]++;
+                                        break;
+                                    }
+                                case "Angora":
+                                    {
+                                        svm.myArray[20, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[20, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[20, 9]++;
+                                        mySumBreeds[20, 11]++;
+                                        break;
+                                    }
+                                case "Boer x Angora":
+                                    {
+                                        svm.myArray[21, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[21, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[21, 9]++;
+                                        mySumBreeds[21, 11]++;
+                                        break;
+                                    }
+                                case "Kiko x Angora":
+                                    {
+                                        svm.myArray[22, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[22, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[22, 9]++;
+                                        mySumBreeds[22, 11]++;
+                                        break;
+                                    }
+                                case "UNKNOWN CROSS":
+                                    {
+                                        svm.myArray[23, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[23, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[23, 9]++;
+                                        mySumBreeds[23, 11]++;
+                                        break;
+                                    }
+                                case "OTHERS":
+                                    {
+                                        svm.myArray[24, 9] += (double)animal.weaning_weight;
+                                        svm.myArray[24, 11] += (double)animal.weaning_weight;
+                                        mySumBreeds[24, 9]++;
+                                        mySumBreeds[24, 11]++;
+                                        break;
+                                    }
+                            }
                         }
                     }
                 }  
@@ -2026,63 +2838,77 @@ namespace goatMGMT.Controllers
             }
             for (int i = 0; i < 25; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < 12; j++)
                 {
-                    svm.myArray[i, j] = svm.myArray[i, j] / mySumBreeds[i, j];
-                    svm.allArray[i, j] = svm.allArray[i, j] / allSumBreeds[i, j];
+                    if (mySumBreeds[i, j] == 0)
+                    {
+                        svm.myArray[i, j] = 0;
+                    }
+                    else
+                    {
+                        svm.myArray[i, j] = svm.myArray[i, j] / mySumBreeds[i, j];
+                    }
+                    if (allSumBreeds[i, j] == 0)
+                    {
+                        svm.allArray[i, j] = 0;
+                    }
+                    else
+                    {
+                        svm.allArray[i, j] = svm.allArray[i, j] / allSumBreeds[i, j];
+                    }
                 }
             }
             if (maleBWCount == 0)
             {
                 maleBWCount++;
             }
-            svm.maleAvgBW = svm.maleAvgBW / maleBWCount;
+            svm.myArray[25, 7] = svm.maleAvgBW / maleBWCount;
             if (femaleBWCount == 0)
             {
                 femaleBWCount++;
             }
-            svm.femaleAvgBW = svm.femaleAvgBW / femaleBWCount;
+            svm.myArray[25, 8] = svm.femaleAvgBW / femaleBWCount;
             if (maleWWCount == 0)
             {
                 maleWWCount++;
             }
-            svm.maleAvgWW = svm.maleAvgWW / maleWWCount;
+            svm.myArray[25, 10] = svm.maleAvgWW / maleWWCount;
             if (femaleWWCount == 0)
             {
                 femaleWWCount++;
             }
-            svm.femaleAvgWW = svm.femaleAvgWW / femaleWWCount;
+            svm.myArray[25, 11] = svm.femaleAvgWW / femaleWWCount;
 
             if (svm.maleAvgBW == 0 || svm.femaleAvgBW == 0)
             {
                 if (svm.maleAvgBW == 0)
                 {
-                    svm.avgBW = svm.femaleAvgBW;
+                    svm.myArray[25, 6] = svm.femaleAvgBW;
                 }
                 else
                 {
-                    svm.avgBW = svm.maleAvgBW;
+                    svm.myArray[25, 6] = svm.maleAvgBW;
                 }
             }
             else
             {
-                svm.avgBW = (svm.maleAvgBW + svm.femaleAvgBW) / 2;
+                svm.myArray[25, 6] = (svm.maleAvgBW + svm.femaleAvgBW) / 2;
             }
 
             if (svm.maleAvgWW == 0 || svm.femaleAvgWW == 0)
             {
                 if (svm.maleAvgWW == 0)
                 {
-                    svm.avgWW = svm.femaleAvgWW;
+                    svm.myArray[25, 9] = svm.femaleAvgWW;
                 }
                 else
                 {
-                    svm.avgWW = svm.maleAvgWW;
+                    svm.myArray[25, 9] = svm.maleAvgWW;
                 }
             }
             else
             {
-                svm.avgWW = (svm.maleAvgWW + svm.femaleAvgWW) / 2;
+                svm.myArray[25, 9] = (svm.maleAvgWW + svm.femaleAvgWW) / 2;
             }
 
             if (svm.singleBirthCount == 0)

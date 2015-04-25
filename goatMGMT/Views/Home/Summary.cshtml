@@ -77,10 +77,10 @@
     $('#stringBreedCode').change( function() {
         breedCode = parseInt($('#stringBreedCode').val());
         if($('#graphAnswer').val() == "General") {
-            $('#graph1Title').html("Average Daily Gains (ADG)")
+            $('#graph1Title').html("Average Daily Gains (ADG) (By Breed)")
             $('#graph1').css('display', 'block')
             adgGraph();
-            $('#graph2Title').html("Total/Active Animals")
+            $('#graph2Title').html("Total/Active Animals (All Breeds)")
             $('#graph2').css('display', 'block')
             totalActiveGraph();
             $('#graph3Title').html(" ")
@@ -89,28 +89,28 @@
             $('#graph4').css('display', 'none')
         }
         else if ($('#graphAnswer').val() == "Weaning") {
-            $('#graph1Title').html("Total Offspring Born")
+            $('#graph1Title').html("Total Offspring Born (All Breeds)")
             $('#graph1').css('display', 'block')
-            $('#graph2Title').html("Total Offspring Weaned")
+            $('#graph2Title').html("Total Offspring Weaned (All Breeds)")
             $('#graph2').css('display', 'block')
             bornWeanedGraph();
-            $('#graph3Title').html("Average Birth Weight / Weaning Weight")
+            $('#graph3Title').html("Average Birth Weight / Weaning Weight (By Breed)")
             $('#graph3').css('display', 'block')
             bornWeaningWeightGraph();
             $('#graph4Title').html(" ")
             $('#graph4').css('display', 'none')
         }
         else if ($('#graphAnswer').val() == "Birth") {
-            $('#graph1Title').html("Mating and Birth Count")
+            $('#graph1Title').html("Mating and Birth Count (All Breeds)")
             $('#graph1').css('display', 'block')
             matingBirthGraph();
-            $('#graph2Title').html("Birth Survival Rate")
+            $('#graph2Title').html("Birth Survival Rate (All Breeds)")
             $('#graph2').css('display', 'block')
             survivalRateGraph();
-            $('#graph3Title').html("Dam Parity Count and Average Birth Weight")
+            $('#graph3Title').html("Dam Parity Count and Average Birth Weight (All Breeds)")
             $('#graph3').css('display', 'block')
             parityBirthWeightGraph();
-            $('#graph4Title').html("Multiple Births")
+            $('#graph4Title').html("Multiple Births (All Births)")
             $('#graph4').css('display', 'block')
             multipleBirthsGraph();
         }
@@ -321,14 +321,14 @@
             },
             "dataProvider": [ {
                 "year": "Birth",
-                "europe": @Model.avgBW,
-                "namerica": @Model.maleAvgBW,
-                "lamerica": @Model.femaleAvgBW,
+                "europe": myArray[breedCode][6],
+                "namerica": myArray[breedCode][7],
+                "lamerica": myArray[breedCode][8],
             }, {
                 "year": "Weaning",
-                "europe": @Model.avgWW,
-                "namerica": @Model.maleAvgWW,
-                "lamerica": @Model.femaleAvgWW,
+                "europe": myArray[breedCode][9],
+                "namerica": myArray[breedCode][10],
+                "lamerica": myArray[breedCode][11],
             } ],
             "valueAxes": [ {
                 "stackType": "regular",
@@ -650,10 +650,10 @@
     }
     $('#graphAnswer').change(function() {
         if($('#graphAnswer').val() == "General") {
-            $('#graph1Title').html("Average Daily Gains (ADG)")
+            $('#graph1Title').html("Average Daily Gains (ADG) (By Breed)")
             $('#graph1').css('display', 'block')
             adgGraph();
-            $('#graph2Title').html("Total/Active Animals")
+            $('#graph2Title').html("Total/Active Animals (All Breeds)")
             $('#graph2').css('display', 'block')
             totalActiveGraph();
             $('#graph3Title').html(" ")
@@ -662,28 +662,28 @@
             $('#graph4').css('display', 'none')
         }
         else if ($('#graphAnswer').val() == "Weaning") {
-            $('#graph1Title').html("Total Offspring Born")
+            $('#graph1Title').html("Total Offspring Born (All Breeds)")
             $('#graph1').css('display', 'block')
-            $('#graph2Title').html("Total Offspring Weaned")
+            $('#graph2Title').html("Total Offspring Weaned (All Breeds)")
             $('#graph2').css('display', 'block')
             bornWeanedGraph();
-            $('#graph3Title').html("Average Birth Weight / Weaning Weight")
+            $('#graph3Title').html("Average Birth Weight / Weaning Weight (By Breed)")
             $('#graph3').css('display', 'block')
             bornWeaningWeightGraph();
             $('#graph4Title').html(" ")
             $('#graph4').css('display', 'none')
         }
         else if ($('#graphAnswer').val() == "Birth") {
-            $('#graph1Title').html("Mating and Birth Count")
+            $('#graph1Title').html("Mating and Birth Count (All Breeds)")
             $('#graph1').css('display', 'block')
             matingBirthGraph();
-            $('#graph2Title').html("Birth Survival Rate")
+            $('#graph2Title').html("Birth Survival Rate (All Breeds)")
             $('#graph2').css('display', 'block')
             survivalRateGraph();
-            $('#graph3Title').html("Dam Parity Count and Average Birth Weight")
+            $('#graph3Title').html("Dam Parity Count and Average Birth Weight (All Breeds)")
             $('#graph3').css('display', 'block')
             parityBirthWeightGraph();
-            $('#graph4Title').html("Multiple Births")
+            $('#graph4Title').html("Multiple Births (All Births)")
             $('#graph4').css('display', 'block')
             multipleBirthsGraph();
         }

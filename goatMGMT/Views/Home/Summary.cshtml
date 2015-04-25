@@ -65,7 +65,7 @@
         {
             @:var myTempArray = [];
             @:var allTempArray = [];
-            for (int j = 0; j < 6; j++)
+            for (int j = 0; j < 12; j++)
             {
                 @:myTempArray[@j] = @Model.myArray[i, j];
                 @:allTempArray[@j] = @Model.allArray[i, j];
@@ -320,12 +320,12 @@
                 "markerSize": 10
             },
             "dataProvider": [ {
-                "year": "Birth",
+                "year": "Birth Weight",
                 "europe": myArray[breedCode][6],
                 "namerica": myArray[breedCode][7],
                 "lamerica": myArray[breedCode][8],
             }, {
-                "year": "Weaning",
+                "year": "Weaning Weight",
                 "europe": myArray[breedCode][9],
                 "namerica": myArray[breedCode][10],
                 "lamerica": myArray[breedCode][11],

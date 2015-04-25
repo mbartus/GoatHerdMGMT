@@ -49,6 +49,14 @@ namespace goatMGMT.Models
 
         public double damParity1BW { get; set; }
 
+        public double damParity1WW { get; set; }
+
+        public double damParity2WW { get; set; }
+
+        public double damParity3WW { get; set; }
+
+        public double damParity4WW { get; set; }
+
         public int damParity2Count { get; set; }
 
         public double damParity2BW { get; set; }

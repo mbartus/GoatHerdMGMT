@@ -1888,12 +1888,20 @@ namespace goatMGMT.Controllers
                             {
                                 svm.damParity1BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
+                            if (db.Animals.Find(birth.child_id).weaning_weight != null)
+                            {
+                                svm.damParity1WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
+                            }
                         }
                         else if (birth.Breeding.parity == 2)
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
                                 svm.damParity2BW += (double)db.Animals.Find(birth.child_id).birth_weight;
+                            }
+                            if (db.Animals.Find(birth.child_id).weaning_weight != null)
+                            {
+                                svm.damParity2WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
                             }
                         }
                         else if (birth.Breeding.parity == 3)
@@ -1902,12 +1910,20 @@ namespace goatMGMT.Controllers
                             {
                                 svm.damParity3BW += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
+                            if (db.Animals.Find(birth.child_id).weaning_weight != null)
+                            {
+                                svm.damParity3WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
+                            }
                         }
                         else if (birth.Breeding.parity > 3)
                         {
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
                                 svm.damParity4BW += (double)db.Animals.Find(birth.child_id).birth_weight;
+                            }
+                            if (db.Animals.Find(birth.child_id).weaning_weight != null)
+                            {
+                                svm.damParity4WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
                             }
                         }
                         if (db.Animals.Find(birth.child_id).sex)
@@ -2950,37 +2966,45 @@ namespace goatMGMT.Controllers
             if (svm.damParity1Count == 0)
             {
                 svm.damParity1BW = 0;
+                svm.damParity1WW = 0;
             }
             else
             {
                 svm.damParity1BW = svm.damParity1BW / svm.damParity1Count;
+                svm.damParity1WW = svm.damParity1WW / svm.damParity1Count;
             }
 
             if (svm.damParity2Count == 0)
             {
                 svm.damParity2BW = 0;
+                svm.damParity2WW = 0;
             }
             else
             {
                 svm.damParity2BW = svm.damParity2BW / svm.damParity2Count;
+                svm.damParity2WW = svm.damParity2WW / svm.damParity2Count;
             }
 
             if (svm.damParity3Count == 0)
             {
                 svm.damParity3BW = 0;
+                svm.damParity3WW = 0;
             }
             else
             {
                 svm.damParity3BW = svm.damParity3BW / svm.damParity3Count;
+                svm.damParity3WW = svm.damParity3WW / svm.damParity3Count;
             }
 
             if (svm.damParity4Count == 0)
             {
                 svm.damParity4BW = 0;
+                svm.damParity4WW = 0;
             }
             else
             {
                 svm.damParity4BW = svm.damParity4BW / svm.damParity4Count;
+                svm.damParity4WW = svm.damParity4WW / svm.damParity4Count;
             }
 
             if (allADGWCount == 0)

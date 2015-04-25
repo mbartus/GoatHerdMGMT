@@ -107,8 +107,8 @@ namespace goatMGMT.Controllers
             int[,] allSumBreeds = new int[25, 6];
 
             SummaryViewModel svm = new SummaryViewModel();
-            svm.myArray = new double[25, 6];
-            svm.allArray = new double[25, 6];
+            svm.myArray = new double[26, 6];
+            svm.allArray = new double[26, 6];
             var myAnimalList = db.Animals.Where(m => m.owner == userID).ToList();
             svm.totalSire = db.Animals.Where(m => m.owner == userID && m.sex == true && m.isChild == false).Count();
             svm.totalDam = db.Animals.Where(m => m.owner == userID && m.sex == false && m.isChild == false).Count();
@@ -1169,9 +1169,9 @@ namespace goatMGMT.Controllers
                         {
                             if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
                             {
-                                svm.maleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                                svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                                ADGWCount++;
+                                svm.allMaleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                svm.allADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                allADGWCount++;
                                 MaleADGWCount++;
                                 switch (animal.breed_code)
                                 {
@@ -1382,10 +1382,10 @@ namespace goatMGMT.Controllers
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
-                                svm.maleADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                                ADGPWCount++;
-                                MaleADGPWCount++;
+                                svm.allMaleADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.allADGPostWeaning += (double)(animal.post_weaning_weight - animal.weaning_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                allADGPWCount++;
+                                allMaleADGPWCount++;
                                 switch (animal.breed_code)
                                 {
                                     case "Purbred Boer":
@@ -1598,10 +1598,10 @@ namespace goatMGMT.Controllers
                         {
                             if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
                             {
-                                svm.femaleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                                svm.ADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
-                                ADGWCount++;
-                                FemaleADGWCount++;
+                                svm.allFemaleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                svm.allADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
+                                allADGWCount++;
+                                allFemaleADGWCount++;
                                 switch (animal.breed_code)
                                 {
                                     case "Purbred Boer":
@@ -1812,10 +1812,10 @@ namespace goatMGMT.Controllers
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
-                                svm.femaleADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                                svm.ADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
-                                ADGPWCount++;
-                                FemaleADGPWCount++;
+                                svm.allFemaleADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                svm.allADGPostWeaning += (double)(animal.post_weaning_weight - animal.birth_weight) / ((DateTime)animal.post_weaning_date - animal.dob).Days;
+                                allADGPWCount++;
+                                allFemaleADGPWCount++;
                                 switch (animal.breed_code)
                                 {
                                     case "Purbred Boer":
@@ -2032,36 +2032,214 @@ namespace goatMGMT.Controllers
                     svm.allArray[i, j] = svm.allArray[i, j] / allSumBreeds[i, j];
                 }
             }
+            if (maleBWCount == 0)
+            {
+                maleBWCount++;
+            }
             svm.maleAvgBW = svm.maleAvgBW / maleBWCount;
+            if (femaleBWCount == 0)
+            {
+                femaleBWCount++;
+            }
             svm.femaleAvgBW = svm.femaleAvgBW / femaleBWCount;
+            if (maleWWCount == 0)
+            {
+                maleWWCount++;
+            }
             svm.maleAvgWW = svm.maleAvgWW / maleWWCount;
+            if (femaleWWCount == 0)
+            {
+                femaleWWCount++;
+            }
             svm.femaleAvgWW = svm.femaleAvgWW / femaleWWCount;
-            svm.avgBW = (svm.maleAvgBW + svm.femaleAvgBW) / 2;
-            svm.avgWW = (svm.maleAvgWW + svm.femaleAvgWW) / 2;
-            svm.singleBWAvg = svm.singleBWAvg / svm.singleBirthCount;
-            svm.singleWWAvg = svm.singleWWAvg / svm.singleBirthCount;
-            svm.twinBWAvg = svm.twinBWAvg / svm.twinBirthCount;
-            svm.twinWWAvg = svm.twinWWAvg / svm.twinBirthCount;
-            svm.tripletBWAvg = svm.tripletBWAvg / svm.tripletBirthCount;
-            svm.tripletWWAvg = svm.tripletWWAvg / svm.tripletBirthCount;
-            svm.quadBWAvg = svm.quadBWAvg / svm.quadBirthCount;
-            svm.quadWWAvg = svm.quadWWAvg / svm.quadBirthCount;
-            svm.damParity1BW = svm.damParity1BW / svm.damParity1Count;
-            svm.damParity2BW = svm.damParity2BW / svm.damParity2Count;
-            svm.damParity3BW = svm.damParity3BW / svm.damParity3Count;
-            svm.damParity4BW = svm.damParity4BW / svm.damParity4Count;
+
+            if (svm.maleAvgBW == 0 || svm.femaleAvgBW == 0)
+            {
+                if (svm.maleAvgBW == 0)
+                {
+                    svm.avgBW = svm.femaleAvgBW;
+                }
+                else
+                {
+                    svm.avgBW = svm.maleAvgBW;
+                }
+            }
+            else
+            {
+                svm.avgBW = (svm.maleAvgBW + svm.femaleAvgBW) / 2;
+            }
+
+            if (svm.maleAvgWW == 0 || svm.femaleAvgWW == 0)
+            {
+                if (svm.maleAvgWW == 0)
+                {
+                    svm.avgWW = svm.femaleAvgWW;
+                }
+                else
+                {
+                    svm.avgWW = svm.maleAvgWW;
+                }
+            }
+            else
+            {
+                svm.avgWW = (svm.maleAvgWW + svm.femaleAvgWW) / 2;
+            }
+
+            if (svm.singleBirthCount == 0)
+            {
+                svm.singleBWAvg = 0;
+            }
+            else
+            {
+                svm.singleBWAvg = svm.singleBWAvg / svm.singleBirthCount;
+            }
+
+            if (svm.twinBirthCount == 0)
+            {
+                svm.twinBWAvg = 0;
+            }
+            else
+            {
+                svm.twinBWAvg = svm.twinBWAvg / svm.twinBirthCount;
+            }
+
+            if (svm.tripletBirthCount == 0)
+            {
+                svm.tripletBWAvg = 0;
+            }
+            else
+            {
+                svm.tripletBWAvg = svm.tripletBWAvg / svm.tripletBirthCount;
+            }
+
+            if (svm.quadBirthCount == 0)
+            {
+                svm.quadBWAvg = 0;
+            }
+            else
+            {
+                svm.quadBWAvg = svm.quadBWAvg / svm.quadBirthCount;
+            }
+
+            if (svm.damParity1Count == 0)
+            {
+                svm.damParity1BW = 0;
+            }
+            else
+            {
+                svm.damParity1BW = svm.damParity1BW / svm.damParity1Count;
+            }
+
+            if (svm.damParity2Count == 0)
+            {
+                svm.damParity2BW = 0;
+            }
+            else
+            {
+                svm.damParity2BW = svm.damParity2BW / svm.damParity2Count;
+            }
+
+            if (svm.damParity3Count == 0)
+            {
+                svm.damParity3BW = 0;
+            }
+            else
+            {
+                svm.damParity3BW = svm.damParity3BW / svm.damParity3Count;
+            }
+
+            if (svm.damParity4Count == 0)
+            {
+                svm.damParity4BW = 0;
+            }
+            else
+            {
+                svm.damParity4BW = svm.damParity4BW / svm.damParity4Count;
+            }
+
+            if (allADGWCount == 0)
+            {
+                allADGWCount++;
+            }
             svm.allADGWeaning = svm.allADGWeaning / allADGWCount;
+
+            if (allADGPWCount == 0)
+            {
+                allADGPWCount++;
+            }
             svm.allADGPostWeaning = svm.allADGPostWeaning / allADGPWCount;
+
+            if (allMaleADGWCount == 0)
+            {
+                allMaleADGWCount++;
+            }
             svm.allMaleADGWeaning = svm.allMaleADGWeaning / allMaleADGWCount;
+
+            if (allMaleADGPWCount == 0)
+            {
+                allMaleADGPWCount++;
+            }
             svm.allMaleADGPostWeaning = svm.allMaleADGPostWeaning / allMaleADGPWCount;
+
+            if (allFemaleADGWCount == 0)
+            {
+                allFemaleADGWCount++;
+            }
             svm.allFemaleADGWeaning = svm.allFemaleADGWeaning / allFemaleADGWCount;
+
+            if (allFemaleADGPWCount == 0)
+            {
+                allFemaleADGPWCount++;
+            }
             svm.allFemaleADGPostWeaning = svm.allFemaleADGPostWeaning / allFemaleADGPWCount;
+
+            if (ADGWCount == 0)
+            {
+                ADGWCount++;
+            }
             svm.ADGWeaning = svm.ADGWeaning / ADGWCount;
+
+            if (ADGPWCount == 0)
+            {
+                ADGPWCount++;
+            }
             svm.ADGPostWeaning = svm.ADGPostWeaning / ADGPWCount;
+
+            if (MaleADGWCount == 0)
+            {
+                MaleADGWCount++;
+            }
             svm.maleADGWeaning = svm.maleADGWeaning / MaleADGWCount;
+
+            if (MaleADGPWCount == 0)
+            {
+                MaleADGPWCount++;
+            }
             svm.maleADGPostWeaning = svm.maleADGPostWeaning / MaleADGPWCount;
+
+            if (FemaleADGWCount == 0)
+            {
+                FemaleADGWCount++;
+            }
             svm.femaleADGWeaning = svm.femaleADGWeaning / FemaleADGWCount;
+            
+            if (FemaleADGPWCount == 0)
+            {
+                FemaleADGPWCount++;
+            }
             svm.femaleADGPostWeaning = svm.femaleADGPostWeaning / FemaleADGPWCount;
+            svm.myArray[25, 0] = svm.ADGWeaning;
+            svm.myArray[25, 1] = svm.maleADGWeaning;
+            svm.myArray[25, 2] = svm.femaleADGWeaning;
+            svm.myArray[25, 3] = svm.ADGPostWeaning;
+            svm.myArray[25, 4] = svm.maleADGPostWeaning;
+            svm.myArray[25, 5] = svm.femaleADGPostWeaning;
+            svm.allArray[25, 0] = svm.allADGWeaning;
+            svm.allArray[25, 1] = svm.allMaleADGWeaning;
+            svm.allArray[25, 2] = svm.allFemaleADGWeaning;
+            svm.allArray[25, 3] = svm.allADGPostWeaning;
+            svm.allArray[25, 4] = svm.allMaleADGPostWeaning;
+            svm.allArray[25, 5] = svm.allFemaleADGPostWeaning;
             List<SelectListItem> graphList = new List<SelectListItem>()
             {
                 new SelectListItem() { Text = "General", Value = "General"},
@@ -2070,6 +2248,7 @@ namespace goatMGMT.Controllers
             };
             @ViewBag.GraphList = graphList;
             List<SelectListItem> breedList = new List<SelectListItem>() {
+                new SelectListItem() { Text = "ALL BREEDS", Value = "25"},
                 new SelectListItem() { Text = "Purbred Boer", Value = "0"},
                 new SelectListItem() { Text = "Percentage-87.5 Boer", Value = "1"},
                 new SelectListItem() { Text = "Percentage-75 Boer", Value = "2"},

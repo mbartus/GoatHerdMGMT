@@ -234,7 +234,7 @@ namespace goatMGMT.Controllers
             {
                 if (animal.weaning_date != null)
                 {
-                    if (animal.dob.CompareTo(animal.weaning_date) < 0)
+                    if (animal.dob.CompareTo(animal.weaning_date) > 0)
                     {
                         ModelState.AddModelError("", "Weaning Date must be after Date of Birth");
                         return View(animal);
@@ -242,7 +242,7 @@ namespace goatMGMT.Controllers
                 }
                 if (animal.post_weaning_date != null && animal.weaning_date != null)
                 {
-                    if (((DateTime)animal.post_weaning_date).CompareTo((DateTime)animal.weaning_date) > 0)
+                    if (((DateTime)animal.post_weaning_date).CompareTo((DateTime)animal.weaning_date) < 0)
                     {
                         ModelState.AddModelError("", "Post-Weaning Date must be after Weaning Date");
                         return View(animal);
@@ -472,7 +472,7 @@ namespace goatMGMT.Controllers
             {
                 if (animal.weaning_date != null)
                 {
-                    if (animal.dob.CompareTo(animal.weaning_date) < 0)
+                    if (animal.dob.CompareTo(animal.weaning_date) > 0)
                     {
                         ModelState.AddModelError("", "Weaning Date must be after Date of Birth");
                         return View(animal);
@@ -480,7 +480,7 @@ namespace goatMGMT.Controllers
                 }
                 if (animal.post_weaning_date != null && animal.weaning_date != null)
                 {
-                    if (((DateTime)animal.post_weaning_date).CompareTo((DateTime)animal.weaning_date) > 0)
+                    if (((DateTime)animal.post_weaning_date).CompareTo((DateTime)animal.weaning_date) < 0)
                     {
                         ModelState.AddModelError("", "Post-Weaning Date must be after Weaning Date");
                         return View(animal);

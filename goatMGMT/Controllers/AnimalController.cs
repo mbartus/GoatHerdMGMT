@@ -421,19 +421,6 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Animal animal)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(animal).State = EntityState.Modified;
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    return RedirectToAction("Error", "Home");
-                }
-                return RedirectToAction("Index");
-            }
             ViewBag.owner = new SelectList(db.UserProfiles, "UserId", "Username", animal.owner);
             List<SelectListItem> statusList = new List<SelectListItem>() {
                 new SelectListItem() { Text = "Active", Value = "Active"},
@@ -473,6 +460,35 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "OTHERS", Value = "OTHERS"},
             };
             @ViewBag.breedList = breedList;
+            if (ModelState.IsValid)
+            {
+                if (animal.weaning_date != null)
+                {
+                    if (animal.dob.CompareTo(animal.weaning_date) < 0)
+                    {
+                        ModelState.AddModelError("", "Weaning Date must be after Date of Birth");
+                        return View(animal);
+                    }
+                }
+                if (animal.post_weaning_date != null && animal.weaning_date != null)
+                {
+                    if (((DateTime)animal.post_weaning_date).CompareTo((DateTime)animal.weaning_date) > 0)
+                    {
+                        ModelState.AddModelError("", "Post-Weaning Date must be after Weaning Date");
+                        return View(animal);
+                    }
+                }
+                db.Entry(animal).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                return RedirectToAction("Index");
+            }
             return View(animal);
         }
 

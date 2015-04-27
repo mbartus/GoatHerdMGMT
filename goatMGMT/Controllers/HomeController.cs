@@ -101,7 +101,14 @@ namespace goatMGMT.Controllers
             int FemaleADGPWCount = 0;
             int numberBornForWeaningGraph = 0;
             int numberWeanedForWeaningGraph = 0;
-
+            int parBW1Count = 0;
+            int parWW1Count = 0;
+            int parBW2Count = 0;
+            int parWW2Count = 0;
+            int parBW3Count = 0;
+            int parWW3Count = 0;
+            int parBW4Count = 0;
+            int parWW4Count = 0;
 
             int[,] mySumBreeds = new int[25, 12];
             int[,] allSumBreeds = new int[25, 12];
@@ -1887,10 +1894,12 @@ namespace goatMGMT.Controllers
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
                                 svm.damParity1BW += (double)db.Animals.Find(birth.child_id).birth_weight;
+                                parBW1Count++;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_weight != null)
                             {
                                 svm.damParity1WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
+                                parWW1Count++;
                             }
                         }
                         else if (birth.Breeding.parity == 2)
@@ -1898,10 +1907,12 @@ namespace goatMGMT.Controllers
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
                                 svm.damParity2BW += (double)db.Animals.Find(birth.child_id).birth_weight;
+                                parBW2Count++;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_weight != null)
                             {
                                 svm.damParity2WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
+                                parWW2Count++;
                             }
                         }
                         else if (birth.Breeding.parity == 3)
@@ -1909,10 +1920,12 @@ namespace goatMGMT.Controllers
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
                                 svm.damParity3BW += (double)db.Animals.Find(birth.child_id).birth_weight;
+                                parBW3Count++;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_weight != null)
                             {
                                 svm.damParity3WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
+                                parWW3Count++;
                             }
                         }
                         else if (birth.Breeding.parity > 3)
@@ -1920,10 +1933,12 @@ namespace goatMGMT.Controllers
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
                                 svm.damParity4BW += (double)db.Animals.Find(birth.child_id).birth_weight;
+                                parBW4Count++;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_weight != null)
                             {
                                 svm.damParity4WW += (double)db.Animals.Find(birth.child_id).weaning_weight;
+                                parWW4Count++;
                             }
                         }
                         if (db.Animals.Find(birth.child_id).sex)
@@ -2963,48 +2978,92 @@ namespace goatMGMT.Controllers
                 svm.quadBWAvg = svm.quadBWAvg / svm.quadBirthCount;
             }
 
-            if (svm.damParity1Count == 0)
+            if (parBW1Count == 0 || parWW1Count == 0)
             {
-                svm.damParity1BW = 0;
-                svm.damParity1WW = 0;
+                if (parBW1Count == 0)
+                {
+                    svm.damParity1BW = 0;
+                    if (svm.damParity1WW == 0)
+                    {
+                        svm.damParity1BW = svm.damParity1WW / parWW1Count;
+                    }
+                }
+                else
+                {
+                    svm.damParity1WW = 0;
+                    svm.damParity1BW = svm.damParity1BW / parBW1Count;
+                }
             }
             else
             {
-                svm.damParity1BW = svm.damParity1BW / svm.damParity1Count;
-                svm.damParity1WW = svm.damParity1WW / svm.damParity1Count;
+                svm.damParity1BW = svm.damParity1BW / parBW1Count;
+                svm.damParity1WW = svm.damParity1WW / parWW1Count;
             }
 
-            if (svm.damParity2Count == 0)
+            if (parBW2Count == 0 || parWW2Count == 0)
             {
-                svm.damParity2BW = 0;
-                svm.damParity2WW = 0;
+                if (parBW2Count == 0)
+                {
+                    svm.damParity2BW = 0;
+                    if (svm.damParity2WW == 0)
+                    {
+                        svm.damParity2BW = svm.damParity2WW / parWW2Count;
+                    }
+                }
+                else
+                {
+                    svm.damParity2WW = 0;
+                    svm.damParity2BW = svm.damParity2BW / parBW2Count;
+                }
             }
             else
             {
-                svm.damParity2BW = svm.damParity2BW / svm.damParity2Count;
-                svm.damParity2WW = svm.damParity2WW / svm.damParity2Count;
+                svm.damParity2BW = svm.damParity2BW / parBW2Count;
+                svm.damParity2WW = svm.damParity2WW / parBW2Count;
             }
 
-            if (svm.damParity3Count == 0)
+            if (parBW3Count == 0 || parWW3Count == 0)
             {
-                svm.damParity3BW = 0;
-                svm.damParity3WW = 0;
+                if (parBW3Count == 0)
+                {
+                    svm.damParity3BW = 0;
+                    if (svm.damParity3WW == 0)
+                    {
+                        svm.damParity3BW = svm.damParity3WW / parWW3Count;
+                    }
+                }
+                else
+                {
+                    svm.damParity3WW = 0;
+                    svm.damParity3BW = svm.damParity3BW / parBW3Count;
+                }
             }
             else
             {
-                svm.damParity3BW = svm.damParity3BW / svm.damParity3Count;
-                svm.damParity3WW = svm.damParity3WW / svm.damParity3Count;
+                svm.damParity3BW = svm.damParity3BW / parBW3Count;
+                svm.damParity3WW = svm.damParity3WW / parWW3Count;
             }
 
-            if (svm.damParity4Count == 0)
+            if (parBW4Count == 0 || parWW4Count == 0)
             {
-                svm.damParity4BW = 0;
-                svm.damParity4WW = 0;
+                if (parBW4Count == 0)
+                {
+                    svm.damParity4BW = 0;
+                    if (svm.damParity4WW == 0)
+                    {
+                        svm.damParity4BW = svm.damParity4WW / parWW4Count;
+                    }
+                }
+                else
+                {
+                    svm.damParity4WW = 0;
+                    svm.damParity4BW = svm.damParity4BW / parBW4Count;
+                }
             }
             else
             {
-                svm.damParity4BW = svm.damParity4BW / svm.damParity4Count;
-                svm.damParity4WW = svm.damParity4WW / svm.damParity4Count;
+                svm.damParity4BW = svm.damParity4BW / parBW4Count;
+                svm.damParity4WW = svm.damParity4WW / parWW4Count;
             }
 
             if (allADGWCount == 0)

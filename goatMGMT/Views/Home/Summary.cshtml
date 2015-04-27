@@ -18,7 +18,7 @@
         </div>
     </div>
     
-    <div class="control-group" style="padding-top: 15px; padding-bottom: 15px;">
+    <div id="breedString" class="control-group" style="padding-top: 15px; padding-bottom: 15px; display: none;">
         @Html.LabelFor(m => m.stringBreedCode, new { @class = "control-label" })
         <div class="controls">
             @Html.DropDownListFor(m => m.stringBreedCode, (IEnumerable<SelectListItem>)ViewData["breedList"], "Select a breed to compare", new { @class = "form-control" })
@@ -84,8 +84,9 @@
             $('#graph2Title').html("Total/Active Animals (All Breeds)")
             $('#graph2').css('display', 'block')
             totalActiveGraph();
-            $('#graph3Title').html(" ")
-            $('#graph3').css('display', 'none')
+            $('#graph3Title').html("Average Birth Weight / Weaning Weight (By Breed)")
+            $('#graph3').css('display', 'block')
+            bornWeaningWeightGraph();
             $('#graph4Title').html(" ")
             $('#graph4').css('display', 'none')
         }
@@ -95,9 +96,8 @@
             $('#graph2Title').html("Total Offspring Weaned (All Breeds)")
             $('#graph2').css('display', 'block')
             bornWeanedGraph();
-            $('#graph3Title').html("Average Birth Weight / Weaning Weight (By Breed)")
-            $('#graph3').css('display', 'block')
-            bornWeaningWeightGraph();
+            $('#graph3Title').html(" ")
+            $('#graph3').css('display', 'none')
             $('#graph4Title').html(" ")
             $('#graph4').css('display', 'none')
         }
@@ -647,30 +647,33 @@
     }
     $('#graphAnswer').change(function() {
         if($('#graphAnswer').val() == "General") {
+            $('#breedString').css('display', 'block')
             $('#graph1Title').html("Average Daily Gains (ADG) (By Breed)")
             $('#graph1').css('display', 'block')
             adgGraph();
             $('#graph2Title').html("Total/Active Animals (All Breeds)")
             $('#graph2').css('display', 'block')
             totalActiveGraph();
-            $('#graph3Title').html(" ")
-            $('#graph3').css('display', 'none')
-            $('#graph4Title').html(" ")
-            $('#graph4').css('display', 'none')
-        }
-        else if ($('#graphAnswer').val() == "Weaning") {
-            $('#graph1Title').html("Total Offspring Born (All Breeds)")
-            $('#graph1').css('display', 'block')
-            $('#graph2Title').html("Total Offspring Weaned (All Breeds)")
-            $('#graph2').css('display', 'block')
-            bornWeanedGraph();
             $('#graph3Title').html("Average Birth Weight / Weaning Weight (By Breed)")
             $('#graph3').css('display', 'block')
             bornWeaningWeightGraph();
             $('#graph4Title').html(" ")
             $('#graph4').css('display', 'none')
         }
+        else if ($('#graphAnswer').val() == "Weaning") {
+            $('#breedString').css('display', 'none')
+            $('#graph1Title').html("Total Offspring Born (All Breeds)")
+            $('#graph1').css('display', 'block')
+            $('#graph2Title').html("Total Offspring Weaned (All Breeds)")
+            $('#graph2').css('display', 'block')
+            bornWeanedGraph();
+            $('#graph3Title').html(" ")
+            $('#graph3').css('display', 'none')
+            $('#graph4Title').html(" ")
+            $('#graph4').css('display', 'none')
+        }
         else if ($('#graphAnswer').val() == "Birth") {
+            $('#breedString').css('display', 'none')
             $('#graph1Title').html("Mating and Birth Count (All Breeds)")
             $('#graph1').css('display', 'block')
             matingBirthGraph();

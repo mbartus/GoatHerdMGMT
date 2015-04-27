@@ -534,7 +534,7 @@ namespace goatMGMT.Controllers
                     }
                     else
                     {
-                        if (animal.weaning_date != null && animal.weaning_weight != null)
+                        if (animal.weaning_date != null && animal.weaning_weight != null && animal.weaning_date != null)
                         {
                             if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
                             {
@@ -748,7 +748,7 @@ namespace goatMGMT.Controllers
                             }
                             
                         }
-                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
+                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null && animal.weaning_date != null)
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
@@ -2422,7 +2422,7 @@ namespace goatMGMT.Controllers
                     }
                     else
                     {
-                        if (animal.weaning_date != null && animal.weaning_weight != null)
+                        if (animal.weaning_date != null && animal.weaning_weight != null && animal.weaning_date != null)
                         {
                             if (((DateTime)animal.weaning_date - animal.dob).Days > 10)
                             {
@@ -2636,7 +2636,7 @@ namespace goatMGMT.Controllers
                             }
 
                         }
-                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
+                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null && animal.weaning_date != null)
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {

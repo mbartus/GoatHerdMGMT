@@ -318,7 +318,7 @@ namespace goatMGMT.Controllers
                                 }
                             }
                         }
-                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
+                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null && animal.weaning_weight != null)
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {
@@ -2206,7 +2206,7 @@ namespace goatMGMT.Controllers
                                 }
                             }
                         }
-                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null)
+                        if (animal.post_weaning_date != null && animal.post_weaning_weight != null && animal.weaning_weight != null)
                         {
                             if (((DateTime)animal.post_weaning_date - animal.dob).Days > 10)
                             {

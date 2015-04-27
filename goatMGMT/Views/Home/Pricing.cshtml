@@ -4,17 +4,42 @@
     Layout = @Url.Content("~/Views/Shared/_PublicLayout.cshtml"); 
 }
 
-
-
 <div class="container" style="padding-top: 35px;">
     <h1 style="padding-top:10px;">Pricing</h1>
-    <hr style="border-color:darkgray;" />
-    <div class="row">
-        <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6" style="margin-bottom: 15px;">
+                    <h1 style="text-align:center; font-weight:700; color:darkgreen;">$2.99 per month</h1>
+                    <br />
+                    <p style="text-align:center; font-size: 20px;">Receive the first 3 months free or upgrade earlier to use all of the features.</p>
+                    <br />
+                    <p style="text-align:center; font-size: 20px;">If you haven't upgraded after 3 months you will be prompted to upgrade your account.</p>
+                </div>
+            <div class="col-md-6" style="padding-top:20px; margin-bottom:15px;">
+                    <ul>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        Manage your animals
+                    </li>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        Manage business associates
+                    </li>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        Manage transactions
+                    </li>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        Manage health records
+                    </li>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        View average daily gains of each animal
+                    </li>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        View visual summaries of your herd<small style="font-weight:700;"> (After Upgrade)</small>
+                    </li>
+                    <li style="text-align:center; margin-bottom:10px; font-size:15px;">
+                        Export your herd data to excel<small style="font-weight:700;"> (After Upgrade)</small>
+                    </li>
+                    </ul>
+            </div>
         </div>
-        <div class="col-md-6">
-        </div>
-    </div>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#active-pricing").addClass("active");

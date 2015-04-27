@@ -96,6 +96,14 @@
           <Property Name="email" Type="nvarchar(max)" />
           <Property Name="comment" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="nvarchar(max)" />
+          <Property Name="answer" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="License">
           <Key>
             <PropertyRef Name="pk" />
@@ -312,6 +320,7 @@
           <EntitySet Name="Births" EntityType="Self.Births" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Breeding" EntityType="Self.Breeding" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAQ" EntityType="Self.FAQ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatments" EntityType="Self.Treatments" Schema="dbo" store:Type="Tables" />
@@ -371,6 +380,7 @@
           <EntitySet Name="Births" EntityType="goatDBModel.Birth" />
           <EntitySet Name="Breedings" EntityType="goatDBModel.Breeding" />
           <EntitySet Name="Comments" EntityType="goatDBModel.Comment" />
+          <EntitySet Name="FAQs" EntityType="goatDBModel.FAQ" />
           <EntitySet Name="Licenses" EntityType="goatDBModel.License" />
           <EntitySet Name="Transactions" EntityType="goatDBModel.Transaction" />
           <EntitySet Name="Treatments" EntityType="goatDBModel.Treatment" />
@@ -516,6 +526,14 @@
           <Property Name="subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="License">
           <Key>
@@ -802,6 +820,15 @@
                 <ScalarProperty Name="subject" ColumnName="subject" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="date_sent" ColumnName="date_sent" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAQs">
+            <EntityTypeMapping TypeName="goatDBModel.FAQ">
+              <MappingFragment StoreEntitySet="FAQ">
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -5,16 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8e65c073a3cf41d093804af215ed6511" Name="Diagram1" ZoomLevel="75" >
-        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="5.25" PointY="7.125" />
-        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="5.25" PointY="15.375" />
-        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="9.75" PointY="9.5" />
-        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="goatDBModel.Animal" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="goatDBModel.Associate" Width="1.5" PointX="5.25" PointY="3.25" />
+        <EntityTypeShape EntityType="goatDBModel.Birth" Width="1.5" PointX="9.75" PointY="11.375" />
+        <EntityTypeShape EntityType="goatDBModel.Breeding" Width="1.5" PointX="7.5" PointY="14.375" />
         <EntityTypeShape EntityType="goatDBModel.Comment" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="goatDBModel.License" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="5.25" PointY="3.25" />
-        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="7.5" PointY="15.375" />
+        <EntityTypeShape EntityType="goatDBModel.FAQ" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="goatDBModel.License" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="goatDBModel.Transaction" Width="1.5" PointX="5.25" PointY="15.625" />
+        <EntityTypeShape EntityType="goatDBModel.Treatment" Width="1.5" PointX="7.5" PointY="7.625" />
         <EntityTypeShape EntityType="goatDBModel.UserProfile" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="goatDBModel.webpages_Membership" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="goatDBModel.webpages_Membership" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="goatDBModel.webpages_OAuthMembership" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="goatDBModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="10.25" />
         <AssociationConnector Association="goatDBModel.FK__Births__child_id__5090EFD7" />

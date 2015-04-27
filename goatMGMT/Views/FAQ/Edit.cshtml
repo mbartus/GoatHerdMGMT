@@ -1,0 +1,46 @@
+@model goatMGMT.Models.FAQ
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="padding-bottom: 15px;">
+    <h2>Edit</h2>
+
+
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>FAQ</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.question, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.question,  new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px", @placeholder="Enter question here" })
+                @Html.ValidationMessageFor(model => model.question, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.answer, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.answer,  new { @class = "form-control", @style = "max-width:100%; min-width:100%; min-height:71px", @placeholder="Enter answer here" })
+                @Html.ValidationMessageFor(model => model.answer, null, new { @class = "help-inline" })
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Save" class="btn btn-success" style="margin-top:15px;" />
+            @Html.ActionLink("Cancel", "Index", "FAQ", new { @class = "btn btn-danger", @style = "margin-top:15px;" })
+        </div>
+    </fieldset>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

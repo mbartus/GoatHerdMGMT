@@ -149,6 +149,22 @@
         </div>
         }
     </div>
+    <div class="row">
+        @if (User.IsInRole("admin"))
+        {
+        <div class="dash-section col-md-6">
+            <h4><a href="~/FAQ/Index" onclick="spinme()">Edit FAQ's</a></h4>
+            <ul>
+                <li>
+                    View the current FAQ's and edit them.
+                </li>
+                <li>
+                    Create a new FAQ
+                </li>
+            </ul>
+        </div>
+        }
+    </div>
 </div>
 </div>
 <script type="text/javascript" src="~/Scripts/spin.min.js"></script>

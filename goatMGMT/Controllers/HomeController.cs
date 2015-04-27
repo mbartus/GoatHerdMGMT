@@ -65,6 +65,12 @@ namespace goatMGMT.Controllers
             return View();
         }
 
+        public ActionResult FAQ()
+        {
+            
+            return View(db.FAQs.ToList());
+        }
+
         [Authorize]
         public ActionResult Dashboard()
         {

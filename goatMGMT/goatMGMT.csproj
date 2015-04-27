@@ -196,6 +196,7 @@
     <Compile Include="Controllers\BirthController.cs" />
     <Compile Include="Controllers\BreedingController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicenseController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
@@ -223,6 +224,10 @@
     <Compile Include="Models\BreedingMetadata.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ChangeSecurityQuestionViewModel.cs" />
+    <Compile Include="Models\FAQ.cs">
+      <DependentUpon>GoatModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FAQMetadata.cs" />
     <Compile Include="Models\GraphViewModel.cs" />
     <Compile Include="Models\Kid.cs" />
     <Compile Include="Models\License.cs">
@@ -552,6 +557,12 @@
     <Content Include="Views\Animal\Offspring.cshtml" />
     <Content Include="Views\Animal\HealthRecordsIndex.cshtml" />
     <Content Include="Views\Animal\HealthRecordsUpdate.cshtml" />
+    <Content Include="Views\FAQ\Create.cshtml" />
+    <Content Include="Views\FAQ\Delete.cshtml" />
+    <Content Include="Views\FAQ\Details.cshtml" />
+    <Content Include="Views\FAQ\Edit.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

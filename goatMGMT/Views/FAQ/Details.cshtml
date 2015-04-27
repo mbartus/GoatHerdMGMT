@@ -1,0 +1,32 @@
+@model goatMGMT.Models.FAQ
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="padding-bottom: 15px;">
+    <h2>Details</h2>
+
+    <fieldset>
+        <legend>FAQ</legend>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.DisplayNameFor(model => model.question)</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.question)
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.DisplayNameFor(model => model.answer)</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.answer)
+            </div>
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Back to List", "Index", "FAQ", new {@class="btn btn-primary"})
+    </p>
+</div>

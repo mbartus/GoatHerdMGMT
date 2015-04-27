@@ -76,6 +76,7 @@ namespace goatMGMT.Models
         public int weaning_group { get; set; }
 
         [DisplayName("Post-Weaning Weight")]
+        [Range(7.0, 10000)]
         public double post_weaning_weight { get; set; }
 
         [DisplayName("Post-Weaning Date")]
@@ -84,6 +85,7 @@ namespace goatMGMT.Models
         public DateTime post_weaning_date { get; set; }
 
         [DisplayName("Market Weight")]
+        [Range(7.0, 10000)]
         public float market_weight { get; set; }
 
         [DisplayName("Market Date")]

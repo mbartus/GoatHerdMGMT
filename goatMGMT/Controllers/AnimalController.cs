@@ -43,7 +43,7 @@ namespace goatMGMT.Controllers
                 {
                     damCount++;
                 }
-                else if (an.isChild && (an.status_code == "Active" || an.status_code == "Unclassed") )
+                else if (an.isChild && (an.status_code == "Active" || an.status_code == "Unclassed"))
                 {
                     offCount++;
                 }
@@ -187,21 +187,6 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Animal animal)
         {
-            
-            if (ModelState.IsValid)
-            {
-                animal.owner = (int)Membership.GetUser().ProviderUserKey;
-                db.Animals.Add(animal);
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch
-                {
-                    return RedirectToAction("Error", "Home");
-                }
-                return RedirectToAction("Index");
-            }
             List<SelectListItem> speciesList = new List<SelectListItem>() {
                 new SelectListItem() { Text= "Goat (Meat)", Value = "Goat (Meat)"},
                 new SelectListItem() { Text = "Other", Value = "Other"}
@@ -245,6 +230,36 @@ namespace goatMGMT.Controllers
                 new SelectListItem() { Text = "OTHERS", Value = "OTHERS"},
             };
             @ViewBag.breedList = breedList;
+            if (ModelState.IsValid)
+            {
+                if (animal.weaning_date != null)
+                {
+                    if (animal.dob.CompareTo(animal.weaning_date) < 0)
+                    {
+                        ModelState.AddModelError("", "Weaning Date must be after Date of Birth");
+                        return View(animal);
+                    }
+                }
+                if (animal.post_weaning_date != null && animal.weaning_date != null)
+                {
+                    if (((DateTime)animal.post_weaning_date).CompareTo((DateTime)animal.weaning_date) > 0)
+                    {
+                        ModelState.AddModelError("", "Post-Weaning Date must be after Weaning Date");
+                        return View(animal);
+                    }
+                }
+                animal.owner = (int)Membership.GetUser().ProviderUserKey;
+                db.Animals.Add(animal);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                return RedirectToAction("Index");
+            }
             return View(animal);
         }
 
@@ -314,7 +329,7 @@ namespace goatMGMT.Controllers
 
         public ActionResult Offspring()
         {
-            int userID = (int)Membership.GetUser().ProviderUserKey; 
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             List<Kid> kids = new List<Kid>();
             var animalList = db.Animals.Where(m => m.owner == userID);
             if (User.IsInRole("admin"))
@@ -349,7 +364,7 @@ namespace goatMGMT.Controllers
         // GET: /Animal/Edit/5
         public ActionResult Edit(Int32 id)
         {
-            int userID = (int)Membership.GetUser().ProviderUserKey; 
+            int userID = (int)Membership.GetUser().ProviderUserKey;
             Animal animal = db.Animals.Find(id);
             if (animal == null)
             {
@@ -487,11 +502,11 @@ namespace goatMGMT.Controllers
             Animal animal = db.Animals.Find(id);
             var treatments = db.Treatments.Include(a => a.Animal.UserProfile).Where(b => b.animal_id == animal.id);
             var breedings = db.Breedings.Include(a => a.Animal.UserProfile).Where(b => b.father_id == animal.id || b.mother_id == animal.id);
-            foreach(Treatment tre in treatments)
+            foreach (Treatment tre in treatments)
             {
                 db.Treatments.Remove(tre);
             }
-            foreach(Breeding bre in breedings)
+            foreach (Breeding bre in breedings)
             {
                 var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.breed_id == bre.id);
                 foreach (Birth bi in births)

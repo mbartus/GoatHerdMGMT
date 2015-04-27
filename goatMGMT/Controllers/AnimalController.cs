@@ -347,11 +347,19 @@ namespace goatMGMT.Controllers
                     if (currentAnimal.weaning_date != null && currentAnimal.weaning_weight != null)
                     {
                         kid.ageAtWeaning = ((DateTime)currentAnimal.weaning_date - currentAnimal.dob).Days;
+                        if (kid.ageAtWeaning == 0)
+                        {
+                            kid.ageAtWeaning = 1;
+                        }
                         kid.averageDailyGainWeaning = (double)(currentAnimal.weaning_weight - currentAnimal.birth_weight) / kid.ageAtWeaning;
                     }
                     if (currentAnimal.post_weaning_date != null && currentAnimal.post_weaning_weight != null)
                     {
                         kid.ageAtPostWeaning = ((DateTime)currentAnimal.post_weaning_date - currentAnimal.dob).Days;
+                        if (kid.ageAtPostWeaning == 0)
+                        {
+                            kid.ageAtPostWeaning = 1;
+                        }
                         kid.averageDailyGainPostWeaning = (double)(currentAnimal.post_weaning_weight - currentAnimal.birth_weight) / kid.ageAtPostWeaning;
                     }
                     kids.Add(kid);

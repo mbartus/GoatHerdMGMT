@@ -1959,49 +1959,53 @@ namespace goatMGMT.Controllers
                         }
                         if ((int)birth.Breeding.born == 1)
                         {
-                            svm.singleBirthCount++;
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
+                                svm.singleBirthCount++;
                                 svm.singleBWAvg += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_date != null)
                             {
+                                svm.singleWeaningCount++;
                                 svm.singleWWAvg += (double)db.Animals.Find(birth.child_id).weaning_weight;
                             }
                         }
                         if ((int)birth.Breeding.born == 2)
                         {
-                            svm.twinBirthCount++;
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
+                                svm.twinBirthCount++;
                                 svm.twinBWAvg += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_date != null)
                             {
+                                svm.twinWeaningCount++;
                                 svm.twinWWAvg += (double)db.Animals.Find(birth.child_id).weaning_weight;
                             }
                         }
                         if ((int)birth.Breeding.born == 3)
                         {
-                            svm.tripletBirthCount++;
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
+                                svm.tripletBirthCount++;
                                 svm.tripletBWAvg += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_date != null)
                             {
+                                svm.tripletWeaningCount++;
                                 svm.tripletWWAvg += (double)db.Animals.Find(birth.child_id).weaning_weight;
                             }
                         }
                         if ((int)birth.Breeding.born > 3)
                         {
-                            svm.quadBirthCount++;
                             if (db.Animals.Find(birth.child_id).birth_weight != null)
                             {
+                                svm.quadBirthCount++;
                                 svm.quadBWAvg += (double)db.Animals.Find(birth.child_id).birth_weight;
                             }
                             if (db.Animals.Find(birth.child_id).weaning_date != null)
                             {
+                                svm.quadWeaningCount++;
                                 svm.quadWWAvg += (double)db.Animals.Find(birth.child_id).weaning_weight;
                             }
                         }

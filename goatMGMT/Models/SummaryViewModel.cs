@@ -90,6 +90,14 @@ namespace goatMGMT.Models
 
         public int quadBirthCount { get; set; }
 
+        public int singleWeaningCount { get; set; }
+
+        public int twinWeaningCount { get; set; }
+
+        public int tripletWeaningCount { get; set; }
+
+        public int quadWeaningCount { get; set; }
+        
         public double singleBWAvg { get; set; }
 
         public double twinBWAvg { get; set; }

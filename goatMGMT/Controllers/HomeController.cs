@@ -2873,6 +2873,7 @@ namespace goatMGMT.Controllers
                     }
                 }
             }
+            double temp;
             for (int i = 0; i < 25; i++)
             {
                 for (int j = 0; j < 12; j++)
@@ -2883,7 +2884,11 @@ namespace goatMGMT.Controllers
                     }
                     else
                     {
-                        svm.myArray[i, j] = svm.myArray[i, j] / mySumBreeds[i, j];
+                        temp = svm.myArray[i, j] / mySumBreeds[i, j];
+                        temp = temp * 1000;
+                        temp = Math.Truncate(temp);
+                        temp = temp / 1000;
+                        svm.myArray[i, j] = temp;
                     }
                     if (allSumBreeds[i, j] == 0)
                     {
@@ -2891,7 +2896,11 @@ namespace goatMGMT.Controllers
                     }
                     else
                     {
-                        svm.allArray[i, j] = svm.allArray[i, j] / allSumBreeds[i, j];
+                        temp = svm.allArray[i, j] / allSumBreeds[i, j];
+                        temp = temp * 1000;
+                        temp = Math.Truncate(temp);
+                        temp = temp / 1000;
+                        svm.allArray[i, j] = temp;
                     }
                 }
             }
@@ -2899,23 +2908,53 @@ namespace goatMGMT.Controllers
             {
                 maleBWCount++;
             }
-            svm.myArray[25, 7] = svm.maleAvgBW / maleBWCount;
+            temp = svm.maleAvgBW / maleBWCount;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 7] = temp;
+
             if (femaleBWCount == 0)
             {
                 femaleBWCount++;
             }
-            svm.myArray[25, 8] = svm.femaleAvgBW / femaleBWCount;
+            temp = svm.femaleAvgBW / femaleBWCount;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 8] = temp;
+
             if (maleWWCount == 0)
             {
                 maleWWCount++;
             }
-            svm.myArray[25, 10] = svm.maleAvgWW / maleWWCount;
+            temp = svm.maleAvgWW / maleWWCount;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 10] = temp;
+
             if (femaleWWCount == 0)
             {
                 femaleWWCount++;
             }
-            svm.myArray[25, 11] = svm.femaleAvgWW / femaleWWCount;
+            temp = svm.femaleAvgWW / femaleWWCount;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 11] = temp;
 
+            temp = svm.myArray[25, 6];
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 6] = temp;
+            temp = svm.myArray[25, 7];
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 7] = temp;
+            
             if (svm.myArray[25, 7] == 0 || svm.myArray[25, 8] == 0)
             {
                 if (svm.myArray[25, 7] == 0)
@@ -2929,7 +2968,11 @@ namespace goatMGMT.Controllers
             }
             else
             {
-                svm.myArray[25, 6] = (svm.myArray[25, 7] + svm.myArray[25, 8]) / 2;
+                temp =  (svm.myArray[25, 7] + svm.myArray[25, 8]) / 2;
+                temp = temp * 1000;
+                temp = Math.Truncate(temp);
+                temp = temp / 1000;
+                svm.myArray[25, 6] = temp;
             }
 
             if (svm.myArray[25, 10] == 0 || svm.myArray[25, 11] == 0)
@@ -2945,7 +2988,11 @@ namespace goatMGMT.Controllers
             }
             else
             {
-                svm.myArray[25, 9] = (svm.myArray[25, 10] + svm.myArray[25, 11]) / 2;
+                temp = (svm.myArray[25, 10] + svm.myArray[25, 11]) / 2;
+                temp = temp * 1000;
+                temp = Math.Truncate(temp);
+                temp = temp / 1000;
+                svm.myArray[25, 9] = temp;
             }
 
             if (svm.singleBirthCount == 0)
@@ -3179,18 +3226,78 @@ namespace goatMGMT.Controllers
                 FemaleADGPWCount++;
             }
             svm.femaleADGPostWeaning = svm.femaleADGPostWeaning / FemaleADGPWCount;
-            svm.myArray[25, 0] = svm.ADGWeaning;
-            svm.myArray[25, 1] = svm.maleADGWeaning;
-            svm.myArray[25, 2] = svm.femaleADGWeaning;
-            svm.myArray[25, 3] = svm.ADGPostWeaning;
-            svm.myArray[25, 4] = svm.maleADGPostWeaning;
-            svm.myArray[25, 5] = svm.femaleADGPostWeaning;
-            svm.allArray[25, 0] = svm.allADGWeaning;
-            svm.allArray[25, 1] = svm.allMaleADGWeaning;
-            svm.allArray[25, 2] = svm.allFemaleADGWeaning;
-            svm.allArray[25, 3] = svm.allADGPostWeaning;
-            svm.allArray[25, 4] = svm.allMaleADGPostWeaning;
-            svm.allArray[25, 5] = svm.allFemaleADGPostWeaning;
+
+            temp = svm.ADGWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 0] = temp;
+
+            temp = svm.maleADGWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 1] = temp;
+
+            temp = svm.femaleADGWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 2] = temp;
+
+            temp = svm.ADGPostWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 3] = temp;
+
+            temp = svm.maleADGPostWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 4] = temp;
+
+            temp = svm.femaleADGPostWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.myArray[25, 5] = temp;
+
+            temp = svm.allADGWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.allArray[25, 0] = temp;
+
+            temp = svm.allMaleADGWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.allArray[25, 1] = temp;
+
+            temp = svm.allFemaleADGWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.allArray[25, 2] = temp;
+
+            temp = svm.allADGPostWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.allArray[25, 3] = temp;
+
+            temp = svm.allMaleADGPostWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.allArray[25, 4] = temp;
+
+            temp = svm.allFemaleADGPostWeaning;
+            temp = temp * 1000;
+            temp = Math.Truncate(temp);
+            temp = temp / 1000;
+            svm.allArray[25, 5] = temp;
             List<SelectListItem> graphList = new List<SelectListItem>()
             {
                 new SelectListItem() { Text = "General", Value = "General"},

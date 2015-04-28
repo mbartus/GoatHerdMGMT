@@ -315,14 +315,68 @@ namespace goatMGMT.Controllers
                     pwallcount++;
                 }
             }
+
+            if (bwcount == 0)
+            {
+                bwcount++;
+            }
+            double temp1 = bw / bwcount;
+            temp1 = temp1 * 1000;
+            temp1 = Math.Truncate(temp1);
+            temp1 = temp1 / 1000;
+
+            if (bwallcount == 0)
+            {
+                bwallcount++;
+            }
+            double temp2 = bwall / bwallcount;
+            temp2 = temp2 * 1000;
+            temp2 = Math.Truncate(temp2);
+            temp2 = temp2 / 1000;
+
+            if (wwcount == 0)
+            {
+                wwcount++;
+            }
+            double temp3 = ww / wwcount;
+            temp3 = temp3 * 1000;
+            temp3 = Math.Truncate(temp3);
+            temp3 = temp3 / 1000;
+
+            if (wwallcount == 0)
+            {
+                wwallcount++;
+            }
+            double temp4 = wwall / wwallcount;
+            temp4 = temp4 * 1000;
+            temp4 = Math.Truncate(temp4);
+            temp4 = temp4 / 1000;
+
+            if (pwcount == 0)
+            {
+                pwcount++;
+            }
+            double temp5 = pw / pwcount;
+            temp5 = temp5 * 1000;
+            temp5 = Math.Truncate(temp5);
+            temp5 = temp5 / 1000;
+
+            if (pwallcount == 0)
+            {
+                pwallcount++;
+            }
+            double temp6 = pwall / pwallcount;
+            temp6 = temp6 * 1000;
+            temp6 = Math.Truncate(temp6);
+            temp6 = temp6 / 1000;
             GraphViewModel gvm = new GraphViewModel()
             {
-                birthweight = bw / bwcount,
-                birthweightall = bwall / bwallcount,
-                weaningweight = ww / wwcount,
-                weaningweightall = wwall / wwallcount,
-                postweaningweight = pw / pwcount,
-                postweaningweightall = pwall / pwallcount
+                birthweight = temp1,
+                birthweightall = temp2,
+                weaningweight = temp3,
+                weaningweightall = temp4,
+                postweaningweight = temp5,
+                postweaningweightall = temp6
             };
             return View(gvm);
         }
@@ -351,7 +405,11 @@ namespace goatMGMT.Controllers
                         {
                             kid.ageAtWeaning = 1;
                         }
-                        kid.averageDailyGainWeaning = (double)(currentAnimal.weaning_weight - currentAnimal.birth_weight) / kid.ageAtWeaning;
+                        double temp1 = (double)(currentAnimal.weaning_weight - currentAnimal.birth_weight) / kid.ageAtWeaning;
+                        temp1 = temp1 * 1000;
+                        temp1 = Math.Truncate(temp1);
+                        temp1 = temp1 / 1000;
+                        kid.averageDailyGainWeaning = temp1;
                     }
                     if (currentAnimal.post_weaning_date != null && currentAnimal.post_weaning_weight != null)
                     {
@@ -360,7 +418,11 @@ namespace goatMGMT.Controllers
                         {
                             kid.ageAtPostWeaning = 1;
                         }
-                        kid.averageDailyGainPostWeaning = (double)(currentAnimal.post_weaning_weight - currentAnimal.birth_weight) / kid.ageAtPostWeaning;
+                        double temp2 = (double)(currentAnimal.post_weaning_weight - currentAnimal.birth_weight) / kid.ageAtPostWeaning;
+                        temp2 = temp2 * 1000;
+                        temp2 = Math.Truncate(temp2);
+                        temp2 = temp2 / 1000;
+                        kid.averageDailyGainPostWeaning = temp2;
                     }
                     kids.Add(kid);
                 }

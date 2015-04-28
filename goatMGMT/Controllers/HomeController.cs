@@ -2021,7 +2021,7 @@ namespace goatMGMT.Controllers
                                 svm.allMaleADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
                                 svm.allADGWeaning += (double)(animal.weaning_weight - animal.birth_weight) / ((DateTime)animal.weaning_date - animal.dob).Days;
                                 allADGWCount++;
-                                MaleADGWCount++;
+                                allMaleADGWCount++;
                                 switch (animal.breed_code)
                                 {
                                     case "Purbred Boer":
@@ -2957,6 +2957,15 @@ namespace goatMGMT.Controllers
                 svm.singleBWAvg = svm.singleBWAvg / svm.singleBirthCount;
             }
 
+            if (svm.singleBirthCount == 0)
+            {
+                svm.singleWWAvg = 0;
+            }
+            else
+            {
+                svm.singleWWAvg = svm.singleWWAvg / svm.singleBirthCount;
+            }
+
             if (svm.twinBirthCount == 0)
             {
                 svm.twinBWAvg = 0;
@@ -2964,6 +2973,15 @@ namespace goatMGMT.Controllers
             else
             {
                 svm.twinBWAvg = svm.twinBWAvg / svm.twinBirthCount;
+            }
+
+            if (svm.twinBirthCount == 0)
+            {
+                svm.twinWWAvg = 0;
+            }
+            else
+            {
+                svm.twinWWAvg = svm.twinWWAvg / svm.twinBirthCount;
             }
 
             if (svm.tripletBirthCount == 0)
@@ -2975,6 +2993,15 @@ namespace goatMGMT.Controllers
                 svm.tripletBWAvg = svm.tripletBWAvg / svm.tripletBirthCount;
             }
 
+            if (svm.tripletBirthCount == 0)
+            {
+                svm.tripletWWAvg = 0;
+            }
+            else
+            {
+                svm.tripletWWAvg = svm.tripletWWAvg / svm.tripletBirthCount;
+            }
+
             if (svm.quadBirthCount == 0)
             {
                 svm.quadBWAvg = 0;
@@ -2982,6 +3009,15 @@ namespace goatMGMT.Controllers
             else
             {
                 svm.quadBWAvg = svm.quadBWAvg / svm.quadBirthCount;
+            }
+
+            if (svm.quadBirthCount == 0)
+            {
+                svm.quadWWAvg = 0;
+            }
+            else
+            {
+                svm.quadWWAvg = svm.quadWWAvg / svm.quadBirthCount;
             }
 
             if (parBW1Count == 0 || parWW1Count == 0)

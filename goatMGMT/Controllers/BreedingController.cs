@@ -208,6 +208,8 @@ namespace goatMGMT.Controllers
             bvm.breeding = breeding;
             bvm.father_name = bvm.breeding.Animal.name;
             bvm.mother_name = bvm.breeding.Animal1.name;
+            bvm.father_tag = db.Animals.Find(breeding.father_id).tag;
+            bvm.mother_tag = db.Animals.Find(breeding.mother_id).tag;
             return View(bvm);
         }
 
@@ -235,6 +237,8 @@ namespace goatMGMT.Controllers
             bvm.breeding = breeding;
             bvm.father_name = db.Animals.Find(breeding.father_id).name;
             bvm.mother_name = db.Animals.Find(breeding.mother_id).name;
+            bvm.father_tag = db.Animals.Find(breeding.father_id).tag;
+            bvm.mother_tag = db.Animals.Find(breeding.mother_id).tag;
             return View(bvm);
         }
 

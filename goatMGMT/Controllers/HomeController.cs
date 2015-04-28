@@ -2916,36 +2916,36 @@ namespace goatMGMT.Controllers
             }
             svm.myArray[25, 11] = svm.femaleAvgWW / femaleWWCount;
 
-            if (svm.maleAvgBW == 0 || svm.femaleAvgBW == 0)
+            if (svm.myArray[25, 7] == 0 || svm.myArray[25, 8] == 0)
             {
-                if (svm.maleAvgBW == 0)
+                if (svm.myArray[25, 7] == 0)
                 {
-                    svm.myArray[25, 6] = svm.femaleAvgBW;
+                    svm.myArray[25, 6] = svm.myArray[25, 8];
                 }
                 else
                 {
-                    svm.myArray[25, 6] = svm.maleAvgBW;
+                    svm.myArray[25, 6] = svm.myArray[25, 7];
                 }
             }
             else
             {
-                svm.myArray[25, 6] = (svm.maleAvgBW + svm.femaleAvgBW) / 2;
+                svm.myArray[25, 6] = (svm.myArray[25, 7] + svm.myArray[25, 8]) / 2;
             }
 
-            if (svm.maleAvgWW == 0 || svm.femaleAvgWW == 0)
+            if (svm.myArray[25, 10] == 0 || svm.myArray[25, 11] == 0)
             {
-                if (svm.maleAvgWW == 0)
+                if (svm.myArray[25, 10] == 0)
                 {
-                    svm.myArray[25, 9] = svm.femaleAvgWW;
+                    svm.myArray[25, 9] = svm.myArray[25, 11];
                 }
                 else
                 {
-                    svm.myArray[25, 9] = svm.maleAvgWW;
+                    svm.myArray[25, 9] = svm.myArray[25, 10];
                 }
             }
             else
             {
-                svm.myArray[25, 9] = (svm.maleAvgWW + svm.femaleAvgWW) / 2;
+                svm.myArray[25, 9] = (svm.myArray[25, 10] + svm.myArray[25, 11]) / 2;
             }
 
             if (svm.singleBirthCount == 0)

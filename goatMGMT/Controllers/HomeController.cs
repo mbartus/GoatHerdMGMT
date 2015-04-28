@@ -3439,8 +3439,8 @@ namespace goatMGMT.Controllers
                 worksheet.Cells[row, 4].Value = db.Animals.Find(birth.child_id).dob;
                 worksheet.Cells[row, 5].Value = birth.score;
                 worksheet.Cells[row, 6].Value = db.Breedings.Find(birth.breed_id).parity;
-                worksheet.Cells[row, 7].Value = db.Breedings.Find(birth.breed_id).born;
-                worksheet.Cells[row, 8].Value = db.Breedings.Find(birth.breed_id).alive;
+                worksheet.Cells[row, 7].Value = db.Breedings.Find(birth.breed_id).alive;
+                worksheet.Cells[row, 8].Value = db.Breedings.Find(birth.breed_id).born;
                 worksheet.Cells[row, 9].Value = birth.notes;
                 row++;
             }

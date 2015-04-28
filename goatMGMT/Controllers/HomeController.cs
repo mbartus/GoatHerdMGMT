@@ -3004,13 +3004,13 @@ namespace goatMGMT.Controllers
                 svm.singleBWAvg = svm.singleBWAvg / svm.singleBirthCount;
             }
 
-            if (svm.singleBirthCount == 0)
+            if (svm.singleWeaningCount == 0)
             {
                 svm.singleWWAvg = 0;
             }
             else
             {
-                svm.singleWWAvg = svm.singleWWAvg / svm.singleBirthCount;
+                svm.singleWWAvg = svm.singleWWAvg / svm.singleWeaningCount;
             }
 
             if (svm.twinBirthCount == 0)
@@ -3022,13 +3022,13 @@ namespace goatMGMT.Controllers
                 svm.twinBWAvg = svm.twinBWAvg / svm.twinBirthCount;
             }
 
-            if (svm.twinBirthCount == 0)
+            if (svm.twinWeaningCount == 0)
             {
                 svm.twinWWAvg = 0;
             }
             else
             {
-                svm.twinWWAvg = svm.twinWWAvg / svm.twinBirthCount;
+                svm.twinWWAvg = svm.twinWWAvg / svm.twinWeaningCount;
             }
 
             if (svm.tripletBirthCount == 0)
@@ -3040,13 +3040,13 @@ namespace goatMGMT.Controllers
                 svm.tripletBWAvg = svm.tripletBWAvg / svm.tripletBirthCount;
             }
 
-            if (svm.tripletBirthCount == 0)
+            if (svm.tripletWeaningCount == 0)
             {
                 svm.tripletWWAvg = 0;
             }
             else
             {
-                svm.tripletWWAvg = svm.tripletWWAvg / svm.tripletBirthCount;
+                svm.tripletWWAvg = svm.tripletWWAvg / svm.tripletWeaningCount;
             }
 
             if (svm.quadBirthCount == 0)
@@ -3058,13 +3058,13 @@ namespace goatMGMT.Controllers
                 svm.quadBWAvg = svm.quadBWAvg / svm.quadBirthCount;
             }
 
-            if (svm.quadBirthCount == 0)
+            if (svm.quadWeaningCount == 0)
             {
                 svm.quadWWAvg = 0;
             }
             else
             {
-                svm.quadWWAvg = svm.quadWWAvg / svm.quadBirthCount;
+                svm.quadWWAvg = svm.quadWWAvg / svm.quadWeaningCount;
             }
 
             if (parBW1Count == 0 || parWW1Count == 0)

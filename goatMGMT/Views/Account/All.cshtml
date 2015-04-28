@@ -3,68 +3,74 @@
     ViewBag.Title = "Manage Users";
     Layout = @Url.Content("~/Views/Shared/_Layout.cshtml");
 }
+<div id="spinner">
+    <div class="container">
+        <h2>Users</h2>
 
-<div class="container">
-    <h2>Users</h2>
-
-    <div class="table-responsive">
-        <table class="table table-striped tablesorter" id="birthtable">
-            <thead>
-                <tr>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Account Type
-                    </th>
-                    <th>
-                        Member Since
-                    </th>
-                    <th>
-                        Number of Animals
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.userlist)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.username)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.accountType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.creationDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.animalcount)
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div id="pager" class="pager">
-        <form>
-            <button type="button" class="btn btn-default first">First</button>
-            <button type="button" class="btn btn-default prev">Prev</button>
-            <input type="text" class="pagedisplay" readonly style="height: 34px;" />
-            <button type="button" class="btn btn-default next">Next</button>
-            <button type="button" class="btn btn-default last">Last</button><br />
-            Items on page&nbsp<select class="pagesize">
-                <option selected="selected" value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="9999">View All</option>
-            </select>
-        </form>
+        <div class="table-responsive">
+            <table class="table table-striped tablesorter" id="birthtable">
+                <thead>
+                    <tr>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Account Type
+                        </th>
+                        <th>
+                            Member Since
+                        </th>
+                        <th>
+                            Number of Animals
+                        </th>
+                        <th class="non-sort"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.userlist)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.accountType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.animalcount)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", "Account", new { id=item.userID}, new{})
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div id="pager" class="pager">
+            <form>
+                <button type="button" class="btn btn-default first">First</button>
+                <button type="button" class="btn btn-default prev">Prev</button>
+                <input type="text" class="pagedisplay" readonly style="height: 34px;" />
+                <button type="button" class="btn btn-default next">Next</button>
+                <button type="button" class="btn btn-default last">Last</button><br />
+                Items on page&nbsp<select class="pagesize">
+                    <option selected="selected" value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="9999">View All</option>
+                </select>
+            </form>
+        </div>
     </div>
 </div>
 <script src="~/Scripts/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="~/Scripts/spin.min.js"></script>
 <script src="~/Scripts/jquery.tablesorter.pager.js"></script>
 <script src="~/Scripts/jquery.sieve.js"></script>
 <script type="text/javascript">
@@ -79,5 +85,31 @@
                 output: '{startRow} to {endRow} ({totalRows})'
             });
             $('#birthtable').sieve();
+        });
+        function spinme() {
+            document.getElementById('spinner').style.opacity = 0.5;
+            var opts = {
+                lines: 13, // The number of lines to draw
+                length: 20, // The length of each line
+                width: 10, // The line thickness
+                radius: 60, // The radius of the inner circle
+                corners: 1, // Corner roundness (0..1)
+                rotate: 0, // The rotation offset
+                direction: 1, // 1: clockwise, -1: counterclockwise
+                color: '#000', // #rgb or #rrggbb or array of colors
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false, // Whether to use hardware acceleration
+                className: 'spinner', // The CSS class to assign to the spinner
+                zIndex: 2e9, // The z-index (defaults to 2000000000)
+                top: '50%', // Top position relative to parent
+                left: '50%' // Left position relative to parent
+            };
+            var target = document.getElementById('spinner');
+            var spinner = new Spinner(opts).spin(target);
+        }
+        $(window).unload(function () {
+            spinme();
         });
 </script>

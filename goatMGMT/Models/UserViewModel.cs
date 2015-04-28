@@ -15,5 +15,6 @@ namespace goatMGMT.Models
         public int animalcount;
         public DateTime creationDate;
         public string accountType;
+        public int userID;
     }
 }

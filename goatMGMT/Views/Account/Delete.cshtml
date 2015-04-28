@@ -1,0 +1,74 @@
+﻿@model goatMGMT.Models.UserList
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="spinner">
+<div class="container" style="padding-bottom:15px;">
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this? The user will lose all data and will not be able to login.</h3>
+    <fieldset>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Username</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.username)
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Account Type</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.accountType)
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Number of Animals</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.animalcount)
+            </div>
+        </div>
+    </fieldset>
+    @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Delete", "DeleteConfirmed", "Account", new { id=Model.userID}, new { @class="btn btn-danger", @onclick="spinme()"})
+        @Html.ActionLink("Cancel", "All", "Account", new { @class="btn btn-default"})
+    </div>
+    }
+</div>
+</div>
+<script type="text/javascript" src="~/Scripts/spin.min.js"></script>
+<script type="text/javascript">
+function spinme() {
+            document.getElementById('spinner').style.opacity = 0.5;
+            var opts = {
+                lines: 13, // The number of lines to draw
+                length: 20, // The length of each line
+                width: 10, // The line thickness
+                radius: 60, // The radius of the inner circle
+                corners: 1, // Corner roundness (0..1)
+                rotate: 0, // The rotation offset
+                direction: 1, // 1: clockwise, -1: counterclockwise
+                color: '#000', // #rgb or #rrggbb or array of colors
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: false, // Whether to render a shadow
+                hwaccel: false, // Whether to use hardware acceleration
+                className: 'spinner', // The CSS class to assign to the spinner
+                zIndex: 2e9, // The z-index (defaults to 2000000000)
+                top: '50%', // Top position relative to parent
+                left: '50%' // Left position relative to parent
+            };
+            var target = document.getElementById('spinner');
+            var spinner = new Spinner(opts).spin(target);
+}
+</script>

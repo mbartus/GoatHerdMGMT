@@ -407,6 +407,7 @@ namespace goatMGMT.Controllers
                     currentUser.accountType = "Trial";
                 }
                 currentUser.animalcount = db.Animals.Where(m => m.owner == profile.UserId).Count();
+                currentUser.userID = profile.UserId;
                 users.Add(currentUser);
             }
             UserViewModel uvm = new UserViewModel()
@@ -414,6 +415,97 @@ namespace goatMGMT.Controllers
                 userlist = users
             };
             return View(uvm);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(int id)
+        {
+            UserProfile profile = db.UserProfiles.Find(id);
+            if (profile == null)
+            {
+                return HttpNotFound();
+            }
+            UserList uvm = new UserList();
+            if (db.webpages_Membership.Find(profile.UserId) != null)
+                {
+                    uvm.creationDate = (DateTime)db.webpages_Membership.First(m => m.UserId == profile.UserId).CreateDate;
+                }
+                if (Roles.IsUserInRole(profile.Username,"admin"))
+                {
+                    uvm.accountType = "Admin";
+                }
+                else if (Roles.IsUserInRole(profile.Username,"user"))
+                {
+                    uvm.accountType = "Full";
+                } 
+                else
+                {
+                    uvm.accountType = "Trial";
+                }
+                uvm.animalcount = db.Animals.Where(m => m.owner == profile.UserId).Count();
+                uvm.userID = profile.UserId;
+                uvm.username = profile.Username;
+            return View(uvm);
+        }
+        
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            UserProfile user = db.UserProfiles.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var myAnimals = db.Animals.Where(m => m.owner == user.UserId);
+            foreach (Animal animal in myAnimals)
+            {
+                var treatments = db.Treatments.Include(a => a.Animal.UserProfile).Where(b => b.animal_id == animal.id);
+                var breedings = db.Breedings.Include(a => a.Animal.UserProfile).Where(b => b.father_id == animal.id || b.mother_id == animal.id);
+                foreach (Treatment tre in treatments)
+                {
+                    db.Treatments.Remove(tre);
+                }
+                foreach (Breeding bre in breedings)
+                {
+                    var births = db.Births.Include(a => a.Animal.UserProfile).Where(b => b.breed_id == bre.id);
+                    foreach (Birth bi in births)
+                    {
+                        db.Births.Remove(bi);
+                    }
+                    db.Breedings.Remove(bre);
+                }
+                db.Animals.Remove(animal);
+            }
+            foreach (Transaction transaction in db.Transactions.Where(m => m.userid == user.UserId))
+            {
+                db.Transactions.Remove(transaction);
+            }
+            foreach (Associate associate in db.Associates.Where(m => m.userid == user.UserId))
+            {
+                db.Associates.Remove(associate);
+            }
+            if (Roles.IsUserInRole(user.Username ,"admin"))
+            {
+                Roles.RemoveUserFromRole(user.Username, "admin");
+            }
+            if (Roles.IsUserInRole(user.Username, "user"))
+            {
+                Roles.RemoveUserFromRole(user.Username, "user");
+            }
+            if (Roles.IsUserInRole(user.Username, "trialUser"))
+            {
+                Roles.RemoveUserFromRole(user.Username, "trialUser");
+            }
+            db.UserProfiles.Remove(user);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            return RedirectToAction("All");
         }
     }
 }

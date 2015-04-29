@@ -318,6 +318,7 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditIncome(Transaction transaction)
         {
+            transaction.UserProfile = db.UserProfiles.Find(transaction.userid);
             if (ModelState.IsValid && transaction.userid != 0)
             {
                 db.Entry(transaction).State = EntityState.Modified;
@@ -347,6 +348,7 @@ namespace goatMGMT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditExpense(Transaction transaction)
         {
+            transaction.UserProfile = db.UserProfiles.Find(transaction.userid);
             if (ModelState.IsValid && transaction.userid != 0)
             {
                 db.Entry(transaction).State = EntityState.Modified;

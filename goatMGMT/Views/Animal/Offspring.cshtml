@@ -54,16 +54,44 @@
                             @Html.DisplayFor(modelItem => item.animal.species)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ageAtWeaning)
+                            @if (item.ageAtWeaning == -1)
+                            {
+                                @Html.Raw("N/A")
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.ageAtWeaning)
+                            }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.averageDailyGainWeaning)
+                            @if (item.averageDailyGainWeaning == -1)
+                            {
+                                @Html.Raw("N/A")
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.averageDailyGainWeaning)
+                            }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ageAtPostWeaning)
+                            @if (item.ageAtPostWeaning == -1)
+                            {
+                                @Html.Raw("N/A")
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.ageAtPostWeaning)
+                            }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.averageDailyGainPostWeaning)
+                            @if (item.averageDailyGainPostWeaning == -1)
+                            {
+                                @Html.Raw("N/A")
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.averageDailyGainPostWeaning)
+                            }
                         </td>
                     </tr>
                     }
